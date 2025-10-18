@@ -2,6 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://openscapes.github.io/quarto-website-tutorial/index.html</loc>
-    <lastmod>2025-10-14T22:16:57.679Z</lastmod>
+    <lastmod>2025-10-18T16:27:22.901Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openscapes.github.io/quarto-website-tutorial/licenca.html</loc>
+    <lastmod>2025-10-18T15:50:13.781Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openscapes.github.io/quarto-website-tutorial/turma.html</loc>
+    <lastmod>2025-10-18T15:55:12.016Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openscapes.github.io/quarto-website-tutorial/informacoes-gerais.html</loc>
+    <lastmod>2025-10-18T16:23:32.842Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openscapes.github.io/quarto-website-tutorial/faq.html</loc>
+    <lastmod>2025-10-18T15:55:04.873Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openscapes.github.io/quarto-website-tutorial/profs.html</loc>
+    <lastmod>2025-10-18T15:54:43.003Z</lastmod>
   </url>
 </urlset>

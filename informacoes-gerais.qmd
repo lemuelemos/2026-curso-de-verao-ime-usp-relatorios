@@ -1,0 +1,75 @@
+---
+title: "Informações Gerais"
+---
+
+## 🧭 Curso: Relatórios Reprodutíveis em Quarto
+
+### Aula 1 – Fundamentos de Reprodutibilidade e Introdução ao Quarto
+**Objetivo:** Compreender o conceito de reprodutibilidade e configurar o ambiente de trabalho com Quarto.  
+
+**Tópicos:**
+- O que são relatórios reprodutíveis e por que eles importam  
+- Diferenças entre RMarkdown e Quarto  
+- Instalação e configuração (R, RStudio/Positron, extensões)  
+- Estrutura básica de um documento `.qmd`  
+- Renderização em diferentes formatos (HTML, PDF, DOCX)  
+- Exercício: criar o primeiro relatório com texto, código e resultado integrado  
+
+---
+
+### Aula 2 – Estrutura, Estilo e Layout de Relatórios
+**Objetivo:** Aprender a criar relatórios com formatação profissional e personalização visual.  
+
+**Tópicos:**
+- YAML: título, autor, data e opções de output  
+- Seções, cabeçalhos e sumário automático  
+- Inserção de imagens, tabelas e gráficos  
+- Customização de estilos (CSS, temas, fontes e cores)  
+- Criação de cabeçalhos com logos institucionais  
+- Exercício: construir um template institucional de relatório  
+
+---
+
+### Aula 3 – Integração de Dados e Automação de Análises
+**Objetivo:** Conectar bases de dados e automatizar análises dentro do Quarto.  
+
+**Tópicos:**
+- Leitura de dados (CSV, Excel, SQL, APIs)  
+- Uso de `dplyr`, `ggplot2` e `knitr` para gerar resultados dinâmicos  
+- Criação de tabelas dinâmicas (`gt`, `kableExtra`, `reactable`)  
+- Atualização automática de dados e gráficos  
+- Exercício: relatório automatizado de desempenho ou indicadores  
+
+---
+
+### Aula 4 – Projetos Reprodutíveis e Modularização
+**Objetivo:** Estruturar projetos de análise com múltiplos relatórios e scripts integrados.  
+
+**Tópicos:**
+- Organização de pastas e versionamento (Git/GitHub)  
+- Parâmetros em Quarto (`params`) para relatórios personalizados  
+- Criação de relatórios em lote (loop de parâmetros)  
+- Importação de funções externas (`source`)  
+- Integração com dashboards (Quarto + Shiny ou Quarto + Plotly)  
+- Exercício: gerar relatórios automáticos por unidade, mês ou categoria  
+
+---
+
+### Aula 5 – Publicação e Boas Práticas
+**Objetivo:** Publicar, compartilhar e manter relatórios sustentáveis e auditáveis.  
+
+**Tópicos:**
+- Exportação e compartilhamento (PDF, site, GitHub Pages, Posit Cloud)  
+- Controle de versão e rastreabilidade de análises  
+- Padronização de templates e boas práticas de documentação  
+- Integração com sistemas automatizados (ex: cron jobs, APIs)  
+- Exercício final: projeto completo e publicado  
+
+---
+
+### Projeto Final
+Criação de um **relatório institucional automatizado**, que:
+- lê dados de uma fonte real (ex: desempenho financeiro ou indicadores regionais);  
+- gera visualizações e análises dinâmicas;  
+- inclui logotipo, cabeçalho institucional e versão exportável;  
+- é reproduzível e versionado (Git).  
