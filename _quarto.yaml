@@ -1,0 +1,45 @@
+
+project: 
+  type: website
+  
+website: 
+  page-navigation: true
+  title: "Making sharable documents with Quarto" 
+  site-url: "https://openscapes.github.io/quarto-website-tutorial" 
+  repo-url: https://github.com/openscapes/quarto-website-tutorial 
+  repo-actions: [edit, issue]
+  
+  page-footer:
+    right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
+    left: "&copy; CC-By Openscapes, 2024"
+    background: "#D27B5A"
+    
+  sidebar:
+    logo: "https://www.ime.usp.br/verao/assets/images/logo_verao.png"
+    pinned: true
+    background: "#D27B5A"
+    align: center
+    tools: 
+      - icon: globe
+        href: https://openscapes.org
+        text: "Openscapes.org"
+      - icon: github
+        href: https://github.com/openscapes/quarto-website-tutorial
+        text: "Quarto website tutorial"
+      - icon: twitter
+        href: https://twitter.com/openscapes
+        text: "Openscapes Twitter"         
+
+    style: "docked"
+    search: true
+    collapse-level: 1
+    contents:
+      - href: index.qmd
+format:
+  html:
+    theme: cosmo
+    code-copy: true
+    code-overflow: wrap
+    toc: true
+
+  
