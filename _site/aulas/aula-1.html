@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Aula 1 – Fundamentos de Reprodutibilidade e Introdução ao Quarto – Relatórios reprodutíveis com R</title>
+<title>Aula 1 – Configurações e Introdução ao Quarto – Relatórios reprodutíveis com R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../aulas/aula-1.html">Aulas</a></li><li class="breadcrumb-item"><a href="../aulas/aula-1.html">Aula 1 – Fundamentos de Reprodutibilidade e Introdução ao Quarto</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../aulas/aula-1.html">Aulas</a></li><li class="breadcrumb-item"><a href="../aulas/aula-1.html">Aula 1 – Configurações e Introdução ao Quarto</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -161,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Materias</span></a>
+ <span class="menu-text">Materiais</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -193,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../aulas/aula-1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Aula 1 – Fundamentos de Reprodutibilidade e Introdução ao Quarto</span></a>
+ <span class="menu-text">Aula 1 – Configurações e Introdução ao Quarto</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -205,19 +205,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../aulas/aula-3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aula 3 – Integração de Dados e Automação de Análises</span></a>
+ <span class="menu-text">Aula 3 – Criando Relatórios em PDF com Quarto</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../aulas/aula-4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aula 4 – Visualização de Dados e Comunicação Científica</span></a>
+ <span class="menu-text">Aula 4 – Criando Relatórios em HTML Interativos com Quarto</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../aulas/aula-5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aula 5 – Reprodutibilidade e Boas Práticas em Análises de Dados</span></a>
+ <span class="menu-text">Aula 5 – Compartilhando Relatórios com Quarto</span></a>
   </div>
 </li>
       </ul>
@@ -268,15 +268,26 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#instalação-do-r-rstudiopositron" id="toc-instalação-do-r-rstudiopositron" class="nav-link active" data-scroll-target="#instalação-do-r-rstudiopositron">Instalação do R Rstudio/Positron</a></li>
+  <li><a href="#instalação-do-quarto" id="toc-instalação-do-quarto" class="nav-link" data-scroll-target="#instalação-do-quarto">Instalação do Quarto</a></li>
+  <li><a href="#slides-aula-1" id="toc-slides-aula-1" class="nav-link" data-scroll-target="#slides-aula-1">Slides Aula 1</a>
+  <ul class="collapse">
+  <li><a href="#links-importantes" id="toc-links-importantes" class="nav-link" data-scroll-target="#links-importantes">Links Importantes</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/openscapes/quarto-website-tutorial/edit/main/aulas/aula-1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/openscapes/quarto-website-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../aulas/aula-1.html">Aulas</a></li><li class="breadcrumb-item"><a href="../aulas/aula-1.html">Aula 1 – Fundamentos de Reprodutibilidade e Introdução ao Quarto</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../aulas/aula-1.html">Aulas</a></li><li class="breadcrumb-item"><a href="../aulas/aula-1.html">Aula 1 – Configurações e Introdução ao Quarto</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Aula 1 – Fundamentos de Reprodutibilidade e Introdução ao Quarto</h1>
+<h1 class="title">Aula 1 – Configurações e Introdução ao Quarto</h1>
 </div>
 
 
@@ -293,8 +304,35 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="instalação-do-r-rstudiopositron" class="level1">
+<h1>Instalação do R Rstudio/Positron</h1>
+<p>Para que possamos realizar nosso curso, se faz necessário a instalação das ferramentas básicas pra gerar os relatórios em Quarto.</p>
+<p>O primeiro passo que temos que fazer é a instalação do R em nossa máquina. Para isso temos que acessar a <a href="https://cran.r-project.org/">página oficial do R</a>, baixar o executável e instalar em nossa máquina.</p>
+<p>O segundo passo consiste em instalar alguma IDE, ou seja, interface para que possamos programar e escrever nossos relatórios. Atualmente temos duas IDE’s mais utilizadas no mercado - o <a href="https://posit.co/download/rstudio-desktop/">Rstudio</a> e o <a href="https://positron.posit.co/">Positron</a>. Eu estarei utilizando o Positron mas as duas poderão ser utilizadas.</p>
+<p>Segue aqui o tutorial para a instalação:</p>
+<ul>
+<li><a href="https://livro.curso-r.com/1-1-instalacao-do-r.html">Tutorial instalação do R</a></li>
+<li><a href="https://livro.curso-r.com/1-2-instalacao-do-rstudio.html">Tutorial instalação do Rstudio</a></li>
+</ul>
+</section>
+<section id="instalação-do-quarto" class="level1">
+<h1>Instalação do Quarto</h1>
+<p>Os documentos em <strong>Quarto</strong> não são gerados dentro do próprio R, ele precisa de uma <strong>engine</strong> que execute os documentos para nós. Para instalar a versão mais recente você pode baixar aqui - <a href="https://quarto.org/docs/get-started/">Quarto</a>. Também apresento a vocês um mini tutorial na <a href="https://quarto.org/docs/get-started/hello/positron.html?utm_source=chatgpt.com">Página Oficial do Quarto</a>.</p>
+</section>
+<section id="slides-aula-1" class="level1">
+<h1>Slides Aula 1</h1>
+<p>Acesse aqui os slides da <a href="../slides/01-intro-curso.html">Aula 1</a></p>
+<section id="links-importantes" class="level2">
+<h2 class="anchored" data-anchor-id="links-importantes">Links Importantes</h2>
+<p>Vou deixar aqui alguns links importantes para ajudá-los nesse processo.</p>
+<ul>
+<li><a href="https://dicasdeprogramacao.com.br/como-instalar-o-git-no-windows/">Instalação Git</a></li>
+<li><a href="https://app.netlify.com/drop">Publicação de Relatórios Online via Netlify</a></li>
+</ul>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -716,7 +754,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/openscapes/quarto-website-tutorial/edit/main/aulas/aula-1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/openscapes/quarto-website-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/openscapes/quarto-website-tutorial/edit/main/aulas/aula-1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/openscapes/quarto-website-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>

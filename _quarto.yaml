@@ -43,7 +43,7 @@ website:
            - profs.qmd
            - turma.qmd           
            - faq.qmd
-      - section: "Materias"
+      - section: "Materiais"
         contents:
            - instrucoes-de-instalacao.qmd        
            - slides.qmd

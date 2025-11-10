@@ -10,94 +10,6 @@
     ]
   },
   {
-    "objectID": "informacoes-gerais.html",
-    "href": "informacoes-gerais.html",
-    "title": "Informações Gerais",
-    "section": "",
-    "text": "Objetivo: Compreender o conceito de reprodutibilidade e configurar o ambiente de trabalho com Quarto.\nTópicos: - O que são relatórios reprodutíveis e por que eles importam\n- Diferenças entre RMarkdown e Quarto\n- Instalação e configuração (R, RStudio/Positron, extensões)\n- Estrutura básica de um documento .qmd\n- Renderização em diferentes formatos (HTML, PDF, DOCX)\n- Exercício: criar o primeiro relatório com texto, código e resultado integrado\n\n\n\n\nObjetivo: Aprender a criar relatórios com formatação profissional e personalização visual.\nTópicos: - YAML: título, autor, data e opções de output\n- Seções, cabeçalhos e sumário automático\n- Inserção de imagens, tabelas e gráficos\n- Customização de estilos (CSS, temas, fontes e cores)\n- Criação de cabeçalhos com logos institucionais\n- Exercício: construir um template institucional de relatório\n\n\n\n\nObjetivo: Conectar bases de dados e automatizar análises dentro do Quarto.\nTópicos: - Leitura de dados (CSV, Excel, SQL, APIs)\n- Uso de dplyr, ggplot2 e knitr para gerar resultados dinâmicos\n- Criação de tabelas dinâmicas (gt, kableExtra, reactable)\n- Atualização automática de dados e gráficos\n- Exercício: relatório automatizado de desempenho ou indicadores\n\n\n\n\nObjetivo: Estruturar projetos de análise com múltiplos relatórios e scripts integrados.\nTópicos: - Organização de pastas e versionamento (Git/GitHub)\n- Parâmetros em Quarto (params) para relatórios personalizados\n- Criação de relatórios em lote (loop de parâmetros)\n- Importação de funções externas (source)\n- Integração com dashboards (Quarto + Shiny ou Quarto + Plotly)\n- Exercício: gerar relatórios automáticos por unidade, mês ou categoria\n\n\n\n\nObjetivo: Publicar, compartilhar e manter relatórios sustentáveis e auditáveis.\nTópicos: - Exportação e compartilhamento (PDF, site, GitHub Pages, Posit Cloud)\n- Controle de versão e rastreabilidade de análises\n- Padronização de templates e boas práticas de documentação\n- Integração com sistemas automatizados (ex: cron jobs, APIs)\n- Exercício final: projeto completo e publicado\n\n\n\n\nCriação de um relatório institucional automatizado, que: - lê dados de uma fonte real (ex: desempenho financeiro ou indicadores regionais);\n- gera visualizações e análises dinâmicas;\n- inclui logotipo, cabeçalho institucional e versão exportável;\n- é reproduzível e versionado (Git).",
-    "crumbs": [
-      "Sobre o curso",
-      "Informações Gerais"
-    ]
-  },
-  {
-    "objectID": "informacoes-gerais.html#aula-1-fundamentos-de-reprodutibilidade-e-introdução-ao-quarto",
-    "href": "informacoes-gerais.html#aula-1-fundamentos-de-reprodutibilidade-e-introdução-ao-quarto",
-    "title": "Informações Gerais",
-    "section": "",
-    "text": "Objetivo: Compreender o conceito de reprodutibilidade e configurar o ambiente de trabalho com Quarto.\nTópicos: - O que são relatórios reprodutíveis e por que eles importam\n- Diferenças entre RMarkdown e Quarto\n- Instalação e configuração (R, RStudio/Positron, extensões)\n- Estrutura básica de um documento .qmd\n- Renderização em diferentes formatos (HTML, PDF, DOCX)\n- Exercício: criar o primeiro relatório com texto, código e resultado integrado",
-    "crumbs": [
-      "Sobre o curso",
-      "Informações Gerais"
-    ]
-  },
-  {
-    "objectID": "informacoes-gerais.html#aula-2-estrutura-estilo-e-layout-de-relatórios",
-    "href": "informacoes-gerais.html#aula-2-estrutura-estilo-e-layout-de-relatórios",
-    "title": "Informações Gerais",
-    "section": "",
-    "text": "Objetivo: Aprender a criar relatórios com formatação profissional e personalização visual.\nTópicos: - YAML: título, autor, data e opções de output\n- Seções, cabeçalhos e sumário automático\n- Inserção de imagens, tabelas e gráficos\n- Customização de estilos (CSS, temas, fontes e cores)\n- Criação de cabeçalhos com logos institucionais\n- Exercício: construir um template institucional de relatório",
-    "crumbs": [
-      "Sobre o curso",
-      "Informações Gerais"
-    ]
-  },
-  {
-    "objectID": "informacoes-gerais.html#aula-3-integração-de-dados-e-automação-de-análises",
-    "href": "informacoes-gerais.html#aula-3-integração-de-dados-e-automação-de-análises",
-    "title": "Informações Gerais",
-    "section": "",
-    "text": "Objetivo: Conectar bases de dados e automatizar análises dentro do Quarto.\nTópicos: - Leitura de dados (CSV, Excel, SQL, APIs)\n- Uso de dplyr, ggplot2 e knitr para gerar resultados dinâmicos\n- Criação de tabelas dinâmicas (gt, kableExtra, reactable)\n- Atualização automática de dados e gráficos\n- Exercício: relatório automatizado de desempenho ou indicadores",
-    "crumbs": [
-      "Sobre o curso",
-      "Informações Gerais"
-    ]
-  },
-  {
-    "objectID": "informacoes-gerais.html#aula-4-projetos-reprodutíveis-e-modularização",
-    "href": "informacoes-gerais.html#aula-4-projetos-reprodutíveis-e-modularização",
-    "title": "Informações Gerais",
-    "section": "",
-    "text": "Objetivo: Estruturar projetos de análise com múltiplos relatórios e scripts integrados.\nTópicos: - Organização de pastas e versionamento (Git/GitHub)\n- Parâmetros em Quarto (params) para relatórios personalizados\n- Criação de relatórios em lote (loop de parâmetros)\n- Importação de funções externas (source)\n- Integração com dashboards (Quarto + Shiny ou Quarto + Plotly)\n- Exercício: gerar relatórios automáticos por unidade, mês ou categoria",
-    "crumbs": [
-      "Sobre o curso",
-      "Informações Gerais"
-    ]
-  },
-  {
-    "objectID": "informacoes-gerais.html#aula-5-publicação-e-boas-práticas",
-    "href": "informacoes-gerais.html#aula-5-publicação-e-boas-práticas",
-    "title": "Informações Gerais",
-    "section": "",
-    "text": "Objetivo: Publicar, compartilhar e manter relatórios sustentáveis e auditáveis.\nTópicos: - Exportação e compartilhamento (PDF, site, GitHub Pages, Posit Cloud)\n- Controle de versão e rastreabilidade de análises\n- Padronização de templates e boas práticas de documentação\n- Integração com sistemas automatizados (ex: cron jobs, APIs)\n- Exercício final: projeto completo e publicado",
-    "crumbs": [
-      "Sobre o curso",
-      "Informações Gerais"
-    ]
-  },
-  {
-    "objectID": "informacoes-gerais.html#projeto-final",
-    "href": "informacoes-gerais.html#projeto-final",
-    "title": "Informações Gerais",
-    "section": "",
-    "text": "Criação de um relatório institucional automatizado, que: - lê dados de uma fonte real (ex: desempenho financeiro ou indicadores regionais);\n- gera visualizações e análises dinâmicas;\n- inclui logotipo, cabeçalho institucional e versão exportável;\n- é reproduzível e versionado (Git).",
-    "crumbs": [
-      "Sobre o curso",
-      "Informações Gerais"
-    ]
-  },
-  {
-    "objectID": "informacoes-gerais.html#curso-relatórios-reprodutíveis-em-quarto",
-    "href": "informacoes-gerais.html#curso-relatórios-reprodutíveis-em-quarto",
-    "title": "Informações Gerais",
-    "section": "",
-    "text": "Objetivo: Compreender o conceito de reprodutibilidade e configurar o ambiente de trabalho com Quarto.\nTópicos: - O que são relatórios reprodutíveis e por que eles importam\n- Diferenças entre RMarkdown e Quarto\n- Instalação e configuração (R, RStudio/Positron, extensões)\n- Estrutura básica de um documento .qmd\n- Renderização em diferentes formatos (HTML, PDF, DOCX)\n- Exercício: criar o primeiro relatório com texto, código e resultado integrado\n\n\n\n\nObjetivo: Aprender a criar relatórios com formatação profissional e personalização visual.\nTópicos: - YAML: título, autor, data e opções de output\n- Seções, cabeçalhos e sumário automático\n- Inserção de imagens, tabelas e gráficos\n- Customização de estilos (CSS, temas, fontes e cores)\n- Criação de cabeçalhos com logos institucionais\n- Exercício: construir um template institucional de relatório\n\n\n\n\nObjetivo: Conectar bases de dados e automatizar análises dentro do Quarto.\nTópicos: - Leitura de dados (CSV, Excel, SQL, APIs)\n- Uso de dplyr, ggplot2 e knitr para gerar resultados dinâmicos\n- Criação de tabelas dinâmicas (gt, kableExtra, reactable)\n- Atualização automática de dados e gráficos\n- Exercício: relatório automatizado de desempenho ou indicadores\n\n\n\n\nObjetivo: Estruturar projetos de análise com múltiplos relatórios e scripts integrados.\nTópicos: - Organização de pastas e versionamento (Git/GitHub)\n- Parâmetros em Quarto (params) para relatórios personalizados\n- Criação de relatórios em lote (loop de parâmetros)\n- Importação de funções externas (source)\n- Integração com dashboards (Quarto + Shiny ou Quarto + Plotly)\n- Exercício: gerar relatórios automáticos por unidade, mês ou categoria\n\n\n\n\nObjetivo: Publicar, compartilhar e manter relatórios sustentáveis e auditáveis.\nTópicos: - Exportação e compartilhamento (PDF, site, GitHub Pages, Posit Cloud)\n- Controle de versão e rastreabilidade de análises\n- Padronização de templates e boas práticas de documentação\n- Integração com sistemas automatizados (ex: cron jobs, APIs)\n- Exercício final: projeto completo e publicado\n\n\n\n\nCriação de um relatório institucional automatizado, que: - lê dados de uma fonte real (ex: desempenho financeiro ou indicadores regionais);\n- gera visualizações e análises dinâmicas;\n- inclui logotipo, cabeçalho institucional e versão exportável;\n- é reproduzível e versionado (Git).",
-    "crumbs": [
-      "Sobre o curso",
-      "Informações Gerais"
-    ]
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Relatórios reprodutíveis com R",
@@ -135,6 +47,50 @@
     "text": "Edição passada\nConfira a página do curso de 2022 e os trabalhos finais criados pelas pessoas participantes da edição.",
     "crumbs": [
       "Relatórios reprodutíveis com R"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-1.html",
+    "href": "aulas/aula-1.html",
+    "title": "Aula 1 – Configurações e Introdução ao Quarto",
+    "section": "",
+    "text": "Para que possamos realizar nosso curso, se faz necessário a instalação das ferramentas básicas pra gerar os relatórios em Quarto.\nO primeiro passo que temos que fazer é a instalação do R em nossa máquina. Para isso temos que acessar a página oficial do R, baixar o executável e instalar em nossa máquina.\nO segundo passo consiste em instalar alguma IDE, ou seja, interface para que possamos programar e escrever nossos relatórios. Atualmente temos duas IDE’s mais utilizadas no mercado - o Rstudio e o Positron. Eu estarei utilizando o Positron mas as duas poderão ser utilizadas.\nSegue aqui o tutorial para a instalação:\n\nTutorial instalação do R\nTutorial instalação do Rstudio",
+    "crumbs": [
+      "Aulas",
+      "Aula 1 – Configurações e Introdução ao Quarto"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-1.html#links-importantes",
+    "href": "aulas/aula-1.html#links-importantes",
+    "title": "Aula 1 – Configurações e Introdução ao Quarto",
+    "section": "Links Importantes",
+    "text": "Links Importantes\nVou deixar aqui alguns links importantes para ajudá-los nesse processo.\n\nInstalação Git\nPublicação de Relatórios Online via Netlify",
+    "crumbs": [
+      "Aulas",
+      "Aula 1 – Configurações e Introdução ao Quarto"
+    ]
+  },
+  {
+    "objectID": "informacoes-gerais.html",
+    "href": "informacoes-gerais.html",
+    "title": "Informações Gerais",
+    "section": "",
+    "text": "Objetivo: Compreender o conceito de reprodutibilidade e configurar o ambiente de trabalho com Quarto.\nTópicos: - O que são relatórios reprodutíveis e por que eles importam\n- Diferenças entre RMarkdown e Quarto\n- Instalação e configuração (R, RStudio/Positron, extensões)\n- Estrutura básica de um documento .qmd\n- Renderização em diferentes formatos (HTML, PDF, DOCX)\n- Exercício: criar o primeiro relatório com texto, código e resultado integrado\n\n\n\n\nObjetivo: Aprender a criar relatórios com formatação profissional e personalização visual.\nTópicos: - YAML: título, autor, data e opções de output\n- Seções, cabeçalhos e sumário automático\n- Inserção de imagens, tabelas e gráficos\n- Customização de estilos (CSS, temas, fontes e cores)\n- Criação de cabeçalhos com logos institucionais\n- Exercício: construir um template institucional de relatório\n\n\n\n\nObjetivo: Conectar bases de dados e automatizar análises dentro do Quarto.\nTópicos: - Leitura de dados (CSV, Excel, SQL, APIs)\n- Uso de dplyr, ggplot2 e knitr para gerar resultados dinâmicos\n- Criação de tabelas dinâmicas (gt, kableExtra, reactable)\n- Atualização automática de dados e gráficos\n- Exercício: relatório automatizado de desempenho ou indicadores\n\n\n\n\nObjetivo: Estruturar projetos de análise com múltiplos relatórios e scripts integrados.\nTópicos: - Organização de pastas e versionamento (Git/GitHub)\n- Parâmetros em Quarto (params) para relatórios personalizados\n- Criação de relatórios em lote (loop de parâmetros)\n- Importação de funções externas (source)\n- Integração com dashboards (Quarto + Shiny ou Quarto + Plotly)\n- Exercício: gerar relatórios automáticos por unidade, mês ou categoria\n\n\n\n\nObjetivo: Publicar, compartilhar e manter relatórios sustentáveis e auditáveis.\nTópicos: - Exportação e compartilhamento (PDF, site, GitHub Pages, Posit Cloud)\n- Controle de versão e rastreabilidade de análises\n- Padronização de templates e boas práticas de documentação\n- Integração com sistemas automatizados (ex: cron jobs, APIs)\n- Exercício final: projeto completo e publicado\n\n\n\n\nCriação de um relatório institucional automatizado, que: - lê dados de uma fonte real (ex: desempenho financeiro ou indicadores regionais);\n- gera visualizações e análises dinâmicas;\n- inclui logotipo, cabeçalho institucional e versão exportável;\n- é reproduzível e versionado (Git).",
+    "crumbs": [
+      "Sobre o curso",
+      "Informações Gerais"
+    ]
+  },
+  {
+    "objectID": "informacoes-gerais.html#curso-relatórios-reprodutíveis-em-quarto",
+    "href": "informacoes-gerais.html#curso-relatórios-reprodutíveis-em-quarto",
+    "title": "Informações Gerais",
+    "section": "",
+    "text": "Objetivo: Compreender o conceito de reprodutibilidade e configurar o ambiente de trabalho com Quarto.\nTópicos: - O que são relatórios reprodutíveis e por que eles importam\n- Diferenças entre RMarkdown e Quarto\n- Instalação e configuração (R, RStudio/Positron, extensões)\n- Estrutura básica de um documento .qmd\n- Renderização em diferentes formatos (HTML, PDF, DOCX)\n- Exercício: criar o primeiro relatório com texto, código e resultado integrado\n\n\n\n\nObjetivo: Aprender a criar relatórios com formatação profissional e personalização visual.\nTópicos: - YAML: título, autor, data e opções de output\n- Seções, cabeçalhos e sumário automático\n- Inserção de imagens, tabelas e gráficos\n- Customização de estilos (CSS, temas, fontes e cores)\n- Criação de cabeçalhos com logos institucionais\n- Exercício: construir um template institucional de relatório\n\n\n\n\nObjetivo: Conectar bases de dados e automatizar análises dentro do Quarto.\nTópicos: - Leitura de dados (CSV, Excel, SQL, APIs)\n- Uso de dplyr, ggplot2 e knitr para gerar resultados dinâmicos\n- Criação de tabelas dinâmicas (gt, kableExtra, reactable)\n- Atualização automática de dados e gráficos\n- Exercício: relatório automatizado de desempenho ou indicadores\n\n\n\n\nObjetivo: Estruturar projetos de análise com múltiplos relatórios e scripts integrados.\nTópicos: - Organização de pastas e versionamento (Git/GitHub)\n- Parâmetros em Quarto (params) para relatórios personalizados\n- Criação de relatórios em lote (loop de parâmetros)\n- Importação de funções externas (source)\n- Integração com dashboards (Quarto + Shiny ou Quarto + Plotly)\n- Exercício: gerar relatórios automáticos por unidade, mês ou categoria\n\n\n\n\nObjetivo: Publicar, compartilhar e manter relatórios sustentáveis e auditáveis.\nTópicos: - Exportação e compartilhamento (PDF, site, GitHub Pages, Posit Cloud)\n- Controle de versão e rastreabilidade de análises\n- Padronização de templates e boas práticas de documentação\n- Integração com sistemas automatizados (ex: cron jobs, APIs)\n- Exercício final: projeto completo e publicado\n\n\n\n\nCriação de um relatório institucional automatizado, que: - lê dados de uma fonte real (ex: desempenho financeiro ou indicadores regionais);\n- gera visualizações e análises dinâmicas;\n- inclui logotipo, cabeçalho institucional e versão exportável;\n- é reproduzível e versionado (Git).",
+    "crumbs": [
+      "Sobre o curso",
+      "Informações Gerais"
     ]
   }
 ]
