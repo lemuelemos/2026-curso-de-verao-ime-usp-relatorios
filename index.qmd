@@ -21,7 +21,3 @@ Além disso, o conceito de controle de versão com Git será apresentado. També
 -   Como versionar os arquivos no Git e GitHub;
 
 -   Como disponibilizar estes documentos HTML criados com Quarto na internet para que outras pessoas consigam acessar.
-
-## Edição passada
-
-Confira a [página do curso de 2022](https://beatrizmilz.github.io/2022-curso-de-verao-ime-usp-relatorios/programacao-do-curso.html) e os [trabalhos finais](https://beatrizmilz.github.io/2022-curso-de-verao-ime-usp-relatorios/trabalho_final.html) criados pelas pessoas participantes da edição.

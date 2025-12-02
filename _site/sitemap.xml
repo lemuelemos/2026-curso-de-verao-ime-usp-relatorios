@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://openscapes.github.io/quarto-website-tutorial/index.html</loc>
-    <lastmod>2025-11-10T08:50:39.214Z</lastmod>
+    <lastmod>2025-12-02T10:00:16.326Z</lastmod>
   </url>
   <url>
     <loc>https://openscapes.github.io/quarto-website-tutorial/aulas/aula-5.html</loc>
@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://openscapes.github.io/quarto-website-tutorial/aulas/aula-1.html</loc>
-    <lastmod>2025-11-10T09:45:11.216Z</lastmod>
+    <lastmod>2025-12-02T09:02:19.797Z</lastmod>
   </url>
   <url>
     <loc>https://openscapes.github.io/quarto-website-tutorial/aulas/aula-2.html</loc>
@@ -43,5 +43,25 @@
   <url>
     <loc>https://openscapes.github.io/quarto-website-tutorial/profs.html</loc>
     <lastmod>2025-10-18T15:54:43.003Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openscapes.github.io/quarto-website-tutorial/slides/01-intro-curso.html</loc>
+    <lastmod>2025-12-02T09:24:51.568Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openscapes.github.io/quarto-website-tutorial/slides/02-intro-quarto.html</loc>
+    <lastmod>2025-12-02T09:43:24.257Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openscapes.github.io/quarto-website-tutorial/slides/03-reprodutibilidade.html</loc>
+    <lastmod>2025-12-02T09:59:18.091Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openscapes.github.io/quarto-website-tutorial/slides/04-elementos-acad.html</loc>
+    <lastmod>2025-12-02T09:59:34.896Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openscapes.github.io/quarto-website-tutorial/slides/05-parametros.html</loc>
+    <lastmod>2025-12-02T09:59:54.414Z</lastmod>
   </url>
 </urlset>
