@@ -65,7 +65,7 @@ editor: visual
 
 -   Plataforma USP: <https://cursosextensao.usp.br/course/view.php?id=4166>
 
--   Site do curso: <https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/>
+-   Site do curso: <https://lemuelemos.github.io/2026-curso-de-verao-ime-usp-relatorios/>
 
 ## Gravação das aulas
 
@@ -97,7 +97,7 @@ editor: visual
 
 **Objetivo:** Você deverá criar um documento com Quarto e compartilhar conosco (seja em word, pdf ou HTML). Esse trabalho final é importante para que você pratique o que foi discutido no curso.
 
-Mais informações em: [Trabalho final](https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/trabalho-final.html)
+Mais informações em: [Trabalho final](https://lemuelemos.github.io/2026-curso-de-verao-ime-usp-relatorios/trabalho_final.html)
 
 ## Objetivos de aprendizagem
 
