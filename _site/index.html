@@ -140,19 +140,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./profs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Professores e Alunos</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./turma.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Turma</span></a>
+ <span class="menu-text">Professores e Monitores</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./faq.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Faq</span></a>
+ <span class="menu-text">Perguntas Frequentes (FAQ)</span></a>
   </div>
 </li>
       </ul>
@@ -167,17 +161,17 @@ ul.task-list li input[type="checkbox"] {
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
- <span class="menu-text">instrucoes-de-instalacao.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./materiais/instrucoes-de-instalacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pré-curso: Instalações necessárias</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">slides.qmd</span>
-  </li>
-          <li class="sidebar-item">
- <span class="menu-text">trabalho_final.qmd</span>
-  </li>
-          <li class="sidebar-item">
- <span class="menu-text">duvidas/index.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Slides e materiais por aula</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -193,30 +187,6 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./aulas/aula-1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Aula 1 – Configurações e Introdução ao Quarto</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./aulas/aula-2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aula 2 – Estrutura, Estilo e Layout de Relatórios</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./aulas/aula-3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aula 3 – Criando Relatórios em PDF com Quarto</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./aulas/aula-4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aula 4 – Criando Relatórios em HTML Interativos com Quarto</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./aulas/aula-5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aula 5 – Compartilhando Relatórios com Quarto</span></a>
   </div>
 </li>
       </ul>
@@ -274,7 +244,6 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#sobre-o-curso" id="toc-sobre-o-curso" class="nav-link active" data-scroll-target="#sobre-o-curso">Sobre o curso</a></li>
   <li><a href="#temas-abordados" id="toc-temas-abordados" class="nav-link" data-scroll-target="#temas-abordados">Temas abordados</a></li>
-  <li><a href="#edição-passada" id="toc-edição-passada" class="nav-link" data-scroll-target="#edição-passada">Edição passada</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/openscapes/quarto-website-tutorial/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/openscapes/quarto-website-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -302,7 +271,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="sobre-o-curso" class="level2">
 <h2 class="anchored" data-anchor-id="sobre-o-curso">Sobre o curso</h2>
-<p>Utilizaremos o Quarto (<a href="https://quarto.org/" class="uri">https://quarto.org/</a>), e conheceremos como criar relatórios reprodutíveis com R ou Python, como: listas de exercícios, relatórios, apresentações em HTML, apresentações em powerpoint, relatórios em word, relatórios interativos, entre outros.</p>
+<p>Utilizaremos o Quarto (<a href="https://quarto.org/" class="uri">https://quarto.org/</a>), e conheceremos como criar relatórios reprodutíveis com R ou Python, como: relatórios, apresentações em HTML, apresentações em powerpoint, relatórios em word, relatórios interativos, entre outros.</p>
 <p>Aprenderemos também a criar relatórios reprodutíveis utilizando relatórios parametrizados, que permitem especificar parâmetros para customizar a análise, o que é muito útil para criar relatórios que podem ser reutilizados.</p>
 <p>Além disso, o conceito de controle de versão com Git será apresentado. Também aprenderemos a disponibilizar o conteúdo criado no curso de forma online, através do GitHub.</p>
 </section>
@@ -310,15 +279,11 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="temas-abordados">Temas abordados</h2>
 <ul>
 <li><p>O que é reprodutibilidade;</p></li>
-<li><p>O que é o RMarkdown e o Quarto, e quais são as diferenças;</p></li>
+<li><p>O que é o Quarto;</p></li>
 <li><p>Como criar um documento reprodutível com Quarto usando R ou Python;</p></li>
 <li><p>Como versionar os arquivos no Git e GitHub;</p></li>
 <li><p>Como disponibilizar estes documentos HTML criados com Quarto na internet para que outras pessoas consigam acessar.</p></li>
 </ul>
-</section>
-<section id="edição-passada" class="level2">
-<h2 class="anchored" data-anchor-id="edição-passada">Edição passada</h2>
-<p>Confira a <a href="https://beatrizmilz.github.io/2022-curso-de-verao-ime-usp-relatorios/programacao-do-curso.html">página do curso de 2022</a> e os <a href="https://beatrizmilz.github.io/2022-curso-de-verao-ime-usp-relatorios/trabalho_final.html">trabalhos finais</a> criados pelas pessoas participantes da edição.</p>
 
 
 </section>

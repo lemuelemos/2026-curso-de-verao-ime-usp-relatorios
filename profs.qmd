@@ -1,3 +1,43 @@
 ---
-title: "Professores e Alunos"
+title: "Professores e Monitores"
+format:
+  html:
+    css: imagem_perfil.css
 ---
+
+**Quem sou eu?**
+
+<div class="header-block">
+
+  <img src="https://avatars.githubusercontent.com/u/17839354?v=4" class="side-image">
+
+  <div class="side-links">
+<a href="https://www.linkedin.com/in/lemuelemos/" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg">
+    </a>
+
+<a href="https://github.com/lemuelemos" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg">
+    </a>
+
+<a href="https://lemuelemos.github.io/blog_mutual/" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/blogger.svg">
+    </a>
+  </div>
+
+</div>
+
+
+Meu nome é **Lemuel Lemos**. Sou economista, formado pela **Universidade Federal do Rio Grande do Norte (UFRN)**, onde também concluí o **mestrado em Economia** e o **doutorado em Finanças**. Nos últimos anos, tenho me dedicado intensamente à **programação e à análise de dados**, com experiência prática em **R e Python**, desenvolvimento de dashboards, automação de rotinas analíticas e construção de relatórios técnicos e gerenciais.
+
+Atualmente, atuo na área de **análise de risco**, com foco em **modelagem de solvência de cooperativas de crédito** no âmbito do **Fundo Garantidor das Cooperativas de Crédito (FGCoop)**. Meu trabalho envolve a construção de modelos analíticos, estruturação de bases de dados, desenvolvimento de sistemas de monitoramento e elaboração de relatórios técnicos voltados à avaliação da saúde financeira e da sustentabilidade institucional do sistema cooperativo de crédito.
+
+Paralelamente, possuo experiência na área de **Business Intelligence e liderança operacional**, tendo atuado como **Head Operacional e responsável pela área de BI na RD Investimentos**, onde liderei projetos de automação de processos, criação de dashboards estratégicos e sistemas de acompanhamento de desempenho comercial e operacional.
+
+Minha trajetória também inclui experiência prévia no **mercado financeiro**, com atuação como **operador de bolsa**, além de projetos acadêmicos e de pesquisa em **econometria aplicada, modelagem financeira e análise de risco**.
+
+Tenho especial interesse em **transformar dados em informação estratégica**, integrar **ferramentas de programação e inteligência artificial** às rotinas analíticas e construir soluções que tornem processos mais eficientes, transparentes e reprodutíveis.
+
+Neste curso, meu objetivo é compartilhar essa experiência prática, mostrando como estruturar projetos em R de forma profissional, organizada e replicável, preparando vocês para aplicar essas ferramentas em contextos acadêmicos e de mercado.
+
+

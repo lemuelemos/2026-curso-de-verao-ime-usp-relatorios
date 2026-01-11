@@ -1,0 +1,63 @@
+/* Contêiner que segura o primeiro bloco */
+.header-block {
+  position: relative;
+}
+
+/* Imagem posicionada à direita apenas nesse bloco */
+.header-block .side-image {
+  position: absolute;
+  top: 0;
+  right: -150px;   /* <- empurra a imagem mais para a direita */
+  width: 140px;
+  border-radius: 50%;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+
+/* Espaço visual para não sobrepor o texto */
+.header-block .text-content {
+  padding-right: 100px;
+}
+
+/* Em telas pequenas, remove imagem */
+@media (max-width: 900px) {
+  .header-block .side-image {
+    display: none;
+  }
+  .header-block .text-content {
+    padding-right: 0;
+  }
+}
+
+.header-block { position: relative; }
+
+.side-image {
+  position: absolute;
+  top: 0;
+  right: -40px;
+  width: 140px;
+  border-radius: 50%;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+
+.side-links {
+  position: absolute;
+  top: 155px;
+  right: -150px;
+  width: 140px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.side-links img {
+  width: 22px;
+  height: 22px;
+  filter: grayscale(100%);
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+.side-links img:hover {
+  filter: none;
+  opacity: 1;
+}

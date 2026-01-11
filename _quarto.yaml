@@ -41,21 +41,21 @@ website:
         contents:
            - informacoes-gerais.qmd
            - profs.qmd
-           - turma.qmd           
+           # - turma.qmd           
            - faq.qmd
       - section: "Materiais"
         contents:
-           - instrucoes-de-instalacao.qmd        
+           - materiais/instrucoes-de-instalacao.qmd        
            - slides.qmd
-           - trabalho_final.qmd
-           - duvidas/index.qmd
+           #- trabalho_final.qmd
+           #- duvidas/index.qmd
       - section: "Aulas"
         contents:
           - aulas/aula-1.qmd
-          - aulas/aula-2.qmd
-          - aulas/aula-3.qmd
-          - aulas/aula-4.qmd
-          - aulas/aula-5.qmd
+          #- aulas/aula-2.qmd
+          #- aulas/aula-3.qmd
+          #- aulas/aula-4.qmd
+          #- aulas/aula-5.qmd
       - section: "Edições anteriores"
         contents:
           - href: https://beatrizmilz.github.io/2022-curso-de-verao-ime-usp-relatorios/programacao-do-curso.html
