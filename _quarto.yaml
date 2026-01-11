@@ -35,7 +35,7 @@ website:
     collapse-level: 1
     contents:
       - href: index.qmd
-      - href: https://cursosextensao.usp.br/course/view.php?id=3449
+      - href: https://cursosextensao.usp.br/enrol/index.php?id=4524
         text: "Plataforma USP"
       - section: "Sobre o curso"
         contents:
@@ -56,6 +56,9 @@ website:
           #- aulas/aula-3.qmd
           #- aulas/aula-4.qmd
           #- aulas/aula-5.qmd
+      - section: "Trabalho Final"
+        contents: 
+          - trabalho_final.qmd
       - section: "Edições anteriores"
         contents:
           - href: https://beatrizmilz.github.io/2022-curso-de-verao-ime-usp-relatorios/programacao-do-curso.html

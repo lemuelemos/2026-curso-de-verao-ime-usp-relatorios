@@ -1,0 +1,116 @@
+---
+title: "Instruções de Trabalho Final"
+code-link: true
+---
+
+**Objetivo:** Você deverá criar um documento utilizando **Quarto** e compartilhá-lo conosco. O trabalho final tem como propósito consolidar os conhecimentos apresentados ao longo do curso, por meio da elaboração de um produto final estruturado e reprodutível.
+
+**Formato do trabalho:**  
+Você deverá **escolher um dos três formatos abaixo** para o seu trabalho final:
+
+- **Relatório executivo** — voltado para comunicação objetiva de resultados, com linguagem acessível a gestores e tom profissional.
+- **Apresentação em slides** — estrutura de apresentação sintética, visual e orientada à exposição oral.
+- **Artigo acadêmico** — estrutura científica, com seções formais (introdução, metodologia, resultados, discussão e referências).
+
+A escolha do formato deve estar alinhada ao **objetivo do trabalho** e ao **público-alvo** que você deseja atingir.
+
+**RECOMENDAÇÃO:** Realize as etapas sugeridas após cada aula para facilitar a construção gradual do trabalho.
+
+**ATENÇÃO:** O recebimento do certificado está vinculado à entrega e aprovação deste trabalho final, além de frequência mínima de 75%.
+
+---
+
+## Etapas pré-código
+
+- Pense no **formato escolhido** (relatório executivo, slides ou artigo acadêmico), definindo:
+  - o objetivo do documento;
+  - o público-alvo;
+  - o tipo de linguagem mais adequada.
+
+- Exemplos de aplicações:
+
+  - Relatório executivo apresentando uma análise de dados para tomada de decisão.
+  - Apresentação em slides para exposição de resultados de uma pesquisa ou projeto.
+  - Artigo acadêmico com estrutura científica (não precisa estar completo, mas deve conter a organização típica e uso de código para gerar tabelas e gráficos).
+  - Tutorial com código em R ou Python.
+  - Página pessoal de divulgação.
+  - Dashboard interativo.
+  - Livro ou capítulo inicial estruturado em Quarto.
+
+- Escolha uma base de dados para utilizar. Algumas sugestões:
+
+  - Alguma base que você **tenha interesse**.
+  - Pacote [dados](https://cienciadedatos.github.io/dados/)
+  - Repositório [tidytuesday](https://github.com/rfordatascience/tidytuesday)
+  - Dados próprios de pesquisa ou trabalho.
+
+---
+
+## Passo a passo com R
+
+1) Crie um Projeto no RStudio para realizar a tarefa.  
+Utilize boas práticas de nomeação: não use espaços, caracteres especiais ou acentuação.  
+O projeto deve chamar-se:  
+`trabalho_relatorios_nome_sobrenome`  
+Exemplo: `trabalho_relatorios_beatriz_milz`
+
+Você pode criar um projeto simples ou um projeto Quarto (que já traz estrutura adequada para relatórios, apresentações, websites ou livros).
+
+**Todos os passos seguintes devem ser realizados dentro deste projeto.**
+
+---
+
+2) Crie a estrutura básica do projeto:
+
+- Pasta `dados` para bases de dados (se necessário).
+- Pasta `img` para imagens (se necessário).
+
+Você pode criar manualmente ou usando:
+
+```{r}
+#| eval: false
+fs::dir_create("dados")
+fs::dir_create("img")
+```
+
+---
+
+3. Crie o arquivo principal do projeto:
+
+> File → New File → Quarto Document
+
+Salve o arquivo com o nome `index.qmd`.
+Clique em **Render** para verificar se o arquivo `index.html` foi gerado sem erros.
+
+> 💡 Caso você tenha escolhido o formato **apresentação em slides**, selecione o tipo de documento **RevealJS** ou **PowerPoint** no momento da criação do arquivo Quarto.
+
+---
+
+4. Desenvolva o conteúdo do seu trabalho.
+
+A estrutura e o estilo dependem do **formato escolhido** e do **público-alvo**.
+Reflita sobre o uso de código visível ou oculto: seu público precisa ver o código?
+
+Inclua obrigatoriamente:
+
+* Pelo menos um parágrafo de texto com marcações.
+* Um link para uma página na internet.
+* Uma imagem.
+* Uma tabela.
+* Um gráfico (preferencialmente com `ggplot2`).
+* Se for um artigo acadêmico, inclua referências utilizando arquivo `.bib`.
+
+---
+
+5. Entrega do trabalho
+
+Você pode:
+
+* Compactar a pasta do projeto em um arquivo `.zip` e enviar pela plataforma do curso;
+  **ou**
+* Compartilhar o link de um repositório no GitHub contendo o projeto.
+
+---
+
+
+
