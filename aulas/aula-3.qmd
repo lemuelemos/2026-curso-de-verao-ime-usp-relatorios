@@ -1,4 +1,4 @@
 ---
-title: "Aula 3 – Integração de Dados e Automação de Análises"
+title: "Aula 3 – Criando Relatórios em PDF com Quarto"
 ---
 

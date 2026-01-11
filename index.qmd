@@ -4,7 +4,7 @@ title: "Relatórios reprodutíveis com R"
 
 ## Sobre o curso
 
-Utilizaremos o Quarto (<https://quarto.org/>), e conheceremos como criar relatórios reprodutíveis com R ou Python, como: listas de exercícios, relatórios, apresentações em HTML, apresentações em powerpoint, relatórios em word, relatórios interativos, entre outros.
+Utilizaremos o Quarto (<https://quarto.org/>), e conheceremos como criar relatórios reprodutíveis com R ou Python, como: relatórios, apresentações em HTML, apresentações em powerpoint, relatórios em word, relatórios interativos, entre outros.
 
 Aprenderemos também a criar relatórios reprodutíveis utilizando relatórios parametrizados, que permitem especificar parâmetros para customizar a análise, o que é muito útil para criar relatórios que podem ser reutilizados.
 
@@ -14,14 +14,10 @@ Além disso, o conceito de controle de versão com Git será apresentado. També
 
 -   O que é reprodutibilidade;
 
--   O que é o RMarkdown e o Quarto, e quais são as diferenças;
+-   O que é o Quarto;
 
 -   Como criar um documento reprodutível com Quarto usando R ou Python;
 
 -   Como versionar os arquivos no Git e GitHub;
 
 -   Como disponibilizar estes documentos HTML criados com Quarto na internet para que outras pessoas consigam acessar.
-
-## Edição passada
-
-Confira a [página do curso de 2022](https://beatrizmilz.github.io/2022-curso-de-verao-ime-usp-relatorios/programacao-do-curso.html) e os [trabalhos finais](https://beatrizmilz.github.io/2022-curso-de-verao-ime-usp-relatorios/trabalho_final.html) criados pelas pessoas participantes da edição.

@@ -1,3 +1,32 @@
 ---
-title: "Aula 1 – Introdução ao Quarto e a eus Relatórios"
+title: "Aula 1 – Configurações e Introdução ao Quarto"
 ---
+
+# Instalação do R Rstudio/Positron
+
+Para que possamos realizar nosso curso, se faz necessário a instalação das ferramentas básicas pra gerar os relatórios em Quarto.
+
+O primeiro passo que temos que fazer é a instalação do R em nossa máquina. Para isso temos que acessar a [página oficial do R](https://cran.r-project.org/), baixar o executável e instalar em nossa máquina. 
+
+O segundo passo consiste em instalar alguma IDE, ou seja, interface para que possamos programar e escrever nossos relatórios. Atualmente temos duas IDE's mais utilizadas no mercado - o [Rstudio](https://posit.co/download/rstudio-desktop/) e o [Positron](https://positron.posit.co/). Eu estarei utilizando o Positron mas as duas poderão ser utilizadas. 
+
+Segue aqui o tutorial para a instalação:
+
+* [Tutorial instalação do R](https://livro.curso-r.com/1-1-instalacao-do-r.html)
+* [Tutorial instalação do Rstudio](https://livro.curso-r.com/1-2-instalacao-do-rstudio.html)
+
+
+# Instalação do Quarto
+
+Os documentos em **Quarto** não são gerados dentro do próprio R, ele precisa de uma **engine** que execute os documentos para nós. Para instalar a versão mais recente você pode baixar aqui - [Quarto](https://quarto.org/docs/get-started/). Também apresento a vocês um mini tutorial na [Página Oficial do Quarto](https://quarto.org/docs/get-started/hello/positron.html?utm_source=chatgpt.com).
+
+# Slides Aula 1
+
+Acesse aqui os slides da [Aula 1](../slides/01-intro-curso.html)
+
+## Links Importantes
+
+Vou deixar aqui alguns links importantes para ajudá-los nesse processo. 
+
+* [Instalação Git](https://dicasdeprogramacao.com.br/como-instalar-o-git-no-windows/)
+* [Publicação de Relatórios Online via Netlify](https://app.netlify.com/drop)

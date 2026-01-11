@@ -1,0 +1,159 @@
+---
+title: "Pré-curso: Instalações necessárias"
+---
+
+```{r message=FALSE}
+#| echo=FALSE
+```
+
+## Contas em serviços
+
+-   Criar uma conta gratuita no [GitHub](https://github.com/)
+
+## Instalações obrigatórias
+
+1.  **Instalar o R** - Versão 4.1 ou superior:
+
+-   Download direto: <https://vps.fmvz.usp.br/CRAN/>
+
+-   Tutorial: <https://livro.curso-r.com/1-1-instalacao-do-r.html>
+
+2.  **Instalar o RStudio** - Versão mínima 2022.07:
+
+-   Download direto: <https://www.rstudio.com/products/rstudio/download/#download>
+
+-   Tutorial: <https://livro.curso-r.com/1-2-instalacao-do-rstudio.html>
+
+3.  **Instalar o Git**:
+
+-   Caso você utilize Linux ou Mac, confira antes se o Git já está instalado. Você pode conferir abrindo o terminal, e digitando `git`. Caso o terminal avise que você não tem `git` instalado, você precisará instalar.
+
+-   Download direto: <http://git-scm.com/download/>
+
+4.  **Instalar pacotes**:
+
+Antes de instalar qualquer pacote, vamos criar um **ambiente de desenvolvimento padronizado** para todos. Para isso, utilizaremos o pacote `renv`, que permitirá configurar um ambiente padrão de projeto e, posteriormente, instalar os pacotes necessários de forma organizada e reprodutível.
+
+O **`renv`** é um pacote do R usado para **gerenciar ambientes de projeto**. Ele garante que cada projeto tenha sua própria lista de pacotes e versões, evitando problemas quando códigos são executados em computadores diferentes ou em momentos diferentes no tempo.
+
+Na prática, o `renv` cria um **ambiente isolado**, onde ficam registradas exatamente quais bibliotecas o projeto usa. Assim, qualquer pessoa que abrir o projeto pode **reproduzir o mesmo ambiente** com apenas um comando, instalando automaticamente as versões corretas dos pacotes.
+
+Isso traz três grandes benefícios:
+
+* **Reprodutibilidade**: o código roda hoje e continuará rodando no futuro.
+* **Portabilidade**: outros usuários conseguem executar o projeto sem conflitos de versão.
+* **Organização**: cada projeto tem seu próprio conjunto de dependências.
+
+Em resumo:
+
+> O `renv` é o “controle de dependências” do R, essencial para projetos profissionais e colaborativos.
+
+### **1. Ativar o `renv` no projeto**
+
+```r
+# Instale o renv (apenas na primeira vez)
+install.packages("renv")
+
+# Ative o renv no projeto atual
+renv::init()
+```
+
+📌 Isso cria:
+
+* Uma pasta `renv/`
+* Um arquivo `renv.lock`
+  que guardará as versões dos pacotes usados no projeto.
+
+---
+
+### **2. Instalar o pacote `pak`**
+
+O `pak` é um instalador moderno e mais rápido que `install.packages()`.
+
+```r
+install.packages("pak")
+```
+
+---
+
+### **3. Instalar os pacotes do projeto com `pak`**
+
+```r
+pacotes_necessarios <- c(
+  "here",
+  "quarto",
+  "usethis",
+  "devtools",
+  "rmarkdown",
+  "knitr",
+  "pagedown",
+  "bookdown",
+  "xaringan",
+  "readr",
+  "dplyr",
+  "DT",
+  "reactable",
+  "janitor",
+  "prettydoc"
+)
+
+pak::pak(pacotes_necessarios)
+```
+
+O `pak` instalará tudo rapidamente e o `renv` registrará automaticamente as dependências no arquivo `renv.lock`.
+
+---
+
+### **4. Salvar o estado do ambiente**
+
+```r
+renv::snapshot()
+```
+
+Isso garante que qualquer pessoa que abrir o projeto possa recriar o mesmo ambiente depois com:
+
+```r
+renv::restore()
+```
+
+---
+
+✅ **Resumo**
+
+* `renv::init()` → cria o ambiente do projeto
+* `pak::pkg_install()` → instala pacotes rapidamente
+* `renv::snapshot()` → salva versões
+* `renv::restore()` → recria o ambiente em outro computador
+
+Agora vamos instalar os pacotes auxiliares que usaremos durante o curso.
+
+``` r
+pacotes_exemplos <-
+  c(
+    "xaringanthemer",
+    "distill",
+    "flexdashboard",
+    "rmdformats",
+    "bslib",
+    "officedown",
+    "postcards",
+    "rticles"
+  )
+pak::pak(pacotes_exemplos)
+```
+
+## Instalações recomendadas
+
+1.  **Google Chrome**. Para exportar os relatórios em formato `PDF`, utilizaremos uma função que depende do uso do navegador Google Chrome.
+
+-   Download direto: <https://www.google.com/intl/pt-BR/chrome/>
+
+-   Caso você utilize Linux, uma alternativa é instalar o Chromium: <https://www.chromium.org/getting-involved/download-chromium/>
+
+-   Mais informações em: <https://livro.curso-r.com/1-3-instalacao-adicionais.html#pagedown-e-chrome>
+
+2.  **LibreOffice**. Para abrir documentos do Office, como `.pptx` e `.docx`, é necessário ter o Office ou alguma alternativa gratuita instalados. **Caso não tenha** nenhum software para abertura destes arquivos instalado, recomendo instalar o LibreOffice, pois é um software gratuito:
+
+-   Download direto: <https://pt-br.libreoffice.org/baixe-ja/libreoffice-novo/>
+
+-   Tutorial de instalação: <https://livro.curso-r.com/1-3-instalacao-adicionais.html#office>

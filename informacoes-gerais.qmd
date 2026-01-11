@@ -4,11 +4,12 @@ title: "Informações Gerais"
 
 ## 🧭 Curso: Relatórios Reprodutíveis em Quarto
 
+
 ### Aula 1 – Fundamentos de Reprodutibilidade e Introdução ao Quarto
-**Objetivo:** Compreender o conceito de reprodutibilidade e configurar o ambiente de trabalho com Quarto.  
+**Objetivo:** Configurar o ambiente de trabalho com Quarto e entender suas funcionalidades básicas.  
 
 **Tópicos:**
-- O que são relatórios reprodutíveis e por que eles importam  
+- Importância dos relatórios e suas aplicações  
 - Diferenças entre RMarkdown e Quarto  
 - Instalação e configuração (R, RStudio/Positron, extensões)  
 - Estrutura básica de um documento `.qmd`  
@@ -27,7 +28,6 @@ title: "Informações Gerais"
 - Customização de estilos (CSS, temas, fontes e cores)  
 - Criação de cabeçalhos com logos institucionais  
 - Exercício: construir um template institucional de relatório  
-
 ---
 
 ### Aula 3 – Integração de Dados e Automação de Análises
@@ -48,9 +48,8 @@ title: "Informações Gerais"
 **Tópicos:**
 - Organização de pastas e versionamento (Git/GitHub)  
 - Parâmetros em Quarto (`params`) para relatórios personalizados  
-- Criação de relatórios em lote (loop de parâmetros)  
 - Importação de funções externas (`source`)  
-- Integração com dashboards (Quarto + Shiny ou Quarto + Plotly)  
+- Integração com dashboards (Quarto + Shiny ou Quarto)  
 - Exercício: gerar relatórios automáticos por unidade, mês ou categoria  
 
 ---
@@ -62,7 +61,6 @@ title: "Informações Gerais"
 - Exportação e compartilhamento (PDF, site, GitHub Pages, Posit Cloud)  
 - Controle de versão e rastreabilidade de análises  
 - Padronização de templates e boas práticas de documentação  
-- Integração com sistemas automatizados (ex: cron jobs, APIs)  
 - Exercício final: projeto completo e publicado  
 
 ---
