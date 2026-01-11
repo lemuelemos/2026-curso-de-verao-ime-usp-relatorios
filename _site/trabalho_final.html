@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>Informações Gerais – Relatórios reprodutíveis com R</title>
+<title>Instruções de Trabalho Final – Relatórios reprodutíveis com R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,8 +17,42 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -29,8 +60,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./profs.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./licenca.html" rel="next">
+<link href="./aulas/aula-1.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -40,8 +71,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-055080f5f83ef30f4c6064f8e3ce190b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-055080f5f83ef30f4c6064f8e3ce190b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -68,36 +98,26 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./informacoes-gerais.html">Sobre o curso</a></li><li class="breadcrumb-item"><a href="./informacoes-gerais.html">Informações Gerais</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./trabalho_final.html">Trabalho Final</a></li><li class="breadcrumb-item"><a href="./trabalho_final.html">Instruções de Trabalho Final</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="https://www.ime.usp.br/verao/assets/images/logo_verao.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
-      </a>
+      <img src="https://www.ime.usp.br/verao/assets/images/logo_verao.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://openscapes.org" title="Openscapes.org" class="quarto-navigation-tool px-1" aria-label="Openscapes.org"><i class="bi bi-globe"></i></a>
     <a href="https://github.com/openscapes/quarto-website-tutorial" title="Quarto website tutorial" class="quarto-navigation-tool px-1" aria-label="Quarto website tutorial"><i class="bi bi-github"></i></a>
@@ -111,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Relatórios reprodutíveis com R</span></a>
@@ -125,16 +145,16 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Sobre o curso</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./informacoes-gerais.html" class="sidebar-item-text sidebar-link active">
+  <a href="./informacoes-gerais.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Informações Gerais</span></a>
   </div>
 </li>
@@ -151,7 +171,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
@@ -160,8 +180,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./materiais/instrucoes-de-instalacao.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Pré-curso: Instalações necessárias</span></a>
@@ -174,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
@@ -183,32 +203,32 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./aulas/aula-1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Aula 1 – Configurações e Introdução ao Quarto</span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Trabalho Final</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./trabalho_final.html" class="sidebar-item-text sidebar-link">
+  <a href="./trabalho_final.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Instruções de Trabalho Final</span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
@@ -217,8 +237,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="https://beatrizmilz.github.io/2022-curso-de-verao-ime-usp-relatorios/programacao-do-curso.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Edição 2022</span></a>
@@ -243,7 +263,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./licenca.html" class="sidebar-item-text sidebar-link">
@@ -251,33 +271,20 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#curso-relatórios-reprodutíveis-em-quarto" id="toc-curso-relatórios-reprodutíveis-em-quarto" class="nav-link active" data-scroll-target="#curso-relatórios-reprodutíveis-em-quarto">🧭 Curso: Relatórios Reprodutíveis em Quarto</a>
-  <ul class="collapse">
-  <li><a href="#aula-1-fundamentos-de-reprodutibilidade-e-introdução-ao-quarto" id="toc-aula-1-fundamentos-de-reprodutibilidade-e-introdução-ao-quarto" class="nav-link" data-scroll-target="#aula-1-fundamentos-de-reprodutibilidade-e-introdução-ao-quarto">Aula 1 – Fundamentos de Reprodutibilidade e Introdução ao Quarto</a></li>
-  <li><a href="#aula-2-estrutura-estilo-e-layout-de-relatórios" id="toc-aula-2-estrutura-estilo-e-layout-de-relatórios" class="nav-link" data-scroll-target="#aula-2-estrutura-estilo-e-layout-de-relatórios">Aula 2 – Estrutura, Estilo e Layout de Relatórios</a></li>
-  <li><a href="#aula-3-integração-de-dados-e-automação-de-análises" id="toc-aula-3-integração-de-dados-e-automação-de-análises" class="nav-link" data-scroll-target="#aula-3-integração-de-dados-e-automação-de-análises">Aula 3 – Integração de Dados e Automação de Análises</a></li>
-  <li><a href="#aula-4-projetos-reprodutíveis-e-modularização" id="toc-aula-4-projetos-reprodutíveis-e-modularização" class="nav-link" data-scroll-target="#aula-4-projetos-reprodutíveis-e-modularização">Aula 4 – Projetos Reprodutíveis e Modularização</a></li>
-  <li><a href="#aula-5-publicação-e-boas-práticas" id="toc-aula-5-publicação-e-boas-práticas" class="nav-link" data-scroll-target="#aula-5-publicação-e-boas-práticas">Aula 5 – Publicação e Boas Práticas</a></li>
-  <li><a href="#projeto-final" id="toc-projeto-final" class="nav-link" data-scroll-target="#projeto-final">Projeto Final</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/openscapes/quarto-website-tutorial/edit/main/informacoes-gerais.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/openscapes/quarto-website-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<li><a href="#etapas-pr%C3%A9-c%C3%B3digo" id="toc-etapas-pré-código" class="nav-link active" data-scroll-target="#etapas-pr%C3%A9-c%C3%B3digo">Etapas pré-código</a></li>
+  <li><a href="#passo-a-passo-com-r" id="toc-passo-a-passo-com-r" class="nav-link" data-scroll-target="#passo-a-passo-com-r">Passo a passo com R</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/openscapes/quarto-website-tutorial/edit/main/trabalho_final.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/openscapes/quarto-website-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./informacoes-gerais.html">Sobre o curso</a></li><li class="breadcrumb-item"><a href="./informacoes-gerais.html">Informações Gerais</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Informações Gerais</h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./trabalho_final.html">Trabalho Final</a></li><li class="breadcrumb-item"><a href="./trabalho_final.html">Instruções de Trabalho Final</a></li></ol></nav><div class="quarto-title">
+<h1 class="title">Instruções de Trabalho Final</h1>
 </div>
 
 
@@ -291,75 +298,117 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
-
-
-<section id="curso-relatórios-reprodutíveis-em-quarto" class="level2">
-<h2 class="anchored" data-anchor-id="curso-relatórios-reprodutíveis-em-quarto">🧭 Curso: Relatórios Reprodutíveis em Quarto</h2>
-<section id="aula-1-fundamentos-de-reprodutibilidade-e-introdução-ao-quarto" class="level3">
-<h3 class="anchored" data-anchor-id="aula-1-fundamentos-de-reprodutibilidade-e-introdução-ao-quarto">Aula 1 – Fundamentos de Reprodutibilidade e Introdução ao Quarto</h3>
-<p><strong>Objetivo:</strong> Configurar o ambiente de trabalho com Quarto e entender suas funcionalidades básicas.</p>
-<p><strong>Tópicos:</strong> - Importância dos relatórios e suas aplicações<br>
-- Diferenças entre RMarkdown e Quarto<br>
-- Instalação e configuração (R, RStudio/Positron, extensões)<br>
-- Estrutura básica de um documento <code>.qmd</code><br>
-- Renderização em diferentes formatos (HTML, PDF, DOCX)<br>
-- Exercício: criar o primeiro relatório com texto, código e resultado integrado</p>
+</header><p><strong>Objetivo:</strong> Você deverá criar um documento utilizando <strong>Quarto</strong> e compartilhá-lo conosco. O trabalho final tem como propósito consolidar os conhecimentos apresentados ao longo do curso, por meio da elaboração de um produto final estruturado e reprodutível.</p>
+<p><strong>Formato do trabalho:</strong><br>
+Você deverá <strong>escolher um dos três formatos abaixo</strong> para o seu trabalho final:</p>
+<ul>
+<li>
+<strong>Relatório executivo</strong> — voltado para comunicação objetiva de resultados, com linguagem acessível a gestores e tom profissional.</li>
+<li>
+<strong>Apresentação em slides</strong> — estrutura de apresentação sintética, visual e orientada à exposição oral.</li>
+<li>
+<strong>Artigo acadêmico</strong> — estrutura científica, com seções formais (introdução, metodologia, resultados, discussão e referências).</li>
+</ul>
+<p>A escolha do formato deve estar alinhada ao <strong>objetivo do trabalho</strong> e ao <strong>público-alvo</strong> que você deseja atingir.</p>
+<p><strong>RECOMENDAÇÃO:</strong> Realize as etapas sugeridas após cada aula para facilitar a construção gradual do trabalho.</p>
+<p><strong>ATENÇÃO:</strong> O recebimento do certificado está vinculado à entrega e aprovação deste trabalho final, além de frequência mínima de 75%.</p>
 <hr>
-</section>
-<section id="aula-2-estrutura-estilo-e-layout-de-relatórios" class="level3">
-<h3 class="anchored" data-anchor-id="aula-2-estrutura-estilo-e-layout-de-relatórios">Aula 2 – Estrutura, Estilo e Layout de Relatórios</h3>
-<p><strong>Objetivo:</strong> Aprender a criar relatórios com formatação profissional e personalização visual.</p>
-<p><strong>Tópicos:</strong> - YAML: título, autor, data e opções de output<br>
-- Seções, cabeçalhos e sumário automático<br>
-- Inserção de imagens, tabelas e gráficos<br>
-- Customização de estilos (CSS, temas, fontes e cores)<br>
-- Criação de cabeçalhos com logos institucionais<br>
-- Exercício: construir um template institucional de relatório<br>
-—</p>
-</section>
-<section id="aula-3-integração-de-dados-e-automação-de-análises" class="level3">
-<h3 class="anchored" data-anchor-id="aula-3-integração-de-dados-e-automação-de-análises">Aula 3 – Integração de Dados e Automação de Análises</h3>
-<p><strong>Objetivo:</strong> Conectar bases de dados e automatizar análises dentro do Quarto.</p>
-<p><strong>Tópicos:</strong> - Leitura de dados (CSV, Excel, SQL, APIs)<br>
-- Uso de <code>dplyr</code>, <code>ggplot2</code> e <code>knitr</code> para gerar resultados dinâmicos<br>
-- Criação de tabelas dinâmicas (<code>gt</code>, <code>kableExtra</code>, <code>reactable</code>)<br>
-- Atualização automática de dados e gráficos<br>
-- Exercício: relatório automatizado de desempenho ou indicadores</p>
+<section id="etapas-pré-código" class="level2"><h2 class="anchored" data-anchor-id="etapas-pré-código">Etapas pré-código</h2>
+<ul>
+<li>
+<p>Pense no <strong>formato escolhido</strong> (relatório executivo, slides ou artigo acadêmico), definindo:</p>
+<ul>
+<li>o objetivo do documento;</li>
+<li>o público-alvo;</li>
+<li>o tipo de linguagem mais adequada.</li>
+</ul>
+</li>
+<li>
+<p>Exemplos de aplicações:</p>
+<ul>
+<li>Relatório executivo apresentando uma análise de dados para tomada de decisão.</li>
+<li>Apresentação em slides para exposição de resultados de uma pesquisa ou projeto.</li>
+<li>Artigo acadêmico com estrutura científica (não precisa estar completo, mas deve conter a organização típica e uso de código para gerar tabelas e gráficos).</li>
+<li>Tutorial com código em R ou Python.</li>
+<li>Página pessoal de divulgação.</li>
+<li>Dashboard interativo.</li>
+<li>Livro ou capítulo inicial estruturado em Quarto.</li>
+</ul>
+</li>
+<li>
+<p>Escolha uma base de dados para utilizar. Algumas sugestões:</p>
+<ul>
+<li>Alguma base que você <strong>tenha interesse</strong>.</li>
+<li>Pacote <a href="https://cienciadedatos.github.io/dados/">dados</a>
+</li>
+<li>Repositório <a href="https://github.com/rfordatascience/tidytuesday">tidytuesday</a>
+</li>
+<li>Dados próprios de pesquisa ou trabalho.</li>
+</ul>
+</li>
+</ul>
+<hr></section><section id="passo-a-passo-com-r" class="level2"><h2 class="anchored" data-anchor-id="passo-a-passo-com-r">Passo a passo com R</h2>
+<ol type="1">
+<li>Crie um Projeto no RStudio para realizar a tarefa.<br>
+Utilize boas práticas de nomeação: não use espaços, caracteres especiais ou acentuação.<br>
+O projeto deve chamar-se:<br><code>trabalho_relatorios_nome_sobrenome</code><br>
+Exemplo: <code>trabalho_relatorios_beatriz_milz</code>
+</li>
+</ol>
+<p>Você pode criar um projeto simples ou um projeto Quarto (que já traz estrutura adequada para relatórios, apresentações, websites ou livros).</p>
+<p><strong>Todos os passos seguintes devem ser realizados dentro deste projeto.</strong></p>
 <hr>
-</section>
-<section id="aula-4-projetos-reprodutíveis-e-modularização" class="level3">
-<h3 class="anchored" data-anchor-id="aula-4-projetos-reprodutíveis-e-modularização">Aula 4 – Projetos Reprodutíveis e Modularização</h3>
-<p><strong>Objetivo:</strong> Estruturar projetos de análise com múltiplos relatórios e scripts integrados.</p>
-<p><strong>Tópicos:</strong> - Organização de pastas e versionamento (Git/GitHub)<br>
-- Parâmetros em Quarto (<code>params</code>) para relatórios personalizados<br>
-- Importação de funções externas (<code>source</code>)<br>
-- Integração com dashboards (Quarto + Shiny ou Quarto)<br>
-- Exercício: gerar relatórios automáticos por unidade, mês ou categoria</p>
+<ol start="2" type="1">
+<li>Crie a estrutura básica do projeto:</li>
+</ol>
+<ul>
+<li>Pasta <code>dados</code> para bases de dados (se necessário).</li>
+<li>Pasta <code>img</code> para imagens (se necessário).</li>
+</ul>
+<p>Você pode criar manualmente ou usando:</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/create.html">dir_create</a></span><span class="op">(</span><span class="st">"dados"</span><span class="op">)</span></span>
+<span><span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/create.html">dir_create</a></span><span class="op">(</span><span class="st">"img"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <hr>
-</section>
-<section id="aula-5-publicação-e-boas-práticas" class="level3">
-<h3 class="anchored" data-anchor-id="aula-5-publicação-e-boas-práticas">Aula 5 – Publicação e Boas Práticas</h3>
-<p><strong>Objetivo:</strong> Publicar, compartilhar e manter relatórios sustentáveis e auditáveis.</p>
-<p><strong>Tópicos:</strong> - Exportação e compartilhamento (PDF, site, GitHub Pages, Posit Cloud)<br>
-- Controle de versão e rastreabilidade de análises<br>
-- Padronização de templates e boas práticas de documentação<br>
-- Exercício final: projeto completo e publicado</p>
+<ol start="3" type="1">
+<li>Crie o arquivo principal do projeto:</li>
+</ol>
+<blockquote class="blockquote">
+<p>File → New File → Quarto Document</p>
+</blockquote>
+<p>Salve o arquivo com o nome <code>index.qmd</code>. Clique em <strong>Render</strong> para verificar se o arquivo <code>index.html</code> foi gerado sem erros.</p>
+<blockquote class="blockquote">
+<p>💡 Caso você tenha escolhido o formato <strong>apresentação em slides</strong>, selecione o tipo de documento <strong>RevealJS</strong> ou <strong>PowerPoint</strong> no momento da criação do arquivo Quarto.</p>
+</blockquote>
 <hr>
-</section>
-<section id="projeto-final" class="level3">
-<h3 class="anchored" data-anchor-id="projeto-final">Projeto Final</h3>
-<p>Criação de um <strong>relatório institucional automatizado</strong>, que: - lê dados de uma fonte real (ex: desempenho financeiro ou indicadores regionais);<br>
-- gera visualizações e análises dinâmicas;<br>
-- inclui logotipo, cabeçalho institucional e versão exportável;<br>
-- é reproduzível e versionado (Git).</p>
+<ol start="4" type="1">
+<li>Desenvolva o conteúdo do seu trabalho.</li>
+</ol>
+<p>A estrutura e o estilo dependem do <strong>formato escolhido</strong> e do <strong>público-alvo</strong>. Reflita sobre o uso de código visível ou oculto: seu público precisa ver o código?</p>
+<p>Inclua obrigatoriamente:</p>
+<ul>
+<li>Pelo menos um parágrafo de texto com marcações.</li>
+<li>Um link para uma página na internet.</li>
+<li>Uma imagem.</li>
+<li>Uma tabela.</li>
+<li>Um gráfico (preferencialmente com <code>ggplot2</code>).</li>
+<li>Se for um artigo acadêmico, inclua referências utilizando arquivo <code>.bib</code>.</li>
+</ul>
+<hr>
+<ol start="5" type="1">
+<li>Entrega do trabalho</li>
+</ol>
+<p>Você pode:</p>
+<ul>
+<li>Compactar a pasta do projeto em um arquivo <code>.zip</code> e enviar pela plataforma do curso; <strong>ou</strong>
+</li>
+<li>Compartilhar o link de um repositório no GitHub contendo o projeto.</li>
+</ul>
+<hr>
 
 
-</section>
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -757,35 +806,30 @@ ul.task-list li input[type="checkbox"] {
       }
     }
   });
-  </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Relatórios reprodutíveis com R">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Relatórios reprodutíveis com R</span>
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./aulas/aula-1.html" class="pagination-link" aria-label="Aula 1 – Configurações e Introdução ao Quarto">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Aula 1 – Configurações e Introdução ao Quarto</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./profs.html" class="pagination-link" aria-label="Professores e Monitores">
-        <span class="nav-page-text">Professores e Monitores</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./licenca.html" class="pagination-link" aria-label="Licença de uso">
+        <span class="nav-page-text">Licença de uso</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>© CC-By Openscapes, 2024</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/openscapes/quarto-website-tutorial/edit/main/informacoes-gerais.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/openscapes/quarto-website-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/openscapes/quarto-website-tutorial/edit/main/trabalho_final.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/openscapes/quarto-website-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
   </div>
 </footer>
-
-
 
 
 </body></html>

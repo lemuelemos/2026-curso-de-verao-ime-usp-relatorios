@@ -1,5 +1,133 @@
 [
   {
+    "objectID": "slides.html",
+    "href": "slides.html",
+    "title": "Slides e materiais por aula",
+    "section": "",
+    "text": "Slide 1 - Introdução ao Curso\nSlide 2 - Introdução ao conceito de reprodutibilidade",
+    "crumbs": [
+      "Materiais",
+      "Slides e materiais por aula"
+    ]
+  },
+  {
+    "objectID": "slides.html#aula-1",
+    "href": "slides.html#aula-1",
+    "title": "Slides e materiais por aula",
+    "section": "",
+    "text": "Slide 1 - Introdução ao Curso\nSlide 2 - Introdução ao conceito de reprodutibilidade",
+    "crumbs": [
+      "Materiais",
+      "Slides e materiais por aula"
+    ]
+  },
+  {
+    "objectID": "profs.html",
+    "href": "profs.html",
+    "title": "Professores e Monitores",
+    "section": "",
+    "text": "Quem sou eu?\n\n\n\n  \n  \n  \n\n\nMeu nome é Lemuel Lemos. Sou economista, formado pela Universidade Federal do Rio Grande do Norte (UFRN), onde também concluí o mestrado em Economia e o doutorado em Finanças. Nos últimos anos, tenho me dedicado intensamente à programação e à análise de dados, com experiência prática em R e Python, desenvolvimento de dashboards, automação de rotinas analíticas e construção de relatórios técnicos e gerenciais.\nAtualmente, atuo na área de análise de risco, com foco em modelagem de solvência de cooperativas de crédito no âmbito do Fundo Garantidor das Cooperativas de Crédito (FGCoop). Meu trabalho envolve a construção de modelos analíticos, estruturação de bases de dados, desenvolvimento de sistemas de monitoramento e elaboração de relatórios técnicos voltados à avaliação da saúde financeira e da sustentabilidade institucional do sistema cooperativo de crédito.\nParalelamente, possuo experiência na área de Business Intelligence e liderança operacional, tendo atuado como Head Operacional e responsável pela área de BI na RD Investimentos, onde liderei projetos de automação de processos, criação de dashboards estratégicos e sistemas de acompanhamento de desempenho comercial e operacional.\nMinha trajetória também inclui experiência prévia no mercado financeiro, com atuação como operador de bolsa, além de projetos acadêmicos e de pesquisa em econometria aplicada, modelagem financeira e análise de risco.\nTenho especial interesse em transformar dados em informação estratégica, integrar ferramentas de programação e inteligência artificial às rotinas analíticas e construir soluções que tornem processos mais eficientes, transparentes e reprodutíveis.\nNeste curso, meu objetivo é compartilhar essa experiência prática, mostrando como estruturar projetos em R de forma profissional, organizada e replicável, preparando vocês para aplicar essas ferramentas em contextos acadêmicos e de mercado.",
+    "crumbs": [
+      "Sobre o curso",
+      "Professores e Monitores"
+    ]
+  },
+  {
+    "objectID": "licenca.html",
+    "href": "licenca.html",
+    "title": "Licença de uso",
+    "section": "",
+    "text": "Estes materiais são disponibilizados com a licença Creative Commons Atribuição-Compartilha Igual (CC BY-SA), ou seja, você pode compartilhar e adaptar este material, porém deve atribuir os créditos para as pessoas autoras, adicionando um link para o material original, e o seu material também deve ter este mesmo tipo de licença.\nSaiba mais em: Creative Commons\nEste material foi desenvolvido com base no conteúdo produzido por Beatriz Milz. Deixo aqui registrado meu profundo agradecimento e admiração pelo trabalho dela, que ao longo dos anos tem sido uma grande inspiração para que eu mantenha meus estudos em programação em R.\nQuem quiser acessar todos os materiais e cursos produzidos pela Bia nos últimos anos, encontrará os links referenciados no submenu Edições Anteriores.",
+    "crumbs": [
+      "Licença de uso"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Relatórios reprodutíveis com R",
+    "section": "",
+    "text": "Utilizaremos o Quarto (https://quarto.org/), e conheceremos como criar relatórios reprodutíveis com R ou Python, como: relatórios, apresentações em HTML, apresentações em powerpoint, relatórios em word, relatórios interativos, entre outros.\nAprenderemos também a criar relatórios reprodutíveis utilizando relatórios parametrizados, que permitem especificar parâmetros para customizar a análise, o que é muito útil para criar relatórios que podem ser reutilizados.\nAlém disso, o conceito de controle de versão com Git será apresentado. Também aprenderemos a disponibilizar o conteúdo criado no curso de forma online, através do GitHub.",
+    "crumbs": [
+      "Relatórios reprodutíveis com R"
+    ]
+  },
+  {
+    "objectID": "index.html#sobre-o-curso",
+    "href": "index.html#sobre-o-curso",
+    "title": "Relatórios reprodutíveis com R",
+    "section": "",
+    "text": "Utilizaremos o Quarto (https://quarto.org/), e conheceremos como criar relatórios reprodutíveis com R ou Python, como: relatórios, apresentações em HTML, apresentações em powerpoint, relatórios em word, relatórios interativos, entre outros.\nAprenderemos também a criar relatórios reprodutíveis utilizando relatórios parametrizados, que permitem especificar parâmetros para customizar a análise, o que é muito útil para criar relatórios que podem ser reutilizados.\nAlém disso, o conceito de controle de versão com Git será apresentado. Também aprenderemos a disponibilizar o conteúdo criado no curso de forma online, através do GitHub.",
+    "crumbs": [
+      "Relatórios reprodutíveis com R"
+    ]
+  },
+  {
+    "objectID": "index.html#temas-abordados",
+    "href": "index.html#temas-abordados",
+    "title": "Relatórios reprodutíveis com R",
+    "section": "Temas abordados",
+    "text": "Temas abordados\n\nO que é reprodutibilidade;\nO que é o Quarto;\nComo criar um documento reprodutível com Quarto usando R ou Python;\nComo versionar os arquivos no Git e GitHub;\nComo disponibilizar estes documentos HTML criados com Quarto na internet para que outras pessoas consigam acessar.",
+    "crumbs": [
+      "Relatórios reprodutíveis com R"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-1.html",
+    "href": "aulas/aula-1.html",
+    "title": "Aula 1 – Configurações e Introdução ao Quarto",
+    "section": "",
+    "text": "Para que possamos realizar nosso curso, se faz necessário a instalação das ferramentas básicas pra gerar os relatórios em Quarto.\nO primeiro passo que temos que fazer é a instalação do R em nossa máquina. Para isso temos que acessar a página oficial do R, baixar o executável e instalar em nossa máquina.\nO segundo passo consiste em instalar alguma IDE, ou seja, interface para que possamos programar e escrever nossos relatórios. Atualmente temos duas IDE’s mais utilizadas no mercado - o Rstudio e o Positron. Eu estarei utilizando o Positron mas as duas poderão ser utilizadas.\nSegue aqui o tutorial para a instalação:\n\nTutorial instalação do R\nTutorial instalação do Rstudio",
+    "crumbs": [
+      "Aulas",
+      "Aula 1 – Configurações e Introdução ao Quarto"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-1.html#links-importantes",
+    "href": "aulas/aula-1.html#links-importantes",
+    "title": "Aula 1 – Configurações e Introdução ao Quarto",
+    "section": "Links Importantes",
+    "text": "Links Importantes\nVou deixar aqui alguns links importantes para ajudá-los nesse processo.\n\nInstalação Git\nPublicação de Relatórios Online via Netlify",
+    "crumbs": [
+      "Aulas",
+      "Aula 1 – Configurações e Introdução ao Quarto"
+    ]
+  },
+  {
+    "objectID": "faq.html",
+    "href": "faq.html",
+    "title": "Perguntas Frequentes (FAQ)",
+    "section": "",
+    "text": "O curso será online ou presencial?\n\nO curso será oferecido de forma online.\n\nApenas estudantes da USP podem participar do curso?\n\nAs inscrições serão abertas para todas as pessoas interessadas.\n\nComo posso me inscrever?\n\nA inscrição será realizada através do IME-USP. Acompanhe as informações na página do Programa de Verão do IME-USP.\n\nO curso é gratuito?\n\nNão, o curso é pago. Acompanhe as informações na página do Programa de Verão do IME-USP.\n\nAs aulas serão gravadas?\n\nSim.",
+    "crumbs": [
+      "Sobre o curso",
+      "Perguntas Frequentes (FAQ)"
+    ]
+  },
+  {
+    "objectID": "informacoes-gerais.html",
+    "href": "informacoes-gerais.html",
+    "title": "Informações Gerais",
+    "section": "",
+    "text": "Objetivo: Configurar o ambiente de trabalho com Quarto e entender suas funcionalidades básicas.\nTópicos: - Importância dos relatórios e suas aplicações\n- Diferenças entre RMarkdown e Quarto\n- Instalação e configuração (R, RStudio/Positron, extensões)\n- Estrutura básica de um documento .qmd\n- Renderização em diferentes formatos (HTML, PDF, DOCX)\n- Exercício: criar o primeiro relatório com texto, código e resultado integrado\n\n\n\n\nObjetivo: Aprender a criar relatórios com formatação profissional e personalização visual.\nTópicos: - YAML: título, autor, data e opções de output\n- Seções, cabeçalhos e sumário automático\n- Inserção de imagens, tabelas e gráficos\n- Customização de estilos (CSS, temas, fontes e cores)\n- Criação de cabeçalhos com logos institucionais\n- Exercício: construir um template institucional de relatório\n—\n\n\n\nObjetivo: Conectar bases de dados e automatizar análises dentro do Quarto.\nTópicos: - Leitura de dados (CSV, Excel, SQL, APIs)\n- Uso de dplyr, ggplot2 e knitr para gerar resultados dinâmicos\n- Criação de tabelas dinâmicas (gt, kableExtra, reactable)\n- Atualização automática de dados e gráficos\n- Exercício: relatório automatizado de desempenho ou indicadores\n\n\n\n\nObjetivo: Estruturar projetos de análise com múltiplos relatórios e scripts integrados.\nTópicos: - Organização de pastas e versionamento (Git/GitHub)\n- Parâmetros em Quarto (params) para relatórios personalizados\n- Importação de funções externas (source)\n- Integração com dashboards (Quarto + Shiny ou Quarto)\n- Exercício: gerar relatórios automáticos por unidade, mês ou categoria\n\n\n\n\nObjetivo: Publicar, compartilhar e manter relatórios sustentáveis e auditáveis.\nTópicos: - Exportação e compartilhamento (PDF, site, GitHub Pages, Posit Cloud)\n- Controle de versão e rastreabilidade de análises\n- Padronização de templates e boas práticas de documentação\n- Exercício final: projeto completo e publicado\n\n\n\n\nCriação de um relatório institucional automatizado, que: - lê dados de uma fonte real (ex: desempenho financeiro ou indicadores regionais);\n- gera visualizações e análises dinâmicas;\n- inclui logotipo, cabeçalho institucional e versão exportável;\n- é reproduzível e versionado (Git).",
+    "crumbs": [
+      "Sobre o curso",
+      "Informações Gerais"
+    ]
+  },
+  {
+    "objectID": "informacoes-gerais.html#curso-relatórios-reprodutíveis-em-quarto",
+    "href": "informacoes-gerais.html#curso-relatórios-reprodutíveis-em-quarto",
+    "title": "Informações Gerais",
+    "section": "",
+    "text": "Objetivo: Configurar o ambiente de trabalho com Quarto e entender suas funcionalidades básicas.\nTópicos: - Importância dos relatórios e suas aplicações\n- Diferenças entre RMarkdown e Quarto\n- Instalação e configuração (R, RStudio/Positron, extensões)\n- Estrutura básica de um documento .qmd\n- Renderização em diferentes formatos (HTML, PDF, DOCX)\n- Exercício: criar o primeiro relatório com texto, código e resultado integrado\n\n\n\n\nObjetivo: Aprender a criar relatórios com formatação profissional e personalização visual.\nTópicos: - YAML: título, autor, data e opções de output\n- Seções, cabeçalhos e sumário automático\n- Inserção de imagens, tabelas e gráficos\n- Customização de estilos (CSS, temas, fontes e cores)\n- Criação de cabeçalhos com logos institucionais\n- Exercício: construir um template institucional de relatório\n—\n\n\n\nObjetivo: Conectar bases de dados e automatizar análises dentro do Quarto.\nTópicos: - Leitura de dados (CSV, Excel, SQL, APIs)\n- Uso de dplyr, ggplot2 e knitr para gerar resultados dinâmicos\n- Criação de tabelas dinâmicas (gt, kableExtra, reactable)\n- Atualização automática de dados e gráficos\n- Exercício: relatório automatizado de desempenho ou indicadores\n\n\n\n\nObjetivo: Estruturar projetos de análise com múltiplos relatórios e scripts integrados.\nTópicos: - Organização de pastas e versionamento (Git/GitHub)\n- Parâmetros em Quarto (params) para relatórios personalizados\n- Importação de funções externas (source)\n- Integração com dashboards (Quarto + Shiny ou Quarto)\n- Exercício: gerar relatórios automáticos por unidade, mês ou categoria\n\n\n\n\nObjetivo: Publicar, compartilhar e manter relatórios sustentáveis e auditáveis.\nTópicos: - Exportação e compartilhamento (PDF, site, GitHub Pages, Posit Cloud)\n- Controle de versão e rastreabilidade de análises\n- Padronização de templates e boas práticas de documentação\n- Exercício final: projeto completo e publicado\n\n\n\n\nCriação de um relatório institucional automatizado, que: - lê dados de uma fonte real (ex: desempenho financeiro ou indicadores regionais);\n- gera visualizações e análises dinâmicas;\n- inclui logotipo, cabeçalho institucional e versão exportável;\n- é reproduzível e versionado (Git).",
+    "crumbs": [
+      "Sobre o curso",
+      "Informações Gerais"
+    ]
+  },
+  {
     "objectID": "materiais/instrucoes-de-instalacao.html",
     "href": "materiais/instrucoes-de-instalacao.html",
     "title": "Pré-curso: Instalações necessárias",
@@ -44,131 +172,36 @@
     ]
   },
   {
-    "objectID": "informacoes-gerais.html",
-    "href": "informacoes-gerais.html",
-    "title": "Informações Gerais",
+    "objectID": "trabalho_final.html",
+    "href": "trabalho_final.html",
+    "title": "Instruções de Trabalho Final",
     "section": "",
-    "text": "Objetivo: Configurar o ambiente de trabalho com Quarto e entender suas funcionalidades básicas.\nTópicos: - Importância dos relatórios e suas aplicações\n- Diferenças entre RMarkdown e Quarto\n- Instalação e configuração (R, RStudio/Positron, extensões)\n- Estrutura básica de um documento .qmd\n- Renderização em diferentes formatos (HTML, PDF, DOCX)\n- Exercício: criar o primeiro relatório com texto, código e resultado integrado\n\n\n\n\nObjetivo: Aprender a criar relatórios com formatação profissional e personalização visual.\nTópicos: - YAML: título, autor, data e opções de output\n- Seções, cabeçalhos e sumário automático\n- Inserção de imagens, tabelas e gráficos\n- Customização de estilos (CSS, temas, fontes e cores)\n- Criação de cabeçalhos com logos institucionais\n- Exercício: construir um template institucional de relatório\n—\n\n\n\nObjetivo: Conectar bases de dados e automatizar análises dentro do Quarto.\nTópicos: - Leitura de dados (CSV, Excel, SQL, APIs)\n- Uso de dplyr, ggplot2 e knitr para gerar resultados dinâmicos\n- Criação de tabelas dinâmicas (gt, kableExtra, reactable)\n- Atualização automática de dados e gráficos\n- Exercício: relatório automatizado de desempenho ou indicadores\n\n\n\n\nObjetivo: Estruturar projetos de análise com múltiplos relatórios e scripts integrados.\nTópicos: - Organização de pastas e versionamento (Git/GitHub)\n- Parâmetros em Quarto (params) para relatórios personalizados\n- Importação de funções externas (source)\n- Integração com dashboards (Quarto + Shiny ou Quarto)\n- Exercício: gerar relatórios automáticos por unidade, mês ou categoria\n\n\n\n\nObjetivo: Publicar, compartilhar e manter relatórios sustentáveis e auditáveis.\nTópicos: - Exportação e compartilhamento (PDF, site, GitHub Pages, Posit Cloud)\n- Controle de versão e rastreabilidade de análises\n- Padronização de templates e boas práticas de documentação\n- Exercício final: projeto completo e publicado\n\n\n\n\nCriação de um relatório institucional automatizado, que: - lê dados de uma fonte real (ex: desempenho financeiro ou indicadores regionais);\n- gera visualizações e análises dinâmicas;\n- inclui logotipo, cabeçalho institucional e versão exportável;\n- é reproduzível e versionado (Git).",
+    "text": "Objetivo: Você deverá criar um documento utilizando Quarto e compartilhá-lo conosco. O trabalho final tem como propósito consolidar os conhecimentos apresentados ao longo do curso, por meio da elaboração de um produto final estruturado e reprodutível.\nFormato do trabalho:\nVocê deverá escolher um dos três formatos abaixo para o seu trabalho final:\nA escolha do formato deve estar alinhada ao objetivo do trabalho e ao público-alvo que você deseja atingir.\nRECOMENDAÇÃO: Realize as etapas sugeridas após cada aula para facilitar a construção gradual do trabalho.\nATENÇÃO: O recebimento do certificado está vinculado à entrega e aprovação deste trabalho final, além de frequência mínima de 75%.",
     "crumbs": [
-      "Sobre o curso",
-      "Informações Gerais"
+      "Trabalho Final",
+      "Instruções de Trabalho Final"
     ]
   },
   {
-    "objectID": "informacoes-gerais.html#curso-relatórios-reprodutíveis-em-quarto",
-    "href": "informacoes-gerais.html#curso-relatórios-reprodutíveis-em-quarto",
-    "title": "Informações Gerais",
-    "section": "",
-    "text": "Objetivo: Configurar o ambiente de trabalho com Quarto e entender suas funcionalidades básicas.\nTópicos: - Importância dos relatórios e suas aplicações\n- Diferenças entre RMarkdown e Quarto\n- Instalação e configuração (R, RStudio/Positron, extensões)\n- Estrutura básica de um documento .qmd\n- Renderização em diferentes formatos (HTML, PDF, DOCX)\n- Exercício: criar o primeiro relatório com texto, código e resultado integrado\n\n\n\n\nObjetivo: Aprender a criar relatórios com formatação profissional e personalização visual.\nTópicos: - YAML: título, autor, data e opções de output\n- Seções, cabeçalhos e sumário automático\n- Inserção de imagens, tabelas e gráficos\n- Customização de estilos (CSS, temas, fontes e cores)\n- Criação de cabeçalhos com logos institucionais\n- Exercício: construir um template institucional de relatório\n—\n\n\n\nObjetivo: Conectar bases de dados e automatizar análises dentro do Quarto.\nTópicos: - Leitura de dados (CSV, Excel, SQL, APIs)\n- Uso de dplyr, ggplot2 e knitr para gerar resultados dinâmicos\n- Criação de tabelas dinâmicas (gt, kableExtra, reactable)\n- Atualização automática de dados e gráficos\n- Exercício: relatório automatizado de desempenho ou indicadores\n\n\n\n\nObjetivo: Estruturar projetos de análise com múltiplos relatórios e scripts integrados.\nTópicos: - Organização de pastas e versionamento (Git/GitHub)\n- Parâmetros em Quarto (params) para relatórios personalizados\n- Importação de funções externas (source)\n- Integração com dashboards (Quarto + Shiny ou Quarto)\n- Exercício: gerar relatórios automáticos por unidade, mês ou categoria\n\n\n\n\nObjetivo: Publicar, compartilhar e manter relatórios sustentáveis e auditáveis.\nTópicos: - Exportação e compartilhamento (PDF, site, GitHub Pages, Posit Cloud)\n- Controle de versão e rastreabilidade de análises\n- Padronização de templates e boas práticas de documentação\n- Exercício final: projeto completo e publicado\n\n\n\n\nCriação de um relatório institucional automatizado, que: - lê dados de uma fonte real (ex: desempenho financeiro ou indicadores regionais);\n- gera visualizações e análises dinâmicas;\n- inclui logotipo, cabeçalho institucional e versão exportável;\n- é reproduzível e versionado (Git).",
+    "objectID": "trabalho_final.html#etapas-pré-código",
+    "href": "trabalho_final.html#etapas-pré-código",
+    "title": "Instruções de Trabalho Final",
+    "section": "Etapas pré-código",
+    "text": "Etapas pré-código\n\n\nPense no formato escolhido (relatório executivo, slides ou artigo acadêmico), definindo:\n\no objetivo do documento;\no público-alvo;\no tipo de linguagem mais adequada.\n\n\n\nExemplos de aplicações:\n\nRelatório executivo apresentando uma análise de dados para tomada de decisão.\nApresentação em slides para exposição de resultados de uma pesquisa ou projeto.\nArtigo acadêmico com estrutura científica (não precisa estar completo, mas deve conter a organização típica e uso de código para gerar tabelas e gráficos).\nTutorial com código em R ou Python.\nPágina pessoal de divulgação.\nDashboard interativo.\nLivro ou capítulo inicial estruturado em Quarto.\n\n\n\nEscolha uma base de dados para utilizar. Algumas sugestões:\n\nAlguma base que você tenha interesse.\nPacote dados\n\nRepositório tidytuesday\n\nDados próprios de pesquisa ou trabalho.",
     "crumbs": [
-      "Sobre o curso",
-      "Informações Gerais"
+      "Trabalho Final",
+      "Instruções de Trabalho Final"
     ]
   },
   {
-    "objectID": "faq.html",
-    "href": "faq.html",
-    "title": "Perguntas Frequentes (FAQ)",
-    "section": "",
-    "text": "O curso será online ou presencial?\n\nO curso será oferecido de forma online.\n\nApenas estudantes da USP podem participar do curso?\n\nAs inscrições serão abertas para todas as pessoas interessadas.\n\nComo posso me inscrever?\n\nA inscrição será realizada através do IME-USP. Acompanhe as informações na página do Programa de Verão do IME-USP.\n\nO curso é gratuito?\n\nNão, o curso é pago. Acompanhe as informações na página do Programa de Verão do IME-USP.\n\nAs aulas serão gravadas?\n\nSim.",
+    "objectID": "trabalho_final.html#passo-a-passo-com-r",
+    "href": "trabalho_final.html#passo-a-passo-com-r",
+    "title": "Instruções de Trabalho Final",
+    "section": "Passo a passo com R",
+    "text": "Passo a passo com R\n\nCrie um Projeto no RStudio para realizar a tarefa.\nUtilize boas práticas de nomeação: não use espaços, caracteres especiais ou acentuação.\nO projeto deve chamar-se:trabalho_relatorios_nome_sobrenome\nExemplo: trabalho_relatorios_beatriz_milz\n\n\nVocê pode criar um projeto simples ou um projeto Quarto (que já traz estrutura adequada para relatórios, apresentações, websites ou livros).\nTodos os passos seguintes devem ser realizados dentro deste projeto.\n\n\nCrie a estrutura básica do projeto:\n\n\nPasta dados para bases de dados (se necessário).\nPasta img para imagens (se necessário).\n\nVocê pode criar manualmente ou usando:\n\nfs::dir_create(\"dados\")\nfs::dir_create(\"img\")\n\n\n\nCrie o arquivo principal do projeto:\n\n\nFile → New File → Quarto Document\n\nSalve o arquivo com o nome index.qmd. Clique em Render para verificar se o arquivo index.html foi gerado sem erros.\n\n💡 Caso você tenha escolhido o formato apresentação em slides, selecione o tipo de documento RevealJS ou PowerPoint no momento da criação do arquivo Quarto.\n\n\n\nDesenvolva o conteúdo do seu trabalho.\n\nA estrutura e o estilo dependem do formato escolhido e do público-alvo. Reflita sobre o uso de código visível ou oculto: seu público precisa ver o código?\nInclua obrigatoriamente:\n\nPelo menos um parágrafo de texto com marcações.\nUm link para uma página na internet.\nUma imagem.\nUma tabela.\nUm gráfico (preferencialmente com ggplot2).\nSe for um artigo acadêmico, inclua referências utilizando arquivo .bib.\n\n\n\nEntrega do trabalho\n\nVocê pode:\n\nCompactar a pasta do projeto em um arquivo .zip e enviar pela plataforma do curso; ou\n\nCompartilhar o link de um repositório no GitHub contendo o projeto.",
     "crumbs": [
-      "Sobre o curso",
-      "Perguntas Frequentes (FAQ)"
-    ]
-  },
-  {
-    "objectID": "aulas/aula-1.html",
-    "href": "aulas/aula-1.html",
-    "title": "Aula 1 – Configurações e Introdução ao Quarto",
-    "section": "",
-    "text": "Para que possamos realizar nosso curso, se faz necessário a instalação das ferramentas básicas pra gerar os relatórios em Quarto.\nO primeiro passo que temos que fazer é a instalação do R em nossa máquina. Para isso temos que acessar a página oficial do R, baixar o executável e instalar em nossa máquina.\nO segundo passo consiste em instalar alguma IDE, ou seja, interface para que possamos programar e escrever nossos relatórios. Atualmente temos duas IDE’s mais utilizadas no mercado - o Rstudio e o Positron. Eu estarei utilizando o Positron mas as duas poderão ser utilizadas.\nSegue aqui o tutorial para a instalação:\n\nTutorial instalação do R\nTutorial instalação do Rstudio",
-    "crumbs": [
-      "Aulas",
-      "Aula 1 – Configurações e Introdução ao Quarto"
-    ]
-  },
-  {
-    "objectID": "aulas/aula-1.html#links-importantes",
-    "href": "aulas/aula-1.html#links-importantes",
-    "title": "Aula 1 – Configurações e Introdução ao Quarto",
-    "section": "Links Importantes",
-    "text": "Links Importantes\nVou deixar aqui alguns links importantes para ajudá-los nesse processo.\n\nInstalação Git\nPublicação de Relatórios Online via Netlify",
-    "crumbs": [
-      "Aulas",
-      "Aula 1 – Configurações e Introdução ao Quarto"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Relatórios reprodutíveis com R",
-    "section": "",
-    "text": "Utilizaremos o Quarto (https://quarto.org/), e conheceremos como criar relatórios reprodutíveis com R ou Python, como: relatórios, apresentações em HTML, apresentações em powerpoint, relatórios em word, relatórios interativos, entre outros.\nAprenderemos também a criar relatórios reprodutíveis utilizando relatórios parametrizados, que permitem especificar parâmetros para customizar a análise, o que é muito útil para criar relatórios que podem ser reutilizados.\nAlém disso, o conceito de controle de versão com Git será apresentado. Também aprenderemos a disponibilizar o conteúdo criado no curso de forma online, através do GitHub.",
-    "crumbs": [
-      "Relatórios reprodutíveis com R"
-    ]
-  },
-  {
-    "objectID": "index.html#sobre-o-curso",
-    "href": "index.html#sobre-o-curso",
-    "title": "Relatórios reprodutíveis com R",
-    "section": "",
-    "text": "Utilizaremos o Quarto (https://quarto.org/), e conheceremos como criar relatórios reprodutíveis com R ou Python, como: relatórios, apresentações em HTML, apresentações em powerpoint, relatórios em word, relatórios interativos, entre outros.\nAprenderemos também a criar relatórios reprodutíveis utilizando relatórios parametrizados, que permitem especificar parâmetros para customizar a análise, o que é muito útil para criar relatórios que podem ser reutilizados.\nAlém disso, o conceito de controle de versão com Git será apresentado. Também aprenderemos a disponibilizar o conteúdo criado no curso de forma online, através do GitHub.",
-    "crumbs": [
-      "Relatórios reprodutíveis com R"
-    ]
-  },
-  {
-    "objectID": "index.html#temas-abordados",
-    "href": "index.html#temas-abordados",
-    "title": "Relatórios reprodutíveis com R",
-    "section": "Temas abordados",
-    "text": "Temas abordados\n\nO que é reprodutibilidade;\nO que é o Quarto;\nComo criar um documento reprodutível com Quarto usando R ou Python;\nComo versionar os arquivos no Git e GitHub;\nComo disponibilizar estes documentos HTML criados com Quarto na internet para que outras pessoas consigam acessar.",
-    "crumbs": [
-      "Relatórios reprodutíveis com R"
-    ]
-  },
-  {
-    "objectID": "licenca.html",
-    "href": "licenca.html",
-    "title": "Licença de uso",
-    "section": "",
-    "text": "Estes materiais são disponibilizados com a licença Creative Commons Atribuição-Compartilha Igual (CC BY-SA), ou seja, você pode compartilhar e adaptar este material, porém deve atribuir os créditos para as pessoas autoras, adicionando um link para o material original, e o seu material também deve ter este mesmo tipo de licença.\nSaiba mais em: Creative Commons\nEste material foi desenvolvido com base no conteúdo produzido por Beatriz Milz. Deixo aqui registrado meu profundo agradecimento e admiração pelo trabalho dela, que ao longo dos anos tem sido uma grande inspiração para que eu mantenha meus estudos em programação em R.\nQuem quiser acessar todos os materiais e cursos produzidos pela Bia nos últimos anos, encontrará os links referenciados no submenu Edições Anteriores.",
-    "crumbs": [
-      "Licença de uso"
-    ]
-  },
-  {
-    "objectID": "profs.html",
-    "href": "profs.html",
-    "title": "Professores e Monitores",
-    "section": "",
-    "text": "Quem sou eu?\n\n\n\n  \n  \n  \n\n\nMeu nome é Lemuel Lemos. Sou economista, formado pela Universidade Federal do Rio Grande do Norte (UFRN), onde também concluí o mestrado em Economia e o doutorado em Finanças. Nos últimos anos, tenho me dedicado intensamente à programação e à análise de dados, com experiência prática em R e Python, desenvolvimento de dashboards, automação de rotinas analíticas e construção de relatórios técnicos e gerenciais.\nAtualmente, atuo na área de análise de risco, com foco em modelagem de solvência de cooperativas de crédito no âmbito do Fundo Garantidor das Cooperativas de Crédito (FGCoop). Meu trabalho envolve a construção de modelos analíticos, estruturação de bases de dados, desenvolvimento de sistemas de monitoramento e elaboração de relatórios técnicos voltados à avaliação da saúde financeira e da sustentabilidade institucional do sistema cooperativo de crédito.\nParalelamente, possuo experiência na área de Business Intelligence e liderança operacional, tendo atuado como Head Operacional e responsável pela área de BI na RD Investimentos, onde liderei projetos de automação de processos, criação de dashboards estratégicos e sistemas de acompanhamento de desempenho comercial e operacional.\nMinha trajetória também inclui experiência prévia no mercado financeiro, com atuação como operador de bolsa, além de projetos acadêmicos e de pesquisa em econometria aplicada, modelagem financeira e análise de risco.\nTenho especial interesse em transformar dados em informação estratégica, integrar ferramentas de programação e inteligência artificial às rotinas analíticas e construir soluções que tornem processos mais eficientes, transparentes e reprodutíveis.\nNeste curso, meu objetivo é compartilhar essa experiência prática, mostrando como estruturar projetos em R de forma profissional, organizada e replicável, preparando vocês para aplicar essas ferramentas em contextos acadêmicos e de mercado.",
-    "crumbs": [
-      "Sobre o curso",
-      "Professores e Monitores"
-    ]
-  },
-  {
-    "objectID": "slides.html",
-    "href": "slides.html",
-    "title": "Slides e materiais por aula",
-    "section": "",
-    "text": "Slide 1 - Introdução ao Curso\nSlide 2 - Introdução ao conceito de reprodutibilidade\n\n\n\n\n\naula-1.R - anotações.",
-    "crumbs": [
-      "Materiais",
-      "Slides e materiais por aula"
-    ]
-  },
-  {
-    "objectID": "slides.html#aula-1",
-    "href": "slides.html#aula-1",
-    "title": "Slides e materiais por aula",
-    "section": "",
-    "text": "Slide 1 - Introdução ao Curso\nSlide 2 - Introdução ao conceito de reprodutibilidade\n\n\n\n\n\naula-1.R - anotações.",
-    "crumbs": [
-      "Materiais",
-      "Slides e materiais por aula"
+      "Trabalho Final",
+      "Instruções de Trabalho Final"
     ]
   }
 ]

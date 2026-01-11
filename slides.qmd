@@ -8,8 +8,5 @@ title: "Slides e materiais por aula"
 
 -   [Slide 1 - Introdução ao Curso](https://lemuelemos.github.io/2026-curso-de-verao-ime-usp-relatorios/aulas/aula-1.html)
 
--   [Slide 2 - Introdução ao conceito de reprodutibilidade](https://beatrizmilz.github.io/2023-curso-de-verao-ime-usp-relatorios/slides/02-reprodutibilidade.html)
+-   [Slide 2 - Introdução ao conceito de reprodutibilidade](https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/slides/03-reprodutibilidade.html#/)
 
-### Scripts/anotações
-
--   [aula-1.R](https://github.com/beatrizmilz/2023-curso-de-verao-ime-usp-relatorios/blob/main/pratica/aula-1.R) - anotações.
