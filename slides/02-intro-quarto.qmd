@@ -1,7 +1,7 @@
 ---
 title: "Introdução ao Quarto"
-subtitle: 'Relatórios reprodutíveis com R - Curso de Verão IME-USP 2025' 
-author: "Ministrante: Beatriz Milz"
+subtitle: 'Relatórios reprodutíveis com R - Curso de Verão IME-USP 2026' 
+author: "Ministrante: Lemuel de Lemos Romão"
 format: 
   revealjs:
     width: 1600
@@ -12,7 +12,7 @@ format:
     toc-location: body
     toc-title: "Conteúdos"
     logo: "https://www.ime.usp.br/verao/assets/images/logo_verao.png" 
-    footer: "[Relatórios reprodutíveis com R (2025) - Programa de Verão IME-USP](https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/)."
+    footer: "[Relatórios reprodutíveis com R (2026) - Programa de Verão IME-USP](https://lemuelemos.github.io/2026-curso-de-verao-ime-usp-relatorios/index.html)."
     theme: ["custom.scss"]
     slide-number: c/t
     show-slide-number: all
