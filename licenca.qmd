@@ -8,7 +8,11 @@ title: "Licença de uso"
 
 Saiba mais em: [Creative Commons](https://br.creativecommons.net/licencas/)
 
-Este material foi desenvolvido com base no conteúdo produzido por [Beatriz Milz](https://beamilz.com/). Deixo aqui registrado meu profundo agradecimento e admiração pelo trabalho dela, que ao longo dos anos tem sido uma grande inspiração para que eu mantenha meus estudos em programação em R.
+Este material nasceu a partir do conteúdo generosamente compartilhado por [Beatriz Milz](https://beamilz.com/). Tudo o que está aqui foi profundamente inspirado em seu trabalho, que não apenas orientou a construção deste material, mas também moldou minha própria trajetória de aprendizado em programação em R.
+
+Sou imensamente grato por poder utilizar seu conteúdo como base, por aprender continuamente através do que você produz e, sobretudo, por tê-la como referência. Seu compromisso em compartilhar conhecimento de forma aberta e acessível é admirável e tem impacto real na formação de muitas pessoas, incluindo a minha.
+
+Ter seu trabalho como ponto de partida para este material é, para mim, uma honra e um reconhecimento da importância que você tem na comunidade de R. Muito obrigado por inspirar, ensinar e abrir caminhos.
 
 Quem quiser acessar todos os materiais e cursos produzidos pela Bia nos últimos anos, encontrará os links referenciados no submenu **Edições Anteriores**.
 

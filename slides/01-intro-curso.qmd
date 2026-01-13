@@ -1,6 +1,6 @@
 ---
 title: "Introdução ao curso"
-subtitle: 'Relatórios reprodutíveis com R - Curso de Verão IME-USP 2025' 
+subtitle: 'Relatórios reprodutíveis com R - Curso de Verão IME-USP 2026' 
 author: "Ministrante: Lemuel de Lemos Romão"
 format: 
   revealjs:

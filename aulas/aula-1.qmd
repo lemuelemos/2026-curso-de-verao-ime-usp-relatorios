@@ -22,7 +22,9 @@ Os documentos em **Quarto** não são gerados dentro do próprio R, ele precisa 
 
 # Slides Aula 1
 
-Acesse aqui os slides da [Aula 1](../slides/01-intro-curso.html)
+* Acesse aqui os slides da [Aula 1 - Intro Curso](../slides/01-intro-curso.html)
+
+* Acesse aqui os slides da [Aula 1 - Intro Quarto](../slides/02-intro-quarto.html) 
 
 ## Links Importantes
 
