@@ -1,0 +1,484 @@
+---
+title: "Dominando o Quarto (RMarkdown Moderno)"
+subtitle: 'Relatórios reprodutíveis com R - Curso de Verão IME-USP 2026' 
+author: "Ministrante: Lemuel de Lemos Romão"
+format: 
+  revealjs:
+    width: 1600
+    height: 900  
+    toc: false
+    toc_float: true
+    toc-depth: 2
+    toc-location: body
+    toc-title: "Conteúdos"
+    logo: "https://www.ime.usp.br/verao/assets/images/logo_verao.png" 
+    footer: "[Relatórios reprodutíveis com R (2026) - Programa de Verão IME-USP](https://lemuelemos.github.io/2026-curso-de-verao-ime-usp-relatorios/index.html)."
+    theme: ["custom.scss"]
+    slide-number: c/t
+    show-slide-number: all
+    hash-type: number
+    preview-links: false    
+---
+
+# Introdução ao Quarto
+
+## O que é Quarto?
+
+- **Framework moderno** para documentos técnicos
+- Sucessor espiritual do RMarkdown
+- **Linguagem única** para múltiplas saídas
+- **Aberto e extensível** (R, Python, Julia, etc.)
+
+## Vantagens do Quarto
+
+- **Execução de código embutida**
+- **Exportação flexível** (HTML, PDF, Word, PPT)
+- **Colaboração facilitada**
+- **Reprodutibilidade garantida**
+
+# Estrutura Básica
+
+## Cabeçalho YAML
+
+```yaml
+---
+title: "Meu Documento"
+author: "Seu Nome"
+format:
+  html:
+    toc: true
+    theme: cosmo
+---
+```
+
+## Seções e Subseções
+
+```markdown
+# Título Nível 1
+
+## Seção Nível 2
+
+### Subseção Nível 3
+```
+
+# Formatação de Texto
+
+## Ênfase e Destaque
+
+```markdown
+*Texto em itálico*
+**Texto em negrito**
+***Negrito e itálico***
+~~Texto tachado~~
+```
+
+## Listas
+
+### Lista Não Ordenada
+```markdown
+- Item 1
+- Item 2
+  - Subitem 2.1
+  - Subitem 2.2
+```
+
+### Lista Ordenada
+```markdown
+1. Primeiro passo
+2. Segundo passo
+   1. Detalhe 2.1
+   2. Detalhe 2.2
+```
+
+# Chunks de Código
+
+## Sintaxe Básica
+
+
+```{r}
+#| echo: true
+#| eval: true
+
+# Código R aqui
+x <- 1:10
+mean(x)
+```
+
+
+## Opções Principais
+
+```{r}
+#| label: preparacao-dados
+#| echo: false
+#| warning: false
+#| message: false
+#| cache: true
+
+# dados <- read.csv("arquivo.csv")
+```
+
+
+## Exemplo Prático
+
+```{r}
+#| echo: true
+#| eval: true
+
+# Carregar dados de exemplo
+data("mtcars")
+
+# Calcular média de mpg
+media_mpg <- mean(mtcars$mpg)
+print(paste("Média de mpg:", round(media_mpg, 2)))
+```
+
+# Código Inline
+
+## Integração com Texto
+
+
+A média de milhas por galão é `r round(mean(mtcars$mpg), 2)`.
+
+Hoje é `r format(Sys.Date(), "%d/%m/%Y")`.
+
+O número de observações é `r nrow(mtcars)`.
+
+
+## Resultado Real
+
+A média de milhas por galão é 20.09.
+
+Hoje é 2024-01-19.
+
+O número de observações é 32.
+
+# Elementos Visuais
+
+## Tabelas Simples
+
+```markdown
+| Variável | Tipo     | Descrição          |
+|----------|----------|--------------------|
+| mpg      | numérica | Milhas por galão   |
+| cyl      | numérica | Número de cilindros|
+| hp       | numérica | Cavalos de potência|
+```
+
+## Tabelas com kable
+
+```{r}
+#| echo: true
+library(knitr)
+kable(head(mtcars[, 1:4]), 
+      caption = "Primeiras linhas do conjunto mtcars")
+```
+
+# Gráficos e Visualizações
+
+## Gráficos com Base R
+
+```{r}
+#| echo: true
+#| fig-cap: "Gráfico de Barras - Distribuição de Cilindros"
+
+# Gráfico simples
+barplot(table(mtcars$cyl),
+        main = "Distribuição de Cilindros",
+        xlab = "Cilindros",
+        ylab = "Frequência",
+        col = c("#1f77b4", "#ff7f0e", "#2ca02c"))
+```
+
+## Gráficos com ggplot2
+
+```{r}
+#| echo: true
+#| fig-cap: "Relação entre MPG e HP por Cilindros"
+
+library(ggplot2)
+
+ggplot(mtcars, aes(x = mpg, y = hp, color = factor(cyl))) +
+  geom_point(size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Relação entre Consumo e Potência",
+       x = "Milhas por Galão (MPG)",
+       y = "Cavalos de Potência (HP)",
+       color = "Cilindros") +
+  theme_minimal() +
+  scale_color_brewer(palette = "Set1")
+```
+
+# Imagens e Mídia
+
+## Inserindo Imagens
+
+```markdown
+![Logo do R](https://www.r-project.org/logo/Rlogo.png){width=30%}
+
+![Gráfico exportado](images/meu-grafico.png){fig-alt="Descrição da imagem"}
+```
+
+## Imagens com Legendas
+
+
+![Diagrama do Fluxo de Trabalho](images/something-new.jpg){fig-align="center" width="80%"}
+
+*Figura 1: Fluxo de trabalho com Quarto*
+
+
+# Links e Referências
+
+## Links Externos
+
+```markdown
+- [Documentação oficial do Quarto](https://quarto.org/)
+- [Repositório no GitHub](https://github.com/quarto-dev/quarto-cli)
+- [Exemplos e Galeria](https://quarto.org/docs/gallery/)
+```
+
+## Referências Cruzadas
+
+Como mostrado na Figura @fig-grafico-ggplot...
+
+Consulte a Tabela @tbl-dados-resumo...
+
+Veja a equação @eq-formula-bhaskara...
+
+
+# Equações Matemáticas
+
+## Equações Inline
+
+
+A fórmula da velocidade é $v = \frac{\Delta s}{\Delta t}$.
+
+
+## Equações em Destaque
+
+E = mc^2
+$$
+E = mc^2
+$$
+
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
+
+$$
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
+$$
+
+
+# Formatos de Saída
+
+## Configuração para HTML
+
+```yaml
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-title: "Sumário"
+    theme: cosmo
+    code-fold: true
+```
+
+## Configuração para PDF
+
+```yaml
+format:
+  pdf:
+    documentclass: article
+    toc: true
+    number-sections: true
+```
+
+## Configuração para Apresentações
+
+```yaml
+format:
+  revealjs:
+    slide-number: true
+    controls: true
+    progress: true
+    transition: slide
+```
+
+# Recursos Avançados
+
+## Inclusão de Mapas
+
+```{r}
+#| echo: true
+#| eval: true
+# Mapas com leaflet
+library(leaflet)
+
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng = -46.6333, lat = -23.5505,
+             popup = "São Paulo, Brasil")
+```
+
+## Widgets Interativos
+
+```{r}
+#| echo: true
+#| eval: true
+# Gráficos interativos com plotly
+library(plotly)
+
+plot_ly(mtcars, x = ~mpg, y = ~hp,
+        color = ~factor(cyl),
+        type = 'scatter',
+        mode = 'markers')
+```
+
+# Boas Práticas
+
+## Organização do Projeto
+
+```
+meu-projeto/
+├── dados/
+│   ├── brutos/
+│   └── processados/
+├── scripts/
+│   ├── 01-limpeza.R
+│   ├── 02-analise.R
+│   └── funcoes.R
+├── relatorio.qmd
+├── README.md
+└── quarto.yml
+```
+
+# Exemplo Completo
+
+## Documento de Análise Completo
+
+````markdown
+---
+title: "Análise Exploratória com Quarto"
+author: "Analista de Dados"
+date: "`r format(Sys.Date(), '%d de %B de %Y')`"
+format:
+  html:
+    toc: true
+    theme: flatly
+    code-fold: true
+---
+
+# Introdução
+
+Esta é uma análise exploratória usando **Quarto**.
+
+## Carregamento dos Dados
+
+```{r}
+#| label: carregar-dados
+#| message: false
+
+library(tidyverse)
+library(knitr)
+
+data("iris")
+```
+
+## Estatísticas Descritivas
+
+A média do comprimento da sépala é `r mean(iris$Sepal.Length)` cm.
+
+```{r}
+#| label: estatisticas
+#| tbl-cap: "Estatísticas Descritivas"
+
+summary(iris) %>%
+  kable()
+```
+
+## Conclusão
+
+Principais descobertas...
+
+[Veja o código completo no GitHub](https://github.com/usuario/projeto)
+````
+
+# Recursos Adicionais
+
+## Links Importantes
+
+- 📚 [Documentação Oficial](https://quarto.org/docs/)
+- 🎨 [Galeria de Exemplos](https://quarto.org/docs/gallery/)
+- 🎓 [Tutoriais Interativos](https://quarto.org/docs/guide/)
+- 💬 [Comunidade no GitHub](https://github.com/quarto-dev/quarto-cli/discussions)
+
+## Extensões Úteis
+
+- **Quarto VS Code Extension**: Editor dedicado
+- **Quarto JupyterLab**: Integração com Jupyter
+- **Quarto Shiny**: Aplicações interativas
+
+# Dicas Finais
+
+## Fluxo de Trabalho Eficiente
+
+1. **Planeje** a estrutura do documento
+2. **Escreva** o texto narrativo primeiro
+3. **Adicione** código e visualizações
+4. **Revise** e formate
+5. **Exporte** para múltiplos formatos
+
+## Solução de Problemas Comuns
+
+- Use `quarto check` para verificar instalação
+- `quarto preview` para visualizar em tempo real
+- `quarto render` para gerar saída final
+- Consulte logs de erro para depuração
+
+# Perguntas e Respostas
+
+## Próximos Passos
+
+1. **Experimente** com pequenos projetos
+2. **Explore** templates prontos
+3. **Customize** seu workflow
+4. **Compartilhe** seu conhecimento
+
+## Próximos Passos
+
+## Estilos
+
+**Para criar os arquivos de suporte:**
+
+1. Crie um arquivo chamado `styles.css` para estilos personalizados:
+
+```css
+/* styles.css */
+.reveal .slide-logo {
+  height: 100px !important;
+  width: 100px!important;
+  max-width: unset !important;
+  max-height: unset !important;
+}
+
+.reveal .slide-number {
+  font-size: 18px;
+}
+
+.reveal h1 {
+  color: #2c3e50;
+}
+
+.reveal h2 {
+  color: #3498db;
+}
+```
+
+2. Para executar a apresentação:
+```bash
+quarto render aula.qmd --to revealjs
+```
+
+3. Ou use o modo preview:
+```bash
+quarto preview aula.qmd
+```
+
