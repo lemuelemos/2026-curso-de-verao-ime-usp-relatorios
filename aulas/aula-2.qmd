@@ -1,3 +1,15 @@
 ---
 title: "Aula 2 – Estrutura, Estilo e Layout de Relatórios"
 ---
+
+### **Aula 2 — Estrutura e elementos de um documento Quarto**
+
+Na aula anterior, compreendemos o propósito dos relatórios reprodutíveis e o papel do Quarto como ferramenta central para integrar texto, código e resultados em um único fluxo de trabalho. A partir desse ponto, o próximo passo natural é entender **como um documento Quarto é estruturado** e quais são os seus principais elementos.
+
+Nesta aula, exploraremos a arquitetura de um documento `.qmd`, abordando desde o cabeçalho de configuração (YAML), responsável por definir formato, layout e opções de renderização, até os blocos de código, elementos de texto, inserção de tabelas, gráficos e recursos multimídia. O objetivo é fornecer uma visão clara de como cada componente atua na construção de relatórios profissionais, organizados e plenamente reprodutíveis.
+
+Ao final da aula, você será capaz de estruturar documentos Quarto de forma consciente, configurar seus principais parâmetros e combinar conteúdo analítico e narrativo de maneira fluida — criando relatórios que não apenas executam análises, mas comunicam resultados com clareza e qualidade visual.
+
+# Slides Aula 2
+
+* Acesse aqui os slides da [Aula 2 - Estrutura, Estilo e Layout de Relatórios](../slides/04-elementos-quarto.html)
