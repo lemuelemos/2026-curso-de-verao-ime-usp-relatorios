@@ -18,7 +18,6 @@ format:
     show-slide-number: all
     hash-type: number
     preview-links: false    
-editor: visual
 ---
 
 ## Objetivos de aprendizagem
