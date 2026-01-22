@@ -1,5 +1,17 @@
 ---
 title: "Aula 2 – Estrutura, Estilo e Layout de Relatórios"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-title: "Contents"
+    code-fold: true         # Mostra botão para esconder/exibir o código
+    code-summary: "Mostrar código"  # Texto do botão (padrão: "Code")
+execute: 
+  echo: true
+  eval: true
+  message: false
+  warning: false
 ---
 
 ### **Aula 2 — Estrutura e elementos de um documento Quarto**
@@ -13,3 +25,195 @@ Ao final da aula, você será capaz de estruturar documentos Quarto de forma con
 # Slides Aula 2
 
 * Acesse aqui os slides da [Aula 2 - Estrutura, Estilo e Layout de Relatórios](../slides/04-elementos-quarto.html)
+
+### Elementos Yaml
+
+* [Elementos Presentes no Yaml](https://rpubs.com/drgregmartin/1266674)
+
+*Texto em itálico*
+
+**Texto em negrito**
+
+***Negrito e itálico***
+
+~~Texto tachado~~
+
+
+### Itens
+
+- Item 1
+- Item 2
+  - Subitem 2.1
+  - Subitem 2.2
+    - SubSubItem
+
+1. Primeiro passo
+2. Segundo passo
+   1. Detalhe 2.1
+   2. Detalhe 2.2
+
+### Inserção de Código
+
+
+```{r mostrando base mtcars}
+library(dplyr)
+
+mtcars |> 
+    dplyr::select(am,carb,cyl) |> 
+    head()
+```
+
+{{< lipsum 1 >}}
+
+```{r outra selecao de variaveis mtcars}
+#| eval: true
+#| code-fold: show
+
+mtcars |> 
+    dplyr::select(am,carb,cyl) |> 
+    head()
+```
+
+O veículo `r rownames(mtcars[3,])` possui `r mtcars[3,]$cyl` cilíndros.
+
+### Elementos Visuais
+
+| Variável | Tipo     | Descrição          |
+|----------|----------|--------------------|
+| mpg      | numérica | Milhas por galão   |
+| cyl      | numérica | Número de cilindros|
+| hp       | numérica | Cavalos de potência|
+
+#### Tabela com Kable
+
+```{r tabela kable}
+#| eval: true
+library(kableExtra)
+
+kable(head(mtcars[, 1:4]), caption = "Primeiras linhas do conjunto mtcars")
+```
+
+* [Documentação kable html](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html)
+
+* [Documentação kable PDF](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf)
+
+#### Tabela com Kable
+
+
+```{r tabela com gt}
+#| eval: true
+library(gt)
+
+# Define the start and end dates for the data range
+start_date <- "2010-06-07"
+end_date <- "2010-06-14"
+
+# Create a gt table based on preprocessed
+# `sp500` table data
+sp500 |>
+  dplyr::filter(date >= start_date & date <= end_date) |>
+  dplyr::select(-adj_close) |>
+  gt() |>
+  tab_header(
+    title = "S&P 500",
+    subtitle = glue::glue("{start_date} to {end_date}")
+  ) |>
+  fmt_currency() |>
+  fmt_date(columns = date, date_style = "wd_m_day_year") |>
+  fmt_number(columns = volume, suffixing = TRUE)
+```
+
+* [Documentação Tabela com GT](https://gt.rstudio.com/)
+
+### Inclusão de Gráficos
+
+#### Gráfico com R Base
+
+```{r}
+#| echo: true
+#| eval: true
+#| fig-cap: "Gráfico de Barras - Distribuição de Cilindros"
+
+# Gráfico simples
+barplot(table(mtcars$cyl),
+        main = "Distribuição de Cilindros",
+        xlab = "Cilindros",
+        ylab = "Frequência",
+        col = c("#1f77b4", "#ff7f0e", "#2ca02c"))
+```
+
+#### Gráfico GGPLOT
+
+
+```{r}
+#| echo: true
+#| eval: true
+#| fig-cap: "Relação entre MPG e HP por Cilindros"
+
+library(ggplot2)
+
+ggplot(mtcars, aes(x = mpg, y = hp, color = factor(cyl))) +
+  geom_point(size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Relação entre Consumo e Potência",
+       x = "Milhas por Galão (MPG)",
+       y = "Cavalos de Potência (HP)",
+       color = "Cilindros") +
+  theme_minimal() +
+  scale_color_brewer(palette = "Set1")
+```
+
+* [Documentação gráficos do G1](https://github.com/brunomioto/ggimprensa)
+
+#### Gráfico com echarts4r
+
+```{r}
+library(echarts4r)
+
+mtcars |> 
+  head() |> 
+  tibble::rownames_to_column("model") |> 
+  e_charts(model) |> 
+  e_pie(hp, roseType = "radius")
+```
+
+* [Documentação gráfico echarts4r](https://echarts4r.john-coene.com/)
+
+
+#### Gráfico com Plotly
+
+
+```{r}
+library(plotly)
+
+fig <- plot_ly(
+  x = c("giraffes", "orangutans", "monkeys"),
+  y = c(20, 14, 23),
+  name = "SF Zoo",
+  type = "bar"
+)
+
+fig
+
+```
+
+* [Documentação gráfico plotly](https://plotly.com/r/)
+
+##### Mapas
+
+```{r}
+#| echo: true
+#| eval: true
+# Mapas com leaflet
+library(leaflet)
+
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng = -46.6333, lat = -23.5505,
+             popup = "São Paulo, Brasil")
+```
+
+
+* [Documentação Leaflet](https://rstudio.github.io/leaflet/)
+
+* [Lista de Exemplos Leaflet](https://rpubs.com/gabrielvm/trabalholeaflet)
