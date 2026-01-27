@@ -221,7 +221,7 @@ ggplot(mtcars, aes(x = mpg, y = hp, color = factor(cyl))) +
 ## Imagens com Legendas
 
 
-![Diagrama do Fluxo de Trabalho](images/something-new.jpg){fig-align="center" width="80%"}
+[](images/something-new.jpg){fig-align="center" width="80%"}
 
 *Figura 1: Fluxo de trabalho com Quarto*
 
