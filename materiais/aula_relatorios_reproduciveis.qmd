@@ -1,0 +1,67 @@
+---
+title: "Reproducible Quarto Document"
+format:
+  pdf:
+    colorlinks: true
+execute: 
+  echo: false
+  eval: true
+  message: false
+  warning: false
+params: 
+    species: "Adelie"
+    titulo: "Tipo Grafico"
+---
+
+```{r setup}
+library(tidyverse)
+library(palmerpenguins)
+library(skimr)
+
+penguins <- penguins
+```
+
+# Introdução
+
+A base **Palmer Penguins** contém medições biométricas de pinguins coletados no arquipélago Palmer, na Antártida.
+O conjunto de dados inclui informações morfológicas e demográficas de três espécies, sendo amplamente utilizado em análise exploratória e modelagem estatística.
+
+O objetivo deste relatório é apresentar uma análise descritiva dos dados, identificando padrões relevantes entre espécies e sexo.
+
+# Visão Geral da Base `r params$species`
+
+```{r}
+glimpse(penguins)
+```
+
+A base possui observações individuais de pinguins, contendo variáveis de espécie, local de coleta, dimensões do bico, comprimento da nadadeira, massa corporal e sexo.
+
+Estou criando o `r params$species`
+
+```{r}
+
+library(dplyr)
+library(ggplot2)
+library(palmerpenguins)
+
+penguins %>%
+  filter(species == params$species, !is.na(sex)) %>%
+  summarise(bill_length_mm = mean(bill_length_mm),.by = island) |> 
+  ggplot(aes(x = island, y = bill_length_mm)) +
+  geom_col() +
+  labs(
+    title = paste0("Quantidade de indivíduos da espécie ",params$species," por sexo"),
+    x = "Sexo",
+    y = "Número de indivíduos"
+  ) +
+  theme_minimal()
+
+
+```
+
+# Conclusão
+
+A análise exploratória evidencia diferenças consistentes entre espécies e sexo, além de relações estruturais entre medidas corporais.
+Esses resultados indicam que a base Palmer Penguins é adequada para aplicações em modelagem estatística e aprendizado de máquina.
+
+---
