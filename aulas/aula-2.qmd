@@ -149,6 +149,7 @@ barplot(table(mtcars$cyl),
 #| echo: true
 #| eval: true
 #| fig-cap: "Relação entre MPG e HP por Cilindros"
+#| label: fig-plot
 
 library(ggplot2)
 
@@ -217,3 +218,50 @@ leaflet() %>%
 * [Documentação Leaflet](https://rstudio.github.io/leaflet/)
 
 * [Lista de Exemplos Leaflet](https://rpubs.com/gabrielvm/trabalholeaflet)
+
+#### Adição de Imagens
+
+![Logo do R](https://www.r-project.org/logo/Rlogo.png){width=30%}
+
+![Gráfico exportado](www/posit.png){fig-alt="Descrição da imagem"}
+
+![](https://scs.usp.br/identidadevisual/wp-content/uploads/2022/08/usp-logo-png-1.png){fig-alt="Logo USP" width=50%}
+*Figura 1: Fluxo de trabalho com Quarto*
+
+* [Documentação Imagens Quarto](https://quarto.org/docs/authoring/figures.html)
+
+
+##### Adição de Vídeo
+
+::: {#fig-elephant}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_f3latmOhew?si=om04jR-yMopnRBiU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+Vídeo de Tutorial do Quarto
+:::
+
+<iframe width="560" height="315" src="https://quarto.org/docs/authoring/figures.html"></iframe>
+
+#### Links e Refências 
+
+- [Documentação oficial do Quarto](https://quarto.org/)
+- [Repositório no GitHub](https://github.com/quarto-dev/quarto-cli)
+- [Exemplos e Galeria](https://quarto.org/docs/gallery/)
+
+#### Equações Matemáticas
+
+::: {#thm-line}
+$$
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
+$$
+:::
+
+#### Referência Cruzada
+
+Como mostrado na Figura @fig-elephant
+
+Como mostrado na Figura @fig-plot
+
+Como mostrado na equação @thm-line
+
+* [Documentação Referências Quarto](https://quarto.org/docs/authoring/cross-references.html)
