@@ -1,0 +1,214 @@
+---
+title: "Aula 2 — Estrutura, estilo e comunicação"
+subtitle: "Relatórios reprodutíveis com R — Curso de Verão IME-USP 2026"
+author: "Lemuel de Lemos Romão"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: c/t
+    show-slide-number: all
+    transition: fade
+    center: false
+    width: 1600
+    height: 900
+    footer: "Curso de Verão IME-USP 2026"
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Hoje vamos
+
+1. planejar a narrativa do relatório;
+2. configurar YAML e execução;
+3. estruturar texto com Markdown;
+4. apresentar tabelas e gráficos;
+5. usar referências cruzadas e acessibilidade.
+
+## Comece pelo público
+
+- Qual pergunta será respondida?
+- Quem lerá o documento?
+- Qual decisão ou aprendizado esperamos apoiar?
+- Quanto detalhe técnico é necessário?
+- Qual formato facilita o uso?
+
+## Abra com a mensagem, não com o processo
+
+::: {.columns}
+::: {.column width="50%"}
+### Evite
+
+"Foram coletados dados do IBGE, processados e utilizados para gerar uma tabela e um gráfico
+apresentados a seguir."
+:::
+::: {.column width="50%"}
+### Prefira
+
+"A densidade demográfica brasileira é extremamente desigual: o DF tem mais de 480 hab/km²,
+sete estados do Norte têm menos de 7."
+:::
+:::
+
+## Estrutura narrativa
+
+```text
+Resumo executivo
+├── contexto e objetivo
+├── dados e método
+├── resultados
+├── conclusão e recomendações
+└── referências ou apêndice
+```
+
+## YAML
+
+```yaml
+---
+title: "Indicadores por estado"
+author: "Nome da pessoa autora"
+date: today
+lang: pt-BR
+format:
+  html:
+    toc: true
+    code-fold: true
+execute:
+  echo: false
+  warning: false
+---
+```
+
+## YAML: um erro real
+
+```yaml
+title: Indicadores: uma análise por estado
+```
+
+```text
+ERROR: YAML parse exception at line 2, column 18:
+mapping values are not allowed in this context
+```
+
+Correção: `title: "Indicadores: uma análise por estado"` — sempre com aspas quando o texto tem `:`.
+
+## Hierarquia de títulos
+
+```markdown
+## Resultados
+
+### Diferenças regionais
+
+#### Região Sudeste
+```
+
+Não pule níveis. Títulos descrevem conteúdo, não aparência.
+
+## Preparando os dados
+
+```{r}
+#| label: preparar-dados
+
+library(dplyr)
+library(ggplot2)
+
+populacao_uf <- readr::read_csv("dados/populacao_uf.csv", show_col_types = FALSE)
+
+resumo_regiao <- populacao_uf |>
+  group_by(regiao) |>
+  summarise(estados = n(), populacao_total = sum(populacao), .groups = "drop") |>
+  arrange(desc(populacao_total))
+```
+
+## Tabelas com propósito
+
+```{r}
+#| label: tbl-gt-regiao
+
+resumo_regiao |>
+  gt::gt() |>
+  gt::fmt_number(populacao_total, decimals = 0, sep_mark = ".", dec_mark = ",") |>
+  gt::cols_label(regiao = "Região", estados = "Estados", populacao_total = "População total") |>
+  gt::tab_source_note("Fonte: IBGE, Censo 2022.")
+```
+
+## Gráfico: evite
+
+```{r}
+#| label: fig-ruim
+
+ggplot(populacao_uf, aes(area_km2, populacao, color = regiao)) +
+  geom_point()
+```
+
+## Gráfico: prefira
+
+```{r}
+#| label: fig-boa
+
+ggplot(populacao_uf, aes(area_km2/1000, populacao/1e6, color = regiao)) +
+  geom_point(size = 3, alpha = 0.85) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(x = "Área (mil km²)", y = "População (milhões)", color = "Região") +
+  theme_minimal()
+```
+
+Mesmos dados — menos ruído: eixos com unidade, paleta pensada, tema limpo.
+
+## Referências cruzadas
+
+```markdown
+Veja a @fig-boa e a @tbl-gt-regiao.
+```
+
+O Quarto atualiza a numeração automaticamente, mesmo se a ordem dos elementos mudar.
+
+## Equações
+
+$$
+d = \frac{P}{A}
+$$ {#eq-densidade}
+
+No texto: "A @eq-densidade define a densidade demográfica, usada na coluna `densidade_dem`."
+
+## Acessibilidade
+
+::: {.incremental}
+- texto alternativo específico, não "gráfico" ou "imagem";
+- hierarquia lógica de títulos;
+- contraste suficiente entre cores;
+- cor nunca é o único canal de informação;
+- links com texto descritivo.
+:::
+
+## Prática
+
+Com `dados/populacao_uf.csv`:
+
+1. objetivo e público;
+2. sumário e código recolhível;
+3. uma tabela `gt` com título e fonte;
+4. um gráfico bom **e** um propositalmente ruim, para comparar;
+5. referências cruzadas;
+6. texto alternativo específico.
+
+## Projeto final — etapa 2
+
+- crie o esqueleto do documento;
+- escreva a introdução;
+- inclua a primeira evidência visual;
+- peça a alguém para explicar a mensagem que entendeu.
+
+## Fechamento
+
+Comunicação reprodutível combina:
+
+```text
+estrutura + evidência + interpretação + acessibilidade
+```
+
+### Próxima aula
+
+Dados, formatos e automação.

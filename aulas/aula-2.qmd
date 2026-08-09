@@ -1,267 +1,308 @@
 ---
-title: "Aula 2 – Estrutura, Estilo e Layout de Relatórios"
+title: "Aula 2 — Estrutura, estilo e comunicação"
+description: "YAML, Markdown, código, tabelas, figuras e referências em um relatório claro."
 format:
   html:
     toc: true
     toc-depth: 3
-    toc-title: "Contents"
-    code-fold: true         # Mostra botão para esconder/exibir o código
-    code-summary: "Mostrar código"  # Texto do botão (padrão: "Code")
-execute: 
+    code-fold: true
+    code-summary: "Mostrar código"
+execute:
   echo: true
   eval: true
-  message: false
   warning: false
+  message: false
 ---
 
-### **Aula 2 — Estrutura e elementos de um documento Quarto**
+## Visão geral
 
-Na aula anterior, compreendemos o propósito dos relatórios reprodutíveis e o papel do Quarto como ferramenta central para integrar texto, código e resultados em um único fluxo de trabalho. A partir desse ponto, o próximo passo natural é entender **como um documento Quarto é estruturado** e quais são os seus principais elementos.
+Um relatório reprodutível também precisa ser compreensível. Nesta aula, vamos organizar o documento, controlar sua aparência e apresentar evidências com tabelas e gráficos que tenham função narrativa — usando a mesma base de estados brasileiros da Aula 1.
 
-Nesta aula, exploraremos a arquitetura de um documento `.qmd`, abordando desde o cabeçalho de configuração (YAML), responsável por definir formato, layout e opções de renderização, até os blocos de código, elementos de texto, inserção de tabelas, gráficos e recursos multimídia. O objetivo é fornecer uma visão clara de como cada componente atua na construção de relatórios profissionais, organizados e plenamente reprodutíveis.
+### Objetivos de aprendizagem
 
-Ao final da aula, você será capaz de estruturar documentos Quarto de forma consciente, configurar seus principais parâmetros e combinar conteúdo analítico e narrativo de maneira fluida — criando relatórios que não apenas executam análises, mas comunicam resultados com clareza e qualidade visual.
+- configurar título, autoria, formato e sumário no YAML;
+- estruturar texto com Markdown e hierarquia de seções;
+- controlar código e resultados com opções de execução;
+- inserir tabelas, figuras, equações e referências cruzadas;
+- aplicar princípios básicos de legibilidade e acessibilidade.
 
-# Slides Aula 2
+## 1. Planeje antes de formatar
 
-* Acesse aqui os slides da [Aula 2 - Estrutura, Estilo e Layout de Relatórios](../slides/04-elementos-quarto.html)
+Antes de escolher cores e fontes, responda:
 
-### Elementos Yaml
+1. Qual pergunta o documento responde?
+2. Quem tomará uma decisão ou aprenderá com ele?
+3. Quais evidências sustentam a mensagem principal?
+4. Qual formato e nível de detalhe esse público precisa?
 
-* [Elementos Presentes no Yaml](https://rpubs.com/drgregmartin/1266674)
+O plano molda até a frase de abertura. Compare:
 
-*Texto em itálico*
+::: {.columns}
+::: {.column width="50%"}
+**Evite** — descreve o processo, não a conclusão:
 
-**Texto em negrito**
+> "Neste relatório, foram coletados dados do IBGE sobre população e área dos estados
+> brasileiros, que em seguida foram processados e utilizados para gerar uma tabela e um
+> gráfico apresentados a seguir."
+:::
+::: {.column width="50%"}
+**Prefira** — abre com a mensagem, o método vem depois:
 
-***Negrito e itálico***
+> "A densidade demográfica brasileira é extremamente desigual: o Distrito Federal tem mais de
+> 480 habitantes por km², enquanto sete estados da região Norte têm menos de 7."
+:::
+:::
 
-~~Texto tachado~~
+A primeira versão exige que quem lê chegue ao gráfico para descobrir se há algo relevante. A segunda entrega a conclusão de imediato — a tabela e o gráfico existem para sustentar essa frase, não para substituí-la.
 
+Uma estrutura simples funciona para muitos relatórios:
 
-### Itens
+```text
+Título e resumo executivo
+├── Contexto e objetivo
+├── Dados e método
+├── Resultados
+├── Conclusões e recomendações
+└── Referências ou apêndice
+```
 
-- Item 1
-- Item 2
-  - Subitem 2.1
-  - Subitem 2.2
-    - SubSubItem
+## 2. Cabeçalho YAML
 
-1. Primeiro passo
-2. Segundo passo
-   1. Detalhe 2.1
-   2. Detalhe 2.2
+O YAML configura o documento. A indentação usa espaços e define hierarquia:
 
-### Inserção de Código
+```yaml
+---
+title: "Indicadores por estado"
+subtitle: "Perfil demográfico e econômico das unidades federativas"
+author: "Nome da pessoa autora"
+date: today
+lang: pt-BR
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: true
+execute:
+  echo: false
+  warning: false
+---
+```
 
+`format` controla a saída; `execute` controla a computação. Se uma opção vale apenas para um bloco, declare-a no próprio bloco em vez de aplicá-la ao documento inteiro.
 
-```{r mostrando base mtcars}
+::: {.callout-warning title="Erro real de YAML"}
+Um dos-pontos sem aspas dentro de um texto quebra o cabeçalho:
+
+```yaml
+title: Indicadores: uma análise por estado
+```
+
+produz algo como:
+
+```text
+ERROR: YAML parse exception at line 2, column 18: mapping values are not allowed in this context
+```
+
+A correção é envolver o texto inteiro em aspas: `title: "Indicadores: uma análise por estado"`. Sempre que a renderização falhar antes de qualquer código rodar, o cabeçalho é o primeiro lugar a conferir.
+:::
+
+## 3. Hierarquia e Markdown
+
+```markdown
+## Resultados
+
+O indicador apresentou **crescimento** no período.
+
+### Diferenças regionais
+
+- Região Sudeste: maior população absoluta;
+- Região Norte: menor densidade demográfica;
+- Região Nordeste: maior número de estados.
+```
+
+Use um único título principal, fornecido pelo YAML. Evite pular de `##` para `####`. Títulos devem descrever o conteúdo, e não apenas numerar "Parte 1".
+
+## 4. Preparando os dados desta aula
+
+Todos os exemplos a seguir partem do mesmo `.csv` já usado na Aula 1:
+
+```{r}
+#| label: preparar-dados
+
 library(dplyr)
-
-mtcars |> 
-    dplyr::select(am,carb,cyl) |> 
-    head()
-```
-
-{{< lipsum 1 >}}
-
-```{r outra selecao de variaveis mtcars}
-#| eval: true
-#| code-fold: show
-
-mtcars |> 
-    dplyr::select(am,carb,cyl) |> 
-    head()
-```
-
-O veículo `r rownames(mtcars[3,])` possui `r mtcars[3,]$cyl` cilíndros.
-
-### Elementos Visuais
-
-| Variável | Tipo     | Descrição          |
-|----------|----------|--------------------|
-| mpg      | numérica | Milhas por galão   |
-| cyl      | numérica | Número de cilindros|
-| hp       | numérica | Cavalos de potência|
-
-#### Tabela com Kable
-
-```{r tabela kable}
-#| eval: true
-library(kableExtra)
-
-kable(head(mtcars[, 1:4]), caption = "Primeiras linhas do conjunto mtcars")
-```
-
-* [Documentação kable html](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html)
-
-* [Documentação kable PDF](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf)
-
-#### Tabela com Kable
-
-
-```{r tabela com gt}
-#| eval: true
-library(gt)
-
-# Define the start and end dates for the data range
-start_date <- "2010-06-07"
-end_date <- "2010-06-14"
-
-# Create a gt table based on preprocessed
-# `sp500` table data
-sp500 |>
-  dplyr::filter(date >= start_date & date <= end_date) |>
-  dplyr::select(-adj_close) |>
-  gt() |>
-  tab_header(
-    title = "S&P 500",
-    subtitle = glue::glue("{start_date} to {end_date}")
-  ) |>
-  fmt_currency() |>
-  fmt_date(columns = date, date_style = "wd_m_day_year") |>
-  fmt_number(columns = volume, suffixing = TRUE)
-```
-
-* [Documentação Tabela com GT](https://gt.rstudio.com/)
-
-### Inclusão de Gráficos
-
-#### Gráfico com R Base
-
-```{r}
-#| echo: true
-#| eval: true
-#| fig-cap: "Gráfico de Barras - Distribuição de Cilindros"
-
-# Gráfico simples
-barplot(table(mtcars$cyl),
-        main = "Distribuição de Cilindros",
-        xlab = "Cilindros",
-        ylab = "Frequência",
-        col = c("#1f77b4", "#ff7f0e", "#2ca02c"))
-```
-
-#### Gráfico GGPLOT
-
-
-```{r}
-#| echo: true
-#| eval: true
-#| fig-cap: "Relação entre MPG e HP por Cilindros"
-#| label: fig-plot
-
 library(ggplot2)
 
-ggplot(mtcars, aes(x = mpg, y = hp, color = factor(cyl))) +
-  geom_point(size = 3, alpha = 0.7) +
-  geom_smooth(method = "lm", se = FALSE) +
-  labs(title = "Relação entre Consumo e Potência",
-       x = "Milhas por Galão (MPG)",
-       y = "Cavalos de Potência (HP)",
-       color = "Cilindros") +
-  theme_minimal() +
-  scale_color_brewer(palette = "Set1")
+populacao_uf <- readr::read_csv("dados/populacao_uf.csv", show_col_types = FALSE)
+
+resumo_regiao <- populacao_uf |>
+  group_by(regiao) |>
+  summarise(
+    estados = dplyr::n(),
+    populacao_total = sum(populacao),
+    densidade_media = mean(densidade_dem),
+    .groups = "drop"
+  ) |>
+  arrange(desc(populacao_total))
 ```
 
-* [Documentação gráficos do G1](https://github.com/brunomioto/ggimprensa)
+Cada bloco declara `#| label:` — um nome único que aparece nas mensagens de erro e permite referenciar tabelas e figuras (seção 7).
 
-#### Gráfico com echarts4r
+## 5. Tabelas que comunicam
+
+Uma tabela Markdown atende valores pequenos e estáticos, digitados à mão:
+
+| Região | Estados |
+|---|---:|
+| Norte | 7 |
+| Nordeste | 9 |
+
+Para dados calculados, gere a tabela a partir do código — nunca digite um número que o R já calculou:
 
 ```{r}
-library(echarts4r)
+#| label: tbl-resumo-regiao
+#| tbl-cap: "Estados, população total e densidade média, por região."
 
-mtcars |> 
-  head() |> 
-  tibble::rownames_to_column("model") |> 
-  e_charts(model) |> 
-  e_pie(hp, roseType = "radius")
+resumo_regiao |>
+  knitr::kable(
+    col.names = c("Região", "Estados", "População total", "Densidade média (hab/km²)"),
+    digits = 1,
+    format.args = list(big.mark = ".", decimal.mark = ",")
+  )
 ```
 
-* [Documentação gráfico echarts4r](https://echarts4r.john-coene.com/)
+No texto, cite a @tbl-resumo-regiao e interprete o padrão. Não repita em prosa todos os números da tabela — a região Sudeste concentra a maior população total mesmo tendo só quatro estados, o que já diz mais do que listar todas as células.
 
-
-#### Gráfico com Plotly
-
+Para um relatório executivo, `knitr::kable()` costuma bastar. Quando o público precisa de uma tabela com título, nota de rodapé e formatação condicional, `gt` entrega mais controle:
 
 ```{r}
-library(plotly)
+#| label: tbl-gt-regiao
+#| tbl-cap: "Mesma tabela, com o pacote gt."
 
-fig <- plot_ly(
-  x = c("giraffes", "orangutans", "monkeys"),
-  y = c(20, 14, 23),
-  name = "SF Zoo",
-  type = "bar"
-)
-
-fig
-
+resumo_regiao |>
+  gt::gt() |>
+  gt::tab_header(title = "Perfil demográfico por região") |>
+  gt::fmt_number(columns = c(populacao_total), decimals = 0, sep_mark = ".", dec_mark = ",") |>
+  gt::fmt_number(columns = c(densidade_media), decimals = 1, sep_mark = ".", dec_mark = ",") |>
+  gt::cols_label(
+    regiao = "Região",
+    estados = "Estados",
+    populacao_total = "População total",
+    densidade_media = "Densidade média (hab/km²)"
+  ) |>
+  gt::tab_source_note("Fonte: IBGE, Censo Demográfico 2022.")
 ```
 
-* [Documentação gráfico plotly](https://plotly.com/r/)
+## 6. Figuras e gráficos
 
-##### Mapas
+Um gráfico feito às pressas atrapalha mais do que ajuda. Compare as duas versões abaixo — os dados são exatamente os mesmos:
 
 ```{r}
-#| echo: true
-#| eval: true
-# Mapas com leaflet
-library(leaflet)
+#| label: fig-populacao-ruim
+#| fig-cap: "Evite: cores padrão sem propósito, sem rótulos de eixo e sem unidade."
+#| fig-alt: "Gráfico de dispersão com pontos coloridos, sem título nem legendas claras."
 
-leaflet() %>%
-  addTiles() %>%
-  addMarkers(lng = -46.6333, lat = -23.5505,
-             popup = "São Paulo, Brasil")
+ggplot(populacao_uf, aes(area_km2, populacao, color = regiao)) +
+  geom_point()
 ```
 
+```{r}
+#| label: fig-populacao-boa
+#| fig-cap: "Prefira: título, eixos com unidade, paleta com poucas cores e leitura guiada."
+#| fig-alt: "Gráfico de dispersão mostrando população pelo tamanho territorial dos estados brasileiros, colorido por região. São Paulo se destaca com a maior população; estados da região Norte têm grandes áreas e populações menores."
 
-* [Documentação Leaflet](https://rstudio.github.io/leaflet/)
+ggplot(populacao_uf, aes(area_km2 / 1000, populacao / 1e6, color = regiao)) +
+  geom_point(size = 3, alpha = 0.85) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(
+    title = "População e área dos estados brasileiros",
+    x = "Área (mil km²)",
+    y = "População (milhões de habitantes)",
+    color = "Região",
+    caption = "Fonte: IBGE, Censo Demográfico 2022."
+  ) +
+  theme_minimal(base_size = 12)
+```
 
-* [Lista de Exemplos Leaflet](https://rpubs.com/gabrielvm/trabalholeaflet)
+A segunda versão não tem mais dados — tem menos ruído. `theme_minimal()` remove o fundo cinza padrão, `scale_color_brewer()` troca as cores automáticas por uma paleta pensada para diferenciação, e os eixos convertidos para mil km² e milhões de habitantes evitam números com muitos dígitos.
 
-#### Adição de Imagens
+A @fig-populacao-boa permite comparar território, população e região ao mesmo tempo. A legenda explica o que está sendo mostrado; o parágrafo ao redor deve dizer por que isso importa — aqui, que tamanho territorial não é um bom previsor de população.
 
-![Logo do R](https://www.r-project.org/logo/Rlogo.png){width=30%}
+Para imagens externas (fotos, logotipos, diagramas):
 
-![Gráfico exportado](www/posit.png){fig-alt="Descrição da imagem"}
+```markdown
+![Descrição objetiva da imagem](imagens/arquivo.png){#fig-fluxo width=70%}
+```
 
-![](https://scs.usp.br/identidadevisual/wp-content/uploads/2022/08/usp-logo-png-1.png){fig-alt="Logo USP" width=50%}
-*Figura 1: Fluxo de trabalho com Quarto*
+Use texto alternativo informativo — o `fig-alt` de @fig-populacao-boa descreve o padrão visto no gráfico, não apenas "gráfico de dispersão". Quem usa leitor de tela depende inteiramente dessa frase para entender a figura.
 
-* [Documentação Imagens Quarto](https://quarto.org/docs/authoring/figures.html)
+## 7. Equações e referências cruzadas
 
+A densidade demográfica usada nos exemplos acima é definida por:
 
-##### Adição de Vídeo
-
-::: {#fig-elephant}
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_f3latmOhew?si=om04jR-yMopnRBiU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-Vídeo de Tutorial do Quarto
-:::
-
-<iframe width="560" height="315" src="https://quarto.org/docs/authoring/figures.html"></iframe>
-
-#### Links e Refências 
-
-- [Documentação oficial do Quarto](https://quarto.org/)
-- [Repositório no GitHub](https://github.com/quarto-dev/quarto-cli)
-- [Exemplos e Galeria](https://quarto.org/docs/gallery/)
-
-#### Equações Matemáticas
-
-::: {#thm-line}
 $$
-f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
-$$
-:::
+d = \frac{P}{A}
+$$ {#eq-densidade}
 
-#### Referência Cruzada
+em que $P$ é a população e $A$ é a área em km². A @eq-densidade é a mesma conta feita pela coluna `densidade_dem` do arquivo `dados/populacao_uf.csv`. Rótulos seguem prefixos convencionais:
 
-Como mostrado na Figura @fig-elephant
+- `fig-` para figuras;
+- `tbl-` para tabelas;
+- `eq-` para equações;
+- `sec-` para seções.
 
-Como mostrado na Figura @fig-plot
+Rótulos estáveis permitem mudar a ordem dos elementos sem corrigir a numeração manualmente — o Quarto renumera tudo sozinho.
 
-Como mostrado na equação @thm-line
+## 8. Estilo sem perder manutenção
 
-* [Documentação Referências Quarto](https://quarto.org/docs/authoring/cross-references.html)
+Comece com um tema e poucas regras CSS:
+
+```yaml
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+```
+
+```css
+body {
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  color: #2f4858;
+}
+```
+
+Prefira consistência a decoração: duas fontes, uma paleta pequena, espaçamento generoso e contraste adequado costumam ser suficientes. O mesmo princípio vale para gráficos — `scale_color_brewer(palette = "Dark2")` usado acima é uma paleta pronta, testada para diferenciação, em vez de escolher cores uma a uma.
+
+## Prática guiada
+
+Usando `dados/populacao_uf.csv`:
+
+1. Escreva um objetivo e um público explícitos no início da página.
+2. Configure um YAML com sumário e código recolhível.
+3. Calcule, com `dplyr`, o PIB per capita médio por região a partir de `dados/pib_uf.csv` (você vai aprender a juntar as duas tabelas na Aula 3 — por enquanto, pode ler `pib_uf.csv` separadamente e agrupar por região usando um `left_join` simples, ou deixar essa etapa como pergunta em aberto para a próxima aula).
+4. Construa uma tabela `gt` com título e nota de fonte.
+5. Construa um gráfico com título, eixos, legenda e texto alternativo — e, antes de finalizar, produza deliberadamente uma versão "ruim" (sem `theme_minimal()`, sem `labs()`) para comparar as duas.
+6. Adicione referências cruzadas para a tabela e o gráfico.
+
+## Para o projeto final
+
+Crie o esqueleto do documento, escreva a introdução e inclua ao menos uma evidência visual. Peça a alguém do público-alvo para dizer qual mensagem entendeu.
+
+## Checklist
+
+- [ ] O YAML está válido e enxuto.
+- [ ] A hierarquia de títulos é lógica.
+- [ ] Tabelas e gráficos são citados e interpretados, não apenas exibidos.
+- [ ] Imagens e gráficos têm texto alternativo específico (não genérico).
+- [ ] Consigo apontar, no meu próprio gráfico, o que tornaria uma versão "ruim" dele.
+- [ ] O estilo visual é consistente com o público.
+
+## Materiais da aula
+
+- [Slides da Aula 2](../slides/aula-2.qmd)
+- [Quarto: Markdown](https://quarto.org/docs/authoring/markdown-basics.html)
+- [Quarto: referências cruzadas](https://quarto.org/docs/authoring/cross-references.html)
+- [Quarto: acessibilidade](https://quarto.org/docs/authoring/figures.html#alt-text)
+- [gt: criando tabelas](https://gt.rstudio.com/)

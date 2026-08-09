@@ -1,0 +1,191 @@
+---
+title: "Aula 1 — Reprodutibilidade e primeiro documento Quarto"
+subtitle: "Relatórios reprodutíveis com R — Curso de Verão IME-USP 2026"
+author: "Lemuel de Lemos Romão"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: c/t
+    show-slide-number: all
+    transition: fade
+    center: false
+    width: 1600
+    height: 900
+    footer: "Curso de Verão IME-USP 2026"
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Hoje vamos
+
+1. entender o que significa reprodutibilidade;
+2. reconhecer o papel de cada ferramenta;
+3. criar um primeiro documento `.qmd`;
+4. combinar texto, código e resultado;
+5. diagnosticar erros frequentes.
+
+## Um caso concreto
+
+::: {.incremental}
+- alguém copia um número calculado numa planilha para dentro de um relatório;
+- duas semanas depois, a base de dados muda;
+- o número no relatório continua o mesmo — porque foi digitado, não calculado ali;
+- uma decisão é tomada com um número que já não existe mais.
+:::
+
+## O problema do copiar e colar
+
+::: {.incremental}
+- dados mudam, mas o texto não;
+- gráficos perdem a origem;
+- etapas manuais não ficam registradas;
+- outra pessoa não consegue repetir a análise;
+- corrigir o relatório exige refazer todo o processo.
+:::
+
+## Um fluxo reprodutível
+
+```text
+dados → código → resultados → narrativa → documento
+```
+
+Todos os elementos necessários ficam registrados no projeto.
+
+::: {.callout-note}
+Quando os dados mudam, renderizamos novamente — o número nunca fica desatualizado.
+:::
+
+## As ferramentas
+
+| Ferramenta | Responsabilidade |
+|---|---|
+| R | análise e visualização |
+| RStudio/Positron | edição e execução |
+| Quarto | renderização do documento |
+| Git | histórico das alterações |
+| GitHub | colaboração e publicação |
+
+O Quarto não substitui o R — ele chama o R (ou Python/Julia) para calcular, e organiza o resultado junto do texto.
+
+## O arquivo `.qmd`: texto e YAML
+
+```markdown
+---
+title: "Meu primeiro relatório"
+format: html
+---
+
+## Objetivo
+
+Este relatório resume a base `mtcars`.
+```
+
+## O arquivo `.qmd`: o bloco de código
+
+```{r}
+#| label: resumo-dados
+#| echo: true
+
+summary(mtcars$mpg)
+```
+
+Este resultado não foi digitado — foi calculado agora, na renderização deste próprio slide.
+
+## Três partes do documento
+
+::: {.columns}
+::: {.column width="33%"}
+### YAML
+
+Configura título, autoria e formato.
+:::
+
+::: {.column width="33%"}
+### Markdown
+
+Organiza a narrativa e as seções.
+:::
+
+::: {.column width="33%"}
+### Código
+
+Produz números, tabelas e gráficos.
+:::
+:::
+
+## Renderização
+
+```text
+relatorio.qmd
+      ↓ quarto render
+relatorio.html
+```
+
+O arquivo `.qmd` é a fonte. O HTML é o produto gerado — sempre reconstruível a partir da fonte.
+
+## Um teste simples
+
+1. reinicie a sessão do R;
+2. abra apenas o projeto;
+3. renderize o documento;
+4. observe se algum objeto está ausente.
+
+Se funciona apenas depois de executar comandos no console, ainda há dependências escondidas.
+
+## Erros frequentes
+
+| Mensagem ou sintoma | Verificação |
+|---|---|
+| `'quarto' não é reconhecido` | instalação e reinício da IDE |
+| `there is no package called ...` | pacote não instalado no ambiente ativo |
+| YAML inválido | indentação e fechamento `---` |
+| `cannot open file ...` | caminho relativo à pasta errada |
+| `object not found` | criado só no console, fora do documento |
+
+## O dataset deste curso
+
+Cinco aulas, uma base real: população, área e PIB por estado brasileiro (fonte: IBGE).
+
+```{r}
+#| label: primeiro-contato-uf
+
+populacao_uf <- readr::read_csv("dados/populacao_uf.csv", show_col_types = FALSE)
+
+dplyr::glimpse(populacao_uf)
+```
+
+## Prática
+
+Crie um relatório com:
+
+- título, autoria e data;
+- uma pergunta sobre `mtcars`;
+- um cálculo em R;
+- uma interpretação em linguagem natural;
+- um segundo bloco lendo `dados/populacao_uf.csv`.
+
+## Projeto final — etapa 1
+
+Defina:
+
+1. tema;
+2. pergunta principal;
+3. público-alvo;
+4. formato pretendido;
+5. possível fonte de dados.
+
+## Fechamento
+
+Ao final desta aula, você deve conseguir:
+
+- explicar reprodutibilidade com um exemplo concreto;
+- distinguir R, IDE e Quarto;
+- criar e renderizar um `.qmd`;
+- reconhecer dependências escondidas.
+
+### Próxima aula
+
+Estrutura, estilo e comunicação.

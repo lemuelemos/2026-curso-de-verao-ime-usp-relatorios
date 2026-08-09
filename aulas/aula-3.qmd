@@ -1,4 +1,240 @@
 ---
-title: "Aula 3 – Criando Relatórios em PDF com Quarto"
+title: "Aula 3 — Dados, formatos e automação"
+description: "Como transformar uma análise em relatórios HTML, PDF e Word atualizáveis."
+execute:
+  echo: true
+  warning: false
+  message: false
 ---
 
+## Visão geral
+
+Até aqui construímos documentos com estrutura e elementos visuais, sempre a partir de um único arquivo já pronto. Agora vamos organizar o fluxo completo: ler mais de uma fonte de dados, juntá-las, tratar o que não bate entre elas, gerar resultados e escolher o formato de saída adequado ao público.
+
+### Objetivos de aprendizagem
+
+- separar importação, tratamento, análise e comunicação;
+- usar caminhos relativos e uma estrutura de projeto previsível, com `here::here()`;
+- juntar duas fontes de dados e lidar com valores ausentes de forma explícita;
+- gerar texto, tabelas e gráficos a partir dos mesmos dados;
+- escolher entre HTML, PDF e Word;
+- configurar a execução para produzir resultados atualizáveis.
+
+## 1. Estrutura de projeto deste curso
+
+```text
+2026-curso-de-verao-ime-usp-relatorios/
+├── dados/
+│   ├── populacao_uf.csv
+│   └── pib_uf.csv
+├── aulas/
+│   └── aula-3.qmd
+├── materiais/
+│   └── exemplos/
+├── _quarto.yaml
+└── curso-relatorios-quarto.Rproj
+```
+
+`dados/populacao_uf.csv` e `aulas/aula-3.qmd` estão em pastas diferentes. Um caminho como `"dados/populacao_uf.csv"`, escrito literalmente, só funciona se o R estiver executando a partir da **raiz do projeto** — o que depende de onde o arquivo mora e de como ele é aberto. Isso já causou os exemplos das Aulas 1 e 2 funcionarem: este site configura, em `_quarto.yaml`, a opção `execute-dir: project`, que força todo `.qmd` a rodar a partir da raiz, não importa em qual subpasta ele esteja.
+
+Fora deste site — no seu próprio projeto — é mais seguro não depender dessa configuração e usar o pacote `here`, que descobre a raiz do projeto sozinho (procurando o arquivo `.Rproj` ou `_quarto.yml`) e constrói o caminho a partir dali:
+
+```{r}
+#| label: here-exemplo
+
+here::here("dados", "populacao_uf.csv")
+```
+
+```{r}
+#| label: here-leitura
+
+populacao_uf <- readr::read_csv(here::here("dados", "populacao_uf.csv"), show_col_types = FALSE)
+```
+
+`here::here()` funciona mesmo se o `.qmd` for movido para outra subpasta, e funciona igual no seu computador e no de outra pessoa — diferente de um caminho absoluto como `"C:/Users/você/Desktop/dados.csv"`, que só existe na sua máquina.
+
+## 2. Primeiro olhar nos dados
+
+Antes de transformar qualquer coisa, vale inspecionar o que chegou. `skimr::skim()` resume cada coluna — tipo, valores ausentes, estatísticas básicas — em um único bloco:
+
+```{r}
+#| label: skim-populacao
+
+skimr::skim(populacao_uf)
+```
+
+Duas perguntas valem sempre a pena antes de prosseguir: o número de linhas bate com o esperado (aqui, 27 — uma por unidade federativa)? Alguma coluna tem valores ausentes (`n_missing`) que precisam de explicação?
+
+## 3. Juntando duas fontes de dados
+
+`pib_uf.csv` traz o PIB per capita por estado, mas de um ano de referência diferente do `populacao_uf.csv` — isso é comum quando os dados vêm de levantamentos diferentes do IBGE, e é um ótimo motivo para nunca juntar tabelas sem checar o que aconteceu:
+
+```{r}
+#| label: juntar-dados
+
+pib_uf <- readr::read_csv(here::here("dados", "pib_uf.csv"), show_col_types = FALSE)
+
+estados <- populacao_uf |>
+  dplyr::left_join(pib_uf, by = "uf")
+
+dplyr::glimpse(estados)
+```
+
+```{r}
+#| label: checar-na
+
+sum(is.na(estados$pib_per_capita))
+```
+
+Neste caso o resultado é zero — as duas bases cobrem as mesmas 27 unidades federativas —, mas em dados reais é comum um `left_join` produzir `NA` quando uma chave existe de um lado e não do outro (um estado sem PIB registrado no ano da fonte, por exemplo). Nunca ignore isso silenciosamente: decida, e registre a decisão no texto.
+
+```{r}
+#| label: tratar-na
+#| eval: false
+
+# Se houvesse NA em pib_per_capita, duas saídas comuns seriam:
+
+# 1. Descartar as linhas incompletas, sendo explícito sobre quantas:
+estados |> dplyr::filter(!is.na(pib_per_capita))
+
+# 2. Substituir por um valor de referência (ex.: a média nacional),
+#    deixando claro no texto que aquele número é uma estimativa:
+estados |> dplyr::mutate(pib_per_capita = dplyr::coalesce(pib_per_capita, mean(pib_per_capita, na.rm = TRUE)))
+```
+
+## 4. Um fluxo com responsabilidades claras
+
+```{r}
+#| label: fluxo-completo
+
+# 1. Importação
+populacao_uf <- readr::read_csv(here::here("dados", "populacao_uf.csv"), show_col_types = FALSE)
+pib_uf <- readr::read_csv(here::here("dados", "pib_uf.csv"), show_col_types = FALSE)
+
+# 2. Junção e tratamento
+estados <- populacao_uf |>
+  dplyr::left_join(pib_uf, by = "uf") |>
+  dplyr::filter(!is.na(pib_per_capita))
+
+# 3. Transformação
+resumo_regiao <- estados |>
+  dplyr::group_by(regiao) |>
+  dplyr::summarise(
+    pib_medio = mean(pib_per_capita),
+    .groups = "drop"
+  ) |>
+  dplyr::arrange(dplyr::desc(pib_medio))
+
+# 4. Comunicação
+knitr::kable(resumo_regiao, digits = 0, col.names = c("Região", "PIB per capita médio (R$)"))
+```
+
+Cada etapa tem um comentário que diz o que ela faz, e os nomes dos objetos (`estados`, `resumo_regiao`) descrevem o conteúdo, não a ordem de criação. Evite esconder uma transformação importante dentro de um bloco com nome genérico como `analise` — quem revisa o código depois (inclusive você, em três meses) precisa localizar rapidamente onde algo foi calculado.
+
+## 5. Resultados dinâmicos no texto
+
+Um valor citado em prosa deve vir do mesmo código usado na análise — nunca digitado à mão. A sintaxe do Quarto para isso é **código R inline**: no meio do parágrafo (não dentro de um bloco ` ```{r} `), escreva um acento grave, a letra `r`, um espaço, a expressão a calcular, e feche com outro acento grave.
+
+```{r}
+#| label: valor-dinamico
+
+regiao_maior_pib <- resumo_regiao$regiao[1]
+pib_regiao_maior <- resumo_regiao$pib_medio[1]
+```
+
+Esta própria frase usa a técnica: a região `r regiao_maior_pib` tem o maior PIB per capita médio entre as regiões, `r glue::glue("R$ {scales::number(pib_regiao_maior, big.mark = '.', decimal.mark = ',')}")`. Nenhum desses dois valores foi digitado — ambos vieram do bloco `valor-dinamico` acima. Se `dados/pib_uf.csv` fosse atualizado com números de outro ano, a frase mudaria sozinha na próxima renderização, sem que ninguém precisasse achar e editar o número manualmente.
+
+`glue::glue()` monta o texto substituindo `{expressão}` pelo valor calculado; é mais legível que concatenar strings com `paste0()` quando a frase tem várias partes variáveis.
+
+## 6. Escolha do formato
+
+| Formato | Pontos fortes | Atenções |
+|---|---|---|
+| HTML | interatividade, links, navegação e publicação web | exige navegador para leitura |
+| PDF | layout estável e impressão | requer uma distribuição TeX e pouca interatividade |
+| Word | revisão e edição por terceiros | aparência pode variar entre programas |
+
+Um único arquivo pode gerar mais de uma saída:
+
+```yaml
+format:
+  html:
+    toc: true
+    code-fold: true
+  pdf:
+    toc: true
+  docx:
+    toc: true
+```
+
+::: {.callout-tip title="Decida pelo público"}
+Use HTML para exploração e publicação, PDF para documentos fechados e Word quando o fluxo exige revisão editorial fora do código.
+:::
+
+## 7. Controle da execução
+
+```yaml
+execute:
+  echo: false
+  warning: false
+  message: false
+  error: false
+```
+
+Essas opções controlam a **apresentação**, não corrigem código. Um aviso escondido continua acontecendo — só deixa de aparecer no documento final. Durante o desenvolvimento, mantenha mensagens e código visíveis; esconda-os somente quando o relatório estiver estável e isso fizer sentido para o público.
+
+Opções úteis por bloco, sobrepondo o padrão do documento:
+
+```r
+#| label: fig-pib-regiao
+#| fig-cap: "PIB per capita médio por região."
+#| fig-alt: "Gráfico de barras com o PIB per capita médio de cada região."
+#| echo: false
+```
+
+## 8. Reprodutibilidade do ambiente
+
+O `renv.lock` registra a versão exata de cada pacote usado no projeto. No projeto do trabalho final:
+
+```r
+renv::init()
+renv::snapshot()
+renv::restore()
+```
+
+- `init()` cria a infraestrutura do `renv` num projeto novo;
+- `snapshot()` atualiza `renv.lock` com os pacotes de fato usados e instalados;
+- `restore()` reinstala exatamente essas versões — é o que outra pessoa roda ao clonar seu repositório.
+
+Não versione a biblioteca instalada em `renv/library` (ela é recriada por `restore()`); versione `renv.lock` e os arquivos de infraestrutura criados pelo `renv`.
+
+## Prática guiada
+
+1. Leia `dados/populacao_uf.csv` e `dados/pib_uf.csv` com `here::here()`.
+2. Rode `skimr::skim()` nas duas tabelas antes de juntá-las.
+3. Junte as duas com `dplyr::left_join()` e confira se apareceu algum `NA`.
+4. Produza uma tabela-resumo por região e um gráfico.
+5. Inclua uma frase com um valor calculado dinamicamente, como código R inline (acento grave, `r`, espaço, expressão, acento grave).
+6. Configure o YAML para gerar HTML e mais um formato.
+7. Reinicie o R e renderize novamente.
+
+## Para o projeto final
+
+Adicione a base de dados ao seu projeto (ou documente como obtê-la) e implemente a importação, uma junção ou transformação, uma tabela e um gráfico. Registre as dependências com `renv::snapshot()`.
+
+## Checklist
+
+- [ ] Meu projeto usa `here::here()` ou caminhos relativos consistentes.
+- [ ] Rodei `skimr::skim()` (ou equivalente) antes de transformar os dados.
+- [ ] Verifiquei se uma junção produziu `NA` e decidi explicitamente o que fazer com eles.
+- [ ] Texto, tabelas e gráficos vêm dos mesmos dados, sem números digitados à mão.
+- [ ] Escolhi o formato com base no público.
+- [ ] O documento renderiza em uma sessão limpa.
+
+## Leitura complementar
+
+- [Quarto: execução de código](https://quarto.org/docs/computations/execution-options.html)
+- [Quarto: formatos HTML](https://quarto.org/docs/output-formats/html-basics.html)
+- [Quarto: formatos PDF](https://quarto.org/docs/output-formats/pdf-basics.html)
+- [Quarto: formatos Word](https://quarto.org/docs/output-formats/ms-word.html)
+- [here: por que evitar setwd()](https://here.r-lib.org/articles/here.html)

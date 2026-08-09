@@ -1,34 +1,38 @@
 
-project: 
+project:
   type: website
-  
-website: 
+  output-dir: _site
+  execute-dir: project
+  render:
+    - "*.qmd"
+    - "aulas/*.qmd"
+    - "materiais/instrucoes-de-instalacao.qmd"
+    - "materiais/exemplos/*.qmd"
+    - "slides/aula-*.qmd"
+
+lang: pt-BR
+
+website:
   page-navigation: true
-  title: "Relatórios reprodutíveis com R" 
-  site-url: "https://openscapes.github.io/quarto-website-tutorial" 
-  repo-url: https://github.com/openscapes/quarto-website-tutorial 
+  title: "Relatórios reprodutíveis com R"
+  site-url: "https://lemuelemos.github.io/2026-curso-de-verao-ime-usp-relatorios/"
+  repo-url: "https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios"
   repo-actions: [edit, issue]
-  
+
   page-footer:
-    right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
-    left: "&copy; CC-By Openscapes, 2024"
-    background: "#D27B5A"
-    
+    right: "Site criado com [Quarto](https://quarto.org/)."
+    left: "Conteúdo sob licença [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br)."
+    background: "#17365D"
+
   sidebar:
     logo: "https://www.ime.usp.br/verao/assets/images/logo_verao.png"
     pinned: true
-    background: "#D27B5A"
+    background: "#17365D"
     align: center
-    tools: 
-      - icon: globe
-        href: https://openscapes.org
-        text: "Openscapes.org"
+    tools:
       - icon: github
-        href: https://github.com/openscapes/quarto-website-tutorial
-        text: "Quarto website tutorial"
-      - icon: twitter
-        href: https://twitter.com/openscapes
-        text: "Openscapes Twitter"         
+        href: https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios
+        text: "Repositório do curso"
 
     style: "docked"
     search: true
@@ -41,21 +45,20 @@ website:
         contents:
            - informacoes-gerais.qmd
            - profs.qmd
-           # - turma.qmd           
            - faq.qmd
       - section: "Materiais"
         contents:
-           - materiais/instrucoes-de-instalacao.qmd        
+           - materiais/instrucoes-de-instalacao.qmd
            - slides.qmd
-           #- trabalho_final.qmd
-           #- duvidas/index.qmd
+           - text: "Exemplo: relatório parametrizado"
+             href: materiais/exemplos/relatorio-parametrizado.qmd
       - section: "Aulas"
         contents:
           - aulas/aula-1.qmd
           - aulas/aula-2.qmd
-          #- aulas/aula-3.qmd
-          #- aulas/aula-4.qmd
-          #- aulas/aula-5.qmd
+          - aulas/aula-3.qmd
+          - aulas/aula-4.qmd
+          - aulas/aula-5.qmd
       - section: "Trabalho Final"
         contents: 
           - trabalho_final.qmd
@@ -70,11 +73,11 @@ website:
           - href: "https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/slides.html"
             text: "Edição 2025"
       - licenca.qmd
+
 format:
   html:
     theme: cosmo
+    css: styles.css
     code-copy: true
     code-overflow: wrap
     toc: true
-
-  

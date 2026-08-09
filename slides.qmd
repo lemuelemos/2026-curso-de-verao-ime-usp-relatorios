@@ -1,12 +1,51 @@
 ---
-title: "Slides e materiais por aula"
+title: "Slides e materiais de apoio"
 ---
 
-## Aula 1
+Esta página reúne as cinco apresentações oficiais do curso. Os slides abrem em uma nova página e podem ser navegados com as setas do teclado.
 
-### Slides
+::: {.callout-tip title="Como estudar"}
+Use os slides para acompanhar a exposição e consulte o roteiro da aula para explicações, exemplos, prática guiada e checklist.
+:::
 
--   [Slide 1 - Introdução ao Curso](https://lemuelemos.github.io/2026-curso-de-verao-ime-usp-relatorios/aulas/aula-1.html)
+## Aula 1 — Reprodutibilidade e primeiro documento
 
--   [Slide 2 - Introdução ao conceito de reprodutibilidade](https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/slides/03-reprodutibilidade.html#/)
+Fundamentos de reprodutibilidade, ferramentas do curso, anatomia de um `.qmd`, renderização e diagnóstico de erros.
 
+- [Abrir slides da Aula 1](slides/aula-1.html){target="_blank"}
+- [Ler o roteiro completo da Aula 1](aulas/aula-1.qmd)
+
+## Aula 2 — Estrutura, estilo e comunicação
+
+Planejamento narrativo, YAML, Markdown, tabelas, gráficos, referências cruzadas, estilo e acessibilidade.
+
+- [Abrir slides da Aula 2](slides/aula-2.html){target="_blank"}
+- [Ler o roteiro completo da Aula 2](aulas/aula-2.qmd)
+
+## Aula 3 — Dados, formatos e automação
+
+Organização do projeto, caminhos relativos, resultados dinâmicos, formatos HTML/PDF/Word e ambientes com `renv`.
+
+- [Abrir slides da Aula 3](slides/aula-3.html){target="_blank"}
+- [Ler o roteiro completo da Aula 3](aulas/aula-3.qmd)
+
+## Aula 4 — Interatividade, parâmetros e reutilização
+
+Widgets HTML, relatórios parametrizados, renderização em lote, funções e uso responsável de cache.
+
+- [Abrir slides da Aula 4](slides/aula-4.html){target="_blank"}
+- [Ler o roteiro completo da Aula 4](aulas/aula-4.qmd)
+
+## Aula 5 — Versionamento, publicação e entrega
+
+Git, GitHub, README, proteção de credenciais, publicação e revisão final do projeto.
+
+- [Abrir slides da Aula 5](slides/aula-5.html){target="_blank"}
+- [Ler o roteiro completo da Aula 5](aulas/aula-5.qmd)
+
+## Atalhos de navegação
+
+- Use <kbd>←</kbd> e <kbd>→</kbd> para avançar ou voltar.
+- Pressione <kbd>Esc</kbd> para visualizar todos os slides.
+- Pressione <kbd>F</kbd> para entrar em tela cheia.
+- Pressione <kbd>S</kbd> para abrir as notas do apresentador, quando disponíveis.

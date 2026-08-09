@@ -1,0 +1,198 @@
+---
+title: "Aula 5 — Versionamento, publicação e entrega"
+subtitle: "Relatórios reprodutíveis com R — Curso de Verão IME-USP 2026"
+author: "Lemuel de Lemos Romão"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: c/t
+    show-slide-number: all
+    transition: fade
+    center: false
+    width: 1600
+    height: 900
+    footer: "Curso de Verão IME-USP 2026"
+---
+
+## Hoje vamos
+
+1. selecionar arquivos para versionamento;
+2. usar Git com commits informativos;
+3. documentar o projeto;
+4. proteger credenciais e dados;
+5. publicar com GitHub Pages — usando este próprio site como exemplo;
+6. revisar a entrega final.
+
+## O que versionar?
+
+::: {.columns}
+::: {.column width="50%"}
+### Sim
+
+- arquivos `.qmd`;
+- scripts e funções (`materiais/exemplos/R/`);
+- `dados/*.csv` e `dados/README.md`;
+- `README.md`;
+- `renv.lock`.
+:::
+
+::: {.column width="50%"}
+### Não
+
+- credenciais;
+- dados sigilosos;
+- bibliotecas instaladas (`renv/library`);
+- `.Rhistory` e `.RData`;
+- caches temporários.
+:::
+:::
+
+## `.gitignore`
+
+```gitignore
+.Rhistory
+.RData
+.Rproj.user/
+.quarto/
+renv/library/
+```
+
+Ignorar um arquivo não o remove do histórico se ele já foi versionado.
+
+## Nunca versione credenciais
+
+::: {.callout-warning}
+Tokens, senhas e chaves de API não pertencem ao código nem ao histórico do Git.
+:::
+
+Use variáveis de ambiente e arquivos locais ignorados.
+
+## Ciclo com Git
+
+```powershell
+git status
+git diff
+git add caminho/do/arquivo
+git commit -m "Explica os indicadores regionais"
+git push
+```
+
+Leia o diff antes de criar o commit.
+
+## Um bom commit — exemplos reais deste repositório
+
+| Mensagem real | Prefira |
+|---|---|
+| `AJuste depis de redenrizar` | `Corrige links quebrados após renderizar o site` |
+| `Arquivo repoduciveis` | `Adiciona seção sobre reprodutibilidade na Aula 1` |
+| `Salvando alterações da aula 3` | `Adiciona pipeline de dados e exemplo de renv na Aula 3` |
+
+Nenhum repositório é perfeito — inclusive este. O padrão a evitar: descrever *que* algo mudou, não *o quê* nem *por quê*.
+
+## README
+
+O README deve informar:
+
+1. propósito e público;
+2. estrutura das pastas;
+3. requisitos;
+4. como restaurar dependências;
+5. como renderizar;
+6. autoria, dados e licença;
+7. link publicado.
+
+O `README.md` deste repositório segue exatamente essa estrutura — vale abrir como referência.
+
+## Como este site é publicado
+
+`.github/workflows/static.yml` publica a pasta `_site/` já renderizada a cada `push` em `main`:
+
+```yaml
+on:
+  push:
+    branches: ["main"]
+jobs:
+  deploy:
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+      - uses: actions/deploy-pages@v4
+```
+
+O Quarto **não** roda no GitHub Actions aqui — por isso é preciso `quarto render` local antes do `push`.
+
+## Outras estratégias de publicação
+
+- `quarto publish gh-pages`;
+- GitHub Actions renderizando no CI (`quarto-dev/quarto-actions/render`);
+- Netlify;
+- Posit Connect;
+- servidor institucional.
+
+Escolha uma estratégia e documente o fluxo — não misture duas no mesmo repositório.
+
+## Antes de publicar
+
+### Conteúdo
+
+- pergunta e público explícitos;
+- resultados interpretados;
+- fontes e limitações (veja `dados/README.md` como modelo);
+- conclusão coerente.
+
+### Reprodutibilidade
+
+- `here::here()` ou caminhos relativos;
+- sessão limpa;
+- dependências registradas;
+- dados acessíveis ou documentados.
+
+## Acessibilidade
+
+- hierarquia lógica de títulos;
+- texto alternativo específico para imagens e gráficos;
+- contraste adequado;
+- links descritivos;
+- cores não são o único canal de informação.
+
+## Prática
+
+1. classifique os arquivos do projeto;
+2. revise o `.gitignore`;
+3. atualize o README;
+4. renderize em sessão limpa;
+5. escreva uma mensagem de commit e compare com a tabela desta aula antes de confirmar;
+6. publique e teste o link.
+
+## Projeto final — entrega
+
+Entregue:
+
+- documento publicado, quando aplicável;
+- arquivos-fonte;
+- dados ou instruções de obtenção;
+- README;
+- dependências registradas;
+- créditos e referências.
+
+## Checklist final
+
+- [ ] projeto renderiza;
+- [ ] links funcionam;
+- [ ] nenhuma credencial foi incluída;
+- [ ] README permite reproduzir;
+- [ ] versão publicada foi testada;
+- [ ] trabalho atende à rubrica.
+
+## Encerramento
+
+Um relatório profissional é:
+
+```text
+claro + reproduzível + documentado + acessível + publicável
+```
+
+Obrigado!

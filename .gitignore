@@ -2,5 +2,21 @@
 .Rhistory
 .RData
 .Ruserdata
-renv
+renv/library/
+renv/staging/
 /.quarto/
+/index_files/
+/_freeze/
+
+**/*.quarto_ipynb
+*.knit.md
+
+# Artefatos temporários gerados pelo Quarto/knitr
+**/*_cache/
+**/*_files/
+
+# Arquivos locais do sistema e dos editores
+.DS_Store
+Thumbs.db
+.vscode/
+.claude/

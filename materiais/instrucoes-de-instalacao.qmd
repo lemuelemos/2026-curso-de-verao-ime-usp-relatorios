@@ -2,35 +2,39 @@
 title: "Pré-curso: Instalações necessárias"
 ---
 
-```{r message=FALSE}
-#| echo=FALSE
-```
-
 ## Contas em serviços
 
 -   Criar uma conta gratuita no [GitHub](https://github.com/)
 
 ## Instalações obrigatórias
 
-1.  **Instalar o R** - Versão 4.1 ou superior:
+1.  **Instalar o R** — use uma versão atual e compatível com seu sistema:
 
 -   Download direto: <https://vps.fmvz.usp.br/CRAN/>
 
 -   Tutorial: <https://livro.curso-r.com/1-1-instalacao-do-r.html>
 
-2.  **Instalar o RStudio** - Versão mínima 2022.07:
+2.  **Instalar RStudio ou Positron**:
 
 -   Download direto: <https://www.rstudio.com/products/rstudio/download/#download>
 
 -   Tutorial: <https://livro.curso-r.com/1-2-instalacao-do-rstudio.html>
 
-3.  **Instalar o Git**:
+-   Alternativa: [Positron](https://positron.posit.co/)
+
+3.  **Instalar o Quarto**:
+
+-   Download e instruções: <https://quarto.org/docs/get-started/>
+
+-   Depois da instalação, abra o terminal e execute `quarto check`.
+
+4.  **Instalar o Git**:
 
 -   Caso você utilize Linux ou Mac, confira antes se o Git já está instalado. Você pode conferir abrindo o terminal, e digitando `git`. Caso o terminal avise que você não tem `git` instalado, você precisará instalar.
 
 -   Download direto: <http://git-scm.com/download/>
 
-4.  **Instalar pacotes**:
+5.  **Restaurar os pacotes do curso**:
 
 Antes de instalar qualquer pacote, vamos criar um **ambiente de desenvolvimento padronizado** para todos. Para isso, utilizaremos o pacote `renv`, que permitirá configurar um ambiente padrão de projeto e, posteriormente, instalar os pacotes necessários de forma organizada e reprodutível.
 
@@ -48,59 +52,54 @@ Em resumo:
 
 > O `renv` é o “controle de dependências” do R, essencial para projetos profissionais e colaborativos.
 
-### **1. Ativar o `renv` no projeto**
+### **1. Restaurar um ambiente existente**
 
 ```r
-# Instale o renv (apenas na primeira vez)
 install.packages("renv")
+renv::restore()
+```
 
-# Ative o renv no projeto atual
+Esse é o fluxo indicado para quem clonou este repositório: o `renv.lock` informa as versões esperadas.
+
+---
+
+### **2. Criar o ambiente do seu trabalho final**
+
+```r
 renv::init()
 ```
 
-📌 Isso cria:
-
-* Uma pasta `renv/`
-* Um arquivo `renv.lock`
-  que guardará as versões dos pacotes usados no projeto.
+Isso cria a infraestrutura do ambiente e um `renv.lock` no seu projeto.
 
 ---
 
-### **2. Instalar o pacote `pak`**
-
-O `pak` é um instalador moderno e mais rápido que `install.packages()`.
-
-```r
-install.packages("pak")
-```
-
----
-
-### **3. Instalar os pacotes do projeto com `pak`**
+### **3. Instalar os pacotes usados nas aulas**
 
 ```r
 pacotes_necessarios <- c(
-  "here",
-  "quarto",
-  "usethis",
-  "devtools",
-  "rmarkdown",
-  "knitr",
-  "pagedown",
-  "bookdown",
-  "xaringan",
-  "readr",
   "dplyr",
-  "DT",
-  "reactable",
-  "janitor",
-  "prettydoc"
+  "echarts4r",
+  "ggplot2",
+  "glue",
+  "gt",
+  "here",
+  "kableExtra",
+  "knitr",
+  "leaflet",
+  "palmerpenguins",
+  "plotly",
+  "purrr",
+  "quarto",
+  "readr",
+  "renv",
+  "skimr",
+  "tibble"
 )
 
-pak::pak(pacotes_necessarios)
+install.packages(pacotes_necessarios)
 ```
 
-O `pak` instalará tudo rapidamente e o `renv` registrará automaticamente as dependências no arquivo `renv.lock`.
+Instale apenas o necessário para as atividades que você realizará. Depois registre o ambiente.
 
 ---
 
@@ -120,31 +119,19 @@ renv::restore()
 
 ✅ **Resumo**
 
-* `renv::init()` → cria o ambiente do projeto
-* `pak::pkg_install()` → instala pacotes rapidamente
-* `renv::snapshot()` → salva versões
-* `renv::restore()` → recria o ambiente em outro computador
-
-Agora vamos instalar os pacotes auxiliares que usaremos durante o curso.
-
-``` r
-pacotes_exemplos <-
-  c(
-    "xaringanthemer",
-    "distill",
-    "flexdashboard",
-    "rmdformats",
-    "bslib",
-    "officedown",
-    "postcards",
-    "rticles"
-  )
-pak::pak(pacotes_exemplos)
-```
+* `renv::init()` → inicia o ambiente de um novo projeto;
+* `renv::snapshot()` → registra as versões instaladas;
+* `renv::restore()` → recria o ambiente registrado.
 
 ## Instalações recomendadas
 
-1.  **Google Chrome**. Para exportar os relatórios em formato `PDF`, utilizaremos uma função que depende do uso do navegador Google Chrome.
+1.  **TinyTeX**. Para gerar PDF com LaTeX, execute no terminal:
+
+```powershell
+quarto install tinytex
+```
+
+2.  **Google Chrome ou Chromium**. Alguns fluxos de exportação e captura de páginas HTML dependem de um navegador.
 
 -   Download direto: <https://www.google.com/intl/pt-BR/chrome/>
 
@@ -152,8 +139,25 @@ pak::pak(pacotes_exemplos)
 
 -   Mais informações em: <https://livro.curso-r.com/1-3-instalacao-adicionais.html#pagedown-e-chrome>
 
-2.  **LibreOffice**. Para abrir documentos do Office, como `.pptx` e `.docx`, é necessário ter o Office ou alguma alternativa gratuita instalados. **Caso não tenha** nenhum software para abertura destes arquivos instalado, recomendo instalar o LibreOffice, pois é um software gratuito:
+3.  **LibreOffice**. Para abrir documentos `.pptx` e `.docx`, use o Microsoft Office ou uma alternativa gratuita:
 
 -   Download direto: <https://pt-br.libreoffice.org/baixe-ja/libreoffice-novo/>
 
 -   Tutorial de instalação: <https://livro.curso-r.com/1-3-instalacao-adicionais.html#office>
+
+## Teste da instalação
+
+Execute no terminal:
+
+```powershell
+quarto check
+```
+
+Depois, no console do R:
+
+```r
+R.version.string
+packageVersion("knitr")
+```
+
+Se algum passo falhar, copie a mensagem completa de erro e informe seu sistema operacional ao pedir ajuda.

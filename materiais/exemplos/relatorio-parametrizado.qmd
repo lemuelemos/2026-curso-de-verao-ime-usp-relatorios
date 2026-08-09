@@ -1,0 +1,115 @@
+---
+title: "Relatório regional: `r params$regiao`"
+subtitle: "Exemplo completo de relatório parametrizado"
+author: "Curso de Verão IME-USP 2026"
+date: today
+lang: pt-BR
+params:
+  regiao: "Sudeste"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-summary: "Mostrar código"
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+::: {.callout-note title="O que é este arquivo"}
+Este é um `.qmd` completo e funcional, não um trecho isolado. Ele existe para a [Aula
+4](../../aulas/aula-4.qmd) ter um exemplo real de relatório parametrizado — o mesmo que você
+está lendo já foi gerado com `regiao: "Sudeste"`, o valor padrão declarado no YAML acima.
+
+Para gerar a versão de outra região, no terminal, a partir da raiz do projeto:
+
+```powershell
+quarto render materiais/exemplos/relatorio-parametrizado.qmd -P regiao:Nordeste
+```
+
+Para gerar as cinco regiões de uma vez, veja
+[`render-lote.R`](https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/materiais/exemplos/render-lote.R).
+:::
+
+```{r}
+#| label: setup
+
+library(dplyr)
+library(ggplot2)
+library(gt)
+
+source(here::here("materiais", "exemplos", "R", "indicadores.R"))
+
+populacao_uf <- readr::read_csv(
+  here::here("dados", "populacao_uf.csv"),
+  show_col_types = FALSE
+)
+
+dados_regiao <- populacao_uf |>
+  filter(regiao == params$regiao) |>
+  mutate(porte = classificar_porte(populacao)) |>
+  arrange(desc(populacao))
+```
+
+## Visão geral
+
+A região **`r params$regiao`** reúne `r nrow(dados_regiao)` unidades federativas, com uma
+população total de `r scales::number(sum(dados_regiao$populacao), big.mark = ".", decimal.mark = ",")` habitantes
+(Censo IBGE 2022).
+
+```{r}
+#| label: tbl-estados-regiao
+#| tbl-cap: "Estados da região selecionada, ordenados pela população."
+
+dados_regiao |>
+  select(nome_uf, capital, populacao, densidade_dem, porte) |>
+  gt() |>
+  fmt_number(columns = c(populacao), decimals = 0, sep_mark = ".", dec_mark = ",") |>
+  fmt_number(columns = c(densidade_dem), decimals = 1, sep_mark = ".", dec_mark = ",") |>
+  cols_label(
+    nome_uf = "Estado",
+    capital = "Capital",
+    populacao = "População",
+    densidade_dem = "Densidade (hab/km²)",
+    porte = "Porte"
+  ) |>
+  tab_source_note("Fonte: IBGE, Censo Demográfico 2022.")
+```
+
+## População por estado
+
+```{r}
+#| label: fig-populacao-regiao
+#| fig-cap: "População dos estados da região selecionada."
+#| fig-alt: "Gráfico de barras horizontais com a população de cada estado da região, do maior para o menor."
+
+ggplot(dados_regiao, aes(x = reorder(nome_uf, populacao), y = populacao)) +
+  geom_col(fill = "#2f4858") +
+  scale_y_continuous(labels = scales::label_number(big.mark = ".", decimal.mark = ",")) +
+  coord_flip() +
+  labs(x = NULL, y = "População (habitantes)") +
+  theme_minimal()
+```
+
+O estado mais populoso da região é **`r dados_regiao$nome_uf[1]`**
+(`r scales::number(dados_regiao$populacao[1], big.mark = ".", decimal.mark = ",")` habitantes) e o menos populoso é
+**`r dados_regiao$nome_uf[nrow(dados_regiao)]`**
+(`r scales::number(dados_regiao$populacao[nrow(dados_regiao)], big.mark = ".", decimal.mark = ",")` habitantes).
+
+## Como este relatório foi parametrizado
+
+Três decisões tornam este documento reutilizável para qualquer região, sem duplicar arquivo:
+
+1. **`params: regiao` no YAML** define um valor padrão (`"Sudeste"`), usado sempre que o
+   documento é renderizado sem um parâmetro explícito.
+2. **`dplyr::filter(regiao == params$regiao)`** é o único lugar do código que depende do
+   parâmetro — todo o resto (tabela, gráfico, texto) reage automaticamente ao recorte.
+3. **O parâmetro aparece no título e no texto**, inserido com código R inline a partir de
+   `params$regiao`, então quem lê o relatório sabe qual recorte está vendo sem precisar abrir
+   o código.
+
+::: {.callout-tip title="Experimente"}
+Troque `regiao: "Sudeste"` por `"Norte"` no YAML deste arquivo e renderize de novo. Tabela,
+gráfico e texto mudam juntos — é o comportamento que se espera de um relatório parametrizado.
+:::

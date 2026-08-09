@@ -1,6 +1,5 @@
 ---
 title: "Instruções de Trabalho Final"
-code-link: true
 ---
 
 **Objetivo:** Você deverá criar um documento utilizando **Quarto** e compartilhá-lo conosco. O trabalho final tem como propósito consolidar os conhecimentos apresentados ao longo do curso, por meio da elaboração de um produto final estruturado e reprodutível.
@@ -14,9 +13,17 @@ Você deverá **escolher um dos três formatos abaixo** para o seu trabalho fina
 
 A escolha do formato deve estar alinhada ao **objetivo do trabalho** e ao **público-alvo** que você deseja atingir.
 
-**RECOMENDAÇÃO:** Realize as etapas sugeridas após cada aula para facilitar a construção gradual do trabalho.
+::: {.callout-tip title="Construa ao longo do curso"}
+Cada aula termina com uma etapa do projeto final. Seguir essas etapas evita concentrar toda a produção no último encontro.
+:::
 
-**ATENÇÃO:** O recebimento do certificado está vinculado à entrega e aprovação deste trabalho final, além de frequência mínima de 75%.
+::: {.callout-warning title="Certificação"}
+O recebimento do certificado está vinculado à entrega e aprovação do trabalho final, além de frequência mínima de 75%.
+:::
+
+::: {.callout-note title="Quer ver um exemplo completo antes de começar?"}
+[`materiais/exemplos/relatorio-parametrizado.qmd`](materiais/exemplos/relatorio-parametrizado.qmd) é um relatório real deste curso — com dados, tabela, gráfico, texto dinâmico e parâmetro — que você pode abrir, renderizar e usar como referência de estrutura. Seu trabalho final não precisa (nem deve) usar o mesmo tema ou os mesmos dados; o exemplo existe só para mostrar como as peças se encaixam num documento de verdade.
+:::
 
 ---
 
@@ -109,6 +116,35 @@ Você pode:
 * Compactar a pasta do projeto em um arquivo `.zip` e enviar pela plataforma do curso;
   **ou**
 * Compartilhar o link de um repositório no GitHub contendo o projeto.
+
+Inclua também o link da versão publicada, quando o formato escolhido permitir publicação web.
+
+---
+
+## Rubrica de avaliação
+
+| Critério | O que será observado | Peso |
+|---|---|---:|
+| Propósito e público | objetivo explícito, linguagem e formato adequados | 15% |
+| Estrutura e comunicação | narrativa coerente, títulos, interpretação dos resultados e apresentação visual | 20% |
+| Integração com dados | tabela e gráfico gerados por código e relacionados à pergunta | 20% |
+| Reprodutibilidade | caminhos relativos, execução em sessão limpa e dependências documentadas | 20% |
+| Organização do projeto | nomes claros, pastas consistentes e ausência de arquivos desnecessários | 10% |
+| Documentação e autoria | README, fontes dos dados, créditos, referências e licença | 10% |
+| Publicação e entrega | arquivos acessíveis e instruções de execução funcionais | 5% |
+
+Para aprovação, o trabalho deve atingir pelo menos 60% da pontuação e não pode deixar de atender aos critérios de integração com dados e reprodutibilidade.
+
+## Checklist antes da entrega
+
+- [ ] O objetivo e o público aparecem no documento.
+- [ ] Tabela e gráfico são gerados pelo código e interpretados no texto.
+- [ ] Todos os caminhos são relativos.
+- [ ] O projeto renderiza depois de reiniciar o R.
+- [ ] O README explica requisitos e execução.
+- [ ] Dados, imagens e referências têm fonte e autorização de uso.
+- [ ] Nenhuma senha, token ou informação sigilosa foi incluída.
+- [ ] O link publicado foi testado em uma janela anônima do navegador.
 
 ---
 

@@ -1,0 +1,195 @@
+---
+title: "Aula 3 — Dados, formatos e automação"
+subtitle: "Relatórios reprodutíveis com R — Curso de Verão IME-USP 2026"
+author: "Lemuel de Lemos Romão"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: c/t
+    show-slide-number: all
+    transition: fade
+    center: false
+    width: 1600
+    height: 900
+    footer: "Curso de Verão IME-USP 2026"
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Hoje vamos
+
+1. organizar um projeto de análise;
+2. usar `here::here()` em vez de caminhos fixos;
+3. juntar duas fontes de dados e tratar `NA`;
+4. produzir resultados dinâmicos no texto;
+5. escolher entre HTML, PDF e Word;
+6. registrar dependências com `renv`.
+
+## Estrutura de projeto
+
+```text
+2026-curso-de-verao-ime-usp-relatorios/
+├── dados/
+│   ├── populacao_uf.csv
+│   └── pib_uf.csv
+├── aulas/
+├── materiais/exemplos/
+└── _quarto.yaml
+```
+
+## Caminhos com `here`
+
+```{r}
+#| label: here-exemplo
+
+here::here("dados", "populacao_uf.csv")
+```
+
+Funciona igual em qualquer subpasta e em qualquer computador — diferente de
+`"C:/Users/nome/Desktop/dados.csv"`, que só existe na sua máquina.
+
+## Primeiro olhar nos dados
+
+```{r}
+#| label: skim
+
+populacao_uf <- readr::read_csv(here::here("dados", "populacao_uf.csv"), show_col_types = FALSE)
+
+skimr::skim(populacao_uf)
+```
+
+## Juntando duas fontes
+
+```{r}
+#| label: juntar
+
+pib_uf <- readr::read_csv(here::here("dados", "pib_uf.csv"), show_col_types = FALSE)
+
+estados <- populacao_uf |> dplyr::left_join(pib_uf, by = "uf")
+
+sum(is.na(estados$pib_per_capita))
+```
+
+`populacao_uf.csv` é de 2022; `pib_uf.csv` é de 2023 — fontes diferentes do IBGE. Sempre confira o que um `left_join` produz antes de seguir.
+
+## Fluxo com responsabilidades claras
+
+```r
+# 1. Importação
+populacao_uf <- readr::read_csv(here::here("dados", "populacao_uf.csv"))
+pib_uf <- readr::read_csv(here::here("dados", "pib_uf.csv"))
+
+# 2. Junção e tratamento
+estados <- populacao_uf |>
+  dplyr::left_join(pib_uf, by = "uf") |>
+  dplyr::filter(!is.na(pib_per_capita))
+
+# 3. Transformação
+resumo_regiao <- estados |>
+  dplyr::group_by(regiao) |>
+  dplyr::summarise(pib_medio = mean(pib_per_capita), .groups = "drop")
+```
+
+## Resultados dinâmicos
+
+```{r}
+#| label: resumo-regiao
+
+resumo_regiao <- estados |>
+  dplyr::group_by(regiao) |>
+  dplyr::summarise(pib_medio = mean(pib_per_capita, na.rm = TRUE), .groups = "drop") |>
+  dplyr::arrange(dplyr::desc(pib_medio))
+
+regiao_maior_pib <- resumo_regiao$regiao[1]
+```
+
+No texto: código R inline (acento grave, a letra r, espaço, expressão, acento grave) — nunca um número digitado.
+
+Esta frase usa a técnica: a região `r regiao_maior_pib` tem o maior PIB per capita médio.
+
+## Qual formato escolher?
+
+| Formato | Melhor para | Atenção |
+|---|---|---|
+| HTML | web e interatividade | leitura no navegador |
+| PDF | impressão e layout fixo | requer TeX |
+| Word | revisão editorial | aparência pode variar |
+
+## Múltiplos formatos
+
+```yaml
+format:
+  html:
+    toc: true
+  pdf:
+    toc: true
+  docx:
+    toc: true
+```
+
+O público define o formato, não a preferência da pessoa autora.
+
+## Execução
+
+```yaml
+execute:
+  echo: false
+  warning: false
+  message: false
+  error: false
+```
+
+Esconder avisos não corrige problemas — só os torna invisíveis no documento final.
+
+## Ambiente com `renv`
+
+```r
+renv::init()
+renv::snapshot()
+renv::restore()
+```
+
+| Função | Uso |
+|---|---|
+| `init()` | inicia um ambiente |
+| `snapshot()` | registra versões usadas |
+| `restore()` | recria o ambiente registrado |
+
+## Teste em sessão limpa
+
+1. salve os arquivos;
+2. reinicie o R;
+3. abra o projeto;
+4. renderize sem executar comandos prévios;
+5. confira resultados e mensagens.
+
+## Prática
+
+- leia as duas bases com `here::here()`;
+- rode `skimr::skim()` antes de juntar;
+- junte com `left_join()` e confira `NA`;
+- produza tabela, gráfico e um valor dinâmico no texto;
+- gere HTML e outro formato;
+- teste em sessão limpa.
+
+## Projeto final — etapa 3
+
+Implemente a análise mínima:
+
+- fonte de dados documentada;
+- importação reproduzível;
+- uma junção ou transformação;
+- uma tabela;
+- um gráfico;
+- dependências registradas.
+
+## Fechamento
+
+Um documento reproduzível depende tanto do código quanto do ambiente e da organização do projeto.
+
+### Próxima aula
+
+Interatividade, parâmetros e reutilização.

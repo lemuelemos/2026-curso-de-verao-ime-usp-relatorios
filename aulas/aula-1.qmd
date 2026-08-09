@@ -1,34 +1,176 @@
 ---
-title: "Aula 1 – Configurações e Introdução ao Quarto"
+title: "Aula 1 — Reprodutibilidade e primeiro documento Quarto"
+description: "Do ambiente de trabalho ao primeiro relatório com texto, código e resultados."
+execute:
+  echo: true
+  warning: false
+  message: false
 ---
 
-# Instalação do R Rstudio/Positron
+## Visão geral
 
-Para que possamos realizar nosso curso, se faz necessário a instalação das ferramentas básicas pra gerar os relatórios em Quarto.
+Nesta aula você conhecerá o fluxo de trabalho que sustenta um relatório reprodutível: arquivos organizados, código executável, resultados gerados automaticamente e instruções suficientes para outra pessoa repetir a análise.
 
-O primeiro passo que temos que fazer é a instalação do R em nossa máquina. Para isso temos que acessar a [página oficial do R](https://cran.r-project.org/), baixar o executável e instalar em nossa máquina. 
+### Objetivos de aprendizagem
 
-O segundo passo consiste em instalar alguma IDE, ou seja, interface para que possamos programar e escrever nossos relatórios. Atualmente temos duas IDE's mais utilizadas no mercado - o [Rstudio](https://posit.co/download/rstudio-desktop/) e o [Positron](https://positron.posit.co/). Eu estarei utilizando o Positron mas as duas poderão ser utilizadas. 
+Ao final da aula, você deverá ser capaz de:
 
-Segue aqui o tutorial para a instalação:
+- explicar por que copiar resultados manualmente prejudica a reprodutibilidade;
+- identificar o papel de R, uma IDE e Quarto;
+- criar e renderizar um arquivo `.qmd`;
+- combinar texto em Markdown, código R e resultados;
+- diagnosticar erros simples de renderização.
 
-* [Tutorial instalação do R](https://livro.curso-r.com/1-1-instalacao-do-r.html)
-* [Tutorial instalação do Rstudio](https://livro.curso-r.com/1-2-instalacao-do-rstudio.html)
+### Antes de começar
 
+Confira o roteiro de [instalações necessárias](../materiais/instrucoes-de-instalacao.qmd). Você precisa de R, Quarto e RStudio ou Positron. Git e uma conta no GitHub serão usados mais adiante.
 
-# Instalação do Quarto
+## 1. Um caso concreto de relatório não reprodutível
 
-Os documentos em **Quarto** não são gerados dentro do próprio R, ele precisa de uma **engine** que execute os documentos para nós. Para instalar a versão mais recente você pode baixar aqui - [Quarto](https://quarto.org/docs/get-started/). Também apresento a vocês um mini tutorial na [Página Oficial do Quarto](https://quarto.org/docs/get-started/hello/positron.html?utm_source=chatgpt.com).
+Imagine este histórico, comum em equipes que ainda não usam Quarto:
 
-# Slides Aula 1
+1. Alguém abre uma planilha, calcula a receita média por região e copia o número para um documento do Word.
+2. Duas semanas depois, a base é atualizada — novas vendas entraram.
+3. O relatório continua com o número antigo, porque ninguém lembrou (ou teve tempo) de recalcular e colar de novo.
+4. Uma pessoa gestora toma uma decisão com base num número que não existe mais.
 
-* Acesse aqui os slides da [Aula 1 - Intro Curso](../slides/01-intro-curso.html)
+Nada aqui foi feito de má-fé. O problema é estrutural: **o número no texto não tem ligação nenhuma com o dado que o gerou.** Refazer o relatório significa refazer manualmente cada conta, cada tabela e cada gráfico, e cada repetição é uma chance de errar ou esquecer um passo.
 
-* Acesse aqui os slides da [Aula 1 - Intro Quarto](../slides/02-intro-quarto.html) 
+Um relatório é reprodutível quando o caminho entre os dados e o resultado está registrado e pode ser executado novamente, do zero, sem depender da memória de quem o escreveu. Isso exige, no mínimo:
 
-## Links Importantes
+1. dados ou instruções para obtê-los;
+2. código responsável pelas transformações e análises;
+3. versões e dependências documentadas;
+4. texto que explique decisões, métodos e conclusões;
+5. uma rotina de renderização que gere o documento final.
 
-Vou deixar aqui alguns links importantes para ajudá-los nesse processo. 
+::: {.callout-note title="Ideia central"}
+No Quarto, texto, código e resultado vivem no mesmo arquivo-fonte. Quando os dados mudam, você renderiza novamente em vez de copiar e colar tabelas e gráficos. O número no relatório é sempre o número mais recente, porque foi calculado na hora da renderização — não digitado à mão.
+:::
 
-* [Instalação Git](https://dicasdeprogramacao.com.br/como-instalar-o-git-no-windows/)
-* [Publicação de Relatórios Online via Netlify](https://app.netlify.com/drop)
+## 2. As ferramentas do curso
+
+| Ferramenta | Função no fluxo de trabalho | O que ela **não** faz |
+|---|---|---|
+| R | Executa a análise de dados | Não edita arquivos nem gerencia projetos por conta própria |
+| RStudio ou Positron | Ambiente para editar arquivos e executar comandos | Não substitui o R — é a "oficina", não a "ferramenta" |
+| Quarto | Converte o arquivo-fonte em HTML, PDF, Word, slides ou site | Não é uma linguagem de programação; ele coordena a execução de R, Python ou Julia |
+| Git | Registra o histórico das alterações | Não hospeda nada por si só — é local, no seu computador |
+| GitHub | Hospeda o repositório e permite colaboração e publicação | Não versiona nada sozinho — depende do Git |
+
+É possível escrever e executar código R só com um editor de texto simples e o terminal, sem RStudio ou Positron — mas a IDE reúne editor, console, visualizador de dados e painel de ajuda no mesmo lugar, o que reduz atrito no dia a dia. O Quarto, por sua vez, não sabe calcular uma média nem desenhar um gráfico: ele chama o R (ou outro motor) para fazer isso e depois organiza o resultado junto com o seu texto.
+
+## 3. Primeiro documento
+
+Na IDE, crie um projeto e depois um arquivo Quarto. Salve-o como `relatorio.qmd`, começando pelo cabeçalho YAML e um pouco de texto em Markdown:
+
+```markdown
+---
+title: "Meu primeiro relatório"
+author: "Seu nome"
+format: html
+---
+
+## Objetivo
+
+Este relatório apresenta um resumo da base `mtcars`.
+```
+
+Na sequência, ainda no mesmo arquivo, um bloco de código R:
+
+```{r}
+#| label: resumo-dados
+#| echo: true
+
+summary(mtcars$mpg)
+```
+
+Clique em **Render**. O Quarto executa o bloco `resumo-dados` e cria `relatorio.html` — com o texto, o código e o resultado acima, na mesma ordem em que aparecem no arquivo-fonte. É exatamente o que você está vendo agora: esta própria página é um `.qmd` renderizado, e os seis números acima (mínimo, quartis, média e máximo) não foram digitados por ninguém — o R os calculou no momento em que este documento foi renderizado. Se a base `mtcars` mudasse, esses números mudariam sozinhos na próxima renderização.
+
+### Anatomia do arquivo
+
+- o trecho entre `---` é o cabeçalho YAML;
+- `## Objetivo` cria uma seção;
+- o bloco iniciado por ```` ```{r} ```` contém código R;
+- opções iniciadas por `#|` controlam a execução e a apresentação.
+
+## 4. Texto em Markdown
+
+Use Markdown para separar conteúdo de aparência:
+
+```markdown
+## Uma seção
+
+Texto com **negrito**, *itálico* e `código`.
+
+- primeiro item;
+- segundo item.
+
+[Documentação do Quarto](https://quarto.org/)
+```
+
+Prefira títulos informativos e parágrafos curtos. Um relatório deve comunicar uma pergunta e uma conclusão, não apenas exibir código.
+
+## 5. Um primeiro olhar em dados reais
+
+Este curso usa, ao longo das cinco aulas, uma base pequena e real: população, área e PIB per capita das 27 unidades federativas do Brasil (fonte: IBGE — os detalhes estão em [`dados/README.md`](https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/dados/README.md)). A leitura formal de arquivos `.csv` só chega na Aula 3, mas nada impede um primeiro contato agora:
+
+```{r}
+#| label: primeiro-contato-uf
+
+populacao_uf <- readr::read_csv("dados/populacao_uf.csv", show_col_types = FALSE)
+
+dplyr::glimpse(populacao_uf)
+```
+
+`readr::read_csv()` leu o arquivo e `dplyr::glimpse()` mostra, de forma compacta, quantas linhas existem, quais colunas existem e um exemplo de valor de cada uma. É a base que vai crescer — literalmente, com mais colunas e mais análises — a cada aula.
+
+## 6. Erros comuns
+
+Reconhecer a mensagem de erro é metade do diagnóstico. Alguns exemplos reais:
+
+| Mensagem ou sintoma | O que ela costuma significar |
+|---|---|
+| `'quarto' não é reconhecido como um comando` | o Quarto não está instalado ou a IDE precisa ser reiniciada para enxergar o PATH atualizado |
+| `Error in library(dplyr) : there is no package called 'dplyr'` | o pacote não está instalado no ambiente ativo (confira com `renv::status()` se o projeto usa `renv`) |
+| `Error: YAML parse exception ... mapping values are not allowed in this context` | um `:` em um texto do YAML sem aspas ao redor, ou indentação com tabulação em vez de espaços |
+| `cannot open file 'imagens/grafico.png': No such file or directory` | caminho relativo à pasta errada — confira a partir de onde o documento é executado |
+| código funciona no console, mas o Render falha com `object 'x' not found` | `x` foi criado só no console, fora do arquivo `.qmd` — o documento não tem acesso à sua sessão |
+
+::: {.callout-warning title="Teste de reprodutibilidade"}
+Reinicie o R (em RStudio: *Session → Restart R*) e renderize novamente. Se o documento depender de objetos existentes apenas no seu console, ele ainda não é reprodutível — e o erro `object not found` é exatamente esse aviso.
+:::
+
+## Prática guiada
+
+Crie um relatório que contenha:
+
+1. título, autoria e data;
+2. uma seção explicando o objetivo;
+3. uma lista com três perguntas sobre `mtcars`;
+4. um bloco que calcule `mean(mtcars$mpg)`;
+5. uma frase que interprete o resultado;
+6. um segundo bloco que leia `dados/populacao_uf.csv` com `readr::read_csv()` e responda, só com código: quantos estados tem a região Nordeste? (dica: `dplyr::filter()` + `nrow()`, ou `dplyr::count(regiao)`).
+
+Depois, reinicie o R e renderize de novo — se algo quebrar, você acabou de encontrar uma dependência escondida antes que ela virasse um problema no meio do curso.
+
+## Para o projeto final
+
+Crie a pasta do seu projeto, escolha um tema e escreva em `README.md`:
+
+- qual pergunta será respondida;
+- quem é o público do documento;
+- qual formato você pretende entregar.
+
+## Checklist
+
+- [ ] Consigo explicar o conceito de reprodutibilidade com um exemplo concreto, não só com a definição.
+- [ ] Sei distinguir R, IDE e Quarto.
+- [ ] Criei e renderizei um `.qmd` sem depender do console.
+- [ ] Usei Markdown e um bloco de código.
+- [ ] Consegui ler `dados/populacao_uf.csv` e inspecioná-lo com `glimpse()`.
+
+## Materiais da aula
+
+- [Slides da Aula 1](../slides/aula-1.qmd)
+- [Documentação oficial: primeiros passos](https://quarto.org/docs/get-started/)

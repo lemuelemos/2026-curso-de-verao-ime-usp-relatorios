@@ -1,73 +1,88 @@
 ---
-title: "Informações Gerais"
+title: "Informações gerais"
 ---
 
-## 🧭 Curso: Relatórios Reprodutíveis em Quarto
+## Sobre o curso
 
+**Relatórios reprodutíveis com R** é um curso prático do Programa de Verão do IME-USP. A proposta é ensinar um fluxo completo de produção de documentos com Quarto, combinando comunicação, análise de dados e boas práticas de projeto.
 
-### Aula 1 – Fundamentos de Reprodutibilidade e Introdução ao Quarto
-**Objetivo:** Configurar o ambiente de trabalho com Quarto e entender suas funcionalidades básicas.  
+## Para quem é o curso?
 
-**Tópicos:**
-- Importância dos relatórios e suas aplicações  
-- Diferenças entre RMarkdown e Quarto  
-- Instalação e configuração (R, RStudio/Positron, extensões)  
-- Estrutura básica de um documento `.qmd`  
-- Renderização em diferentes formatos (HTML, PDF, DOCX)  
-- Exercício: criar o primeiro relatório com texto, código e resultado integrado  
+O curso é indicado para estudantes, pessoas pesquisadoras e profissionais que precisam transformar análises em relatórios, artigos, apresentações ou páginas web atualizáveis.
 
----
+É recomendável conhecer os fundamentos de R — objetos, funções e manipulação básica de dados. Não é necessário ter experiência prévia com Quarto, Git ou desenvolvimento web.
 
-### Aula 2 – Estrutura, Estilo e Layout de Relatórios
-**Objetivo:** Aprender a criar relatórios com formatação profissional e personalização visual.  
+## Objetivo geral
 
-**Tópicos:**
-- YAML: título, autor, data e opções de output  
-- Seções, cabeçalhos e sumário automático  
-- Inserção de imagens, tabelas e gráficos  
-- Customização de estilos (CSS, temas, fontes e cores)  
-- Criação de cabeçalhos com logos institucionais  
-- Exercício: construir um template institucional de relatório  
----
+Ao final do curso, a pessoa participante deverá ser capaz de planejar, produzir, revisar e publicar um documento Quarto que integre texto, código e resultados de forma clara e reprodutível.
 
-### Aula 3 – Integração de Dados e Automação de Análises
-**Objetivo:** Conectar bases de dados e automatizar análises dentro do Quarto.  
+## Programa
 
-**Tópicos:**
-- Leitura de dados (CSV, Excel, SQL, APIs)  
-- Uso de `dplyr`, `ggplot2` e `knitr` para gerar resultados dinâmicos  
-- Criação de tabelas dinâmicas (`gt`, `kableExtra`, `reactable`)  
-- Atualização automática de dados e gráficos  
-- Exercício: relatório automatizado de desempenho ou indicadores  
+### Aula 1 — Reprodutibilidade e primeiro documento Quarto
 
----
+- princípios de reprodutibilidade, com um caso concreto de relatório não reprodutível;
+- papel de R, IDE, Quarto, Git e GitHub;
+- estrutura de um arquivo `.qmd`;
+- Markdown, blocos de código e renderização;
+- primeiro contato com o conjunto de dados públicos (IBGE) usado ao longo do curso;
+- diagnóstico de erros básicos, com mensagens de erro reais.
 
-### Aula 4 – Projetos Reprodutíveis e Modularização
-**Objetivo:** Estruturar projetos de análise com múltiplos relatórios e scripts integrados.  
+**Entrega parcial:** tema, público e objetivo do projeto final.
 
-**Tópicos:**
-- Organização de pastas e versionamento (Git/GitHub)  
-- Parâmetros em Quarto (`params`) para relatórios personalizados  
-- Importação de funções externas (`source`)  
-- Integração com dashboards (Quarto + Shiny ou Quarto)  
-- Exercício: gerar relatórios automáticos por unidade, mês ou categoria  
+### Aula 2 — Estrutura, estilo e comunicação
 
----
+- planejamento narrativo e hierarquia de conteúdo;
+- cabeçalho YAML e opções de execução;
+- tabelas, gráficos, imagens e equações;
+- referências cruzadas;
+- legibilidade, identidade visual e acessibilidade.
 
-### Aula 5 – Publicação e Boas Práticas
-**Objetivo:** Publicar, compartilhar e manter relatórios sustentáveis e auditáveis.  
+**Entrega parcial:** esqueleto do documento e primeira evidência visual.
 
-**Tópicos:**
-- Exportação e compartilhamento (PDF, site, GitHub Pages, Posit Cloud)  
-- Controle de versão e rastreabilidade de análises  
-- Padronização de templates e boas práticas de documentação  
-- Exercício final: projeto completo e publicado  
+### Aula 3 — Dados, formatos e automação
 
----
+- organização de pastas, caminhos relativos e o pacote `here`;
+- importação de mais de uma fonte de dados, junção e tratamento de valores ausentes;
+- resultados dinâmicos no texto (código R inline);
+- saídas HTML, PDF e Word;
+- ambientes reproduzíveis com `renv`.
 
-### Projeto Final
-Criação de um **relatório institucional automatizado**, que:
-- lê dados de uma fonte real (ex: desempenho financeiro ou indicadores regionais);  
-- gera visualizações e análises dinâmicas;  
-- inclui logotipo, cabeçalho institucional e versão exportável;  
-- é reproduzível e versionado (Git).  
+**Entrega parcial:** análise mínima renderizando em uma sessão limpa.
+
+### Aula 4 — Interatividade, parâmetros e projetos reutilizáveis
+
+- gráficos e mapas interativos, com alternativa estática para PDF;
+- parâmetros no YAML, a partir de um relatório parametrizado real do curso;
+- geração automatizada de múltiplas versões;
+- funções externas e modularização;
+- uso responsável de cache.
+
+**Entrega parcial:** uma melhoria de reutilização ou interatividade.
+
+### Aula 5 — Versionamento, publicação e entrega
+
+- fluxo de trabalho com Git e GitHub, com exemplos reais de commits a melhorar;
+- seleção de arquivos e `.gitignore`;
+- documentação com README;
+- publicação no GitHub Pages, usando o próprio site do curso como exemplo;
+- revisão de conteúdo, reprodutibilidade e acessibilidade.
+
+**Entrega parcial:** versão candidata do projeto publicada e revisada.
+
+## Metodologia
+
+As aulas combinam explicação, demonstração e prática guiada. Os exemplos usam R, mas os princípios de estrutura e comunicação também se aplicam a documentos Quarto com Python ou Julia.
+
+## Avaliação
+
+A avaliação ocorre por meio de um [trabalho final](trabalho_final.qmd) construído ao longo das cinco aulas. A rubrica considera propósito, comunicação, integração entre código e resultados, reprodutibilidade, organização e documentação.
+
+## Preparação
+
+Antes do primeiro encontro:
+
+1. conclua as [instalações necessárias](materiais/instrucoes-de-instalacao.qmd);
+2. confirme que consegue abrir o R;
+3. execute `quarto check` no terminal;
+4. crie uma conta no GitHub;
+5. leve uma ideia de dados ou tema para o projeto.

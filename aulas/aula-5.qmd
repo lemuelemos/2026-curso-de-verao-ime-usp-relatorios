@@ -1,3 +1,176 @@
 ---
-title: "Aula 5 – Compartilhando Relatórios com Quarto"
+title: "Aula 5 — Versionamento, publicação e entrega"
+description: "Como revisar, versionar e publicar um projeto Quarto com segurança."
 ---
+
+## Visão geral
+
+A última aula fecha o ciclo: transformar uma pasta que funciona apenas no computador do autor em um projeto documentado, versionado e acessível ao público. Vamos usar o próprio site deste curso como exemplo — ele é, ele mesmo, um projeto Quarto versionado no Git e publicado no GitHub Pages.
+
+### Objetivos de aprendizagem
+
+- criar commits pequenos e informativos;
+- distinguir arquivos-fonte de artefatos gerados;
+- preparar um repositório para colaboração;
+- publicar conteúdo Quarto no GitHub Pages;
+- realizar uma revisão final de reprodutibilidade e comunicação.
+
+## 1. O que deve ser versionado?
+
+Versione tudo o que é necessário para compreender e reproduzir o projeto:
+
+- arquivos `.qmd`, scripts e funções (por exemplo, este repositório versiona `aulas/*.qmd` e `materiais/exemplos/R/indicadores.R`);
+- dados que podem ser compartilhados (`dados/populacao_uf.csv`, `dados/pib_uf.csv` e o `dados/README.md` que documenta a fonte);
+- imagens e referências usadas no documento;
+- `_quarto.yml` ou `_quarto.yaml`;
+- `README.md` e `renv.lock`.
+
+Não versione credenciais, dados sigilosos, histórico do R ou bibliotecas instaladas. Use `.gitignore`:
+
+```gitignore
+.Rhistory
+.RData
+.Rproj.user/
+.quarto/
+renv/library/
+```
+
+::: {.callout-warning title="Credenciais"}
+Senhas, tokens e chaves de API nunca devem aparecer no código ou no histórico do Git. Use variáveis de ambiente e arquivos locais ignorados.
+:::
+
+## 2. Um ciclo de trabalho com Git
+
+```powershell
+git status
+git diff
+git add caminho/do/arquivo
+git commit -m "Explica a análise de receita regional"
+git push
+```
+
+Antes do commit, leia o `git diff` — ele mostra exatamente o que vai entrar no histórico, linha por linha, o que evita commitar algo por engano (um arquivo de dados temporário, uma credencial, uma alteração não intencional).
+
+### Como reconhecer um bom commit
+
+Nenhum projeto tem 100% de commits perfeitos — inclusive o deste próprio curso. Alguns exemplos reais do histórico deste repositório:
+
+| Mensagem real | O que dá pra melhorar | Versão mais descritiva |
+|---|---|---|
+| `AJuste depis de redenrizar` | não diz o quê, nem por quê; tem erros de digitação | `Corrige links quebrados após renderizar o site` |
+| `Arquivo repoduciveis` | é um substantivo solto, não uma frase sobre a mudança | `Adiciona seção sobre reprodutibilidade na Aula 1` |
+| `Salvando alterações da aula 3` | descreve o ato de salvar, não o conteúdo da mudança | `Adiciona pipeline de dados e exemplo de renv na Aula 3` |
+
+O padrão comum nos três: descrevem *que algo mudou*, não *o que* mudou nem *por quê*. Uma boa mensagem de commit deixa alguém entender a alteração só de ler o histórico, sem precisar abrir o `diff`.
+
+## 3. README como porta de entrada
+
+Um repositório de curso ou projeto deve informar:
+
+1. propósito e público;
+2. estrutura das pastas;
+3. requisitos e instalação;
+4. como renderizar;
+5. autoria, licença e fonte dos dados;
+6. link para a versão publicada.
+
+O [`README.md` deste próprio repositório](https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/README.md) segue essa estrutura — abra-o como referência: ele lista o conteúdo do repositório, os pré-requisitos, o comando `renv::restore()` para restaurar o ambiente e o comando `quarto preview` para visualizar localmente. Peça para outra pessoa seguir o README do seu próprio projeto; instruções que só funcionam para quem escreveu ainda estão incompletas.
+
+## 4. Publicação no GitHub Pages
+
+Para um site Quarto, defina o projeto:
+
+```yaml
+project:
+  type: website
+
+website:
+  title: "Meu projeto"
+
+format:
+  html:
+    toc: true
+```
+
+Renderize, confira a pasta de saída e escolha uma estratégia de publicação. Este próprio site usa a mais simples das três: publica a pasta `_site/` já renderizada. O workflow completo, em `.github/workflows/static.yml`, é curto:
+
+```yaml
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+      - uses: actions/deploy-pages@v4
+```
+
+A cada `push` para `main`, o GitHub publica o conteúdo que já está em `_site/` — o Quarto **não** roda dentro do GitHub Actions. Isso significa uma regra importante para quem contribui com este repositório: depois de alterar um `.qmd`, é preciso rodar `quarto render` localmente e incluir a pasta `_site/` atualizada no mesmo commit, ou a publicação ficará desatualizada mesmo com o código-fonte correto.
+
+A alternativa — mais comum em projetos que não querem versionar HTML gerado — é deixar o próprio GitHub Actions instalar o Quarto e renderizar a cada `push`, com a action oficial `quarto-dev/quarto-actions/render`. Ela evita versionar `_site/`, ao custo de um workflow um pouco mais longo e um tempo de build a cada publicação. Nenhuma das duas é "a certa" — a escolha depende de quanto controle você quer sobre o ambiente de renderização.
+
+::: {.callout-tip}
+Consulte [Publicação no GitHub Pages](https://quarto.org/docs/publishing/github-pages.html) antes de escolher. Não misture as duas estratégias no mesmo repositório.
+:::
+
+## 5. Revisão antes de publicar
+
+### Conteúdo
+
+- a pergunta e o público estão explícitos?
+- cada gráfico e tabela tem uma mensagem?
+- conclusões são sustentadas pelos resultados?
+- fontes, autoria e limitações estão registradas? (compare com `dados/README.md` deste curso, que documenta de onde vêm os números e quando foram coletados)
+
+### Reprodutibilidade
+
+- o projeto usa caminhos relativos ou `here::here()`?
+- renderiza depois de reiniciar o R?
+- dependências estão registradas em `renv.lock`?
+- dados e instruções de obtenção estão disponíveis?
+
+### Acessibilidade e apresentação
+
+- títulos seguem uma hierarquia lógica?
+- imagens e gráficos têm texto alternativo específico?
+- cores têm contraste e não são o único canal de informação?
+- links têm textos descritivos (não "clique aqui")?
+
+## Prática guiada
+
+1. Execute `git status` e classifique cada arquivo como fonte, dado, configuração ou saída.
+2. Atualize o `.gitignore` sem esconder arquivos necessários.
+3. Escreva ou revise o README do seu projeto, usando o deste curso como referência de estrutura.
+4. Renderize em uma sessão limpa.
+5. Escreva a mensagem de um commit real que você precise fazer — depois compare com a tabela da seção 2 antes de confirmar.
+6. Publique o projeto e teste o link publicado em uma janela anônima do navegador.
+
+## Entrega final
+
+Use a [rubrica e as instruções do trabalho](../trabalho_final.qmd). Entregue o link publicado e o repositório ou arquivo compactado com as fontes.
+
+## Checklist de conclusão
+
+- [ ] O README permite que outra pessoa execute o projeto.
+- [ ] Nenhuma credencial ou informação sigilosa foi versionada.
+- [ ] O histórico tem commits compreensíveis — reli minhas últimas mensagens antes de finalizar.
+- [ ] A versão publicada abre e contém todos os recursos (gráficos interativos, mapas, tabelas).
+- [ ] A entrega atende à rubrica do curso.
+
+## Leitura complementar
+
+- [GitHub: começar com Git](https://docs.github.com/pt/get-started/using-git/about-git)
+- [Quarto: publicação](https://quarto.org/docs/publishing/)
+- [GitHub Pages](https://docs.github.com/pt/pages)
+- [quarto-actions: renderização no CI](https://github.com/quarto-dev/quarto-actions)

@@ -1,23 +1,42 @@
 ---
 title: "Relatórios reprodutíveis com R"
+subtitle: "Curso de Verão IME-USP 2026"
 ---
 
-## Sobre o curso
+## Do código à comunicação
 
-Utilizaremos o Quarto (<https://quarto.org/>), e conheceremos como criar relatórios reprodutíveis com R ou Python, como: relatórios, apresentações em HTML, apresentações em powerpoint, relatórios em word, relatórios interativos, entre outros.
+Este curso ensina a criar relatórios profissionais e reprodutíveis com R e Quarto. Ao longo de cinco aulas, você construirá um projeto completo: da primeira página com texto e código até a publicação na web.
 
-Aprenderemos também a criar relatórios reprodutíveis utilizando relatórios parametrizados, que permitem especificar parâmetros para customizar a análise, o que é muito útil para criar relatórios que podem ser reutilizados.
+O foco não é apenas aprender comandos. Vamos tomar decisões sobre público, estrutura, visualização, automação, versionamento e publicação para que o documento seja claro, atualizável e auditável.
 
-Além disso, o conceito de controle de versão com Git será apresentado. Também aprenderemos a disponibilizar o conteúdo criado no curso de forma online, através do GitHub.
+::: {.callout-tip title="Resultado esperado"}
+Ao final, você terá um relatório, apresentação ou artigo produzido com Quarto, acompanhado dos arquivos necessários para que outra pessoa possa compreender e reproduzir o trabalho.
+:::
 
-## Temas abordados
+## Trilha de aprendizagem
 
--   O que é reprodutibilidade;
+1. **Fundamentos e primeiro documento** — reprodutibilidade, ambiente e fluxo de renderização.
+2. **Estrutura e comunicação** — YAML, Markdown, tabelas, gráficos, referências e estilo.
+3. **Dados, formatos e automação** — projetos, resultados dinâmicos, HTML, PDF, Word e `renv`.
+4. **Interatividade e reutilização** — widgets, parâmetros, funções e renderização em lote.
+5. **Versionamento e publicação** — Git, GitHub Pages, documentação e revisão final.
 
--   O que é o Quarto;
+## O que você vai praticar
 
--   Como criar um documento reprodutível com Quarto usando R ou Python;
+- integrar narrativa, código e resultados no mesmo documento;
+- escolher o formato adequado ao público;
+- criar tabelas e visualizações acessíveis;
+- organizar projetos com caminhos relativos e dependências registradas;
+- gerar versões parametrizadas de um relatório;
+- publicar e compartilhar o resultado com Git e GitHub.
 
--   Como versionar os arquivos no Git e GitHub;
+## Comece por aqui
 
--   Como disponibilizar estes documentos HTML criados com Quarto na internet para que outras pessoas consigam acessar.
+1. Leia as [informações gerais](informacoes-gerais.qmd).
+2. Faça as [instalações do pré-curso](materiais/instrucoes-de-instalacao.qmd).
+3. Acesse a [Aula 1](aulas/aula-1.qmd).
+4. Consulte desde o início as [instruções do trabalho final](trabalho_final.qmd).
+
+## Abordagem
+
+Cada aula contém objetivos, explicações, exemplos, prática guiada, uma etapa do projeto final e um checklist. O projeto é construído gradualmente para evitar que toda a entrega fique concentrada no último encontro.

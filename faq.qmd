@@ -1,7 +1,5 @@
 ---
-title: "Perguntas Frequentes (FAQ)"
-params: 
-  link_inscricao: "https://www.ime.usp.br/verao/index.php/turmas/apresentacao.php"
+title: "Perguntas frequentes"
 ---
 
 1.  **O curso será online ou presencial?**
@@ -14,12 +12,28 @@ As inscrições serão abertas para todas as pessoas interessadas.
 
 3.  **Como posso me inscrever?**
 
-A inscrição será realizada através do IME-USP. Acompanhe as informações na página do [Programa de Verão do IME-USP](`r params$link_inscricao`).
+A inscrição é realizada pelo IME-USP. Acompanhe prazos e orientações na [página do Programa de Verão](https://www.ime.usp.br/verao/index.php/turmas/apresentacao.php).
 
 4.  **O curso é gratuito?**
 
-Não, o curso é pago. Acompanhe as informações na página do [Programa de Verão do IME-USP](`r params$link_inscricao`).
+Não. Consulte valores e condições na [página do Programa de Verão](https://www.ime.usp.br/verao/index.php/turmas/apresentacao.php).
 
 5.  **As aulas serão gravadas?**
 
 Sim.
+
+6.  **Preciso saber programar em R?**
+
+É recomendável conhecer objetos, funções e manipulação básica de dados. O curso ensina Quarto e o fluxo de relatórios, não uma introdução completa à linguagem R.
+
+7.  **Posso usar Python?**
+
+Sim. Os princípios do Quarto se aplicam a diferentes linguagens, embora as demonstrações e o suporte em aula usem principalmente R.
+
+8.  **Preciso ter uma base de dados própria?**
+
+Não. Você pode usar uma base pública, uma base incluída em um pacote ou dados próprios que possam ser compartilhados. O trabalho final apresenta sugestões.
+
+9.  **Como recebo o certificado?**
+
+É necessário cumprir a frequência mínima informada pelo programa e obter aprovação no trabalho final.

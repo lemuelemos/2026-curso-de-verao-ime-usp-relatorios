@@ -1,0 +1,206 @@
+---
+title: "Aula 4 — Interatividade, parâmetros e reutilização"
+subtitle: "Relatórios reprodutíveis com R — Curso de Verão IME-USP 2026"
+author: "Lemuel de Lemos Romão"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: c/t
+    show-slide-number: all
+    transition: fade
+    center: false
+    width: 1600
+    height: 900
+    footer: "Curso de Verão IME-USP 2026"
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Hoje vamos
+
+1. decidir quando usar interatividade;
+2. comparar um gráfico estático com um interativo, de verdade;
+3. construir um mapa com `leaflet`;
+4. declarar parâmetros e gerar múltiplas versões;
+5. extrair código repetido para funções;
+6. usar cache de forma consciente.
+
+## Interatividade não é decoração
+
+Use quando o público precisa:
+
+- consultar valores específicos;
+- explorar subconjuntos;
+- aplicar zoom ou filtros;
+- navegar por uma dimensão espacial;
+- comparar cenários.
+
+Para uma mensagem única, um gráfico estático pode ser melhor — e funciona em PDF.
+
+## Preparando os dados
+
+```{r}
+#| label: preparar-dados
+
+populacao_uf <- readr::read_csv("dados/populacao_uf.csv", show_col_types = FALSE)
+
+top10 <- populacao_uf |> dplyr::slice_max(densidade_dem, n = 10)
+```
+
+## Estático
+
+```{r}
+#| label: fig-estatica
+
+ggplot2::ggplot(top10, ggplot2::aes(reorder(nome_uf, densidade_dem), densidade_dem)) +
+  ggplot2::geom_col(fill = "#2f4858") +
+  ggplot2::coord_flip() +
+  ggplot2::labs(x = NULL, y = "Densidade (hab/km²)") +
+  ggplot2::theme_minimal()
+```
+
+## Interativo
+
+```{r}
+#| label: fig-interativa
+
+plotly::plot_ly(
+  data = top10, x = ~densidade_dem, y = ~reorder(nome_uf, densidade_dem),
+  type = "bar", orientation = "h"
+)
+```
+
+Mesma pergunta, dois formatos — a escolha depende de onde o relatório vai ser lido.
+
+## Um mapa real
+
+```{r}
+#| label: fig-mapa
+
+leaflet::leaflet(populacao_uf) |>
+  leaflet::addProviderTiles(leaflet::providers$CartoDB.Positron) |>
+  leaflet::addCircleMarkers(
+    lng = ~longitude, lat = ~latitude,
+    radius = ~sqrt(populacao) / 200,
+    stroke = FALSE, fillOpacity = 0.7, color = "#2f4858"
+  )
+```
+
+## Limitações
+
+Widgets como `plotly`, `leaflet`, `DT` e `reactable` funcionam principalmente em HTML.
+
+::: {.callout-warning}
+Planeje uma alternativa estática para PDF, impressão e contextos de acessibilidade.
+:::
+
+## O problema da duplicação
+
+```text
+relatorio-sul.qmd
+relatorio-norte.qmd
+relatorio-sudeste-final.qmd
+relatorio-sudeste-final-2.qmd
+```
+
+Duplicar documentos multiplica correções e inconsistências.
+
+## Um exemplo real no repositório
+
+`materiais/exemplos/relatorio-parametrizado.qmd` filtra `dados/populacao_uf.csv` por região.
+Abra o arquivo — não é pseudocódigo, é um `.qmd` que renderiza de verdade.
+
+```yaml
+---
+title: "Relatório regional"
+params:
+  regiao: "Sudeste"
+format: html
+---
+```
+
+## Parâmetros no código
+
+```r
+dados_regiao <- populacao_uf |>
+  dplyr::filter(regiao == params$regiao)
+```
+
+O recorte deve estar explícito no título ou no texto do documento.
+
+## Renderização pelo terminal
+
+```powershell
+quarto render materiais/exemplos/relatorio-parametrizado.qmd `
+  -P regiao:Sul
+```
+
+Teste uma combinação antes de automatizar todas.
+
+## Renderização em lote
+
+```r
+regioes <- c("Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul")
+
+purrr::walk(regioes, function(regiao_atual) {
+  quarto::quarto_render(
+    "materiais/exemplos/relatorio-parametrizado.qmd",
+    execute_params = list(regiao = regiao_atual)
+  )
+})
+```
+
+Já existe pronto em `materiais/exemplos/render-lote.R`.
+
+## Modularização
+
+```{r}
+#| label: usar-funcoes
+
+source("materiais/exemplos/R/indicadores.R")
+
+classificar_porte(populacao = c(500000, 5000000, 20000000))
+```
+
+Entradas explícitas, saída previsível, nada depende de objeto global.
+
+## Cache
+
+```yaml
+execute:
+  cache: true
+```
+
+Cache economiza tempo, mas pode preservar resultados antigos.
+
+Use somente quando compreender como e quando invalidá-lo.
+
+## Prática
+
+1. renderize `relatorio-parametrizado.qmd` com outra região;
+2. declare `regiao` ou `ano` no seu próprio relatório;
+3. informe o recorte no documento;
+4. gere duas versões;
+5. extraia uma transformação para `R/`.
+
+## Projeto final — etapa 4
+
+Escolha uma melhoria adequada:
+
+- interatividade relevante;
+- um mapa, se fizer sentido para os dados;
+- parâmetro de negócio ou pesquisa;
+- função reutilizável.
+
+Não é obrigatório usar todos os recursos.
+
+## Fechamento
+
+Reutilização reduz duplicação e torna correções consistentes em todas as versões.
+
+### Próxima aula
+
+Versionamento, publicação e entrega.

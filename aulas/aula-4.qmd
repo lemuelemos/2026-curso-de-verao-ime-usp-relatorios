@@ -1,3 +1,210 @@
 ---
-title: "Aula 4 – Criando Relatórios em HTML Interativos com Quarto"
+title: "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis"
+description: "Recursos interativos e relatórios parametrizados sem perder organização."
+execute:
+  echo: true
+  warning: false
+  message: false
 ---
+
+## Visão geral
+
+Nesta aula, o relatório deixa de ser uma peça única e passa a ser reutilizável. Veremos quando usar interatividade, como declarar parâmetros e como separar funções e configurações do documento principal — sempre com um artefato real, não só uma descrição do que seria possível fazer.
+
+### Objetivos de aprendizagem
+
+- reconhecer quando a interatividade ajuda o público;
+- incorporar widgets HTML com responsabilidade;
+- declarar e utilizar parâmetros no YAML;
+- renderizar variações de um mesmo relatório;
+- modularizar código repetido.
+
+## 1. Interatividade com propósito
+
+Gráficos interativos permitem explorar valores, aplicar zoom e exibir detalhes. Eles são úteis quando o leitor precisa investigar os dados; para uma mensagem única, um gráfico estático costuma ser mais claro. Compare as duas versões abaixo — mesmos dados, mesma pergunta ("quais estados têm mais habitantes por km²?"):
+
+```{r}
+#| label: preparar-dados-aula4
+
+library(dplyr)
+library(ggplot2)
+
+populacao_uf <- readr::read_csv(here::here("dados", "populacao_uf.csv"), show_col_types = FALSE)
+
+top10_densidade <- populacao_uf |>
+  slice_max(densidade_dem, n = 10)
+```
+
+**Estática** — melhor quando o relatório vai para PDF, impressão ou quando a mensagem é uma comparação única e definitiva:
+
+```{r}
+#| label: fig-densidade-estatica
+#| fig-cap: "Os dez estados com maior densidade demográfica."
+#| fig-alt: "Gráfico de barras horizontais com os dez estados de maior densidade demográfica, liderados pelo Distrito Federal."
+
+ggplot(top10_densidade, aes(x = reorder(nome_uf, densidade_dem), y = densidade_dem)) +
+  geom_col(fill = "#2f4858") +
+  coord_flip() +
+  labs(x = NULL, y = "Densidade (hab/km²)") +
+  theme_minimal()
+```
+
+**Interativa** — melhor quando o leitor precisa explorar valor por valor, em um HTML:
+
+```{r}
+#| label: fig-densidade-interativa
+#| fig-cap: "A mesma comparação, agora navegável: passe o mouse sobre cada barra."
+
+plotly::plot_ly(
+  data = top10_densidade,
+  x = ~densidade_dem,
+  y = ~reorder(nome_uf, densidade_dem),
+  type = "bar",
+  orientation = "h",
+  hovertemplate = "%{y}: %{x:.1f} hab/km²<extra></extra>"
+) |>
+  plotly::layout(
+    xaxis = list(title = "Densidade (hab/km²)"),
+    yaxis = list(title = "")
+  )
+```
+
+Nenhuma das duas está errada — a decisão depende do formato de saída e do que o público vai fazer com o gráfico. Um documento PDF nunca vai mostrar o `plotly` interativo (ele exige um navegador rodando JavaScript); é por isso que a Aula 3 insiste em escolher o formato pelo público antes de escolher os recursos visuais.
+
+## 2. Um mapa é interatividade que resolve um problema real
+
+`dados/populacao_uf.csv` já tem `latitude` e `longitude` da capital de cada estado — dá para colocar cada um no mapa, com o tamanho do marcador proporcional à população:
+
+```{r}
+#| label: fig-mapa-populacao
+#| fig-cap: "Capitais dos estados brasileiros; o tamanho do círculo é proporcional à população do estado."
+
+leaflet::leaflet(populacao_uf) |>
+  leaflet::addProviderTiles(leaflet::providers$CartoDB.Positron) |>
+  leaflet::addCircleMarkers(
+    lng = ~longitude,
+    lat = ~latitude,
+    radius = ~sqrt(populacao) / 200,
+    stroke = FALSE,
+    fillOpacity = 0.7,
+    color = "#2f4858",
+    label = ~paste0(nome_uf, ": ", format(populacao, big.mark = "."), " hab.")
+  )
+```
+
+Um mapa estático (uma imagem) também mostraria a localização das capitais, mas só o mapa interativo permite arrastar, dar zoom e ler o rótulo de um estado específico sem poluir a figura inteira com texto. É exatamente o tipo de tarefa ("onde fica" + "qual é o valor exato aqui") em que a interatividade paga o custo de não funcionar em PDF.
+
+## 3. Relatórios parametrizados
+
+Parâmetros permitem gerar várias versões do mesmo documento sem duplicar arquivos. Em vez de descrever isso em abstrato, veja o exemplo completo e funcional deste curso:
+
+::: {.callout-tip title="Exemplo real"}
+[`materiais/exemplos/relatorio-parametrizado.qmd`](../materiais/exemplos/relatorio-parametrizado.qmd) é um `.qmd` completo que filtra `dados/populacao_uf.csv` por região usando um parâmetro. Abra o arquivo-fonte no repositório enquanto lê esta seção.
+:::
+
+O YAML declara o parâmetro e um valor padrão:
+
+```yaml
+---
+title: "Relatório regional"
+params:
+  regiao: "Sudeste"
+format: html
+---
+```
+
+No código R, o valor declarado fica disponível em `params`:
+
+```r
+dados_regiao <- populacao_uf |>
+  dplyr::filter(regiao == params$regiao)
+```
+
+O parâmetro também pode aparecer no próprio `title`, usando código R inline (a mesma técnica de texto dinâmico da Aula 3) para inserir o valor de `params$regiao` no meio do texto do título — é exatamente o que `materiais/exemplos/relatorio-parametrizado.qmd` faz, por isso o título dele muda conforme a região escolhida. Assim, quem lê o documento sabe qual recorte está vendo sem precisar abrir o código-fonte.
+
+## 4. Renderização automatizada
+
+Uma versão pode ser gerada pelo terminal, sobrepondo o valor padrão do YAML:
+
+```powershell
+quarto render materiais/exemplos/relatorio-parametrizado.qmd -P regiao:Sul
+```
+
+Para produzir as cinco regiões de uma vez, [`materiais/exemplos/render-lote.R`](https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/materiais/exemplos/render-lote.R) já está pronto no repositório:
+
+```r
+regioes <- c("Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul")
+
+purrr::walk(regioes, function(regiao_atual) {
+  quarto::quarto_render(
+    input = "materiais/exemplos/relatorio-parametrizado.qmd",
+    execute_params = list(regiao = regiao_atual),
+    output_file = paste0("relatorio-", tolower(gsub("[^A-Za-z]+", "-", regiao_atual)), ".html")
+  )
+})
+```
+
+Teste primeiro uma única versão. Automatizar um relatório com erro apenas reproduz o erro cinco vezes mais rápido.
+
+## 5. Modularização
+
+Funções estáveis não deveriam morar dentro do `.qmd`, misturadas com prosa. [`materiais/exemplos/R/indicadores.R`](https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/materiais/exemplos/R/indicadores.R) — usado pelo relatório parametrizado da seção 3 — tem duas funções pequenas:
+
+```{r}
+#| label: carregar-funcoes
+
+source(here::here("materiais", "exemplos", "R", "indicadores.R"))
+
+calcular_densidade(populacao = 15000, area_km2 = 500)
+classificar_porte(populacao = c(500000, 5000000, 20000000))
+```
+
+```{r}
+#| label: usar-funcoes
+
+populacao_uf |>
+  mutate(porte = classificar_porte(populacao)) |>
+  count(porte)
+```
+
+Cada função tem nome claro, entradas explícitas (`populacao`, `area_km2`) e uma saída previsível — nenhuma delas depende de um objeto criado em outro lugar do documento. Isso é o que torna uma função reutilizável de verdade: ela funciona igual dentro do relatório, num script separado, ou nos testes de outra pessoa.
+
+## 6. Cache e atualização
+
+Cache pode acelerar análises custosas, mas também pode exibir resultados antigos. Use-o apenas quando souber quais mudanças invalidam o resultado:
+
+```yaml
+execute:
+  cache: true
+```
+
+Para relatórios operacionais, registre a data de atualização e valide se a fonte de dados foi realmente atualizada antes da publicação — um cache desatualizado silenciosamente reexibe o gráfico de ontem como se fosse de hoje.
+
+## Prática guiada
+
+1. Abra `materiais/exemplos/relatorio-parametrizado.qmd` e renderize-o com `regiao:Norte`.
+2. Compare o resultado com a versão padrão (`Sudeste`) — tabela, gráfico e texto devem mudar juntos.
+3. No seu próprio relatório (Aulas 1–3), declare um parâmetro `regiao` ou `ano` e filtre os dados com ele.
+4. Mostre no título ou subtítulo qual recorte foi usado.
+5. Extraia pelo menos uma transformação para uma função em um arquivo `R/`, com entradas explícitas.
+
+## Para o projeto final
+
+Escolha uma melhoria compatível com seu público: um gráfico interativo, um mapa, um parâmetro relevante ou uma função reutilizável. Não é obrigatório usar todos os recursos — a pergunta certa é "isso ajuda quem vai ler?", não "quantos recursos consigo incluir?".
+
+## Checklist
+
+- [ ] A interatividade resolve uma necessidade real (explorar, localizar, comparar), não é só decoração.
+- [ ] Tenho uma versão estática de qualquer widget, para PDF ou impressão.
+- [ ] O documento informa o recorte parametrizado no título ou no texto.
+- [ ] Consigo gerar duas versões sem duplicar o `.qmd`.
+- [ ] Código repetido foi transformado em função com entradas explícitas.
+- [ ] Sei quando limpar ou evitar o cache.
+
+## Materiais da aula
+
+- [Slides da Aula 4](../slides/aula-4.qmd)
+- [Exemplo: relatório parametrizado](../materiais/exemplos/relatorio-parametrizado.qmd)
+- [Script para gerar as cinco regiões](../materiais/exemplos/render-lote.R)
+- [Quarto: parâmetros](https://quarto.org/docs/computations/parameters.html)
+- [Quarto: widgets HTML](https://quarto.org/docs/interactive/widgets/htmlwidgets.html)

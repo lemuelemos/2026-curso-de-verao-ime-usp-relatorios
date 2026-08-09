@@ -1,0 +1,28 @@
+"uf","nome_uf","regiao","capital","populacao","area_km2","latitude","longitude","densidade_dem"
+"AC","Acre","Norte","Rio Branco",830018,164122.2,-9.97,-67.81,5.06
+"AL","Alagoas","Nordeste","Maceió",3127683,27767.7,-9.65,-35.71,112.64
+"AM","Amazonas","Norte","Manaus",3941613,1570745.7,-3.1,-60.02,2.51
+"AP","Amapá","Norte","Macapá",733759,142814.6,0.03,-51.07,5.14
+"BA","Bahia","Nordeste","Salvador",14141626,564692.7,-12.97,-38.51,25.04
+"CE","Ceará","Nordeste","Fortaleza",8794957,148825.6,-3.72,-38.54,59.1
+"DF","Distrito Federal","Centro-Oeste","Brasília",2817381,5822.1,-15.78,-47.93,483.91
+"ES","Espírito Santo","Sudeste","Vitória",3833712,46077.5,-20.32,-40.34,83.2
+"GO","Goiás","Centro-Oeste","Goiânia",7056495,340086.7,-16.68,-49.25,20.75
+"MA","Maranhão","Nordeste","São Luís",6755805,331983.3,-2.53,-44.3,20.35
+"MG","Minas Gerais","Sudeste","Belo Horizonte",20539989,586528.3,-19.92,-43.94,35.02
+"MS","Mato Grosso do Sul","Centro-Oeste","Campo Grande",2757013,357125,-20.44,-54.65,7.72
+"MT","Mato Grosso","Centro-Oeste","Cuiabá",3658649,903357.9,-15.6,-56.1,4.05
+"PA","Pará","Norte","Belém",8121025,1247689.5,-1.46,-48.5,6.51
+"PB","Paraíba","Nordeste","João Pessoa",3974687,56439.8,-7.12,-34.86,70.42
+"PE","Pernambuco","Nordeste","Recife",9058931,98311.6,-8.05,-34.9,92.15
+"PI","Piauí","Nordeste","Teresina",3271199,251529.2,-5.09,-42.8,13.01
+"PR","Paraná","Sul","Curitiba",11444380,199314.9,-25.43,-49.27,57.42
+"RJ","Rio de Janeiro","Sudeste","Rio de Janeiro",16055174,43696.1,-22.91,-43.17,367.43
+"RN","Rio Grande do Norte","Nordeste","Natal",3302729,52796.8,-5.79,-35.21,62.56
+"RO","Rondônia","Norte","Porto Velho",1581196,237576.2,-8.76,-63.9,6.66
+"RR","Roraima","Norte","Boa Vista",636707,224299,2.82,-60.67,2.84
+"RS","Rio Grande do Sul","Sul","Porto Alegre",10882965,281748.5,-30.03,-51.23,38.63
+"SC","Santa Catarina","Sul","Florianópolis",7610361,95346.2,-27.6,-48.55,79.82
+"SE","Sergipe","Nordeste","Aracaju",2210004,21910.3,-10.91,-37.07,100.87
+"SP","São Paulo","Sudeste","São Paulo",44411238,248209.4,-23.55,-46.63,178.93
+"TO","Tocantins","Norte","Palmas",1511460,277620.9,-10.18,-48.33,5.44
