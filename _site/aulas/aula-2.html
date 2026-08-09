@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="YAML, Markdown, código, tabelas, figuras e referências em um relatório claro.">
 
-<title>Aula 2 – Estrutura, Estilo e Layout de Relatórios – Relatórios reprodutíveis com R</title>
+<title>Aula 2 — Estrutura, estilo e comunicação – Relatórios reprodutíveis com R</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -64,7 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../trabalho_final.html" rel="next">
+<link href="../aulas/aula-3.html" rel="next">
 <link href="../aulas/aula-1.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -72,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-055080f5f83ef30f4c6064f8e3ce190b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5dd5f4957db40a1eb105bb83283b05cd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -90,62 +94,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
   }
 }</script>
-<link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-
-<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-
-<script src="../site_libs/echarts4r-4.8.0/echarts-en.min.js"></script>
-
-<script src="../site_libs/echarts4r-4.8.0/ecStat.min.js"></script>
-
-<script src="../site_libs/echarts4r-4.8.0/dataTool.min.js"></script>
-
-<script src="../site_libs/echarts4r-binding-0.4.6/echarts4r.js"></script>
-
-<script src="../site_libs/plotly-binding-4.11.0/plotly.js"></script>
-
-<script src="../site_libs/typedarray-0.1/typedarray.min.js"></script>
-
-<script src="../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-
-<link href="../site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
-
-<script src="../site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
-
-<link href="../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
-
-<script src="../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
-
-<link href="../site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
-
-<script src="../site_libs/leaflet-1.3.1/leaflet.js"></script>
-
-<link href="../site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
-
-<script src="../site_libs/proj4-2.6.2/proj4.min.js"></script>
-
-<script src="../site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-
-<link href="../site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
-
-<script src="../site_libs/leaflet-binding-2.2.3/leaflet.js"></script>
-
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -158,7 +122,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -174,6 +138,7 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -182,13 +147,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../aulas/aula-1.html">Aulas</a></li><li class="breadcrumb-item"><a href="../aulas/aula-2.html">Aula 2 – Estrutura, Estilo e Layout de Relatórios</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../aulas/aula-1.html">Aulas</a></li><li class="breadcrumb-item"><a href="../aulas/aula-2.html">Aula 2 — Estrutura, estilo e comunicação</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -200,17 +165,16 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="https://www.ime.usp.br/verao/assets/images/logo_verao.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="https://www.ime.usp.br/verao/assets/images/logo_verao.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="https://www.ime.usp.br/verao/assets/images/logo_verao.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
-      <div class="sidebar-tools-main tools-wide">
-    <a href="https://openscapes.org" title="Openscapes.org" class="quarto-navigation-tool px-1" aria-label="Openscapes.org"><i class="bi bi-globe"></i></a>
-    <a href="https://github.com/openscapes/quarto-website-tutorial" title="Quarto website tutorial" class="quarto-navigation-tool px-1" aria-label="Quarto website tutorial"><i class="bi bi-github"></i></a>
-    <a href="https://twitter.com/openscapes" title="Openscapes Twitter" class="quarto-navigation-tool px-1" aria-label="Openscapes Twitter"><i class="bi bi-twitter"></i></a>
+      <div class="sidebar-tools-main">
+    <a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios" title="Repositório do curso" class="quarto-navigation-tool px-1" aria-label="Repositório do curso"><i class="bi bi-github"></i></a>
 </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Procurar"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -231,7 +195,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Sobre o curso</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -239,7 +203,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../informacoes-gerais.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Informações Gerais</span></a>
+ <span class="menu-text">Informações gerais</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -251,7 +215,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../faq.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Perguntas Frequentes (FAQ)</span></a>
+ <span class="menu-text">Perguntas frequentes</span></a>
   </div>
 </li>
       </ul>
@@ -260,7 +224,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Materiais</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -274,7 +238,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Slides e materiais por aula</span></a>
+ <span class="menu-text">Slides e materiais de apoio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materiais/exemplos/relatorio-parametrizado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exemplo: relatório parametrizado</span></a>
   </div>
 </li>
       </ul>
@@ -283,7 +253,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Aulas</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -291,13 +261,31 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../aulas/aula-1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aula 1 – Configurações e Introdução ao Quarto</span></a>
+ <span class="menu-text">Aula 1 — Reprodutibilidade e primeiro documento Quarto</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../aulas/aula-2.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Aula 2 – Estrutura, Estilo e Layout de Relatórios</span></a>
+ <span class="menu-text">Aula 2 — Estrutura, estilo e comunicação</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../aulas/aula-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aula 3 — Dados, formatos e automação</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../aulas/aula-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aula 4 — Interatividade, parâmetros e projetos reutilizáveis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../aulas/aula-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aula 5 — Versionamento, publicação e entrega</span></a>
   </div>
 </li>
       </ul>
@@ -306,7 +294,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Trabalho Final</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -323,7 +311,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Edições anteriores</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -367,29 +355,41 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Contents</h2>
+    <h2 id="toc-title">Nesta página</h2>
    
   <ul>
-  <li><a href="#aula-2-estrutura-e-elementos-de-um-documento-quarto" id="toc-aula-2-estrutura-e-elementos-de-um-documento-quarto" class="nav-link active" data-scroll-target="#aula-2-estrutura-e-elementos-de-um-documento-quarto"><strong>Aula 2 — Estrutura e elementos de um documento Quarto</strong></a></li>
-  <li><a href="#slides-aula-2" id="toc-slides-aula-2" class="nav-link" data-scroll-target="#slides-aula-2">Slides Aula 2</a>
+  <li><a href="#visão-geral" id="toc-visão-geral" class="nav-link active" data-scroll-target="#visão-geral">Visão geral</a>
   <ul class="collapse">
-  <li><a href="#elementos-yaml" id="toc-elementos-yaml" class="nav-link" data-scroll-target="#elementos-yaml">Elementos Yaml</a></li>
-  <li><a href="#itens" id="toc-itens" class="nav-link" data-scroll-target="#itens">Itens</a></li>
-  <li><a href="#inserção-de-código" id="toc-inserção-de-código" class="nav-link" data-scroll-target="#inserção-de-código">Inserção de Código</a></li>
-  <li><a href="#elementos-visuais" id="toc-elementos-visuais" class="nav-link" data-scroll-target="#elementos-visuais">Elementos Visuais</a></li>
-  <li><a href="#inclusão-de-gráficos" id="toc-inclusão-de-gráficos" class="nav-link" data-scroll-target="#inclusão-de-gráficos">Inclusão de Gráficos</a></li>
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link" data-scroll-target="#objetivos-de-aprendizagem">Objetivos de aprendizagem</a></li>
   </ul></li>
+  <li><a href="#planeje-antes-de-formatar" id="toc-planeje-antes-de-formatar" class="nav-link" data-scroll-target="#planeje-antes-de-formatar">1. Planeje antes de formatar</a></li>
+  <li><a href="#cabeçalho-yaml" id="toc-cabeçalho-yaml" class="nav-link" data-scroll-target="#cabeçalho-yaml">2. Cabeçalho YAML</a></li>
+  <li><a href="#hierarquia-e-markdown" id="toc-hierarquia-e-markdown" class="nav-link" data-scroll-target="#hierarquia-e-markdown">3. Hierarquia e Markdown</a></li>
+  <li><a href="#preparando-os-dados-desta-aula" id="toc-preparando-os-dados-desta-aula" class="nav-link" data-scroll-target="#preparando-os-dados-desta-aula">4. Preparando os dados desta aula</a></li>
+  <li><a href="#tabelas-que-comunicam" id="toc-tabelas-que-comunicam" class="nav-link" data-scroll-target="#tabelas-que-comunicam">5. Tabelas que comunicam</a></li>
+  <li><a href="#figuras-e-gráficos" id="toc-figuras-e-gráficos" class="nav-link" data-scroll-target="#figuras-e-gráficos">6. Figuras e gráficos</a></li>
+  <li><a href="#equações-e-referências-cruzadas" id="toc-equações-e-referências-cruzadas" class="nav-link" data-scroll-target="#equações-e-referências-cruzadas">7. Equações e referências cruzadas</a></li>
+  <li><a href="#estilo-sem-perder-manutenção" id="toc-estilo-sem-perder-manutenção" class="nav-link" data-scroll-target="#estilo-sem-perder-manutenção">8. Estilo sem perder manutenção</a></li>
+  <li><a href="#prática-guiada" id="toc-prática-guiada" class="nav-link" data-scroll-target="#prática-guiada">Prática guiada</a></li>
+  <li><a href="#para-o-projeto-final" id="toc-para-o-projeto-final" class="nav-link" data-scroll-target="#para-o-projeto-final">Para o projeto final</a></li>
+  <li><a href="#checklist" id="toc-checklist" class="nav-link" data-scroll-target="#checklist">Checklist</a></li>
+  <li><a href="#materiais-da-aula" id="toc-materiais-da-aula" class="nav-link" data-scroll-target="#materiais-da-aula">Materiais da aula</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/openscapes/quarto-website-tutorial/edit/main/aulas/aula-2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/openscapes/quarto-website-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/edit/main/aulas/aula-2.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../aulas/aula-1.html">Aulas</a></li><li class="breadcrumb-item"><a href="../aulas/aula-2.html">Aula 2 – Estrutura, Estilo e Layout de Relatórios</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../aulas/aula-1.html">Aulas</a></li><li class="breadcrumb-item"><a href="../aulas/aula-2.html">Aula 2 — Estrutura, estilo e comunicação</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Aula 2 – Estrutura, Estilo e Layout de Relatórios</h1>
+<h1 class="title">Aula 2 — Estrutura, estilo e comunicação</h1>
 </div>
 
+<div>
+  <div class="description">
+    YAML, Markdown, código, tabelas, figuras e referências em um relatório claro.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -404,234 +404,254 @@ window.Quarto = {
 </header>
 
 
-<section id="aula-2-estrutura-e-elementos-de-um-documento-quarto" class="level3">
-<h3 class="anchored" data-anchor-id="aula-2-estrutura-e-elementos-de-um-documento-quarto"><strong>Aula 2 — Estrutura e elementos de um documento Quarto</strong></h3>
-<p>Na aula anterior, compreendemos o propósito dos relatórios reprodutíveis e o papel do Quarto como ferramenta central para integrar texto, código e resultados em um único fluxo de trabalho. A partir desse ponto, o próximo passo natural é entender <strong>como um documento Quarto é estruturado</strong> e quais são os seus principais elementos.</p>
-<p>Nesta aula, exploraremos a arquitetura de um documento <code>.qmd</code>, abordando desde o cabeçalho de configuração (YAML), responsável por definir formato, layout e opções de renderização, até os blocos de código, elementos de texto, inserção de tabelas, gráficos e recursos multimídia. O objetivo é fornecer uma visão clara de como cada componente atua na construção de relatórios profissionais, organizados e plenamente reprodutíveis.</p>
-<p>Ao final da aula, você será capaz de estruturar documentos Quarto de forma consciente, configurar seus principais parâmetros e combinar conteúdo analítico e narrativo de maneira fluida — criando relatórios que não apenas executam análises, mas comunicam resultados com clareza e qualidade visual.</p>
+<section id="visão-geral" class="level2">
+<h2 class="anchored" data-anchor-id="visão-geral">Visão geral</h2>
+<p>Um relatório reprodutível também precisa ser compreensível. Nesta aula, vamos organizar o documento, controlar sua aparência e apresentar evidências com tabelas e gráficos que tenham função narrativa — usando a mesma base de estados brasileiros da Aula 1.</p>
+<section id="objetivos-de-aprendizagem" class="level3">
+<h3 class="anchored" data-anchor-id="objetivos-de-aprendizagem">Objetivos de aprendizagem</h3>
+<ul>
+<li>configurar título, autoria, formato e sumário no YAML;</li>
+<li>estruturar texto com Markdown e hierarquia de seções;</li>
+<li>controlar código e resultados com opções de execução;</li>
+<li>inserir tabelas, figuras, equações e referências cruzadas;</li>
+<li>aplicar princípios básicos de legibilidade e acessibilidade.</li>
+</ul>
 </section>
-<section id="slides-aula-2" class="level1">
-<h1>Slides Aula 2</h1>
-<ul>
-<li>Acesse aqui os slides da <a href="../slides/04-elementos-quarto.html">Aula 2 - Estrutura, Estilo e Layout de Relatórios</a></li>
-</ul>
-<section id="elementos-yaml" class="level3">
-<h3 class="anchored" data-anchor-id="elementos-yaml">Elementos Yaml</h3>
-<ul>
-<li><a href="https://rpubs.com/drgregmartin/1266674">Elementos Presentes no Yaml</a></li>
-</ul>
-<p><em>Texto em itálico</em></p>
-<p><strong>Texto em negrito</strong></p>
-<p><strong><em>Negrito e itálico</em></strong></p>
-<p><del>Texto tachado</del></p>
 </section>
-<section id="itens" class="level3">
-<h3 class="anchored" data-anchor-id="itens">Itens</h3>
-<ul>
-<li>Item 1</li>
-<li>Item 2
-<ul>
-<li>Subitem 2.1</li>
-<li>Subitem 2.2
-<ul>
-<li>SubSubItem</li>
-</ul></li>
-</ul></li>
-</ul>
+<section id="planeje-antes-de-formatar" class="level2">
+<h2 class="anchored" data-anchor-id="planeje-antes-de-formatar">1. Planeje antes de formatar</h2>
+<p>Antes de escolher cores e fontes, responda:</p>
 <ol type="1">
-<li>Primeiro passo</li>
-<li>Segundo passo
-<ol type="1">
-<li>Detalhe 2.1</li>
-<li>Detalhe 2.2</li>
-</ol></li>
+<li>Qual pergunta o documento responde?</li>
+<li>Quem tomará uma decisão ou aprenderá com ele?</li>
+<li>Quais evidências sustentam a mensagem principal?</li>
+<li>Qual formato e nível de detalhe esse público precisa?</li>
 </ol>
+<p>O plano molda até a frase de abertura. Compare:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Evite</strong> — descreve o processo, não a conclusão:</p>
+<blockquote class="blockquote">
+<p>“Neste relatório, foram coletados dados do IBGE sobre população e área dos estados brasileiros, que em seguida foram processados e utilizados para gerar uma tabela e um gráfico apresentados a seguir.”</p>
+</blockquote>
+</div><div class="column" style="width:50%;">
+<p><strong>Prefira</strong> — abre com a mensagem, o método vem depois:</p>
+<blockquote class="blockquote">
+<p>“A densidade demográfica brasileira é extremamente desigual: o Distrito Federal tem mais de 480 habitantes por km², enquanto sete estados da região Norte têm menos de 7.”</p>
+</blockquote>
+</div>
+</div>
+<p>A primeira versão exige que quem lê chegue ao gráfico para descobrir se há algo relevante. A segunda entrega a conclusão de imediato — a tabela e o gráfico existem para sustentar essa frase, não para substituí-la.</p>
+<p>Uma estrutura simples funciona para muitos relatórios:</p>
+<pre class="text"><code>Título e resumo executivo
+├── Contexto e objetivo
+├── Dados e método
+├── Resultados
+├── Conclusões e recomendações
+└── Referências ou apêndice</code></pre>
 </section>
-<section id="inserção-de-código" class="level3">
-<h3 class="anchored" data-anchor-id="inserção-de-código">Inserção de Código</h3>
+<section id="cabeçalho-yaml" class="level2">
+<h2 class="anchored" data-anchor-id="cabeçalho-yaml">2. Cabeçalho YAML</h2>
+<p>O YAML configura o documento. A indentação usa espaços e define hierarquia:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Indicadores por estado"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Perfil demográfico e econômico das unidades federativas"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Nome da pessoa autora"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lang</span><span class="kw">:</span><span class="at"> pt-BR</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc-depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>format</code> controla a saída; <code>execute</code> controla a computação. Se uma opção vale apenas para um bloco, declare-a no próprio bloco em vez de aplicá-la ao documento inteiro.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Erro real de YAML">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Erro real de YAML
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um dos-pontos sem aspas dentro de um texto quebra o cabeçalho:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Indicadores: uma análise por estado</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>produz algo como:</p>
+<pre class="text"><code>ERROR: YAML parse exception at line 2, column 18: mapping values are not allowed in this context</code></pre>
+<p>A correção é envolver o texto inteiro em aspas: <code>title: "Indicadores: uma análise por estado"</code>. Sempre que a renderização falhar antes de qualquer código rodar, o cabeçalho é o primeiro lugar a conferir.</p>
+</div>
+</div>
+</section>
+<section id="hierarquia-e-markdown" class="level2">
+<h2 class="anchored" data-anchor-id="hierarquia-e-markdown">3. Hierarquia e Markdown</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resultados</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>O indicador apresentou **crescimento** no período.</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diferenças regionais</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Região Sudeste: maior população absoluta;</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Região Norte: menor densidade demográfica;</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Região Nordeste: maior número de estados.</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Use um único título principal, fornecido pelo YAML. Evite pular de <code>##</code> para <code>####</code>. Títulos devem descrever o conteúdo, e não apenas numerar “Parte 1”.</p>
+</section>
+<section id="preparando-os-dados-desta-aula" class="level2">
+<h2 class="anchored" data-anchor-id="preparando-os-dados-desta-aula">4. Preparando os dados desta aula</h2>
+<p>Todos os exemplos a seguir partem do mesmo <code>.csv</code> já usado na Aula 1:</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Mostrar código</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(am,carb,cyl) <span class="sc">|&gt;</span> </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>populacao_uf <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"dados/populacao_uf.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>resumo_regiao <span class="ot">&lt;-</span> populacao_uf <span class="sc">|&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(regiao) <span class="sc">|&gt;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">estados =</span> dplyr<span class="sc">::</span><span class="fu">n</span>(),</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">populacao_total =</span> <span class="fu">sum</span>(populacao),</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">densidade_media =</span> <span class="fu">mean</span>(densidade_dem),</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(populacao_total))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>                  am carb cyl
-Mazda RX4          1    4   6
-Mazda RX4 Wag      1    4   6
-Datsun 710         1    1   4
-Hornet 4 Drive     0    1   6
-Hornet Sportabout  0    2   8
-Valiant            0    1   6</code></pre>
 </div>
-</div>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis posuere ligula sit amet lacinia. Duis dignissim pellentesque magna, rhoncus congue sapien finibus mollis. Ut eu sem laoreet, vehicula ipsum in, convallis erat. Vestibulum magna sem, blandit pulvinar augue sit amet, auctor malesuada sapien. Nullam faucibus leo eget eros hendrerit, non laoreet ipsum lacinia. Curabitur cursus diam elit, non tempus ante volutpat a. Quisque hendrerit blandit purus non fringilla. Integer sit amet elit viverra ante dapibus semper. Vestibulum viverra rutrum enim, at luctus enim posuere eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Mostrar código</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(am,carb,cyl) <span class="sc">|&gt;</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>                  am carb cyl
-Mazda RX4          1    4   6
-Mazda RX4 Wag      1    4   6
-Datsun 710         1    1   4
-Hornet 4 Drive     0    1   6
-Hornet Sportabout  0    2   8
-Valiant            0    1   6</code></pre>
-</div>
-</div>
-<p>O veículo Datsun 710 possui 4 cilíndros.</p>
+<p>Cada bloco declara <code>#| label:</code> — um nome único que aparece nas mensagens de erro e permite referenciar tabelas e figuras (seção 7).</p>
 </section>
-<section id="elementos-visuais" class="level3">
-<h3 class="anchored" data-anchor-id="elementos-visuais">Elementos Visuais</h3>
+<section id="tabelas-que-comunicam" class="level2">
+<h2 class="anchored" data-anchor-id="tabelas-que-comunicam">5. Tabelas que comunicam</h2>
+<p>Uma tabela Markdown atende valores pequenos e estáticos, digitados à mão:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Variável</th>
-<th>Tipo</th>
-<th>Descrição</th>
+<th>Região</th>
+<th style="text-align: right;">Estados</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>mpg</td>
-<td>numérica</td>
-<td>Milhas por galão</td>
+<td>Norte</td>
+<td style="text-align: right;">7</td>
 </tr>
 <tr class="even">
-<td>cyl</td>
-<td>numérica</td>
-<td>Número de cilindros</td>
-</tr>
-<tr class="odd">
-<td>hp</td>
-<td>numérica</td>
-<td>Cavalos de potência</td>
+<td>Nordeste</td>
+<td style="text-align: right;">9</td>
 </tr>
 </tbody>
 </table>
-<section id="tabela-com-kable" class="level4">
-<h4 class="anchored" data-anchor-id="tabela-com-kable">Tabela com Kable</h4>
+<p>Para dados calculados, gere a tabela a partir do código — nunca digite um número que o R já calculou:</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Mostrar código</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(mtcars[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]), <span class="at">caption =</span> <span class="st">"Primeiras linhas do conjunto mtcars"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>resumo_regiao <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Região"</span>, <span class="st">"Estados"</span>, <span class="st">"População total"</span>, <span class="st">"Densidade média (hab/km²)"</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">format.args =</span> <span class="fu">list</span>(<span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div id="tbl-resumo-regiao" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-resumo-regiao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;1: Estados, população total e densidade média, por região.
+</figcaption>
+<div aria-describedby="tbl-resumo-regiao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>Primeiras linhas do conjunto mtcars</caption>
+<table class="cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: right;">mpg</th>
-<th style="text-align: right;">cyl</th>
-<th style="text-align: right;">disp</th>
-<th style="text-align: right;">hp</th>
+<th style="text-align: left;">Região</th>
+<th style="text-align: right;">Estados</th>
+<th style="text-align: right;">População total</th>
+<th style="text-align: right;">Densidade média (hab/km²)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Mazda RX4</td>
-<td style="text-align: right;">21.0</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">160</td>
-<td style="text-align: right;">110</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Mazda RX4 Wag</td>
-<td style="text-align: right;">21.0</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">160</td>
-<td style="text-align: right;">110</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Datsun 710</td>
-<td style="text-align: right;">22.8</td>
+<td style="text-align: left;">Sudeste</td>
 <td style="text-align: right;">4</td>
-<td style="text-align: right;">108</td>
-<td style="text-align: right;">93</td>
+<td style="text-align: right;">84.840.113</td>
+<td style="text-align: right;">166,1</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Hornet 4 Drive</td>
-<td style="text-align: right;">21.4</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">258</td>
-<td style="text-align: right;">110</td>
+<td style="text-align: left;">Nordeste</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">54.637.621</td>
+<td style="text-align: right;">61,8</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Hornet Sportabout</td>
-<td style="text-align: right;">18.7</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">360</td>
-<td style="text-align: right;">175</td>
+<td style="text-align: left;">Sul</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">29.937.706</td>
+<td style="text-align: right;">58,6</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Valiant</td>
-<td style="text-align: right;">18.1</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">225</td>
-<td style="text-align: right;">105</td>
+<td style="text-align: left;">Norte</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">17.355.778</td>
+<td style="text-align: right;">4,9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Centro-Oeste</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">16.289.538</td>
+<td style="text-align: right;">129,1</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<ul>
-<li><p><a href="https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html">Documentação kable html</a></p></li>
-<li><p><a href="https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf">Documentação kable PDF</a></p></li>
-</ul>
-</section>
-<section id="tabela-com-kable-1" class="level4">
-<h4 class="anchored" data-anchor-id="tabela-com-kable-1">Tabela com Kable</h4>
+</figure>
+</div>
+</div>
+<p>No texto, cite a <a href="#tbl-resumo-regiao" class="quarto-xref">Tabela&nbsp;1</a> e interprete o padrão. Não repita em prosa todos os números da tabela — a região Sudeste concentra a maior população total mesmo tendo só quatro estados, o que já diz mais do que listar todas as células.</p>
+<p>Para um relatório executivo, <code>knitr::kable()</code> costuma bastar. Quando o público precisa de uma tabela com título, nota de rodapé e formatação condicional, <code>gt</code> entrega mais controle:</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Mostrar código</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the start and end dates for the data range</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>start_date <span class="ot">&lt;-</span> <span class="st">"2010-06-07"</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>end_date <span class="ot">&lt;-</span> <span class="st">"2010-06-14"</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a gt table based on preprocessed</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># `sp500` table data</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>sp500 <span class="sc">|&gt;</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(date <span class="sc">&gt;=</span> start_date <span class="sc">&amp;</span> date <span class="sc">&lt;=</span> end_date) <span class="sc">|&gt;</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>adj_close) <span class="sc">|&gt;</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"S&amp;P 500"</span>,</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{start_date} to {end_date}"</span>)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_currency</span>() <span class="sc">|&gt;</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_date</span>(<span class="at">columns =</span> date, <span class="at">date_style =</span> <span class="st">"wd_m_day_year"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> volume, <span class="at">suffixing =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>resumo_regiao <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Perfil demográfico por região"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(populacao_total), <span class="at">decimals =</span> <span class="dv">0</span>, <span class="at">sep_mark =</span> <span class="st">"."</span>, <span class="at">dec_mark =</span> <span class="st">","</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(densidade_media), <span class="at">decimals =</span> <span class="dv">1</span>, <span class="at">sep_mark =</span> <span class="st">"."</span>, <span class="at">dec_mark =</span> <span class="st">","</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">cols_label</span>(</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">regiao =</span> <span class="st">"Região"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">estados =</span> <span class="st">"Estados"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">populacao_total =</span> <span class="st">"População total"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">densidade_media =</span> <span class="st">"Densidade média (hab/km²)"</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_source_note</span>(<span class="st">"Fonte: IBGE, Censo Demográfico 2022."</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div id="tbl-gt-regiao" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-gt-regiao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2: Mesma tabela, com o pacote gt.
+</figcaption>
+<div aria-describedby="tbl-gt-regiao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="selshdqres" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#selshdqres table {
+<div id="fctwvxxqzo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fctwvxxqzo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#selshdqres thead, #selshdqres tbody, #selshdqres tfoot, #selshdqres tr, #selshdqres td, #selshdqres th {
+#fctwvxxqzo thead, #fctwvxxqzo tbody, #fctwvxxqzo tfoot, #fctwvxxqzo tr, #fctwvxxqzo td, #fctwvxxqzo th {
   border-style: none;
 }
 
-#selshdqres p {
+#fctwvxxqzo p {
   margin: 0;
   padding: 0;
 }
 
-#selshdqres .gt_table {
+#fctwvxxqzo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -657,12 +677,12 @@ Valiant            0    1   6</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#selshdqres .gt_caption {
+#fctwvxxqzo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#selshdqres .gt_title {
+#fctwvxxqzo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -674,7 +694,7 @@ Valiant            0    1   6</code></pre>
   border-bottom-width: 0;
 }
 
-#selshdqres .gt_subtitle {
+#fctwvxxqzo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -686,7 +706,7 @@ Valiant            0    1   6</code></pre>
   border-top-width: 0;
 }
 
-#selshdqres .gt_heading {
+#fctwvxxqzo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -698,13 +718,13 @@ Valiant            0    1   6</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#selshdqres .gt_bottom_border {
+#fctwvxxqzo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#selshdqres .gt_col_headings {
+#fctwvxxqzo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -719,7 +739,7 @@ Valiant            0    1   6</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#selshdqres .gt_col_heading {
+#fctwvxxqzo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -739,7 +759,7 @@ Valiant            0    1   6</code></pre>
   overflow-x: hidden;
 }
 
-#selshdqres .gt_column_spanner_outer {
+#fctwvxxqzo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -751,15 +771,15 @@ Valiant            0    1   6</code></pre>
   padding-right: 4px;
 }
 
-#selshdqres .gt_column_spanner_outer:first-child {
+#fctwvxxqzo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#selshdqres .gt_column_spanner_outer:last-child {
+#fctwvxxqzo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#selshdqres .gt_column_spanner {
+#fctwvxxqzo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -771,11 +791,11 @@ Valiant            0    1   6</code></pre>
   width: 100%;
 }
 
-#selshdqres .gt_spanner_row {
+#fctwvxxqzo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#selshdqres .gt_group_heading {
+#fctwvxxqzo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -801,7 +821,7 @@ Valiant            0    1   6</code></pre>
   text-align: left;
 }
 
-#selshdqres .gt_empty_group_heading {
+#fctwvxxqzo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -816,15 +836,15 @@ Valiant            0    1   6</code></pre>
   vertical-align: middle;
 }
 
-#selshdqres .gt_from_md > :first-child {
+#fctwvxxqzo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#selshdqres .gt_from_md > :last-child {
+#fctwvxxqzo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#selshdqres .gt_row {
+#fctwvxxqzo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -843,7 +863,7 @@ Valiant            0    1   6</code></pre>
   overflow-x: hidden;
 }
 
-#selshdqres .gt_stub {
+#fctwvxxqzo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -856,7 +876,7 @@ Valiant            0    1   6</code></pre>
   padding-right: 5px;
 }
 
-#selshdqres .gt_stub_row_group {
+#fctwvxxqzo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -870,15 +890,15 @@ Valiant            0    1   6</code></pre>
   vertical-align: top;
 }
 
-#selshdqres .gt_row_group_first td {
+#fctwvxxqzo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#selshdqres .gt_row_group_first th {
+#fctwvxxqzo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#selshdqres .gt_summary_row {
+#fctwvxxqzo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -888,16 +908,16 @@ Valiant            0    1   6</code></pre>
   padding-right: 5px;
 }
 
-#selshdqres .gt_first_summary_row {
+#fctwvxxqzo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#selshdqres .gt_first_summary_row.thick {
+#fctwvxxqzo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#selshdqres .gt_last_summary_row {
+#fctwvxxqzo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -907,7 +927,7 @@ Valiant            0    1   6</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#selshdqres .gt_grand_summary_row {
+#fctwvxxqzo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -917,7 +937,7 @@ Valiant            0    1   6</code></pre>
   padding-right: 5px;
 }
 
-#selshdqres .gt_first_grand_summary_row {
+#fctwvxxqzo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -927,7 +947,7 @@ Valiant            0    1   6</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#selshdqres .gt_last_grand_summary_row_top {
+#fctwvxxqzo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -937,11 +957,11 @@ Valiant            0    1   6</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#selshdqres .gt_striped {
+#fctwvxxqzo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#selshdqres .gt_table_body {
+#fctwvxxqzo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -950,7 +970,7 @@ Valiant            0    1   6</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#selshdqres .gt_footnotes {
+#fctwvxxqzo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -964,7 +984,7 @@ Valiant            0    1   6</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#selshdqres .gt_footnote {
+#fctwvxxqzo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -973,7 +993,7 @@ Valiant            0    1   6</code></pre>
   padding-right: 5px;
 }
 
-#selshdqres .gt_sourcenotes {
+#fctwvxxqzo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -987,7 +1007,7 @@ Valiant            0    1   6</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#selshdqres .gt_sourcenote {
+#fctwvxxqzo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -995,344 +1015,259 @@ Valiant            0    1   6</code></pre>
   padding-right: 5px;
 }
 
-#selshdqres .gt_left {
+#fctwvxxqzo .gt_left {
   text-align: left;
 }
 
-#selshdqres .gt_center {
+#fctwvxxqzo .gt_center {
   text-align: center;
 }
 
-#selshdqres .gt_right {
+#fctwvxxqzo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#selshdqres .gt_font_normal {
+#fctwvxxqzo .gt_font_normal {
   font-weight: normal;
 }
 
-#selshdqres .gt_font_bold {
+#fctwvxxqzo .gt_font_bold {
   font-weight: bold;
 }
 
-#selshdqres .gt_font_italic {
+#fctwvxxqzo .gt_font_italic {
   font-style: italic;
 }
 
-#selshdqres .gt_super {
+#fctwvxxqzo .gt_super {
   font-size: 65%;
 }
 
-#selshdqres .gt_footnote_marks {
+#fctwvxxqzo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#selshdqres .gt_asterisk {
+#fctwvxxqzo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#selshdqres .gt_indent_1 {
+#fctwvxxqzo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#selshdqres .gt_indent_2 {
+#fctwvxxqzo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#selshdqres .gt_indent_3 {
+#fctwvxxqzo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#selshdqres .gt_indent_4 {
+#fctwvxxqzo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#selshdqres .gt_indent_5 {
+#fctwvxxqzo .gt_indent_5 {
   text-indent: 25px;
 }
 
-#selshdqres .katex-display {
+#fctwvxxqzo .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#selshdqres div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#fctwvxxqzo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading header">
-<th colspan="6" class="gt_heading gt_title gt_font_normal">S&amp;P 500</th>
+<td colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border">Perfil demográfico por região</td>
 </tr>
-<tr class="gt_heading even">
-<th colspan="6" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">2010-06-07 to 2010-06-14</th>
-</tr>
-<tr class="gt_col_headings header">
-<th id="date" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">date</th>
-<th id="open" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">open</th>
-<th id="high" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">high</th>
-<th id="low" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">low</th>
-<th id="close" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">close</th>
-<th id="volume" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">volume</th>
+<tr class="gt_col_headings even">
+<th id="regiao" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Região</th>
+<th id="estados" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Estados</th>
+<th id="populacao_total" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">População total</th>
+<th id="densidade_media" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Densidade média (hab/km²)</th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_right" headers="date">Mon, Jun 14, 2010</td>
-<td class="gt_row gt_right" headers="open">$1,095.00</td>
-<td class="gt_row gt_right" headers="high">$1,105.91</td>
-<td class="gt_row gt_right" headers="low">$1,089.03</td>
-<td class="gt_row gt_right" headers="close">$1,089.63</td>
-<td class="gt_row gt_right" headers="volume">4.43B</td>
+<td class="gt_row gt_left" headers="regiao">Sudeste</td>
+<td class="gt_row gt_right" headers="estados">4</td>
+<td class="gt_row gt_right" headers="populacao_total">84.840.113</td>
+<td class="gt_row gt_right" headers="densidade_media">166,1</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_right" headers="date">Fri, Jun 11, 2010</td>
-<td class="gt_row gt_right" headers="open">$1,082.65</td>
-<td class="gt_row gt_right" headers="high">$1,092.25</td>
-<td class="gt_row gt_right" headers="low">$1,077.12</td>
-<td class="gt_row gt_right" headers="close">$1,091.60</td>
-<td class="gt_row gt_right" headers="volume">4.06B</td>
+<td class="gt_row gt_left" headers="regiao">Nordeste</td>
+<td class="gt_row gt_right" headers="estados">9</td>
+<td class="gt_row gt_right" headers="populacao_total">54.637.621</td>
+<td class="gt_row gt_right" headers="densidade_media">61,8</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_right" headers="date">Thu, Jun 10, 2010</td>
-<td class="gt_row gt_right" headers="open">$1,058.77</td>
-<td class="gt_row gt_right" headers="high">$1,087.85</td>
-<td class="gt_row gt_right" headers="low">$1,058.77</td>
-<td class="gt_row gt_right" headers="close">$1,086.84</td>
-<td class="gt_row gt_right" headers="volume">5.14B</td>
+<td class="gt_row gt_left" headers="regiao">Sul</td>
+<td class="gt_row gt_right" headers="estados">3</td>
+<td class="gt_row gt_right" headers="populacao_total">29.937.706</td>
+<td class="gt_row gt_right" headers="densidade_media">58,6</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_right" headers="date">Wed, Jun 9, 2010</td>
-<td class="gt_row gt_right" headers="open">$1,062.75</td>
-<td class="gt_row gt_right" headers="high">$1,077.74</td>
-<td class="gt_row gt_right" headers="low">$1,052.25</td>
-<td class="gt_row gt_right" headers="close">$1,055.69</td>
-<td class="gt_row gt_right" headers="volume">5.98B</td>
+<td class="gt_row gt_left" headers="regiao">Norte</td>
+<td class="gt_row gt_right" headers="estados">7</td>
+<td class="gt_row gt_right" headers="populacao_total">17.355.778</td>
+<td class="gt_row gt_right" headers="densidade_media">4,9</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_right" headers="date">Tue, Jun 8, 2010</td>
-<td class="gt_row gt_right" headers="open">$1,050.81</td>
-<td class="gt_row gt_right" headers="high">$1,063.15</td>
-<td class="gt_row gt_right" headers="low">$1,042.17</td>
-<td class="gt_row gt_right" headers="close">$1,062.00</td>
-<td class="gt_row gt_right" headers="volume">6.19B</td>
+<td class="gt_row gt_left" headers="regiao">Centro-Oeste</td>
+<td class="gt_row gt_right" headers="estados">4</td>
+<td class="gt_row gt_right" headers="populacao_total">16.289.538</td>
+<td class="gt_row gt_right" headers="densidade_media">129,1</td>
 </tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="date">Mon, Jun 7, 2010</td>
-<td class="gt_row gt_right" headers="open">$1,065.84</td>
-<td class="gt_row gt_right" headers="high">$1,071.36</td>
-<td class="gt_row gt_right" headers="low">$1,049.86</td>
-<td class="gt_row gt_right" headers="close">$1,050.47</td>
-<td class="gt_row gt_right" headers="volume">5.47B</td>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="4" class="gt_sourcenote">Fonte: IBGE, Censo Demográfico 2022.</td>
 </tr>
-</tbody>
+</tfoot>
+
 </table>
 
 </div>
 </div>
 </div>
-<ul>
-<li><a href="https://gt.rstudio.com/">Documentação Tabela com GT</a></li>
-</ul>
-</section>
-</section>
-<section id="inclusão-de-gráficos" class="level3">
-<h3 class="anchored" data-anchor-id="inclusão-de-gráficos">Inclusão de Gráficos</h3>
-<section id="gráfico-com-r-base" class="level4">
-<h4 class="anchored" data-anchor-id="gráfico-com-r-base">Gráfico com R Base</h4>
-<div class="cell">
-<details class="code-fold">
-<summary>Mostrar código</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico simples</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(mtcars<span class="sc">$</span>cyl),</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Distribuição de Cilindros"</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Cilindros"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Frequência"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"#1f77b4"</span>, <span class="st">"#ff7f0e"</span>, <span class="st">"#2ca02c"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="aula-2_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Gráfico de Barras - Distribuição de Cilindros</figcaption>
 </figure>
 </div>
 </div>
-</div>
 </section>
-<section id="gráfico-ggplot" class="level4">
-<h4 class="anchored" data-anchor-id="gráfico-ggplot">Gráfico GGPLOT</h4>
+<section id="figuras-e-gráficos" class="level2">
+<h2 class="anchored" data-anchor-id="figuras-e-gráficos">6. Figuras e gráficos</h2>
+<p>Um gráfico feito às pressas atrapalha mais do que ajuda. Compare as duas versões abaixo — os dados são exatamente os mesmos:</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Mostrar código</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> hp, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Relação entre Consumo e Potência"</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Milhas por Galão (MPG)"</span>,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Cavalos de Potência (HP)"</span>,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Cilindros"</span>) <span class="sc">+</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(populacao_uf, <span class="fu">aes</span>(area_km2, populacao, <span class="at">color =</span> regiao)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-populacao-ruim" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de dispersão com pontos coloridos, sem título nem legendas claras.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="aula-2_files/figure-html/fig-plot-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-populacao-ruim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="aula-2_files/figure-html/fig-populacao-ruim-1.png" class="img-fluid figure-img" alt="Gráfico de dispersão com pontos coloridos, sem título nem legendas claras." width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Relação entre MPG e HP por Cilindros
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-populacao-ruim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Evite: cores padrão sem propósito, sem rótulos de eixo e sem unidade.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<ul>
-<li><a href="https://github.com/brunomioto/ggimprensa">Documentação gráficos do G1</a></li>
-</ul>
-</section>
-<section id="gráfico-com-echarts4r" class="level4">
-<h4 class="anchored" data-anchor-id="gráfico-com-echarts4r">Gráfico com echarts4r</h4>
 <div class="cell">
 <details class="code-fold">
 <summary>Mostrar código</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(echarts4r)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="st">"model"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_charts</span>(model) <span class="sc">|&gt;</span> </span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">e_pie</span>(hp, <span class="at">roseType =</span> <span class="st">"radius"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(populacao_uf, <span class="fu">aes</span>(area_km2 <span class="sc">/</span> <span class="dv">1000</span>, populacao <span class="sc">/</span> <span class="fl">1e6</span>, <span class="at">color =</span> regiao)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.85</span>) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"População e área dos estados brasileiros"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Área (mil km²)"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"População (milhões de habitantes)"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Região"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: IBGE, Censo Demográfico 2022."</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div class="echarts4r html-widget html-fill-item" id="htmlwidget-0f1d892c270d16788bd7" style="width:100%;height:500px;"></div>
-<script type="application/json" data-for="htmlwidget-0f1d892c270d16788bd7">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"legend":{"data":["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant"]},"series":[{"name":"hp","type":"pie","roseType":"radius","data":[{"value":110,"name":"Mazda RX4"},{"value":110,"name":"Mazda RX4 Wag"},{"value":93,"name":"Datsun 710"},{"value":110,"name":"Hornet 4 Drive"},{"value":175,"name":"Hornet Sportabout"},{"value":105,"name":"Valiant"}]}]},"dispose":true},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-<ul>
-<li><a href="https://echarts4r.john-coene.com/">Documentação gráfico echarts4r</a></li>
-</ul>
-</section>
-<section id="gráfico-com-plotly" class="level4">
-<h4 class="anchored" data-anchor-id="gráfico-com-plotly">Gráfico com Plotly</h4>
-<div class="cell">
-<details class="code-fold">
-<summary>Mostrar código</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>fig <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>(</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="st">"giraffes"</span>, <span class="st">"orangutans"</span>, <span class="st">"monkeys"</span>),</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">14</span>, <span class="dv">23</span>),</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="st">"SF Zoo"</span>,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"bar"</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div class="plotly html-widget html-fill-item" id="htmlwidget-9eb83ce02ae649c949a6" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-9eb83ce02ae649c949a6">{"x":{"visdat":{"60746b125df0":["function () ","plotlyVisDat"]},"cur_data":"60746b125df0","attrs":{"60746b125df0":{"x":["giraffes","orangutans","monkeys"],"y":[20,14,23],"name":"SF Zoo","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":[],"type":"category","categoryorder":"array","categoryarray":["giraffes","monkeys","orangutans"]},"yaxis":{"domain":[0,1],"automargin":true,"title":[]},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["giraffes","orangutans","monkeys"],"y":[20,14,23],"name":"SF Zoo","type":"bar","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-<ul>
-<li><a href="https://plotly.com/r/">Documentação gráfico plotly</a></li>
-</ul>
-<section id="mapas" class="level5">
-<h5 class="anchored" data-anchor-id="mapas">Mapas</h5>
-<div class="cell">
-<details class="code-fold">
-<summary>Mostrar código</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mapas com leaflet</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(<span class="at">lng =</span> <span class="sc">-</span><span class="fl">46.6333</span>, <span class="at">lat =</span> <span class="sc">-</span><span class="fl">23.5505</span>,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">popup =</span> <span class="st">"São Paulo, Brasil"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-6d574c9de5410c8d13cc" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-6d574c9de5410c8d13cc">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[-23.5505,-46.6333,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"São Paulo, Brasil",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-23.5505,-23.5505],"lng":[-46.6333,-46.6333]}},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-<ul>
-<li><p><a href="https://rstudio.github.io/leaflet/">Documentação Leaflet</a></p></li>
-<li><p><a href="https://rpubs.com/gabrielvm/trabalholeaflet">Lista de Exemplos Leaflet</a></p></li>
-</ul>
-</section>
-</section>
-<section id="adição-de-imagens" class="level4">
-<h4 class="anchored" data-anchor-id="adição-de-imagens">Adição de Imagens</h4>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://www.r-project.org/logo/Rlogo.png" class="img-fluid figure-img" style="width:30.0%"></p>
-<figcaption>Logo do R</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="www/posit.png" class="img-fluid figure-img" alt="Descrição da imagem"></p>
-<figcaption>Gráfico exportado</figcaption>
-</figure>
-</div>
-<p><img src="https://scs.usp.br/identidadevisual/wp-content/uploads/2022/08/usp-logo-png-1.png" class="img-fluid" style="width:50.0%" alt="Logo USP"> <em>Figura 1: Fluxo de trabalho com Quarto</em></p>
-<ul>
-<li><a href="https://quarto.org/docs/authoring/figures.html">Documentação Imagens Quarto</a></li>
-</ul>
-<section id="adição-de-vídeo" class="level5">
-<h5 class="anchored" data-anchor-id="adição-de-vídeo">Adição de Vídeo</h5>
-<div id="fig-elephant" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-populacao-boa" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de dispersão mostrando população pelo tamanho territorial dos estados brasileiros, colorido por região. São Paulo se destaca com a maior população; estados da região Norte têm grandes áreas e populações menores.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-elephant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_f3latmOhew?si=om04jR-yMopnRBiU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
-</iframe>
+<div aria-describedby="fig-populacao-boa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="aula-2_files/figure-html/fig-populacao-boa-1.png" class="img-fluid figure-img" alt="Gráfico de dispersão mostrando população pelo tamanho territorial dos estados brasileiros, colorido por região. São Paulo se destaca com a maior população; estados da região Norte têm grandes áreas e populações menores." width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elephant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Vídeo de Tutorial do Quarto
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-populacao-boa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: Prefira: título, eixos com unidade, paleta com poucas cores e leitura guiada.
 </figcaption>
 </figure>
 </div>
-<iframe width="560" height="315" src="https://quarto.org/docs/authoring/figures.html">
-</iframe>
-</section>
-</section>
-<section id="links-e-refências" class="level4">
-<h4 class="anchored" data-anchor-id="links-e-refências">Links e Refências</h4>
-<ul>
-<li><a href="https://quarto.org/">Documentação oficial do Quarto</a></li>
-<li><a href="https://github.com/quarto-dev/quarto-cli">Repositório no GitHub</a></li>
-<li><a href="https://quarto.org/docs/gallery/">Exemplos e Galeria</a></li>
-</ul>
-</section>
-<section id="equações-matemáticas" class="level4">
-<h4 class="anchored" data-anchor-id="equações-matemáticas">Equações Matemáticas</h4>
-<div id="thm-line" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 1</strong></span> <span class="math display">\[
-f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
-\]</span></p>
 </div>
+</div>
+<p>A segunda versão não tem mais dados — tem menos ruído. <code>theme_minimal()</code> remove o fundo cinza padrão, <code>scale_color_brewer()</code> troca as cores automáticas por uma paleta pensada para diferenciação, e os eixos convertidos para mil km² e milhões de habitantes evitam números com muitos dígitos.</p>
+<p>A <a href="#fig-populacao-boa" class="quarto-xref">Figura&nbsp;2</a> permite comparar território, população e região ao mesmo tempo. A legenda explica o que está sendo mostrado; o parágrafo ao redor deve dizer por que isso importa — aqui, que tamanho territorial não é um bom previsor de população.</p>
+<p>Para imagens externas (fotos, logotipos, diagramas):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Descrição objetiva da imagem](imagens/arquivo.png)</span>{#fig-fluxo width=70%}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Use texto alternativo informativo — o <code>fig-alt</code> de <a href="#fig-populacao-boa" class="quarto-xref">Figura&nbsp;2</a> descreve o padrão visto no gráfico, não apenas “gráfico de dispersão”. Quem usa leitor de tela depende inteiramente dessa frase para entender a figura.</p>
 </section>
-<section id="referência-cruzada" class="level4">
-<h4 class="anchored" data-anchor-id="referência-cruzada">Referência Cruzada</h4>
-<p>Como mostrado na Figura <a href="#fig-elephant" class="quarto-xref">Figure&nbsp;2</a></p>
-<p>Como mostrado na Figura <a href="#fig-plot" class="quarto-xref">Figure&nbsp;1</a></p>
-<p>Como mostrado na equação <a href="#thm-line" class="quarto-xref">Theorem&nbsp;1</a></p>
+<section id="equações-e-referências-cruzadas" class="level2">
+<h2 class="anchored" data-anchor-id="equações-e-referências-cruzadas">7. Equações e referências cruzadas</h2>
+<p>A densidade demográfica usada nos exemplos acima é definida por:</p>
+<p><span id="eq-densidade"><span class="math display">\[
+d = \frac{P}{A}
+\tag{1}\]</span></span></p>
+<p>em que <span class="math inline">\(P\)</span> é a população e <span class="math inline">\(A\)</span> é a área em km². A <a href="#eq-densidade" class="quarto-xref">Equação&nbsp;1</a> é a mesma conta feita pela coluna <code>densidade_dem</code> do arquivo <code>dados/populacao_uf.csv</code>. Rótulos seguem prefixos convencionais:</p>
 <ul>
-<li><a href="https://quarto.org/docs/authoring/cross-references.html">Documentação Referências Quarto</a></li>
+<li><code>fig-</code> para figuras;</li>
+<li><code>tbl-</code> para tabelas;</li>
+<li><code>eq-</code> para equações;</li>
+<li><code>sec-</code> para seções.</li>
+</ul>
+<p>Rótulos estáveis permitem mudar a ordem dos elementos sem corrigir a numeração manualmente — o Quarto renumera tudo sozinho.</p>
+</section>
+<section id="estilo-sem-perder-manutenção" class="level2">
+<h2 class="anchored" data-anchor-id="estilo-sem-perder-manutenção">8. Estilo sem perder manutenção</h2>
+<p>Comece com um tema e poucas regras CSS:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>body {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">line-height</span><span class="ch">:</span> <span class="dv">1.6</span><span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>h1<span class="op">,</span> h2<span class="op">,</span> h3 {</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">color</span><span class="ch">:</span> <span class="cn">#2f4858</span><span class="op">;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Prefira consistência a decoração: duas fontes, uma paleta pequena, espaçamento generoso e contraste adequado costumam ser suficientes. O mesmo princípio vale para gráficos — <code>scale_color_brewer(palette = "Dark2")</code> usado acima é uma paleta pronta, testada para diferenciação, em vez de escolher cores uma a uma.</p>
+</section>
+<section id="prática-guiada" class="level2">
+<h2 class="anchored" data-anchor-id="prática-guiada">Prática guiada</h2>
+<p>Usando <code>dados/populacao_uf.csv</code>:</p>
+<ol type="1">
+<li>Escreva um objetivo e um público explícitos no início da página.</li>
+<li>Configure um YAML com sumário e código recolhível.</li>
+<li>Calcule, com <code>dplyr</code>, o PIB per capita médio por região a partir de <code>dados/pib_uf.csv</code> (você vai aprender a juntar as duas tabelas na Aula 3 — por enquanto, pode ler <code>pib_uf.csv</code> separadamente e agrupar por região usando um <code>left_join</code> simples, ou deixar essa etapa como pergunta em aberto para a próxima aula).</li>
+<li>Construa uma tabela <code>gt</code> com título e nota de fonte.</li>
+<li>Construa um gráfico com título, eixos, legenda e texto alternativo — e, antes de finalizar, produza deliberadamente uma versão “ruim” (sem <code>theme_minimal()</code>, sem <code>labs()</code>) para comparar as duas.</li>
+<li>Adicione referências cruzadas para a tabela e o gráfico.</li>
+</ol>
+</section>
+<section id="para-o-projeto-final" class="level2">
+<h2 class="anchored" data-anchor-id="para-o-projeto-final">Para o projeto final</h2>
+<p>Crie o esqueleto do documento, escreva a introdução e inclua ao menos uma evidência visual. Peça a alguém do público-alvo para dizer qual mensagem entendeu.</p>
+</section>
+<section id="checklist" class="level2">
+<h2 class="anchored" data-anchor-id="checklist">Checklist</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">O YAML está válido e enxuto.</label></li>
+<li><label><input type="checkbox">A hierarquia de títulos é lógica.</label></li>
+<li><label><input type="checkbox">Tabelas e gráficos são citados e interpretados, não apenas exibidos.</label></li>
+<li><label><input type="checkbox">Imagens e gráficos têm texto alternativo específico (não genérico).</label></li>
+<li><label><input type="checkbox">Consigo apontar, no meu próprio gráfico, o que tornaria uma versão “ruim” dele.</label></li>
+<li><label><input type="checkbox">O estilo visual é consistente com o público.</label></li>
+</ul>
+</section>
+<section id="materiais-da-aula" class="level2">
+<h2 class="anchored" data-anchor-id="materiais-da-aula">Materiais da aula</h2>
+<ul>
+<li><a href="../slides/aula-2.html">Slides da Aula 2</a></li>
+<li><a href="https://quarto.org/docs/authoring/markdown-basics.html">Quarto: Markdown</a></li>
+<li><a href="https://quarto.org/docs/authoring/cross-references.html">Quarto: referências cruzadas</a></li>
+<li><a href="https://quarto.org/docs/authoring/figures.html#alt-text">Quarto: acessibilidade</a></li>
+<li><a href="https://gt.rstudio.com/">gt: criando tabelas</a></li>
 </ul>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1361,12 +1296,12 @@ f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\rig
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copiada");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copiada");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -1387,13 +1322,14 @@ f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\rig
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1408,7 +1344,7 @@ f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\rig
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/openscapes\.github\.io\/quarto-website-tutorial");
+        var filterRegex = new RegExp("https:\/\/lemuelemos\.github\.io\/2026-curso-de-verao-ime-usp-relatorios\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1737,13 +1673,13 @@ f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\rig
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../aulas/aula-1.html" class="pagination-link" aria-label="Aula 1 – Configurações e Introdução ao Quarto">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Aula 1 – Configurações e Introdução ao Quarto</span>
+      <a href="../aulas/aula-1.html" class="pagination-link" aria-label="Aula 1 — Reprodutibilidade e primeiro documento Quarto">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Aula 1 — Reprodutibilidade e primeiro documento Quarto</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../trabalho_final.html" class="pagination-link" aria-label="Instruções de Trabalho Final">
-        <span class="nav-page-text">Instruções de Trabalho Final</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../aulas/aula-3.html" class="pagination-link" aria-label="Aula 3 — Dados, formatos e automação">
+        <span class="nav-page-text">Aula 3 — Dados, formatos e automação</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1751,13 +1687,13 @@ f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\rig
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© CC-By Openscapes, 2024</p>
+<p>Conteúdo sob licença <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br">CC BY-SA 4.0</a>.</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/openscapes/quarto-website-tutorial/edit/main/aulas/aula-2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/openscapes/quarto-website-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/edit/main/aulas/aula-2.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+<p>Site criado com <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
   </div>
 </footer>

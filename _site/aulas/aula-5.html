@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Como revisar, versionar e publicar um projeto Quarto com segurança.">
 
-<title>Aula 5 – Compartilhando Relatórios com Quarto – Relatórios reprodutíveis com R</title>
+<title>Aula 5 — Versionamento, publicação e entrega – Relatórios reprodutíveis com R</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -20,6 +24,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -29,16 +68,18 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../trabalho_final.html" rel="next">
+<link href="../aulas/aula-4.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-055080f5f83ef30f4c6064f8e3ce190b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5dd5f4957db40a1eb105bb83283b05cd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -53,21 +94,22 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
   }
 }</script>
 
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -76,13 +118,13 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Aula 5 – Compartilhando Relatórios com Quarto</li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../aulas/aula-1.html">Aulas</a></li><li class="breadcrumb-item"><a href="../aulas/aula-5.html">Aula 5 — Versionamento, publicação e entrega</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -94,17 +136,16 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="https://www.ime.usp.br/verao/assets/images/logo_verao.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="https://www.ime.usp.br/verao/assets/images/logo_verao.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="https://www.ime.usp.br/verao/assets/images/logo_verao.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
-      <div class="sidebar-tools-main tools-wide">
-    <a href="https://openscapes.org" title="Openscapes.org" class="quarto-navigation-tool px-1" aria-label="Openscapes.org"><i class="bi bi-globe"></i></a>
-    <a href="https://github.com/openscapes/quarto-website-tutorial" title="Quarto website tutorial" class="quarto-navigation-tool px-1" aria-label="Quarto website tutorial"><i class="bi bi-github"></i></a>
-    <a href="https://twitter.com/openscapes" title="Openscapes Twitter" class="quarto-navigation-tool px-1" aria-label="Openscapes Twitter"><i class="bi bi-twitter"></i></a>
+      <div class="sidebar-tools-main">
+    <a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios" title="Repositório do curso" class="quarto-navigation-tool px-1" aria-label="Repositório do curso"><i class="bi bi-github"></i></a>
 </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Procurar"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -125,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Sobre o curso</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -133,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../informacoes-gerais.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Informações Gerais</span></a>
+ <span class="menu-text">Informações gerais</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -145,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../faq.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Perguntas Frequentes (FAQ)</span></a>
+ <span class="menu-text">Perguntas frequentes</span></a>
   </div>
 </li>
       </ul>
@@ -154,7 +195,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Materiais</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -168,30 +209,54 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Slides e materiais por aula</span></a>
+ <span class="menu-text">Slides e materiais de apoio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materiais/exemplos/relatorio-parametrizado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exemplo: relatório parametrizado</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Aulas</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../aulas/aula-1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aula 1 – Configurações e Introdução ao Quarto</span></a>
+ <span class="menu-text">Aula 1 — Reprodutibilidade e primeiro documento Quarto</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../aulas/aula-2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aula 2 – Estrutura, Estilo e Layout de Relatórios</span></a>
+ <span class="menu-text">Aula 2 — Estrutura, estilo e comunicação</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../aulas/aula-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aula 3 — Dados, formatos e automação</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../aulas/aula-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aula 4 — Interatividade, parâmetros e projetos reutilizáveis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../aulas/aula-5.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Aula 5 — Versionamento, publicação e entrega</span></a>
   </div>
 </li>
       </ul>
@@ -200,7 +265,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Trabalho Final</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -217,7 +282,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Edições anteriores</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -259,17 +324,48 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#visão-geral" id="toc-visão-geral" class="nav-link active" data-scroll-target="#visão-geral">Visão geral</a>
+  <ul class="collapse">
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link" data-scroll-target="#objetivos-de-aprendizagem">Objetivos de aprendizagem</a></li>
+  </ul></li>
+  <li><a href="#o-que-deve-ser-versionado" id="toc-o-que-deve-ser-versionado" class="nav-link" data-scroll-target="#o-que-deve-ser-versionado">1. O que deve ser versionado?</a></li>
+  <li><a href="#um-ciclo-de-trabalho-com-git" id="toc-um-ciclo-de-trabalho-com-git" class="nav-link" data-scroll-target="#um-ciclo-de-trabalho-com-git">2. Um ciclo de trabalho com Git</a>
+  <ul class="collapse">
+  <li><a href="#como-reconhecer-um-bom-commit" id="toc-como-reconhecer-um-bom-commit" class="nav-link" data-scroll-target="#como-reconhecer-um-bom-commit">Como reconhecer um bom commit</a></li>
+  </ul></li>
+  <li><a href="#readme-como-porta-de-entrada" id="toc-readme-como-porta-de-entrada" class="nav-link" data-scroll-target="#readme-como-porta-de-entrada">3. README como porta de entrada</a></li>
+  <li><a href="#publicação-no-github-pages" id="toc-publicação-no-github-pages" class="nav-link" data-scroll-target="#publicação-no-github-pages">4. Publicação no GitHub Pages</a></li>
+  <li><a href="#revisão-antes-de-publicar" id="toc-revisão-antes-de-publicar" class="nav-link" data-scroll-target="#revisão-antes-de-publicar">5. Revisão antes de publicar</a>
+  <ul class="collapse">
+  <li><a href="#conteúdo" id="toc-conteúdo" class="nav-link" data-scroll-target="#conteúdo">Conteúdo</a></li>
+  <li><a href="#reprodutibilidade" id="toc-reprodutibilidade" class="nav-link" data-scroll-target="#reprodutibilidade">Reprodutibilidade</a></li>
+  <li><a href="#acessibilidade-e-apresentação" id="toc-acessibilidade-e-apresentação" class="nav-link" data-scroll-target="#acessibilidade-e-apresentação">Acessibilidade e apresentação</a></li>
+  </ul></li>
+  <li><a href="#prática-guiada" id="toc-prática-guiada" class="nav-link" data-scroll-target="#prática-guiada">Prática guiada</a></li>
+  <li><a href="#entrega-final" id="toc-entrega-final" class="nav-link" data-scroll-target="#entrega-final">Entrega final</a></li>
+  <li><a href="#checklist-de-conclusão" id="toc-checklist-de-conclusão" class="nav-link" data-scroll-target="#checklist-de-conclusão">Checklist de conclusão</a></li>
+  <li><a href="#leitura-complementar" id="toc-leitura-complementar" class="nav-link" data-scroll-target="#leitura-complementar">Leitura complementar</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/edit/main/aulas/aula-5.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../aulas/aula-1.html">Aulas</a></li><li class="breadcrumb-item"><a href="../aulas/aula-5.html">Aula 5 — Versionamento, publicação e entrega</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Aula 5 – Compartilhando Relatórios com Quarto</h1>
+<h1 class="title">Aula 5 — Versionamento, publicação e entrega</h1>
 </div>
 
+<div>
+  <div class="description">
+    Como revisar, versionar e publicar um projeto Quarto com segurança.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -284,8 +380,222 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="visão-geral" class="level2">
+<h2 class="anchored" data-anchor-id="visão-geral">Visão geral</h2>
+<p>A última aula fecha o ciclo: transformar uma pasta que funciona apenas no computador do autor em um projeto documentado, versionado e acessível ao público. Vamos usar o próprio site deste curso como exemplo — ele é, ele mesmo, um projeto Quarto versionado no Git e publicado no GitHub Pages.</p>
+<section id="objetivos-de-aprendizagem" class="level3">
+<h3 class="anchored" data-anchor-id="objetivos-de-aprendizagem">Objetivos de aprendizagem</h3>
+<ul>
+<li>criar commits pequenos e informativos;</li>
+<li>distinguir arquivos-fonte de artefatos gerados;</li>
+<li>preparar um repositório para colaboração;</li>
+<li>publicar conteúdo Quarto no GitHub Pages;</li>
+<li>realizar uma revisão final de reprodutibilidade e comunicação.</li>
+</ul>
+</section>
+</section>
+<section id="o-que-deve-ser-versionado" class="level2">
+<h2 class="anchored" data-anchor-id="o-que-deve-ser-versionado">1. O que deve ser versionado?</h2>
+<p>Versione tudo o que é necessário para compreender e reproduzir o projeto:</p>
+<ul>
+<li>arquivos <code>.qmd</code>, scripts e funções (por exemplo, este repositório versiona <code>aulas/*.qmd</code> e <code>materiais/exemplos/R/indicadores.R</code>);</li>
+<li>dados que podem ser compartilhados (<code>dados/populacao_uf.csv</code>, <code>dados/pib_uf.csv</code> e o <code>dados/README.md</code> que documenta a fonte);</li>
+<li>imagens e referências usadas no documento;</li>
+<li><code>_quarto.yml</code> ou <code>_quarto.yaml</code>;</li>
+<li><code>README.md</code> e <code>renv.lock</code>.</li>
+</ul>
+<p>Não versione credenciais, dados sigilosos, histórico do R ou bibliotecas instaladas. Use <code>.gitignore</code>:</p>
+<pre class="gitignore"><code>.Rhistory
+.RData
+.Rproj.user/
+.quarto/
+renv/library/</code></pre>
+<div class="callout callout-style-default callout-warning callout-titled" title="Credenciais">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Credenciais
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Senhas, tokens e chaves de API nunca devem aparecer no código ou no histórico do Git. Use variáveis de ambiente e arquivos locais ignorados.</p>
+</div>
+</div>
+</section>
+<section id="um-ciclo-de-trabalho-com-git" class="level2">
+<h2 class="anchored" data-anchor-id="um-ciclo-de-trabalho-com-git">2. Um ciclo de trabalho com Git</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>git status</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>git <span class="fu">diff</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>git add caminho<span class="op">/</span><span class="cf">do</span><span class="op">/</span>arquivo</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>git commit <span class="op">-</span>m <span class="st">"Explica a análise de receita regional"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>git push</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Antes do commit, leia o <code>git diff</code> — ele mostra exatamente o que vai entrar no histórico, linha por linha, o que evita commitar algo por engano (um arquivo de dados temporário, uma credencial, uma alteração não intencional).</p>
+<section id="como-reconhecer-um-bom-commit" class="level3">
+<h3 class="anchored" data-anchor-id="como-reconhecer-um-bom-commit">Como reconhecer um bom commit</h3>
+<p>Nenhum projeto tem 100% de commits perfeitos — inclusive o deste próprio curso. Alguns exemplos reais do histórico deste repositório:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mensagem real</th>
+<th>O que dá pra melhorar</th>
+<th>Versão mais descritiva</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>AJuste depis de redenrizar</code></td>
+<td>não diz o quê, nem por quê; tem erros de digitação</td>
+<td><code>Corrige links quebrados após renderizar o site</code></td>
+</tr>
+<tr class="even">
+<td><code>Arquivo repoduciveis</code></td>
+<td>é um substantivo solto, não uma frase sobre a mudança</td>
+<td><code>Adiciona seção sobre reprodutibilidade na Aula 1</code></td>
+</tr>
+<tr class="odd">
+<td><code>Salvando alterações da aula 3</code></td>
+<td>descreve o ato de salvar, não o conteúdo da mudança</td>
+<td><code>Adiciona pipeline de dados e exemplo de renv na Aula 3</code></td>
+</tr>
+</tbody>
+</table>
+<p>O padrão comum nos três: descrevem <em>que algo mudou</em>, não <em>o que</em> mudou nem <em>por quê</em>. Uma boa mensagem de commit deixa alguém entender a alteração só de ler o histórico, sem precisar abrir o <code>diff</code>.</p>
+</section>
+</section>
+<section id="readme-como-porta-de-entrada" class="level2">
+<h2 class="anchored" data-anchor-id="readme-como-porta-de-entrada">3. README como porta de entrada</h2>
+<p>Um repositório de curso ou projeto deve informar:</p>
+<ol type="1">
+<li>propósito e público;</li>
+<li>estrutura das pastas;</li>
+<li>requisitos e instalação;</li>
+<li>como renderizar;</li>
+<li>autoria, licença e fonte dos dados;</li>
+<li>link para a versão publicada.</li>
+</ol>
+<p>O <a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/README.md"><code>README.md</code> deste próprio repositório</a> segue essa estrutura — abra-o como referência: ele lista o conteúdo do repositório, os pré-requisitos, o comando <code>renv::restore()</code> para restaurar o ambiente e o comando <code>quarto preview</code> para visualizar localmente. Peça para outra pessoa seguir o README do seu próprio projeto; instruções que só funcionam para quem escreveu ainda estão incompletas.</p>
+</section>
+<section id="publicação-no-github-pages" class="level2">
+<h2 class="anchored" data-anchor-id="publicação-no-github-pages">4. Publicação no GitHub Pages</h2>
+<p>Para um site Quarto, defina o projeto:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">website</span><span class="kw">:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Meu projeto"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Renderize, confira a pasta de saída e escolha uma estratégia de publicação. Este próprio site usa a mais simples das três: publica a pasta <code>_site/</code> já renderizada. O workflow completo, em <code>.github/workflows/static.yml</code>, é curto:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"main"</span><span class="kw">]</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">permissions</span><span class="kw">:</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> read</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pages</span><span class="kw">:</span><span class="at"> write</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">id-token</span><span class="kw">:</span><span class="at"> write</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">deploy</span><span class="kw">:</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v4</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/configure-pages@v5</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/upload-pages-artifact@v3</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">path</span><span class="kw">:</span><span class="at"> </span><span class="st">'_site'</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/deploy-pages@v4</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A cada <code>push</code> para <code>main</code>, o GitHub publica o conteúdo que já está em <code>_site/</code> — o Quarto <strong>não</strong> roda dentro do GitHub Actions. Isso significa uma regra importante para quem contribui com este repositório: depois de alterar um <code>.qmd</code>, é preciso rodar <code>quarto render</code> localmente e incluir a pasta <code>_site/</code> atualizada no mesmo commit, ou a publicação ficará desatualizada mesmo com o código-fonte correto.</p>
+<p>A alternativa — mais comum em projetos que não querem versionar HTML gerado — é deixar o próprio GitHub Actions instalar o Quarto e renderizar a cada <code>push</code>, com a action oficial <code>quarto-dev/quarto-actions/render</code>. Ela evita versionar <code>_site/</code>, ao custo de um workflow um pouco mais longo e um tempo de build a cada publicação. Nenhuma das duas é “a certa” — a escolha depende de quanto controle você quer sobre o ambiente de renderização.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consulte <a href="https://quarto.org/docs/publishing/github-pages.html">Publicação no GitHub Pages</a> antes de escolher. Não misture as duas estratégias no mesmo repositório.</p>
+</div>
+</div>
+</section>
+<section id="revisão-antes-de-publicar" class="level2">
+<h2 class="anchored" data-anchor-id="revisão-antes-de-publicar">5. Revisão antes de publicar</h2>
+<section id="conteúdo" class="level3">
+<h3 class="anchored" data-anchor-id="conteúdo">Conteúdo</h3>
+<ul>
+<li>a pergunta e o público estão explícitos?</li>
+<li>cada gráfico e tabela tem uma mensagem?</li>
+<li>conclusões são sustentadas pelos resultados?</li>
+<li>fontes, autoria e limitações estão registradas? (compare com <code>dados/README.md</code> deste curso, que documenta de onde vêm os números e quando foram coletados)</li>
+</ul>
+</section>
+<section id="reprodutibilidade" class="level3">
+<h3 class="anchored" data-anchor-id="reprodutibilidade">Reprodutibilidade</h3>
+<ul>
+<li>o projeto usa caminhos relativos ou <code>here::here()</code>?</li>
+<li>renderiza depois de reiniciar o R?</li>
+<li>dependências estão registradas em <code>renv.lock</code>?</li>
+<li>dados e instruções de obtenção estão disponíveis?</li>
+</ul>
+</section>
+<section id="acessibilidade-e-apresentação" class="level3">
+<h3 class="anchored" data-anchor-id="acessibilidade-e-apresentação">Acessibilidade e apresentação</h3>
+<ul>
+<li>títulos seguem uma hierarquia lógica?</li>
+<li>imagens e gráficos têm texto alternativo específico?</li>
+<li>cores têm contraste e não são o único canal de informação?</li>
+<li>links têm textos descritivos (não “clique aqui”)?</li>
+</ul>
+</section>
+</section>
+<section id="prática-guiada" class="level2">
+<h2 class="anchored" data-anchor-id="prática-guiada">Prática guiada</h2>
+<ol type="1">
+<li>Execute <code>git status</code> e classifique cada arquivo como fonte, dado, configuração ou saída.</li>
+<li>Atualize o <code>.gitignore</code> sem esconder arquivos necessários.</li>
+<li>Escreva ou revise o README do seu projeto, usando o deste curso como referência de estrutura.</li>
+<li>Renderize em uma sessão limpa.</li>
+<li>Escreva a mensagem de um commit real que você precise fazer — depois compare com a tabela da seção 2 antes de confirmar.</li>
+<li>Publique o projeto e teste o link publicado em uma janela anônima do navegador.</li>
+</ol>
+</section>
+<section id="entrega-final" class="level2">
+<h2 class="anchored" data-anchor-id="entrega-final">Entrega final</h2>
+<p>Use a <a href="../trabalho_final.html">rubrica e as instruções do trabalho</a>. Entregue o link publicado e o repositório ou arquivo compactado com as fontes.</p>
+</section>
+<section id="checklist-de-conclusão" class="level2">
+<h2 class="anchored" data-anchor-id="checklist-de-conclusão">Checklist de conclusão</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">O README permite que outra pessoa execute o projeto.</label></li>
+<li><label><input type="checkbox">Nenhuma credencial ou informação sigilosa foi versionada.</label></li>
+<li><label><input type="checkbox">O histórico tem commits compreensíveis — reli minhas últimas mensagens antes de finalizar.</label></li>
+<li><label><input type="checkbox">A versão publicada abre e contém todos os recursos (gráficos interativos, mapas, tabelas).</label></li>
+<li><label><input type="checkbox">A entrega atende à rubrica do curso.</label></li>
+</ul>
+</section>
+<section id="leitura-complementar" class="level2">
+<h2 class="anchored" data-anchor-id="leitura-complementar">Leitura complementar</h2>
+<ul>
+<li><a href="https://docs.github.com/pt/get-started/using-git/about-git">GitHub: começar com Git</a></li>
+<li><a href="https://quarto.org/docs/publishing/">Quarto: publicação</a></li>
+<li><a href="https://docs.github.com/pt/pages">GitHub Pages</a></li>
+<li><a href="https://github.com/quarto-dev/quarto-actions">quarto-actions: renderização no CI</a></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -313,12 +623,12 @@ ul.task-list li input[type="checkbox"] {
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copiada");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copiada");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -339,13 +649,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -360,7 +671,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/openscapes\.github\.io\/quarto-website-tutorial");
+        var filterRegex = new RegExp("https:\/\/lemuelemos\.github\.io\/2026-curso-de-verao-ime-usp-relatorios\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -687,17 +998,29 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../aulas/aula-4.html" class="pagination-link" aria-label="Aula 4 — Interatividade, parâmetros e projetos reutilizáveis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Aula 4 — Interatividade, parâmetros e projetos reutilizáveis</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../trabalho_final.html" class="pagination-link" aria-label="Instruções de Trabalho Final">
+        <span class="nav-page-text">Instruções de Trabalho Final</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© CC-By Openscapes, 2024</p>
+<p>Conteúdo sob licença <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br">CC BY-SA 4.0</a>.</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/openscapes/quarto-website-tutorial/edit/main/aulas/aula-5.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/openscapes/quarto-website-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/edit/main/aulas/aula-5.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+<p>Site criado com <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
   </div>
 </footer>

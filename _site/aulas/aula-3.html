@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Como transformar uma análise em relatórios HTML, PDF e Word atualizáveis.">
 
-<title>Aula 3 – Criando Relatórios em PDF com Quarto – Relatórios reprodutíveis com R</title>
+<title>Aula 3 — Dados, formatos e automação – Relatórios reprodutíveis com R</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -20,6 +24,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -29,16 +68,18 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../aulas/aula-4.html" rel="next">
+<link href="../aulas/aula-2.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-055080f5f83ef30f4c6064f8e3ce190b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5dd5f4957db40a1eb105bb83283b05cd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -53,21 +94,22 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
   }
 }</script>
 
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -76,13 +118,13 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Aula 3 – Criando Relatórios em PDF com Quarto</li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../aulas/aula-1.html">Aulas</a></li><li class="breadcrumb-item"><a href="../aulas/aula-3.html">Aula 3 — Dados, formatos e automação</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -94,17 +136,16 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="https://www.ime.usp.br/verao/assets/images/logo_verao.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="https://www.ime.usp.br/verao/assets/images/logo_verao.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="https://www.ime.usp.br/verao/assets/images/logo_verao.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
-      <div class="sidebar-tools-main tools-wide">
-    <a href="https://openscapes.org" title="Openscapes.org" class="quarto-navigation-tool px-1" aria-label="Openscapes.org"><i class="bi bi-globe"></i></a>
-    <a href="https://github.com/openscapes/quarto-website-tutorial" title="Quarto website tutorial" class="quarto-navigation-tool px-1" aria-label="Quarto website tutorial"><i class="bi bi-github"></i></a>
-    <a href="https://twitter.com/openscapes" title="Openscapes Twitter" class="quarto-navigation-tool px-1" aria-label="Openscapes Twitter"><i class="bi bi-twitter"></i></a>
+      <div class="sidebar-tools-main">
+    <a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios" title="Repositório do curso" class="quarto-navigation-tool px-1" aria-label="Repositório do curso"><i class="bi bi-github"></i></a>
 </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Procurar"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -125,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Sobre o curso</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -133,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../informacoes-gerais.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Informações Gerais</span></a>
+ <span class="menu-text">Informações gerais</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -145,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../faq.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Perguntas Frequentes (FAQ)</span></a>
+ <span class="menu-text">Perguntas frequentes</span></a>
   </div>
 </li>
       </ul>
@@ -154,7 +195,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Materiais</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -168,30 +209,54 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Slides e materiais por aula</span></a>
+ <span class="menu-text">Slides e materiais de apoio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materiais/exemplos/relatorio-parametrizado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exemplo: relatório parametrizado</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Aulas</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../aulas/aula-1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aula 1 – Configurações e Introdução ao Quarto</span></a>
+ <span class="menu-text">Aula 1 — Reprodutibilidade e primeiro documento Quarto</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../aulas/aula-2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aula 2 – Estrutura, Estilo e Layout de Relatórios</span></a>
+ <span class="menu-text">Aula 2 — Estrutura, estilo e comunicação</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../aulas/aula-3.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Aula 3 — Dados, formatos e automação</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../aulas/aula-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aula 4 — Interatividade, parâmetros e projetos reutilizáveis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../aulas/aula-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aula 5 — Versionamento, publicação e entrega</span></a>
   </div>
 </li>
       </ul>
@@ -200,7 +265,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Trabalho Final</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -217,7 +282,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Edições anteriores</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -259,17 +324,43 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#visão-geral" id="toc-visão-geral" class="nav-link active" data-scroll-target="#visão-geral">Visão geral</a>
+  <ul class="collapse">
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link" data-scroll-target="#objetivos-de-aprendizagem">Objetivos de aprendizagem</a></li>
+  </ul></li>
+  <li><a href="#estrutura-de-projeto-deste-curso" id="toc-estrutura-de-projeto-deste-curso" class="nav-link" data-scroll-target="#estrutura-de-projeto-deste-curso">1. Estrutura de projeto deste curso</a></li>
+  <li><a href="#primeiro-olhar-nos-dados" id="toc-primeiro-olhar-nos-dados" class="nav-link" data-scroll-target="#primeiro-olhar-nos-dados">2. Primeiro olhar nos dados</a></li>
+  <li><a href="#juntando-duas-fontes-de-dados" id="toc-juntando-duas-fontes-de-dados" class="nav-link" data-scroll-target="#juntando-duas-fontes-de-dados">3. Juntando duas fontes de dados</a></li>
+  <li><a href="#um-fluxo-com-responsabilidades-claras" id="toc-um-fluxo-com-responsabilidades-claras" class="nav-link" data-scroll-target="#um-fluxo-com-responsabilidades-claras">4. Um fluxo com responsabilidades claras</a></li>
+  <li><a href="#resultados-dinâmicos-no-texto" id="toc-resultados-dinâmicos-no-texto" class="nav-link" data-scroll-target="#resultados-dinâmicos-no-texto">5. Resultados dinâmicos no texto</a></li>
+  <li><a href="#escolha-do-formato" id="toc-escolha-do-formato" class="nav-link" data-scroll-target="#escolha-do-formato">6. Escolha do formato</a></li>
+  <li><a href="#controle-da-execução" id="toc-controle-da-execução" class="nav-link" data-scroll-target="#controle-da-execução">7. Controle da execução</a></li>
+  <li><a href="#reprodutibilidade-do-ambiente" id="toc-reprodutibilidade-do-ambiente" class="nav-link" data-scroll-target="#reprodutibilidade-do-ambiente">8. Reprodutibilidade do ambiente</a></li>
+  <li><a href="#prática-guiada" id="toc-prática-guiada" class="nav-link" data-scroll-target="#prática-guiada">Prática guiada</a></li>
+  <li><a href="#para-o-projeto-final" id="toc-para-o-projeto-final" class="nav-link" data-scroll-target="#para-o-projeto-final">Para o projeto final</a></li>
+  <li><a href="#checklist" id="toc-checklist" class="nav-link" data-scroll-target="#checklist">Checklist</a></li>
+  <li><a href="#leitura-complementar" id="toc-leitura-complementar" class="nav-link" data-scroll-target="#leitura-complementar">Leitura complementar</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/edit/main/aulas/aula-3.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../aulas/aula-1.html">Aulas</a></li><li class="breadcrumb-item"><a href="../aulas/aula-3.html">Aula 3 — Dados, formatos e automação</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Aula 3 – Criando Relatórios em PDF com Quarto</h1>
+<h1 class="title">Aula 3 — Dados, formatos e automação</h1>
 </div>
 
+<div>
+  <div class="description">
+    Como transformar uma análise em relatórios HTML, PDF e Word atualizáveis.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -284,8 +375,496 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="visão-geral" class="level2">
+<h2 class="anchored" data-anchor-id="visão-geral">Visão geral</h2>
+<p>Até aqui construímos documentos com estrutura e elementos visuais, sempre a partir de um único arquivo já pronto. Agora vamos organizar o fluxo completo: ler mais de uma fonte de dados, juntá-las, tratar o que não bate entre elas, gerar resultados e escolher o formato de saída adequado ao público.</p>
+<section id="objetivos-de-aprendizagem" class="level3">
+<h3 class="anchored" data-anchor-id="objetivos-de-aprendizagem">Objetivos de aprendizagem</h3>
+<ul>
+<li>separar importação, tratamento, análise e comunicação;</li>
+<li>usar caminhos relativos e uma estrutura de projeto previsível, com <code>here::here()</code>;</li>
+<li>juntar duas fontes de dados e lidar com valores ausentes de forma explícita;</li>
+<li>gerar texto, tabelas e gráficos a partir dos mesmos dados;</li>
+<li>escolher entre HTML, PDF e Word;</li>
+<li>configurar a execução para produzir resultados atualizáveis.</li>
+</ul>
+</section>
+</section>
+<section id="estrutura-de-projeto-deste-curso" class="level2">
+<h2 class="anchored" data-anchor-id="estrutura-de-projeto-deste-curso">1. Estrutura de projeto deste curso</h2>
+<pre class="text"><code>2026-curso-de-verao-ime-usp-relatorios/
+├── dados/
+│   ├── populacao_uf.csv
+│   └── pib_uf.csv
+├── aulas/
+│   └── aula-3.qmd
+├── materiais/
+│   └── exemplos/
+├── _quarto.yaml
+└── curso-relatorios-quarto.Rproj</code></pre>
+<p><code>dados/populacao_uf.csv</code> e <code>aulas/aula-3.qmd</code> estão em pastas diferentes. Um caminho como <code>"dados/populacao_uf.csv"</code>, escrito literalmente, só funciona se o R estiver executando a partir da <strong>raiz do projeto</strong> — o que depende de onde o arquivo mora e de como ele é aberto. Isso já causou os exemplos das Aulas 1 e 2 funcionarem: este site configura, em <code>_quarto.yaml</code>, a opção <code>execute-dir: project</code>, que força todo <code>.qmd</code> a rodar a partir da raiz, não importa em qual subpasta ele esteja.</p>
+<p>Fora deste site — no seu próprio projeto — é mais seguro não depender dessa configuração e usar o pacote <code>here</code>, que descobre a raiz do projeto sozinho (procurando o arquivo <code>.Rproj</code> ou <code>_quarto.yml</code>) e constrói o caminho a partir dali:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"populacao_uf.csv"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "D:/Projetos_Lemuel/2026-curso-de-verao-ime-usp-relatorios/dados/populacao_uf.csv"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>populacao_uf <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"populacao_uf.csv"</span>), <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>here::here()</code> funciona mesmo se o <code>.qmd</code> for movido para outra subpasta, e funciona igual no seu computador e no de outra pessoa — diferente de um caminho absoluto como <code>"C:/Users/você/Desktop/dados.csv"</code>, que só existe na sua máquina.</p>
+</section>
+<section id="primeiro-olhar-nos-dados" class="level2">
+<h2 class="anchored" data-anchor-id="primeiro-olhar-nos-dados">2. Primeiro olhar nos dados</h2>
+<p>Antes de transformar qualquer coisa, vale inspecionar o que chegou. <code>skimr::skim()</code> resume cada coluna — tipo, valores ausentes, estatísticas básicas — em um único bloco:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(populacao_uf)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">populacao_uf</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">27</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 13%">
+<col style="width: 19%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">min</th>
+<th style="text-align: right;">max</th>
+<th style="text-align: right;">empty</th>
+<th style="text-align: right;">n_unique</th>
+<th style="text-align: right;">whitespace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">uf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">nome_uf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">regiao</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">capital</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 8%">
+<col style="width: 11%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">populacao</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7520768.74</td>
+<td style="text-align: right;">8924062.79</td>
+<td style="text-align: right;">636707.00</td>
+<td style="text-align: right;">2787197.00</td>
+<td style="text-align: right;">3941613.00</td>
+<td style="text-align: right;">8926944.00</td>
+<td style="text-align: right;">44411238.00</td>
+<td style="text-align: left;">▇▂▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">area_km2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">315793.99</td>
+<td style="text-align: right;">376781.38</td>
+<td style="text-align: right;">5822.10</td>
+<td style="text-align: right;">75893.00</td>
+<td style="text-align: right;">224299.00</td>
+<td style="text-align: right;">336035.00</td>
+<td style="text-align: right;">1570745.70</td>
+<td style="text-align: left;">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">latitude</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-12.40</td>
+<td style="text-align: right;">9.02</td>
+<td style="text-align: right;">-30.03</td>
+<td style="text-align: right;">-20.12</td>
+<td style="text-align: right;">-10.18</td>
+<td style="text-align: right;">-5.44</td>
+<td style="text-align: right;">2.82</td>
+<td style="text-align: left;">▃▃▅▇▆</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">longitude</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-47.16</td>
+<td style="text-align: right;">9.12</td>
+<td style="text-align: right;">-67.81</td>
+<td style="text-align: right;">-51.15</td>
+<td style="text-align: right;">-47.93</td>
+<td style="text-align: right;">-39.44</td>
+<td style="text-align: right;">-34.86</td>
+<td style="text-align: left;">▂▃▇▆▇</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">densidade_dem</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">72.12</td>
+<td style="text-align: right;">111.92</td>
+<td style="text-align: right;">2.51</td>
+<td style="text-align: right;">6.58</td>
+<td style="text-align: right;">35.02</td>
+<td style="text-align: right;">81.51</td>
+<td style="text-align: right;">483.91</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Duas perguntas valem sempre a pena antes de prosseguir: o número de linhas bate com o esperado (aqui, 27 — uma por unidade federativa)? Alguma coluna tem valores ausentes (<code>n_missing</code>) que precisam de explicação?</p>
+</section>
+<section id="juntando-duas-fontes-de-dados" class="level2">
+<h2 class="anchored" data-anchor-id="juntando-duas-fontes-de-dados">3. Juntando duas fontes de dados</h2>
+<p><code>pib_uf.csv</code> traz o PIB per capita por estado, mas de um ano de referência diferente do <code>populacao_uf.csv</code> — isso é comum quando os dados vêm de levantamentos diferentes do IBGE, e é um ótimo motivo para nunca juntar tabelas sem checar o que aconteceu:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pib_uf <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"pib_uf.csv"</span>), <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>estados <span class="ot">&lt;-</span> populacao_uf <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(pib_uf, <span class="at">by =</span> <span class="st">"uf"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(estados)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 27
+Columns: 11
+$ uf             &lt;chr&gt; "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "…
+$ nome_uf        &lt;chr&gt; "Acre", "Alagoas", "Amazonas", "Amapá", "Bahia", "Ceará…
+$ regiao         &lt;chr&gt; "Norte", "Nordeste", "Norte", "Norte", "Nordeste", "Nor…
+$ capital        &lt;chr&gt; "Rio Branco", "Maceió", "Manaus", "Macapá", "Salvador",…
+$ populacao      &lt;dbl&gt; 830018, 3127683, 3941613, 733759, 14141626, 8794957, 28…
+$ area_km2       &lt;dbl&gt; 164122.2, 27767.7, 1570745.7, 142814.6, 564692.7, 14882…
+$ latitude       &lt;dbl&gt; -9.97, -9.65, -3.10, 0.03, -12.97, -3.72, -15.78, -20.3…
+$ longitude      &lt;dbl&gt; -67.81, -35.71, -60.02, -51.07, -38.51, -38.54, -47.93,…
+$ densidade_dem  &lt;dbl&gt; 5.06, 112.64, 2.51, 5.14, 25.04, 59.10, 483.91, 83.20, …
+$ ano_referencia &lt;dbl&gt; 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2…
+$ pib_per_capita &lt;dbl&gt; 31675.60, 28675.84, 41047.91, 38187.09, 30476.54, 26405…</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(estados<span class="sc">$</span>pib_per_capita))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<p>Neste caso o resultado é zero — as duas bases cobrem as mesmas 27 unidades federativas —, mas em dados reais é comum um <code>left_join</code> produzir <code>NA</code> quando uma chave existe de um lado e não do outro (um estado sem PIB registrado no ano da fonte, por exemplo). Nunca ignore isso silenciosamente: decida, e registre a decisão no texto.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se houvesse NA em pib_per_capita, duas saídas comuns seriam:</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Descartar as linhas incompletas, sendo explícito sobre quantas:</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>estados <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pib_per_capita))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Substituir por um valor de referência (ex.: a média nacional),</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#    deixando claro no texto que aquele número é uma estimativa:</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>estados <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">pib_per_capita =</span> dplyr<span class="sc">::</span><span class="fu">coalesce</span>(pib_per_capita, <span class="fu">mean</span>(pib_per_capita, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="um-fluxo-com-responsabilidades-claras" class="level2">
+<h2 class="anchored" data-anchor-id="um-fluxo-com-responsabilidades-claras">4. Um fluxo com responsabilidades claras</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Importação</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>populacao_uf <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"populacao_uf.csv"</span>), <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>pib_uf <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"pib_uf.csv"</span>), <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Junção e tratamento</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>estados <span class="ot">&lt;-</span> populacao_uf <span class="sc">|&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(pib_uf, <span class="at">by =</span> <span class="st">"uf"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pib_per_capita))</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Transformação</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>resumo_regiao <span class="ot">&lt;-</span> estados <span class="sc">|&gt;</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(regiao) <span class="sc">|&gt;</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">pib_medio =</span> <span class="fu">mean</span>(pib_per_capita),</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(dplyr<span class="sc">::</span><span class="fu">desc</span>(pib_medio))</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Comunicação</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resumo_regiao, <span class="at">digits =</span> <span class="dv">0</span>, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Região"</span>, <span class="st">"PIB per capita médio (R$)"</span>))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Região</th>
+<th style="text-align: right;">PIB per capita médio (R$)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Centro-Oeste</td>
+<td style="text-align: right;">79754</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sudeste</td>
+<td style="text-align: right;">63168</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sul</td>
+<td style="text-align: right;">61940</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Norte</td>
+<td style="text-align: right;">38946</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nordeste</td>
+<td style="text-align: right;">27210</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Cada etapa tem um comentário que diz o que ela faz, e os nomes dos objetos (<code>estados</code>, <code>resumo_regiao</code>) descrevem o conteúdo, não a ordem de criação. Evite esconder uma transformação importante dentro de um bloco com nome genérico como <code>analise</code> — quem revisa o código depois (inclusive você, em três meses) precisa localizar rapidamente onde algo foi calculado.</p>
+</section>
+<section id="resultados-dinâmicos-no-texto" class="level2">
+<h2 class="anchored" data-anchor-id="resultados-dinâmicos-no-texto">5. Resultados dinâmicos no texto</h2>
+<p>Um valor citado em prosa deve vir do mesmo código usado na análise — nunca digitado à mão. A sintaxe do Quarto para isso é <strong>código R inline</strong>: no meio do parágrafo (não dentro de um bloco <code>```{r}</code>), escreva um acento grave, a letra <code>r</code>, um espaço, a expressão a calcular, e feche com outro acento grave.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>regiao_maior_pib <span class="ot">&lt;-</span> resumo_regiao<span class="sc">$</span>regiao[<span class="dv">1</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>pib_regiao_maior <span class="ot">&lt;-</span> resumo_regiao<span class="sc">$</span>pib_medio[<span class="dv">1</span>]</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Esta própria frase usa a técnica: a região Centro-Oeste tem o maior PIB per capita médio entre as regiões, R$ 79.754. Nenhum desses dois valores foi digitado — ambos vieram do bloco <code>valor-dinamico</code> acima. Se <code>dados/pib_uf.csv</code> fosse atualizado com números de outro ano, a frase mudaria sozinha na próxima renderização, sem que ninguém precisasse achar e editar o número manualmente.</p>
+<p><code>glue::glue()</code> monta o texto substituindo <code>{expressão}</code> pelo valor calculado; é mais legível que concatenar strings com <code>paste0()</code> quando a frase tem várias partes variáveis.</p>
+</section>
+<section id="escolha-do-formato" class="level2">
+<h2 class="anchored" data-anchor-id="escolha-do-formato">6. Escolha do formato</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Formato</th>
+<th>Pontos fortes</th>
+<th>Atenções</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>HTML</td>
+<td>interatividade, links, navegação e publicação web</td>
+<td>exige navegador para leitura</td>
+</tr>
+<tr class="even">
+<td>PDF</td>
+<td>layout estável e impressão</td>
+<td>requer uma distribuição TeX e pouca interatividade</td>
+</tr>
+<tr class="odd">
+<td>Word</td>
+<td>revisão e edição por terceiros</td>
+<td>aparência pode variar entre programas</td>
+</tr>
+</tbody>
+</table>
+<p>Um único arquivo pode gerar mais de uma saída:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Decida pelo público">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Decida pelo público
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use HTML para exploração e publicação, PDF para documentos fechados e Word quando o fluxo exige revisão editorial fora do código.</p>
+</div>
+</div>
+</section>
+<section id="controle-da-execução" class="level2">
+<h2 class="anchored" data-anchor-id="controle-da-execução">7. Controle da execução</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">message</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">error</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Essas opções controlam a <strong>apresentação</strong>, não corrigem código. Um aviso escondido continua acontecendo — só deixa de aparecer no documento final. Durante o desenvolvimento, mantenha mensagens e código visíveis; esconda-os somente quando o relatório estiver estável e isso fizer sentido para o público.</p>
+<p>Opções úteis por bloco, sobrepondo o padrão do documento:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-pib-regiao</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "PIB per capita médio por região."</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: "Gráfico de barras com o PIB per capita médio de cada região."</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="reprodutibilidade-do-ambiente" class="level2">
+<h2 class="anchored" data-anchor-id="reprodutibilidade-do-ambiente">8. Reprodutibilidade do ambiente</h2>
+<p>O <code>renv.lock</code> registra a versão exata de cada pacote usado no projeto. No projeto do trabalho final:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>init()</code> cria a infraestrutura do <code>renv</code> num projeto novo;</li>
+<li><code>snapshot()</code> atualiza <code>renv.lock</code> com os pacotes de fato usados e instalados;</li>
+<li><code>restore()</code> reinstala exatamente essas versões — é o que outra pessoa roda ao clonar seu repositório.</li>
+</ul>
+<p>Não versione a biblioteca instalada em <code>renv/library</code> (ela é recriada por <code>restore()</code>); versione <code>renv.lock</code> e os arquivos de infraestrutura criados pelo <code>renv</code>.</p>
+</section>
+<section id="prática-guiada" class="level2">
+<h2 class="anchored" data-anchor-id="prática-guiada">Prática guiada</h2>
+<ol type="1">
+<li>Leia <code>dados/populacao_uf.csv</code> e <code>dados/pib_uf.csv</code> com <code>here::here()</code>.</li>
+<li>Rode <code>skimr::skim()</code> nas duas tabelas antes de juntá-las.</li>
+<li>Junte as duas com <code>dplyr::left_join()</code> e confira se apareceu algum <code>NA</code>.</li>
+<li>Produza uma tabela-resumo por região e um gráfico.</li>
+<li>Inclua uma frase com um valor calculado dinamicamente, como código R inline (acento grave, <code>r</code>, espaço, expressão, acento grave).</li>
+<li>Configure o YAML para gerar HTML e mais um formato.</li>
+<li>Reinicie o R e renderize novamente.</li>
+</ol>
+</section>
+<section id="para-o-projeto-final" class="level2">
+<h2 class="anchored" data-anchor-id="para-o-projeto-final">Para o projeto final</h2>
+<p>Adicione a base de dados ao seu projeto (ou documente como obtê-la) e implemente a importação, uma junção ou transformação, uma tabela e um gráfico. Registre as dependências com <code>renv::snapshot()</code>.</p>
+</section>
+<section id="checklist" class="level2">
+<h2 class="anchored" data-anchor-id="checklist">Checklist</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">Meu projeto usa <code>here::here()</code> ou caminhos relativos consistentes.</label></li>
+<li><label><input type="checkbox">Rodei <code>skimr::skim()</code> (ou equivalente) antes de transformar os dados.</label></li>
+<li><label><input type="checkbox">Verifiquei se uma junção produziu <code>NA</code> e decidi explicitamente o que fazer com eles.</label></li>
+<li><label><input type="checkbox">Texto, tabelas e gráficos vêm dos mesmos dados, sem números digitados à mão.</label></li>
+<li><label><input type="checkbox">Escolhi o formato com base no público.</label></li>
+<li><label><input type="checkbox">O documento renderiza em uma sessão limpa.</label></li>
+</ul>
+</section>
+<section id="leitura-complementar" class="level2">
+<h2 class="anchored" data-anchor-id="leitura-complementar">Leitura complementar</h2>
+<ul>
+<li><a href="https://quarto.org/docs/computations/execution-options.html">Quarto: execução de código</a></li>
+<li><a href="https://quarto.org/docs/output-formats/html-basics.html">Quarto: formatos HTML</a></li>
+<li><a href="https://quarto.org/docs/output-formats/pdf-basics.html">Quarto: formatos PDF</a></li>
+<li><a href="https://quarto.org/docs/output-formats/ms-word.html">Quarto: formatos Word</a></li>
+<li><a href="https://here.r-lib.org/articles/here.html">here: por que evitar setwd()</a></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -313,12 +892,12 @@ ul.task-list li input[type="checkbox"] {
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copiada");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copiada");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -339,13 +918,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -360,7 +940,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/openscapes\.github\.io\/quarto-website-tutorial");
+        var filterRegex = new RegExp("https:\/\/lemuelemos\.github\.io\/2026-curso-de-verao-ime-usp-relatorios\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -687,17 +1267,29 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../aulas/aula-2.html" class="pagination-link" aria-label="Aula 2 — Estrutura, estilo e comunicação">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Aula 2 — Estrutura, estilo e comunicação</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../aulas/aula-4.html" class="pagination-link" aria-label="Aula 4 — Interatividade, parâmetros e projetos reutilizáveis">
+        <span class="nav-page-text">Aula 4 — Interatividade, parâmetros e projetos reutilizáveis</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© CC-By Openscapes, 2024</p>
+<p>Conteúdo sob licença <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br">CC BY-SA 4.0</a>.</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/openscapes/quarto-website-tutorial/edit/main/aulas/aula-3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/openscapes/quarto-website-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/edit/main/aulas/aula-3.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+<p>Site criado com <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
   </div>
 </footer>

@@ -1,24 +1,372 @@
 [
   {
-    "objectID": "slides.html",
-    "href": "slides.html",
-    "title": "Slides e materiais por aula",
+    "objectID": "trabalho_final.html",
+    "href": "trabalho_final.html",
+    "title": "Instruções de Trabalho Final",
     "section": "",
-    "text": "Slide 1 - Introdução ao Curso\nSlide 2 - Introdução ao conceito de reprodutibilidade",
+    "text": "Objetivo: Você deverá criar um documento utilizando Quarto e compartilhá-lo conosco. O trabalho final tem como propósito consolidar os conhecimentos apresentados ao longo do curso, por meio da elaboração de um produto final estruturado e reprodutível.\nFormato do trabalho:\nVocê deverá escolher um dos três formatos abaixo para o seu trabalho final:\nA escolha do formato deve estar alinhada ao objetivo do trabalho e ao público-alvo que você deseja atingir.",
     "crumbs": [
-      "Materiais",
-      "Slides e materiais por aula"
+      "Trabalho Final",
+      "Instruções de Trabalho Final"
     ]
   },
   {
-    "objectID": "slides.html#aula-1",
-    "href": "slides.html#aula-1",
-    "title": "Slides e materiais por aula",
+    "objectID": "trabalho_final.html#etapas-pré-código",
+    "href": "trabalho_final.html#etapas-pré-código",
+    "title": "Instruções de Trabalho Final",
+    "section": "Etapas pré-código",
+    "text": "Etapas pré-código\n\nPense no formato escolhido (relatório executivo, slides ou artigo acadêmico), definindo:\n\no objetivo do documento;\no público-alvo;\no tipo de linguagem mais adequada.\n\nExemplos de aplicações:\n\nRelatório executivo apresentando uma análise de dados para tomada de decisão.\nApresentação em slides para exposição de resultados de uma pesquisa ou projeto.\nArtigo acadêmico com estrutura científica (não precisa estar completo, mas deve conter a organização típica e uso de código para gerar tabelas e gráficos).\nTutorial com código em R ou Python.\nPágina pessoal de divulgação.\nDashboard interativo.\nLivro ou capítulo inicial estruturado em Quarto.\n\nEscolha uma base de dados para utilizar. Algumas sugestões:\n\nAlguma base que você tenha interesse.\nPacote dados\nRepositório tidytuesday\nDados próprios de pesquisa ou trabalho.",
+    "crumbs": [
+      "Trabalho Final",
+      "Instruções de Trabalho Final"
+    ]
+  },
+  {
+    "objectID": "trabalho_final.html#passo-a-passo-com-r",
+    "href": "trabalho_final.html#passo-a-passo-com-r",
+    "title": "Instruções de Trabalho Final",
+    "section": "Passo a passo com R",
+    "text": "Passo a passo com R\n\nCrie um Projeto no RStudio para realizar a tarefa.\nUtilize boas práticas de nomeação: não use espaços, caracteres especiais ou acentuação.\nO projeto deve chamar-se:\ntrabalho_relatorios_nome_sobrenome\nExemplo: trabalho_relatorios_beatriz_milz\n\nVocê pode criar um projeto simples ou um projeto Quarto (que já traz estrutura adequada para relatórios, apresentações, websites ou livros).\nTodos os passos seguintes devem ser realizados dentro deste projeto.\n\n\nCrie a estrutura básica do projeto:\n\n\nPasta dados para bases de dados (se necessário).\nPasta img para imagens (se necessário).\n\nVocê pode criar manualmente ou usando:\n\nfs::dir_create(\"dados\")\nfs::dir_create(\"img\")\n\n\n\nCrie o arquivo principal do projeto:\n\n\nFile → New File → Quarto Document\n\nSalve o arquivo com o nome index.qmd. Clique em Render para verificar se o arquivo index.html foi gerado sem erros.\n\n💡 Caso você tenha escolhido o formato apresentação em slides, selecione o tipo de documento RevealJS ou PowerPoint no momento da criação do arquivo Quarto.\n\n\n\nDesenvolva o conteúdo do seu trabalho.\n\nA estrutura e o estilo dependem do formato escolhido e do público-alvo. Reflita sobre o uso de código visível ou oculto: seu público precisa ver o código?\nInclua obrigatoriamente:\n\nPelo menos um parágrafo de texto com marcações.\nUm link para uma página na internet.\nUma imagem.\nUma tabela.\nUm gráfico (preferencialmente com ggplot2).\nSe for um artigo acadêmico, inclua referências utilizando arquivo .bib.\n\n\n\nEntrega do trabalho\n\nVocê pode:\n\nCompactar a pasta do projeto em um arquivo .zip e enviar pela plataforma do curso; ou\nCompartilhar o link de um repositório no GitHub contendo o projeto.\n\nInclua também o link da versão publicada, quando o formato escolhido permitir publicação web.",
+    "crumbs": [
+      "Trabalho Final",
+      "Instruções de Trabalho Final"
+    ]
+  },
+  {
+    "objectID": "trabalho_final.html#rubrica-de-avaliação",
+    "href": "trabalho_final.html#rubrica-de-avaliação",
+    "title": "Instruções de Trabalho Final",
+    "section": "Rubrica de avaliação",
+    "text": "Rubrica de avaliação\n\n\n\n\n\n\n\n\nCritério\nO que será observado\nPeso\n\n\n\n\nPropósito e público\nobjetivo explícito, linguagem e formato adequados\n15%\n\n\nEstrutura e comunicação\nnarrativa coerente, títulos, interpretação dos resultados e apresentação visual\n20%\n\n\nIntegração com dados\ntabela e gráfico gerados por código e relacionados à pergunta\n20%\n\n\nReprodutibilidade\ncaminhos relativos, execução em sessão limpa e dependências documentadas\n20%\n\n\nOrganização do projeto\nnomes claros, pastas consistentes e ausência de arquivos desnecessários\n10%\n\n\nDocumentação e autoria\nREADME, fontes dos dados, créditos, referências e licença\n10%\n\n\nPublicação e entrega\narquivos acessíveis e instruções de execução funcionais\n5%\n\n\n\nPara aprovação, o trabalho deve atingir pelo menos 60% da pontuação e não pode deixar de atender aos critérios de integração com dados e reprodutibilidade.",
+    "crumbs": [
+      "Trabalho Final",
+      "Instruções de Trabalho Final"
+    ]
+  },
+  {
+    "objectID": "trabalho_final.html#checklist-antes-da-entrega",
+    "href": "trabalho_final.html#checklist-antes-da-entrega",
+    "title": "Instruções de Trabalho Final",
+    "section": "Checklist antes da entrega",
+    "text": "Checklist antes da entrega\n\nO objetivo e o público aparecem no documento.\nTabela e gráfico são gerados pelo código e interpretados no texto.\nTodos os caminhos são relativos.\nO projeto renderiza depois de reiniciar o R.\nO README explica requisitos e execução.\nDados, imagens e referências têm fonte e autorização de uso.\nNenhuma senha, token ou informação sigilosa foi incluída.\nO link publicado foi testado em uma janela anônima do navegador.",
+    "crumbs": [
+      "Trabalho Final",
+      "Instruções de Trabalho Final"
+    ]
+  },
+  {
+    "objectID": "slides/aula-4.html#hoje-vamos",
+    "href": "slides/aula-4.html#hoje-vamos",
+    "title": "Aula 4 — Interatividade, parâmetros e reutilização",
+    "section": "Hoje vamos",
+    "text": "Hoje vamos\n\ndecidir quando usar interatividade;\ncomparar um gráfico estático com um interativo, de verdade;\nconstruir um mapa com leaflet;\ndeclarar parâmetros e gerar múltiplas versões;\nextrair código repetido para funções;\nusar cache de forma consciente."
+  },
+  {
+    "objectID": "slides/aula-4.html#interatividade-não-é-decoração",
+    "href": "slides/aula-4.html#interatividade-não-é-decoração",
+    "title": "Aula 4 — Interatividade, parâmetros e reutilização",
+    "section": "Interatividade não é decoração",
+    "text": "Interatividade não é decoração\nUse quando o público precisa:\n\nconsultar valores específicos;\nexplorar subconjuntos;\naplicar zoom ou filtros;\nnavegar por uma dimensão espacial;\ncomparar cenários.\n\nPara uma mensagem única, um gráfico estático pode ser melhor — e funciona em PDF."
+  },
+  {
+    "objectID": "slides/aula-4.html#preparando-os-dados",
+    "href": "slides/aula-4.html#preparando-os-dados",
+    "title": "Aula 4 — Interatividade, parâmetros e reutilização",
+    "section": "Preparando os dados",
+    "text": "Preparando os dados\n\npopulacao_uf &lt;- readr::read_csv(\"dados/populacao_uf.csv\", show_col_types = FALSE)\n\ntop10 &lt;- populacao_uf |&gt; dplyr::slice_max(densidade_dem, n = 10)"
+  },
+  {
+    "objectID": "slides/aula-4.html#estático",
+    "href": "slides/aula-4.html#estático",
+    "title": "Aula 4 — Interatividade, parâmetros e reutilização",
+    "section": "Estático",
+    "text": "Estático\n\nggplot2::ggplot(top10, ggplot2::aes(reorder(nome_uf, densidade_dem), densidade_dem)) +\n  ggplot2::geom_col(fill = \"#2f4858\") +\n  ggplot2::coord_flip() +\n  ggplot2::labs(x = NULL, y = \"Densidade (hab/km²)\") +\n  ggplot2::theme_minimal()\n\n\n\nFigura 1"
+  },
+  {
+    "objectID": "slides/aula-4.html#interativo",
+    "href": "slides/aula-4.html#interativo",
+    "title": "Aula 4 — Interatividade, parâmetros e reutilização",
+    "section": "Interativo",
+    "text": "Interativo\n\nplotly::plot_ly(\n  data = top10, x = ~densidade_dem, y = ~reorder(nome_uf, densidade_dem),\n  type = \"bar\", orientation = \"h\"\n)\n\n\n\n\n\n\n\nFigura 2\n\n\n\n\nMesma pergunta, dois formatos — a escolha depende de onde o relatório vai ser lido."
+  },
+  {
+    "objectID": "slides/aula-4.html#um-mapa-real",
+    "href": "slides/aula-4.html#um-mapa-real",
+    "title": "Aula 4 — Interatividade, parâmetros e reutilização",
+    "section": "Um mapa real",
+    "text": "Um mapa real\n\nleaflet::leaflet(populacao_uf) |&gt;\n  leaflet::addProviderTiles(leaflet::providers$CartoDB.Positron) |&gt;\n  leaflet::addCircleMarkers(\n    lng = ~longitude, lat = ~latitude,\n    radius = ~sqrt(populacao) / 200,\n    stroke = FALSE, fillOpacity = 0.7, color = \"#2f4858\"\n  )\n\n\n\n\n\n\n\nFigura 3"
+  },
+  {
+    "objectID": "slides/aula-4.html#limitações",
+    "href": "slides/aula-4.html#limitações",
+    "title": "Aula 4 — Interatividade, parâmetros e reutilização",
+    "section": "Limitações",
+    "text": "Limitações\nWidgets como plotly, leaflet, DT e reactable funcionam principalmente em HTML.\n\n\n\n\n\n\nAviso\n\n\nPlaneje uma alternativa estática para PDF, impressão e contextos de acessibilidade."
+  },
+  {
+    "objectID": "slides/aula-4.html#o-problema-da-duplicação",
+    "href": "slides/aula-4.html#o-problema-da-duplicação",
+    "title": "Aula 4 — Interatividade, parâmetros e reutilização",
+    "section": "O problema da duplicação",
+    "text": "O problema da duplicação\nrelatorio-sul.qmd\nrelatorio-norte.qmd\nrelatorio-sudeste-final.qmd\nrelatorio-sudeste-final-2.qmd\nDuplicar documentos multiplica correções e inconsistências."
+  },
+  {
+    "objectID": "slides/aula-4.html#um-exemplo-real-no-repositório",
+    "href": "slides/aula-4.html#um-exemplo-real-no-repositório",
+    "title": "Aula 4 — Interatividade, parâmetros e reutilização",
+    "section": "Um exemplo real no repositório",
+    "text": "Um exemplo real no repositório\nmateriais/exemplos/relatorio-parametrizado.qmd filtra dados/populacao_uf.csv por região. Abra o arquivo — não é pseudocódigo, é um .qmd que renderiza de verdade.\n---\ntitle: \"Relatório regional\"\nparams:\n  regiao: \"Sudeste\"\nformat: html\n---"
+  },
+  {
+    "objectID": "slides/aula-4.html#parâmetros-no-código",
+    "href": "slides/aula-4.html#parâmetros-no-código",
+    "title": "Aula 4 — Interatividade, parâmetros e reutilização",
+    "section": "Parâmetros no código",
+    "text": "Parâmetros no código\ndados_regiao &lt;- populacao_uf |&gt;\n  dplyr::filter(regiao == params$regiao)\nO recorte deve estar explícito no título ou no texto do documento."
+  },
+  {
+    "objectID": "slides/aula-4.html#renderização-pelo-terminal",
+    "href": "slides/aula-4.html#renderização-pelo-terminal",
+    "title": "Aula 4 — Interatividade, parâmetros e reutilização",
+    "section": "Renderização pelo terminal",
+    "text": "Renderização pelo terminal\nquarto render materiais/exemplos/relatorio-parametrizado.qmd `\n  -P regiao:Sul\nTeste uma combinação antes de automatizar todas."
+  },
+  {
+    "objectID": "slides/aula-4.html#renderização-em-lote",
+    "href": "slides/aula-4.html#renderização-em-lote",
+    "title": "Aula 4 — Interatividade, parâmetros e reutilização",
+    "section": "Renderização em lote",
+    "text": "Renderização em lote\nregioes &lt;- c(\"Norte\", \"Nordeste\", \"Centro-Oeste\", \"Sudeste\", \"Sul\")\n\npurrr::walk(regioes, function(regiao_atual) {\n  quarto::quarto_render(\n    \"materiais/exemplos/relatorio-parametrizado.qmd\",\n    execute_params = list(regiao = regiao_atual)\n  )\n})\nJá existe pronto em materiais/exemplos/render-lote.R."
+  },
+  {
+    "objectID": "slides/aula-4.html#modularização",
+    "href": "slides/aula-4.html#modularização",
+    "title": "Aula 4 — Interatividade, parâmetros e reutilização",
+    "section": "Modularização",
+    "text": "Modularização\n\nsource(\"materiais/exemplos/R/indicadores.R\")\n\nclassificar_porte(populacao = c(500000, 5000000, 20000000))\n\n[1] \"pequeno\" \"médio\"   \"grande\" \n\n\nEntradas explícitas, saída previsível, nada depende de objeto global."
+  },
+  {
+    "objectID": "slides/aula-4.html#cache",
+    "href": "slides/aula-4.html#cache",
+    "title": "Aula 4 — Interatividade, parâmetros e reutilização",
+    "section": "Cache",
+    "text": "Cache\nexecute:\n  cache: true\nCache economiza tempo, mas pode preservar resultados antigos.\nUse somente quando compreender como e quando invalidá-lo."
+  },
+  {
+    "objectID": "slides/aula-4.html#prática",
+    "href": "slides/aula-4.html#prática",
+    "title": "Aula 4 — Interatividade, parâmetros e reutilização",
+    "section": "Prática",
+    "text": "Prática\n\nrenderize relatorio-parametrizado.qmd com outra região;\ndeclare regiao ou ano no seu próprio relatório;\ninforme o recorte no documento;\ngere duas versões;\nextraia uma transformação para R/."
+  },
+  {
+    "objectID": "slides/aula-4.html#projeto-final-etapa-4",
+    "href": "slides/aula-4.html#projeto-final-etapa-4",
+    "title": "Aula 4 — Interatividade, parâmetros e reutilização",
+    "section": "Projeto final — etapa 4",
+    "text": "Projeto final — etapa 4\nEscolha uma melhoria adequada:\n\ninteratividade relevante;\num mapa, se fizer sentido para os dados;\nparâmetro de negócio ou pesquisa;\nfunção reutilizável.\n\nNão é obrigatório usar todos os recursos."
+  },
+  {
+    "objectID": "slides/aula-4.html#fechamento",
+    "href": "slides/aula-4.html#fechamento",
+    "title": "Aula 4 — Interatividade, parâmetros e reutilização",
+    "section": "Fechamento",
+    "text": "Fechamento\nReutilização reduz duplicação e torna correções consistentes em todas as versões.\nPróxima aula\nVersionamento, publicação e entrega."
+  },
+  {
+    "objectID": "slides/aula-2.html#hoje-vamos",
+    "href": "slides/aula-2.html#hoje-vamos",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Hoje vamos",
+    "text": "Hoje vamos\n\nplanejar a narrativa do relatório;\nconfigurar YAML e execução;\nestruturar texto com Markdown;\napresentar tabelas e gráficos;\nusar referências cruzadas e acessibilidade."
+  },
+  {
+    "objectID": "slides/aula-2.html#comece-pelo-público",
+    "href": "slides/aula-2.html#comece-pelo-público",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Comece pelo público",
+    "text": "Comece pelo público\n\nQual pergunta será respondida?\nQuem lerá o documento?\nQual decisão ou aprendizado esperamos apoiar?\nQuanto detalhe técnico é necessário?\nQual formato facilita o uso?"
+  },
+  {
+    "objectID": "slides/aula-2.html#abra-com-a-mensagem-não-com-o-processo",
+    "href": "slides/aula-2.html#abra-com-a-mensagem-não-com-o-processo",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Abra com a mensagem, não com o processo",
+    "text": "Abra com a mensagem, não com o processo\n\n\nEvite\n“Foram coletados dados do IBGE, processados e utilizados para gerar uma tabela e um gráfico apresentados a seguir.”\n\nPrefira\n“A densidade demográfica brasileira é extremamente desigual: o DF tem mais de 480 hab/km², sete estados do Norte têm menos de 7.”"
+  },
+  {
+    "objectID": "slides/aula-2.html#estrutura-narrativa",
+    "href": "slides/aula-2.html#estrutura-narrativa",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Estrutura narrativa",
+    "text": "Estrutura narrativa\nResumo executivo\n├── contexto e objetivo\n├── dados e método\n├── resultados\n├── conclusão e recomendações\n└── referências ou apêndice"
+  },
+  {
+    "objectID": "slides/aula-2.html#yaml",
+    "href": "slides/aula-2.html#yaml",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "YAML",
+    "text": "YAML\n---\ntitle: \"Indicadores por estado\"\nauthor: \"Nome da pessoa autora\"\ndate: today\nlang: pt-BR\nformat:\n  html:\n    toc: true\n    code-fold: true\nexecute:\n  echo: false\n  warning: false\n---"
+  },
+  {
+    "objectID": "slides/aula-2.html#yaml-um-erro-real",
+    "href": "slides/aula-2.html#yaml-um-erro-real",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "YAML: um erro real",
+    "text": "YAML: um erro real\ntitle: Indicadores: uma análise por estado\nERROR: YAML parse exception at line 2, column 18:\nmapping values are not allowed in this context\nCorreção: title: \"Indicadores: uma análise por estado\" — sempre com aspas quando o texto tem :."
+  },
+  {
+    "objectID": "slides/aula-2.html#hierarquia-de-títulos",
+    "href": "slides/aula-2.html#hierarquia-de-títulos",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Hierarquia de títulos",
+    "text": "Hierarquia de títulos\n## Resultados\n\n### Diferenças regionais\n\n#### Região Sudeste\nNão pule níveis. Títulos descrevem conteúdo, não aparência."
+  },
+  {
+    "objectID": "slides/aula-2.html#preparando-os-dados",
+    "href": "slides/aula-2.html#preparando-os-dados",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Preparando os dados",
+    "text": "Preparando os dados\n\nlibrary(dplyr)\nlibrary(ggplot2)\n\npopulacao_uf &lt;- readr::read_csv(\"dados/populacao_uf.csv\", show_col_types = FALSE)\n\nresumo_regiao &lt;- populacao_uf |&gt;\n  group_by(regiao) |&gt;\n  summarise(estados = n(), populacao_total = sum(populacao), .groups = \"drop\") |&gt;\n  arrange(desc(populacao_total))"
+  },
+  {
+    "objectID": "slides/aula-2.html#tabelas-com-propósito",
+    "href": "slides/aula-2.html#tabelas-com-propósito",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Tabelas com propósito",
+    "text": "Tabelas com propósito\n\nresumo_regiao |&gt;\n  gt::gt() |&gt;\n  gt::fmt_number(populacao_total, decimals = 0, sep_mark = \".\", dec_mark = \",\") |&gt;\n  gt::cols_label(regiao = \"Região\", estados = \"Estados\", populacao_total = \"População total\") |&gt;\n  gt::tab_source_note(\"Fonte: IBGE, Censo 2022.\")\n\n\n\nTabela 1\n\n\n\n\n\n\n\n\n\nRegião\nEstados\nPopulação total\n\n\n\n\nSudeste\n4\n84.840.113\n\n\nNordeste\n9\n54.637.621\n\n\nSul\n3\n29.937.706\n\n\nNorte\n7\n17.355.778\n\n\nCentro-Oeste\n4\n16.289.538\n\n\n\nFonte: IBGE, Censo 2022."
+  },
+  {
+    "objectID": "slides/aula-2.html#gráfico-evite",
+    "href": "slides/aula-2.html#gráfico-evite",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Gráfico: evite",
+    "text": "Gráfico: evite\n\nggplot(populacao_uf, aes(area_km2, populacao, color = regiao)) +\n  geom_point()\n\n\n\nFigura 1"
+  },
+  {
+    "objectID": "slides/aula-2.html#gráfico-prefira",
+    "href": "slides/aula-2.html#gráfico-prefira",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Gráfico: prefira",
+    "text": "Gráfico: prefira\n\nggplot(populacao_uf, aes(area_km2/1000, populacao/1e6, color = regiao)) +\n  geom_point(size = 3, alpha = 0.85) +\n  scale_color_brewer(palette = \"Dark2\") +\n  labs(x = \"Área (mil km²)\", y = \"População (milhões)\", color = \"Região\") +\n  theme_minimal()\n\n\n\nFigura 2\nMesmos dados — menos ruído: eixos com unidade, paleta pensada, tema limpo."
+  },
+  {
+    "objectID": "slides/aula-2.html#referências-cruzadas",
+    "href": "slides/aula-2.html#referências-cruzadas",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Referências cruzadas",
+    "text": "Referências cruzadas\nVeja a @fig-boa e a @tbl-gt-regiao.\nO Quarto atualiza a numeração automaticamente, mesmo se a ordem dos elementos mudar."
+  },
+  {
+    "objectID": "slides/aula-2.html#equações",
+    "href": "slides/aula-2.html#equações",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Equações",
+    "text": "Equações\n\\[\nd = \\frac{P}{A}\n\\tag{1}\\]\nNo texto: “A Equação 1 define a densidade demográfica, usada na coluna densidade_dem.”"
+  },
+  {
+    "objectID": "slides/aula-2.html#acessibilidade",
+    "href": "slides/aula-2.html#acessibilidade",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Acessibilidade",
+    "text": "Acessibilidade\n\ntexto alternativo específico, não “gráfico” ou “imagem”;\nhierarquia lógica de títulos;\ncontraste suficiente entre cores;\ncor nunca é o único canal de informação;\nlinks com texto descritivo."
+  },
+  {
+    "objectID": "slides/aula-2.html#prática",
+    "href": "slides/aula-2.html#prática",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Prática",
+    "text": "Prática\nCom dados/populacao_uf.csv:\n\nobjetivo e público;\nsumário e código recolhível;\numa tabela gt com título e fonte;\num gráfico bom e um propositalmente ruim, para comparar;\nreferências cruzadas;\ntexto alternativo específico."
+  },
+  {
+    "objectID": "slides/aula-2.html#projeto-final-etapa-2",
+    "href": "slides/aula-2.html#projeto-final-etapa-2",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Projeto final — etapa 2",
+    "text": "Projeto final — etapa 2\n\ncrie o esqueleto do documento;\nescreva a introdução;\ninclua a primeira evidência visual;\npeça a alguém para explicar a mensagem que entendeu."
+  },
+  {
+    "objectID": "slides/aula-2.html#fechamento",
+    "href": "slides/aula-2.html#fechamento",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Fechamento",
+    "text": "Fechamento\nComunicação reprodutível combina:\nestrutura + evidência + interpretação + acessibilidade\nPróxima aula\nDados, formatos e automação."
+  },
+  {
+    "objectID": "slides.html",
+    "href": "slides.html",
+    "title": "Slides e materiais de apoio",
     "section": "",
-    "text": "Slide 1 - Introdução ao Curso\nSlide 2 - Introdução ao conceito de reprodutibilidade",
+    "text": "Esta página reúne as cinco apresentações oficiais do curso. Os slides abrem em uma nova página e podem ser navegados com as setas do teclado.",
     "crumbs": [
       "Materiais",
-      "Slides e materiais por aula"
+      "Slides e materiais de apoio"
+    ]
+  },
+  {
+    "objectID": "slides.html#aula-1-reprodutibilidade-e-primeiro-documento",
+    "href": "slides.html#aula-1-reprodutibilidade-e-primeiro-documento",
+    "title": "Slides e materiais de apoio",
+    "section": "Aula 1 — Reprodutibilidade e primeiro documento",
+    "text": "Aula 1 — Reprodutibilidade e primeiro documento\nFundamentos de reprodutibilidade, ferramentas do curso, anatomia de um .qmd, renderização e diagnóstico de erros.\n\nAbrir slides da Aula 1\nLer o roteiro completo da Aula 1",
+    "crumbs": [
+      "Materiais",
+      "Slides e materiais de apoio"
+    ]
+  },
+  {
+    "objectID": "slides.html#aula-2-estrutura-estilo-e-comunicação",
+    "href": "slides.html#aula-2-estrutura-estilo-e-comunicação",
+    "title": "Slides e materiais de apoio",
+    "section": "Aula 2 — Estrutura, estilo e comunicação",
+    "text": "Aula 2 — Estrutura, estilo e comunicação\nPlanejamento narrativo, YAML, Markdown, tabelas, gráficos, referências cruzadas, estilo e acessibilidade.\n\nAbrir slides da Aula 2\nLer o roteiro completo da Aula 2",
+    "crumbs": [
+      "Materiais",
+      "Slides e materiais de apoio"
+    ]
+  },
+  {
+    "objectID": "slides.html#aula-3-dados-formatos-e-automação",
+    "href": "slides.html#aula-3-dados-formatos-e-automação",
+    "title": "Slides e materiais de apoio",
+    "section": "Aula 3 — Dados, formatos e automação",
+    "text": "Aula 3 — Dados, formatos e automação\nOrganização do projeto, caminhos relativos, resultados dinâmicos, formatos HTML/PDF/Word e ambientes com renv.\n\nAbrir slides da Aula 3\nLer o roteiro completo da Aula 3",
+    "crumbs": [
+      "Materiais",
+      "Slides e materiais de apoio"
+    ]
+  },
+  {
+    "objectID": "slides.html#aula-4-interatividade-parâmetros-e-reutilização",
+    "href": "slides.html#aula-4-interatividade-parâmetros-e-reutilização",
+    "title": "Slides e materiais de apoio",
+    "section": "Aula 4 — Interatividade, parâmetros e reutilização",
+    "text": "Aula 4 — Interatividade, parâmetros e reutilização\nWidgets HTML, relatórios parametrizados, renderização em lote, funções e uso responsável de cache.\n\nAbrir slides da Aula 4\nLer o roteiro completo da Aula 4",
+    "crumbs": [
+      "Materiais",
+      "Slides e materiais de apoio"
+    ]
+  },
+  {
+    "objectID": "slides.html#aula-5-versionamento-publicação-e-entrega",
+    "href": "slides.html#aula-5-versionamento-publicação-e-entrega",
+    "title": "Slides e materiais de apoio",
+    "section": "Aula 5 — Versionamento, publicação e entrega",
+    "text": "Aula 5 — Versionamento, publicação e entrega\nGit, GitHub, README, proteção de credenciais, publicação e revisão final do projeto.\n\nAbrir slides da Aula 5\nLer o roteiro completo da Aula 5",
+    "crumbs": [
+      "Materiais",
+      "Slides e materiais de apoio"
+    ]
+  },
+  {
+    "objectID": "slides.html#atalhos-de-navegação",
+    "href": "slides.html#atalhos-de-navegação",
+    "title": "Slides e materiais de apoio",
+    "section": "Atalhos de navegação",
+    "text": "Atalhos de navegação\n\nUse ← e → para avançar ou voltar.\nPressione Esc para visualizar todos os slides.\nPressione F para entrar em tela cheia.\nPressione S para abrir as notas do apresentador, quando disponíveis.",
+    "crumbs": [
+      "Materiais",
+      "Slides e materiais de apoio"
     ]
   },
   {
@@ -48,7 +396,7 @@
     "href": "materiais/instrucoes-de-instalacao.html#instalações-obrigatórias",
     "title": "Pré-curso: Instalações necessárias",
     "section": "Instalações obrigatórias",
-    "text": "Instalações obrigatórias\n\nInstalar o R - Versão 4.1 ou superior:\n\n\nDownload direto: https://vps.fmvz.usp.br/CRAN/\nTutorial: https://livro.curso-r.com/1-1-instalacao-do-r.html\n\n\nInstalar o RStudio - Versão mínima 2022.07:\n\n\nDownload direto: https://www.rstudio.com/products/rstudio/download/#download\nTutorial: https://livro.curso-r.com/1-2-instalacao-do-rstudio.html\n\n\nInstalar o Git:\n\n\nCaso você utilize Linux ou Mac, confira antes se o Git já está instalado. Você pode conferir abrindo o terminal, e digitando git. Caso o terminal avise que você não tem git instalado, você precisará instalar.\nDownload direto: http://git-scm.com/download/\n\n\nInstalar pacotes:\n\nAntes de instalar qualquer pacote, vamos criar um ambiente de desenvolvimento padronizado para todos. Para isso, utilizaremos o pacote renv, que permitirá configurar um ambiente padrão de projeto e, posteriormente, instalar os pacotes necessários de forma organizada e reprodutível.\nO renv é um pacote do R usado para gerenciar ambientes de projeto. Ele garante que cada projeto tenha sua própria lista de pacotes e versões, evitando problemas quando códigos são executados em computadores diferentes ou em momentos diferentes no tempo.\nNa prática, o renv cria um ambiente isolado, onde ficam registradas exatamente quais bibliotecas o projeto usa. Assim, qualquer pessoa que abrir o projeto pode reproduzir o mesmo ambiente com apenas um comando, instalando automaticamente as versões corretas dos pacotes.\nIsso traz três grandes benefícios:\n\nReprodutibilidade: o código roda hoje e continuará rodando no futuro.\nPortabilidade: outros usuários conseguem executar o projeto sem conflitos de versão.\nOrganização: cada projeto tem seu próprio conjunto de dependências.\n\nEm resumo:\n\nO renv é o “controle de dependências” do R, essencial para projetos profissionais e colaborativos.\n\n\n1. Ativar o renv no projeto\n# Instale o renv (apenas na primeira vez)\ninstall.packages(\"renv\")\n\n# Ative o renv no projeto atual\nrenv::init()\n📌 Isso cria:\n\nUma pasta renv/\nUm arquivo renv.lock que guardará as versões dos pacotes usados no projeto.\n\n\n\n\n2. Instalar o pacote pak\nO pak é um instalador moderno e mais rápido que install.packages().\ninstall.packages(\"pak\")\n\n\n\n3. Instalar os pacotes do projeto com pak\npacotes_necessarios &lt;- c(\n  \"here\",\n  \"quarto\",\n  \"usethis\",\n  \"devtools\",\n  \"rmarkdown\",\n  \"knitr\",\n  \"pagedown\",\n  \"bookdown\",\n  \"xaringan\",\n  \"readr\",\n  \"dplyr\",\n  \"DT\",\n  \"reactable\",\n  \"janitor\",\n  \"prettydoc\"\n)\n\npak::pak(pacotes_necessarios)\nO pak instalará tudo rapidamente e o renv registrará automaticamente as dependências no arquivo renv.lock.\n\n\n\n4. Salvar o estado do ambiente\nrenv::snapshot()\nIsso garante que qualquer pessoa que abrir o projeto possa recriar o mesmo ambiente depois com:\nrenv::restore()\n\n✅ Resumo\n\nrenv::init() → cria o ambiente do projeto\npak::pkg_install() → instala pacotes rapidamente\nrenv::snapshot() → salva versões\nrenv::restore() → recria o ambiente em outro computador\n\nAgora vamos instalar os pacotes auxiliares que usaremos durante o curso.\npacotes_exemplos &lt;-\n  c(\n    \"xaringanthemer\",\n    \"distill\",\n    \"flexdashboard\",\n    \"rmdformats\",\n    \"bslib\",\n    \"officedown\",\n    \"postcards\",\n    \"rticles\"\n  )\npak::pak(pacotes_exemplos)",
+    "text": "Instalações obrigatórias\n\nInstalar o R — use uma versão atual e compatível com seu sistema:\n\n\nDownload direto: https://vps.fmvz.usp.br/CRAN/\nTutorial: https://livro.curso-r.com/1-1-instalacao-do-r.html\n\n\nInstalar RStudio ou Positron:\n\n\nDownload direto: https://www.rstudio.com/products/rstudio/download/#download\nTutorial: https://livro.curso-r.com/1-2-instalacao-do-rstudio.html\nAlternativa: Positron\n\n\nInstalar o Quarto:\n\n\nDownload e instruções: https://quarto.org/docs/get-started/\nDepois da instalação, abra o terminal e execute quarto check.\n\n\nInstalar o Git:\n\n\nCaso você utilize Linux ou Mac, confira antes se o Git já está instalado. Você pode conferir abrindo o terminal, e digitando git. Caso o terminal avise que você não tem git instalado, você precisará instalar.\nDownload direto: http://git-scm.com/download/\n\n\nRestaurar os pacotes do curso:\n\nAntes de instalar qualquer pacote, vamos criar um ambiente de desenvolvimento padronizado para todos. Para isso, utilizaremos o pacote renv, que permitirá configurar um ambiente padrão de projeto e, posteriormente, instalar os pacotes necessários de forma organizada e reprodutível.\nO renv é um pacote do R usado para gerenciar ambientes de projeto. Ele garante que cada projeto tenha sua própria lista de pacotes e versões, evitando problemas quando códigos são executados em computadores diferentes ou em momentos diferentes no tempo.\nNa prática, o renv cria um ambiente isolado, onde ficam registradas exatamente quais bibliotecas o projeto usa. Assim, qualquer pessoa que abrir o projeto pode reproduzir o mesmo ambiente com apenas um comando, instalando automaticamente as versões corretas dos pacotes.\nIsso traz três grandes benefícios:\n\nReprodutibilidade: o código roda hoje e continuará rodando no futuro.\nPortabilidade: outros usuários conseguem executar o projeto sem conflitos de versão.\nOrganização: cada projeto tem seu próprio conjunto de dependências.\n\nEm resumo:\n\nO renv é o “controle de dependências” do R, essencial para projetos profissionais e colaborativos.\n\n\n1. Restaurar um ambiente existente\ninstall.packages(\"renv\")\nrenv::restore()\nEsse é o fluxo indicado para quem clonou este repositório: o renv.lock informa as versões esperadas.\n\n\n\n2. Criar o ambiente do seu trabalho final\nrenv::init()\nIsso cria a infraestrutura do ambiente e um renv.lock no seu projeto.\n\n\n\n3. Instalar os pacotes usados nas aulas\npacotes_necessarios &lt;- c(\n  \"dplyr\",\n  \"echarts4r\",\n  \"ggplot2\",\n  \"glue\",\n  \"gt\",\n  \"here\",\n  \"kableExtra\",\n  \"knitr\",\n  \"leaflet\",\n  \"palmerpenguins\",\n  \"plotly\",\n  \"purrr\",\n  \"quarto\",\n  \"readr\",\n  \"renv\",\n  \"skimr\",\n  \"tibble\"\n)\n\ninstall.packages(pacotes_necessarios)\nInstale apenas o necessário para as atividades que você realizará. Depois registre o ambiente.\n\n\n\n4. Salvar o estado do ambiente\nrenv::snapshot()\nIsso garante que qualquer pessoa que abrir o projeto possa recriar o mesmo ambiente depois com:\nrenv::restore()\n\n✅ Resumo\n\nrenv::init() → inicia o ambiente de um novo projeto;\nrenv::snapshot() → registra as versões instaladas;\nrenv::restore() → recria o ambiente registrado.",
     "crumbs": [
       "Materiais",
       "Pré-curso: Instalações necessárias"
@@ -59,7 +407,18 @@
     "href": "materiais/instrucoes-de-instalacao.html#instalações-recomendadas",
     "title": "Pré-curso: Instalações necessárias",
     "section": "Instalações recomendadas",
-    "text": "Instalações recomendadas\n\nGoogle Chrome. Para exportar os relatórios em formato PDF, utilizaremos uma função que depende do uso do navegador Google Chrome.\n\n\nDownload direto: https://www.google.com/intl/pt-BR/chrome/\nCaso você utilize Linux, uma alternativa é instalar o Chromium: https://www.chromium.org/getting-involved/download-chromium/\nMais informações em: https://livro.curso-r.com/1-3-instalacao-adicionais.html#pagedown-e-chrome\n\n\nLibreOffice. Para abrir documentos do Office, como .pptx e .docx, é necessário ter o Office ou alguma alternativa gratuita instalados. Caso não tenha nenhum software para abertura destes arquivos instalado, recomendo instalar o LibreOffice, pois é um software gratuito:\n\n\nDownload direto: https://pt-br.libreoffice.org/baixe-ja/libreoffice-novo/\nTutorial de instalação: https://livro.curso-r.com/1-3-instalacao-adicionais.html#office",
+    "text": "Instalações recomendadas\n\nTinyTeX. Para gerar PDF com LaTeX, execute no terminal:\n\nquarto install tinytex\n\nGoogle Chrome ou Chromium. Alguns fluxos de exportação e captura de páginas HTML dependem de um navegador.\n\n\nDownload direto: https://www.google.com/intl/pt-BR/chrome/\nCaso você utilize Linux, uma alternativa é instalar o Chromium: https://www.chromium.org/getting-involved/download-chromium/\nMais informações em: https://livro.curso-r.com/1-3-instalacao-adicionais.html#pagedown-e-chrome\n\n\nLibreOffice. Para abrir documentos .pptx e .docx, use o Microsoft Office ou uma alternativa gratuita:\n\n\nDownload direto: https://pt-br.libreoffice.org/baixe-ja/libreoffice-novo/\nTutorial de instalação: https://livro.curso-r.com/1-3-instalacao-adicionais.html#office",
+    "crumbs": [
+      "Materiais",
+      "Pré-curso: Instalações necessárias"
+    ]
+  },
+  {
+    "objectID": "materiais/instrucoes-de-instalacao.html#teste-da-instalação",
+    "href": "materiais/instrucoes-de-instalacao.html#teste-da-instalação",
+    "title": "Pré-curso: Instalações necessárias",
+    "section": "Teste da instalação",
+    "text": "Teste da instalação\nExecute no terminal:\nquarto check\nDepois, no console do R:\nR.version.string\npackageVersion(\"knitr\")\nSe algum passo falhar, copie a mensagem completa de erro e informe seu sistema operacional ao pedir ajuda.",
     "crumbs": [
       "Materiais",
       "Pré-curso: Instalações necessárias"
@@ -80,95 +439,895 @@
     "href": "index.html",
     "title": "Relatórios reprodutíveis com R",
     "section": "",
-    "text": "Utilizaremos o Quarto (https://quarto.org/), e conheceremos como criar relatórios reprodutíveis com R ou Python, como: relatórios, apresentações em HTML, apresentações em powerpoint, relatórios em word, relatórios interativos, entre outros.\nAprenderemos também a criar relatórios reprodutíveis utilizando relatórios parametrizados, que permitem especificar parâmetros para customizar a análise, o que é muito útil para criar relatórios que podem ser reutilizados.\nAlém disso, o conceito de controle de versão com Git será apresentado. Também aprenderemos a disponibilizar o conteúdo criado no curso de forma online, através do GitHub.",
+    "text": "Este curso ensina a criar relatórios profissionais e reprodutíveis com R e Quarto. Ao longo de cinco aulas, você construirá um projeto completo: da primeira página com texto e código até a publicação na web.\nO foco não é apenas aprender comandos. Vamos tomar decisões sobre público, estrutura, visualização, automação, versionamento e publicação para que o documento seja claro, atualizável e auditável.\n\n\n\n\n\n\nDicaResultado esperado\n\n\n\nAo final, você terá um relatório, apresentação ou artigo produzido com Quarto, acompanhado dos arquivos necessários para que outra pessoa possa compreender e reproduzir o trabalho.",
     "crumbs": [
       "Relatórios reprodutíveis com R"
     ]
   },
   {
-    "objectID": "index.html#sobre-o-curso",
-    "href": "index.html#sobre-o-curso",
+    "objectID": "index.html#do-código-à-comunicação",
+    "href": "index.html#do-código-à-comunicação",
     "title": "Relatórios reprodutíveis com R",
     "section": "",
-    "text": "Utilizaremos o Quarto (https://quarto.org/), e conheceremos como criar relatórios reprodutíveis com R ou Python, como: relatórios, apresentações em HTML, apresentações em powerpoint, relatórios em word, relatórios interativos, entre outros.\nAprenderemos também a criar relatórios reprodutíveis utilizando relatórios parametrizados, que permitem especificar parâmetros para customizar a análise, o que é muito útil para criar relatórios que podem ser reutilizados.\nAlém disso, o conceito de controle de versão com Git será apresentado. Também aprenderemos a disponibilizar o conteúdo criado no curso de forma online, através do GitHub.",
+    "text": "Este curso ensina a criar relatórios profissionais e reprodutíveis com R e Quarto. Ao longo de cinco aulas, você construirá um projeto completo: da primeira página com texto e código até a publicação na web.\nO foco não é apenas aprender comandos. Vamos tomar decisões sobre público, estrutura, visualização, automação, versionamento e publicação para que o documento seja claro, atualizável e auditável.\n\n\n\n\n\n\nDicaResultado esperado\n\n\n\nAo final, você terá um relatório, apresentação ou artigo produzido com Quarto, acompanhado dos arquivos necessários para que outra pessoa possa compreender e reproduzir o trabalho.",
     "crumbs": [
       "Relatórios reprodutíveis com R"
     ]
   },
   {
-    "objectID": "index.html#temas-abordados",
-    "href": "index.html#temas-abordados",
+    "objectID": "index.html#trilha-de-aprendizagem",
+    "href": "index.html#trilha-de-aprendizagem",
     "title": "Relatórios reprodutíveis com R",
-    "section": "Temas abordados",
-    "text": "Temas abordados\n\nO que é reprodutibilidade;\nO que é o Quarto;\nComo criar um documento reprodutível com Quarto usando R ou Python;\nComo versionar os arquivos no Git e GitHub;\nComo disponibilizar estes documentos HTML criados com Quarto na internet para que outras pessoas consigam acessar.",
+    "section": "Trilha de aprendizagem",
+    "text": "Trilha de aprendizagem\n\nFundamentos e primeiro documento — reprodutibilidade, ambiente e fluxo de renderização.\nEstrutura e comunicação — YAML, Markdown, tabelas, gráficos, referências e estilo.\nDados, formatos e automação — projetos, resultados dinâmicos, HTML, PDF, Word e renv.\nInteratividade e reutilização — widgets, parâmetros, funções e renderização em lote.\nVersionamento e publicação — Git, GitHub Pages, documentação e revisão final.",
     "crumbs": [
       "Relatórios reprodutíveis com R"
+    ]
+  },
+  {
+    "objectID": "index.html#o-que-você-vai-praticar",
+    "href": "index.html#o-que-você-vai-praticar",
+    "title": "Relatórios reprodutíveis com R",
+    "section": "O que você vai praticar",
+    "text": "O que você vai praticar\n\nintegrar narrativa, código e resultados no mesmo documento;\nescolher o formato adequado ao público;\ncriar tabelas e visualizações acessíveis;\norganizar projetos com caminhos relativos e dependências registradas;\ngerar versões parametrizadas de um relatório;\npublicar e compartilhar o resultado com Git e GitHub.",
+    "crumbs": [
+      "Relatórios reprodutíveis com R"
+    ]
+  },
+  {
+    "objectID": "index.html#comece-por-aqui",
+    "href": "index.html#comece-por-aqui",
+    "title": "Relatórios reprodutíveis com R",
+    "section": "Comece por aqui",
+    "text": "Comece por aqui\n\nLeia as informações gerais.\nFaça as instalações do pré-curso.\nAcesse a Aula 1.\nConsulte desde o início as instruções do trabalho final.",
+    "crumbs": [
+      "Relatórios reprodutíveis com R"
+    ]
+  },
+  {
+    "objectID": "index.html#abordagem",
+    "href": "index.html#abordagem",
+    "title": "Relatórios reprodutíveis com R",
+    "section": "Abordagem",
+    "text": "Abordagem\nCada aula contém objetivos, explicações, exemplos, prática guiada, uma etapa do projeto final e um checklist. O projeto é construído gradualmente para evitar que toda a entrega fique concentrada no último encontro.",
+    "crumbs": [
+      "Relatórios reprodutíveis com R"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-5.html",
+    "href": "aulas/aula-5.html",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "",
+    "text": "A última aula fecha o ciclo: transformar uma pasta que funciona apenas no computador do autor em um projeto documentado, versionado e acessível ao público. Vamos usar o próprio site deste curso como exemplo — ele é, ele mesmo, um projeto Quarto versionado no Git e publicado no GitHub Pages.\n\n\n\ncriar commits pequenos e informativos;\ndistinguir arquivos-fonte de artefatos gerados;\npreparar um repositório para colaboração;\npublicar conteúdo Quarto no GitHub Pages;\nrealizar uma revisão final de reprodutibilidade e comunicação.",
+    "crumbs": [
+      "Aulas",
+      "Aula 5 — Versionamento, publicação e entrega"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-5.html#visão-geral",
+    "href": "aulas/aula-5.html#visão-geral",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "",
+    "text": "A última aula fecha o ciclo: transformar uma pasta que funciona apenas no computador do autor em um projeto documentado, versionado e acessível ao público. Vamos usar o próprio site deste curso como exemplo — ele é, ele mesmo, um projeto Quarto versionado no Git e publicado no GitHub Pages.\n\n\n\ncriar commits pequenos e informativos;\ndistinguir arquivos-fonte de artefatos gerados;\npreparar um repositório para colaboração;\npublicar conteúdo Quarto no GitHub Pages;\nrealizar uma revisão final de reprodutibilidade e comunicação.",
+    "crumbs": [
+      "Aulas",
+      "Aula 5 — Versionamento, publicação e entrega"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-5.html#o-que-deve-ser-versionado",
+    "href": "aulas/aula-5.html#o-que-deve-ser-versionado",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "1. O que deve ser versionado?",
+    "text": "1. O que deve ser versionado?\nVersione tudo o que é necessário para compreender e reproduzir o projeto:\n\narquivos .qmd, scripts e funções (por exemplo, este repositório versiona aulas/*.qmd e materiais/exemplos/R/indicadores.R);\ndados que podem ser compartilhados (dados/populacao_uf.csv, dados/pib_uf.csv e o dados/README.md que documenta a fonte);\nimagens e referências usadas no documento;\n_quarto.yml ou _quarto.yaml;\nREADME.md e renv.lock.\n\nNão versione credenciais, dados sigilosos, histórico do R ou bibliotecas instaladas. Use .gitignore:\n.Rhistory\n.RData\n.Rproj.user/\n.quarto/\nrenv/library/\n\n\n\n\n\n\nAvisoCredenciais\n\n\n\nSenhas, tokens e chaves de API nunca devem aparecer no código ou no histórico do Git. Use variáveis de ambiente e arquivos locais ignorados.",
+    "crumbs": [
+      "Aulas",
+      "Aula 5 — Versionamento, publicação e entrega"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-5.html#um-ciclo-de-trabalho-com-git",
+    "href": "aulas/aula-5.html#um-ciclo-de-trabalho-com-git",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "2. Um ciclo de trabalho com Git",
+    "text": "2. Um ciclo de trabalho com Git\ngit status\ngit diff\ngit add caminho/do/arquivo\ngit commit -m \"Explica a análise de receita regional\"\ngit push\nAntes do commit, leia o git diff — ele mostra exatamente o que vai entrar no histórico, linha por linha, o que evita commitar algo por engano (um arquivo de dados temporário, uma credencial, uma alteração não intencional).\n\nComo reconhecer um bom commit\nNenhum projeto tem 100% de commits perfeitos — inclusive o deste próprio curso. Alguns exemplos reais do histórico deste repositório:\n\n\n\n\n\n\n\n\nMensagem real\nO que dá pra melhorar\nVersão mais descritiva\n\n\n\n\nAJuste depis de redenrizar\nnão diz o quê, nem por quê; tem erros de digitação\nCorrige links quebrados após renderizar o site\n\n\nArquivo repoduciveis\né um substantivo solto, não uma frase sobre a mudança\nAdiciona seção sobre reprodutibilidade na Aula 1\n\n\nSalvando alterações da aula 3\ndescreve o ato de salvar, não o conteúdo da mudança\nAdiciona pipeline de dados e exemplo de renv na Aula 3\n\n\n\nO padrão comum nos três: descrevem que algo mudou, não o que mudou nem por quê. Uma boa mensagem de commit deixa alguém entender a alteração só de ler o histórico, sem precisar abrir o diff.",
+    "crumbs": [
+      "Aulas",
+      "Aula 5 — Versionamento, publicação e entrega"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-5.html#readme-como-porta-de-entrada",
+    "href": "aulas/aula-5.html#readme-como-porta-de-entrada",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "3. README como porta de entrada",
+    "text": "3. README como porta de entrada\nUm repositório de curso ou projeto deve informar:\n\npropósito e público;\nestrutura das pastas;\nrequisitos e instalação;\ncomo renderizar;\nautoria, licença e fonte dos dados;\nlink para a versão publicada.\n\nO README.md deste próprio repositório segue essa estrutura — abra-o como referência: ele lista o conteúdo do repositório, os pré-requisitos, o comando renv::restore() para restaurar o ambiente e o comando quarto preview para visualizar localmente. Peça para outra pessoa seguir o README do seu próprio projeto; instruções que só funcionam para quem escreveu ainda estão incompletas.",
+    "crumbs": [
+      "Aulas",
+      "Aula 5 — Versionamento, publicação e entrega"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-5.html#publicação-no-github-pages",
+    "href": "aulas/aula-5.html#publicação-no-github-pages",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "4. Publicação no GitHub Pages",
+    "text": "4. Publicação no GitHub Pages\nPara um site Quarto, defina o projeto:\nproject:\n  type: website\n\nwebsite:\n  title: \"Meu projeto\"\n\nformat:\n  html:\n    toc: true\nRenderize, confira a pasta de saída e escolha uma estratégia de publicação. Este próprio site usa a mais simples das três: publica a pasta _site/ já renderizada. O workflow completo, em .github/workflows/static.yml, é curto:\non:\n  push:\n    branches: [\"main\"]\n\npermissions:\n  contents: read\n  pages: write\n  id-token: write\n\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/configure-pages@v5\n      - uses: actions/upload-pages-artifact@v3\n        with:\n          path: '_site'\n      - uses: actions/deploy-pages@v4\nA cada push para main, o GitHub publica o conteúdo que já está em _site/ — o Quarto não roda dentro do GitHub Actions. Isso significa uma regra importante para quem contribui com este repositório: depois de alterar um .qmd, é preciso rodar quarto render localmente e incluir a pasta _site/ atualizada no mesmo commit, ou a publicação ficará desatualizada mesmo com o código-fonte correto.\nA alternativa — mais comum em projetos que não querem versionar HTML gerado — é deixar o próprio GitHub Actions instalar o Quarto e renderizar a cada push, com a action oficial quarto-dev/quarto-actions/render. Ela evita versionar _site/, ao custo de um workflow um pouco mais longo e um tempo de build a cada publicação. Nenhuma das duas é “a certa” — a escolha depende de quanto controle você quer sobre o ambiente de renderização.\n\n\n\n\n\n\nDica\n\n\n\nConsulte Publicação no GitHub Pages antes de escolher. Não misture as duas estratégias no mesmo repositório.",
+    "crumbs": [
+      "Aulas",
+      "Aula 5 — Versionamento, publicação e entrega"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-5.html#revisão-antes-de-publicar",
+    "href": "aulas/aula-5.html#revisão-antes-de-publicar",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "5. Revisão antes de publicar",
+    "text": "5. Revisão antes de publicar\n\nConteúdo\n\na pergunta e o público estão explícitos?\ncada gráfico e tabela tem uma mensagem?\nconclusões são sustentadas pelos resultados?\nfontes, autoria e limitações estão registradas? (compare com dados/README.md deste curso, que documenta de onde vêm os números e quando foram coletados)\n\n\n\nReprodutibilidade\n\no projeto usa caminhos relativos ou here::here()?\nrenderiza depois de reiniciar o R?\ndependências estão registradas em renv.lock?\ndados e instruções de obtenção estão disponíveis?\n\n\n\nAcessibilidade e apresentação\n\ntítulos seguem uma hierarquia lógica?\nimagens e gráficos têm texto alternativo específico?\ncores têm contraste e não são o único canal de informação?\nlinks têm textos descritivos (não “clique aqui”)?",
+    "crumbs": [
+      "Aulas",
+      "Aula 5 — Versionamento, publicação e entrega"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-5.html#prática-guiada",
+    "href": "aulas/aula-5.html#prática-guiada",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "Prática guiada",
+    "text": "Prática guiada\n\nExecute git status e classifique cada arquivo como fonte, dado, configuração ou saída.\nAtualize o .gitignore sem esconder arquivos necessários.\nEscreva ou revise o README do seu projeto, usando o deste curso como referência de estrutura.\nRenderize em uma sessão limpa.\nEscreva a mensagem de um commit real que você precise fazer — depois compare com a tabela da seção 2 antes de confirmar.\nPublique o projeto e teste o link publicado em uma janela anônima do navegador.",
+    "crumbs": [
+      "Aulas",
+      "Aula 5 — Versionamento, publicação e entrega"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-5.html#entrega-final",
+    "href": "aulas/aula-5.html#entrega-final",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "Entrega final",
+    "text": "Entrega final\nUse a rubrica e as instruções do trabalho. Entregue o link publicado e o repositório ou arquivo compactado com as fontes.",
+    "crumbs": [
+      "Aulas",
+      "Aula 5 — Versionamento, publicação e entrega"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-5.html#checklist-de-conclusão",
+    "href": "aulas/aula-5.html#checklist-de-conclusão",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "Checklist de conclusão",
+    "text": "Checklist de conclusão\n\nO README permite que outra pessoa execute o projeto.\nNenhuma credencial ou informação sigilosa foi versionada.\nO histórico tem commits compreensíveis — reli minhas últimas mensagens antes de finalizar.\nA versão publicada abre e contém todos os recursos (gráficos interativos, mapas, tabelas).\nA entrega atende à rubrica do curso.",
+    "crumbs": [
+      "Aulas",
+      "Aula 5 — Versionamento, publicação e entrega"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-5.html#leitura-complementar",
+    "href": "aulas/aula-5.html#leitura-complementar",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "Leitura complementar",
+    "text": "Leitura complementar\n\nGitHub: começar com Git\nQuarto: publicação\nGitHub Pages\nquarto-actions: renderização no CI",
+    "crumbs": [
+      "Aulas",
+      "Aula 5 — Versionamento, publicação e entrega"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-3.html",
+    "href": "aulas/aula-3.html",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "",
+    "text": "Até aqui construímos documentos com estrutura e elementos visuais, sempre a partir de um único arquivo já pronto. Agora vamos organizar o fluxo completo: ler mais de uma fonte de dados, juntá-las, tratar o que não bate entre elas, gerar resultados e escolher o formato de saída adequado ao público.\n\n\n\nseparar importação, tratamento, análise e comunicação;\nusar caminhos relativos e uma estrutura de projeto previsível, com here::here();\njuntar duas fontes de dados e lidar com valores ausentes de forma explícita;\ngerar texto, tabelas e gráficos a partir dos mesmos dados;\nescolher entre HTML, PDF e Word;\nconfigurar a execução para produzir resultados atualizáveis.",
+    "crumbs": [
+      "Aulas",
+      "Aula 3 — Dados, formatos e automação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-3.html#visão-geral",
+    "href": "aulas/aula-3.html#visão-geral",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "",
+    "text": "Até aqui construímos documentos com estrutura e elementos visuais, sempre a partir de um único arquivo já pronto. Agora vamos organizar o fluxo completo: ler mais de uma fonte de dados, juntá-las, tratar o que não bate entre elas, gerar resultados e escolher o formato de saída adequado ao público.\n\n\n\nseparar importação, tratamento, análise e comunicação;\nusar caminhos relativos e uma estrutura de projeto previsível, com here::here();\njuntar duas fontes de dados e lidar com valores ausentes de forma explícita;\ngerar texto, tabelas e gráficos a partir dos mesmos dados;\nescolher entre HTML, PDF e Word;\nconfigurar a execução para produzir resultados atualizáveis.",
+    "crumbs": [
+      "Aulas",
+      "Aula 3 — Dados, formatos e automação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-3.html#estrutura-de-projeto-deste-curso",
+    "href": "aulas/aula-3.html#estrutura-de-projeto-deste-curso",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "1. Estrutura de projeto deste curso",
+    "text": "1. Estrutura de projeto deste curso\n2026-curso-de-verao-ime-usp-relatorios/\n├── dados/\n│   ├── populacao_uf.csv\n│   └── pib_uf.csv\n├── aulas/\n│   └── aula-3.qmd\n├── materiais/\n│   └── exemplos/\n├── _quarto.yaml\n└── curso-relatorios-quarto.Rproj\ndados/populacao_uf.csv e aulas/aula-3.qmd estão em pastas diferentes. Um caminho como \"dados/populacao_uf.csv\", escrito literalmente, só funciona se o R estiver executando a partir da raiz do projeto — o que depende de onde o arquivo mora e de como ele é aberto. Isso já causou os exemplos das Aulas 1 e 2 funcionarem: este site configura, em _quarto.yaml, a opção execute-dir: project, que força todo .qmd a rodar a partir da raiz, não importa em qual subpasta ele esteja.\nFora deste site — no seu próprio projeto — é mais seguro não depender dessa configuração e usar o pacote here, que descobre a raiz do projeto sozinho (procurando o arquivo .Rproj ou _quarto.yml) e constrói o caminho a partir dali:\n\nhere::here(\"dados\", \"populacao_uf.csv\")\n\n[1] \"D:/Projetos_Lemuel/2026-curso-de-verao-ime-usp-relatorios/dados/populacao_uf.csv\"\n\n\n\npopulacao_uf &lt;- readr::read_csv(here::here(\"dados\", \"populacao_uf.csv\"), show_col_types = FALSE)\n\nhere::here() funciona mesmo se o .qmd for movido para outra subpasta, e funciona igual no seu computador e no de outra pessoa — diferente de um caminho absoluto como \"C:/Users/você/Desktop/dados.csv\", que só existe na sua máquina.",
+    "crumbs": [
+      "Aulas",
+      "Aula 3 — Dados, formatos e automação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-3.html#primeiro-olhar-nos-dados",
+    "href": "aulas/aula-3.html#primeiro-olhar-nos-dados",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "2. Primeiro olhar nos dados",
+    "text": "2. Primeiro olhar nos dados\nAntes de transformar qualquer coisa, vale inspecionar o que chegou. skimr::skim() resume cada coluna — tipo, valores ausentes, estatísticas básicas — em um único bloco:\n\nskimr::skim(populacao_uf)\n\n\nData summary\n\n\nName\npopulacao_uf\n\n\nNumber of rows\n27\n\n\nNumber of columns\n9\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n4\n\n\nnumeric\n5\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\nuf\n0\n1\n2\n2\n0\n27\n0\n\n\nnome_uf\n0\n1\n4\n19\n0\n27\n0\n\n\nregiao\n0\n1\n3\n12\n0\n5\n0\n\n\ncapital\n0\n1\n5\n14\n0\n27\n0\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\npopulacao\n0\n1\n7520768.74\n8924062.79\n636707.00\n2787197.00\n3941613.00\n8926944.00\n44411238.00\n▇▂▁▁▁\n\n\narea_km2\n0\n1\n315793.99\n376781.38\n5822.10\n75893.00\n224299.00\n336035.00\n1570745.70\n▇▂▁▁▁\n\n\nlatitude\n0\n1\n-12.40\n9.02\n-30.03\n-20.12\n-10.18\n-5.44\n2.82\n▃▃▅▇▆\n\n\nlongitude\n0\n1\n-47.16\n9.12\n-67.81\n-51.15\n-47.93\n-39.44\n-34.86\n▂▃▇▆▇\n\n\ndensidade_dem\n0\n1\n72.12\n111.92\n2.51\n6.58\n35.02\n81.51\n483.91\n▇▁▁▁▁\n\n\n\n\n\nDuas perguntas valem sempre a pena antes de prosseguir: o número de linhas bate com o esperado (aqui, 27 — uma por unidade federativa)? Alguma coluna tem valores ausentes (n_missing) que precisam de explicação?",
+    "crumbs": [
+      "Aulas",
+      "Aula 3 — Dados, formatos e automação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-3.html#juntando-duas-fontes-de-dados",
+    "href": "aulas/aula-3.html#juntando-duas-fontes-de-dados",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "3. Juntando duas fontes de dados",
+    "text": "3. Juntando duas fontes de dados\npib_uf.csv traz o PIB per capita por estado, mas de um ano de referência diferente do populacao_uf.csv — isso é comum quando os dados vêm de levantamentos diferentes do IBGE, e é um ótimo motivo para nunca juntar tabelas sem checar o que aconteceu:\n\npib_uf &lt;- readr::read_csv(here::here(\"dados\", \"pib_uf.csv\"), show_col_types = FALSE)\n\nestados &lt;- populacao_uf |&gt;\n  dplyr::left_join(pib_uf, by = \"uf\")\n\ndplyr::glimpse(estados)\n\nRows: 27\nColumns: 11\n$ uf             &lt;chr&gt; \"AC\", \"AL\", \"AM\", \"AP\", \"BA\", \"CE\", \"DF\", \"ES\", \"GO\", \"…\n$ nome_uf        &lt;chr&gt; \"Acre\", \"Alagoas\", \"Amazonas\", \"Amapá\", \"Bahia\", \"Ceará…\n$ regiao         &lt;chr&gt; \"Norte\", \"Nordeste\", \"Norte\", \"Norte\", \"Nordeste\", \"Nor…\n$ capital        &lt;chr&gt; \"Rio Branco\", \"Maceió\", \"Manaus\", \"Macapá\", \"Salvador\",…\n$ populacao      &lt;dbl&gt; 830018, 3127683, 3941613, 733759, 14141626, 8794957, 28…\n$ area_km2       &lt;dbl&gt; 164122.2, 27767.7, 1570745.7, 142814.6, 564692.7, 14882…\n$ latitude       &lt;dbl&gt; -9.97, -9.65, -3.10, 0.03, -12.97, -3.72, -15.78, -20.3…\n$ longitude      &lt;dbl&gt; -67.81, -35.71, -60.02, -51.07, -38.51, -38.54, -47.93,…\n$ densidade_dem  &lt;dbl&gt; 5.06, 112.64, 2.51, 5.14, 25.04, 59.10, 483.91, 83.20, …\n$ ano_referencia &lt;dbl&gt; 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2…\n$ pib_per_capita &lt;dbl&gt; 31675.60, 28675.84, 41047.91, 38187.09, 30476.54, 26405…\n\n\n\nsum(is.na(estados$pib_per_capita))\n\n[1] 0\n\n\nNeste caso o resultado é zero — as duas bases cobrem as mesmas 27 unidades federativas —, mas em dados reais é comum um left_join produzir NA quando uma chave existe de um lado e não do outro (um estado sem PIB registrado no ano da fonte, por exemplo). Nunca ignore isso silenciosamente: decida, e registre a decisão no texto.\n\n# Se houvesse NA em pib_per_capita, duas saídas comuns seriam:\n\n# 1. Descartar as linhas incompletas, sendo explícito sobre quantas:\nestados |&gt; dplyr::filter(!is.na(pib_per_capita))\n\n# 2. Substituir por um valor de referência (ex.: a média nacional),\n#    deixando claro no texto que aquele número é uma estimativa:\nestados |&gt; dplyr::mutate(pib_per_capita = dplyr::coalesce(pib_per_capita, mean(pib_per_capita, na.rm = TRUE)))",
+    "crumbs": [
+      "Aulas",
+      "Aula 3 — Dados, formatos e automação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-3.html#um-fluxo-com-responsabilidades-claras",
+    "href": "aulas/aula-3.html#um-fluxo-com-responsabilidades-claras",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "4. Um fluxo com responsabilidades claras",
+    "text": "4. Um fluxo com responsabilidades claras\n\n# 1. Importação\npopulacao_uf &lt;- readr::read_csv(here::here(\"dados\", \"populacao_uf.csv\"), show_col_types = FALSE)\npib_uf &lt;- readr::read_csv(here::here(\"dados\", \"pib_uf.csv\"), show_col_types = FALSE)\n\n# 2. Junção e tratamento\nestados &lt;- populacao_uf |&gt;\n  dplyr::left_join(pib_uf, by = \"uf\") |&gt;\n  dplyr::filter(!is.na(pib_per_capita))\n\n# 3. Transformação\nresumo_regiao &lt;- estados |&gt;\n  dplyr::group_by(regiao) |&gt;\n  dplyr::summarise(\n    pib_medio = mean(pib_per_capita),\n    .groups = \"drop\"\n  ) |&gt;\n  dplyr::arrange(dplyr::desc(pib_medio))\n\n# 4. Comunicação\nknitr::kable(resumo_regiao, digits = 0, col.names = c(\"Região\", \"PIB per capita médio (R$)\"))\n\n\n\n\nRegião\nPIB per capita médio (R$)\n\n\n\n\nCentro-Oeste\n79754\n\n\nSudeste\n63168\n\n\nSul\n61940\n\n\nNorte\n38946\n\n\nNordeste\n27210\n\n\n\n\n\nCada etapa tem um comentário que diz o que ela faz, e os nomes dos objetos (estados, resumo_regiao) descrevem o conteúdo, não a ordem de criação. Evite esconder uma transformação importante dentro de um bloco com nome genérico como analise — quem revisa o código depois (inclusive você, em três meses) precisa localizar rapidamente onde algo foi calculado.",
+    "crumbs": [
+      "Aulas",
+      "Aula 3 — Dados, formatos e automação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-3.html#resultados-dinâmicos-no-texto",
+    "href": "aulas/aula-3.html#resultados-dinâmicos-no-texto",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "5. Resultados dinâmicos no texto",
+    "text": "5. Resultados dinâmicos no texto\nUm valor citado em prosa deve vir do mesmo código usado na análise — nunca digitado à mão. A sintaxe do Quarto para isso é código R inline: no meio do parágrafo (não dentro de um bloco ```{r}), escreva um acento grave, a letra r, um espaço, a expressão a calcular, e feche com outro acento grave.\n\nregiao_maior_pib &lt;- resumo_regiao$regiao[1]\npib_regiao_maior &lt;- resumo_regiao$pib_medio[1]\n\nEsta própria frase usa a técnica: a região Centro-Oeste tem o maior PIB per capita médio entre as regiões, R$ 79.754. Nenhum desses dois valores foi digitado — ambos vieram do bloco valor-dinamico acima. Se dados/pib_uf.csv fosse atualizado com números de outro ano, a frase mudaria sozinha na próxima renderização, sem que ninguém precisasse achar e editar o número manualmente.\nglue::glue() monta o texto substituindo {expressão} pelo valor calculado; é mais legível que concatenar strings com paste0() quando a frase tem várias partes variáveis.",
+    "crumbs": [
+      "Aulas",
+      "Aula 3 — Dados, formatos e automação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-3.html#escolha-do-formato",
+    "href": "aulas/aula-3.html#escolha-do-formato",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "6. Escolha do formato",
+    "text": "6. Escolha do formato\n\n\n\n\n\n\n\n\nFormato\nPontos fortes\nAtenções\n\n\n\n\nHTML\ninteratividade, links, navegação e publicação web\nexige navegador para leitura\n\n\nPDF\nlayout estável e impressão\nrequer uma distribuição TeX e pouca interatividade\n\n\nWord\nrevisão e edição por terceiros\naparência pode variar entre programas\n\n\n\nUm único arquivo pode gerar mais de uma saída:\nformat:\n  html:\n    toc: true\n    code-fold: true\n  pdf:\n    toc: true\n  docx:\n    toc: true\n\n\n\n\n\n\nDicaDecida pelo público\n\n\n\nUse HTML para exploração e publicação, PDF para documentos fechados e Word quando o fluxo exige revisão editorial fora do código.",
+    "crumbs": [
+      "Aulas",
+      "Aula 3 — Dados, formatos e automação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-3.html#controle-da-execução",
+    "href": "aulas/aula-3.html#controle-da-execução",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "7. Controle da execução",
+    "text": "7. Controle da execução\nexecute:\n  echo: false\n  warning: false\n  message: false\n  error: false\nEssas opções controlam a apresentação, não corrigem código. Um aviso escondido continua acontecendo — só deixa de aparecer no documento final. Durante o desenvolvimento, mantenha mensagens e código visíveis; esconda-os somente quando o relatório estiver estável e isso fizer sentido para o público.\nOpções úteis por bloco, sobrepondo o padrão do documento:\n#| label: fig-pib-regiao\n#| fig-cap: \"PIB per capita médio por região.\"\n#| fig-alt: \"Gráfico de barras com o PIB per capita médio de cada região.\"\n#| echo: false",
+    "crumbs": [
+      "Aulas",
+      "Aula 3 — Dados, formatos e automação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-3.html#reprodutibilidade-do-ambiente",
+    "href": "aulas/aula-3.html#reprodutibilidade-do-ambiente",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "8. Reprodutibilidade do ambiente",
+    "text": "8. Reprodutibilidade do ambiente\nO renv.lock registra a versão exata de cada pacote usado no projeto. No projeto do trabalho final:\nrenv::init()\nrenv::snapshot()\nrenv::restore()\n\ninit() cria a infraestrutura do renv num projeto novo;\nsnapshot() atualiza renv.lock com os pacotes de fato usados e instalados;\nrestore() reinstala exatamente essas versões — é o que outra pessoa roda ao clonar seu repositório.\n\nNão versione a biblioteca instalada em renv/library (ela é recriada por restore()); versione renv.lock e os arquivos de infraestrutura criados pelo renv.",
+    "crumbs": [
+      "Aulas",
+      "Aula 3 — Dados, formatos e automação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-3.html#prática-guiada",
+    "href": "aulas/aula-3.html#prática-guiada",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Prática guiada",
+    "text": "Prática guiada\n\nLeia dados/populacao_uf.csv e dados/pib_uf.csv com here::here().\nRode skimr::skim() nas duas tabelas antes de juntá-las.\nJunte as duas com dplyr::left_join() e confira se apareceu algum NA.\nProduza uma tabela-resumo por região e um gráfico.\nInclua uma frase com um valor calculado dinamicamente, como código R inline (acento grave, r, espaço, expressão, acento grave).\nConfigure o YAML para gerar HTML e mais um formato.\nReinicie o R e renderize novamente.",
+    "crumbs": [
+      "Aulas",
+      "Aula 3 — Dados, formatos e automação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-3.html#para-o-projeto-final",
+    "href": "aulas/aula-3.html#para-o-projeto-final",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Para o projeto final",
+    "text": "Para o projeto final\nAdicione a base de dados ao seu projeto (ou documente como obtê-la) e implemente a importação, uma junção ou transformação, uma tabela e um gráfico. Registre as dependências com renv::snapshot().",
+    "crumbs": [
+      "Aulas",
+      "Aula 3 — Dados, formatos e automação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-3.html#checklist",
+    "href": "aulas/aula-3.html#checklist",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Checklist",
+    "text": "Checklist\n\nMeu projeto usa here::here() ou caminhos relativos consistentes.\nRodei skimr::skim() (ou equivalente) antes de transformar os dados.\nVerifiquei se uma junção produziu NA e decidi explicitamente o que fazer com eles.\nTexto, tabelas e gráficos vêm dos mesmos dados, sem números digitados à mão.\nEscolhi o formato com base no público.\nO documento renderiza em uma sessão limpa.",
+    "crumbs": [
+      "Aulas",
+      "Aula 3 — Dados, formatos e automação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-3.html#leitura-complementar",
+    "href": "aulas/aula-3.html#leitura-complementar",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Leitura complementar",
+    "text": "Leitura complementar\n\nQuarto: execução de código\nQuarto: formatos HTML\nQuarto: formatos PDF\nQuarto: formatos Word\nhere: por que evitar setwd()",
+    "crumbs": [
+      "Aulas",
+      "Aula 3 — Dados, formatos e automação"
     ]
   },
   {
     "objectID": "aulas/aula-1.html",
     "href": "aulas/aula-1.html",
-    "title": "Aula 1 – Configurações e Introdução ao Quarto",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
     "section": "",
-    "text": "Para que possamos realizar nosso curso, se faz necessário a instalação das ferramentas básicas pra gerar os relatórios em Quarto.\nO primeiro passo que temos que fazer é a instalação do R em nossa máquina. Para isso temos que acessar a página oficial do R, baixar o executável e instalar em nossa máquina.\nO segundo passo consiste em instalar alguma IDE, ou seja, interface para que possamos programar e escrever nossos relatórios. Atualmente temos duas IDE’s mais utilizadas no mercado - o Rstudio e o Positron. Eu estarei utilizando o Positron mas as duas poderão ser utilizadas.\nSegue aqui o tutorial para a instalação:\n\nTutorial instalação do R\nTutorial instalação do Rstudio",
+    "text": "Nesta aula você conhecerá o fluxo de trabalho que sustenta um relatório reprodutível: arquivos organizados, código executável, resultados gerados automaticamente e instruções suficientes para outra pessoa repetir a análise.\n\n\nAo final da aula, você deverá ser capaz de:\n\nexplicar por que copiar resultados manualmente prejudica a reprodutibilidade;\nidentificar o papel de R, uma IDE e Quarto;\ncriar e renderizar um arquivo .qmd;\ncombinar texto em Markdown, código R e resultados;\ndiagnosticar erros simples de renderização.\n\n\n\n\nConfira o roteiro de instalações necessárias. Você precisa de R, Quarto e RStudio ou Positron. Git e uma conta no GitHub serão usados mais adiante.",
     "crumbs": [
       "Aulas",
-      "Aula 1 – Configurações e Introdução ao Quarto"
+      "Aula 1 — Reprodutibilidade e primeiro documento Quarto"
     ]
   },
   {
-    "objectID": "aulas/aula-1.html#links-importantes",
-    "href": "aulas/aula-1.html#links-importantes",
-    "title": "Aula 1 – Configurações e Introdução ao Quarto",
-    "section": "Links Importantes",
-    "text": "Links Importantes\nVou deixar aqui alguns links importantes para ajudá-los nesse processo.\n\nInstalação Git\nPublicação de Relatórios Online via Netlify",
+    "objectID": "aulas/aula-1.html#visão-geral",
+    "href": "aulas/aula-1.html#visão-geral",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "",
+    "text": "Nesta aula você conhecerá o fluxo de trabalho que sustenta um relatório reprodutível: arquivos organizados, código executável, resultados gerados automaticamente e instruções suficientes para outra pessoa repetir a análise.\n\n\nAo final da aula, você deverá ser capaz de:\n\nexplicar por que copiar resultados manualmente prejudica a reprodutibilidade;\nidentificar o papel de R, uma IDE e Quarto;\ncriar e renderizar um arquivo .qmd;\ncombinar texto em Markdown, código R e resultados;\ndiagnosticar erros simples de renderização.\n\n\n\n\nConfira o roteiro de instalações necessárias. Você precisa de R, Quarto e RStudio ou Positron. Git e uma conta no GitHub serão usados mais adiante.",
     "crumbs": [
       "Aulas",
-      "Aula 1 – Configurações e Introdução ao Quarto"
+      "Aula 1 — Reprodutibilidade e primeiro documento Quarto"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-1.html#um-caso-concreto-de-relatório-não-reprodutível",
+    "href": "aulas/aula-1.html#um-caso-concreto-de-relatório-não-reprodutível",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "1. Um caso concreto de relatório não reprodutível",
+    "text": "1. Um caso concreto de relatório não reprodutível\nImagine este histórico, comum em equipes que ainda não usam Quarto:\n\nAlguém abre uma planilha, calcula a receita média por região e copia o número para um documento do Word.\nDuas semanas depois, a base é atualizada — novas vendas entraram.\nO relatório continua com o número antigo, porque ninguém lembrou (ou teve tempo) de recalcular e colar de novo.\nUma pessoa gestora toma uma decisão com base num número que não existe mais.\n\nNada aqui foi feito de má-fé. O problema é estrutural: o número no texto não tem ligação nenhuma com o dado que o gerou. Refazer o relatório significa refazer manualmente cada conta, cada tabela e cada gráfico, e cada repetição é uma chance de errar ou esquecer um passo.\nUm relatório é reprodutível quando o caminho entre os dados e o resultado está registrado e pode ser executado novamente, do zero, sem depender da memória de quem o escreveu. Isso exige, no mínimo:\n\ndados ou instruções para obtê-los;\ncódigo responsável pelas transformações e análises;\nversões e dependências documentadas;\ntexto que explique decisões, métodos e conclusões;\numa rotina de renderização que gere o documento final.\n\n\n\n\n\n\n\nNotaIdeia central\n\n\n\nNo Quarto, texto, código e resultado vivem no mesmo arquivo-fonte. Quando os dados mudam, você renderiza novamente em vez de copiar e colar tabelas e gráficos. O número no relatório é sempre o número mais recente, porque foi calculado na hora da renderização — não digitado à mão.",
+    "crumbs": [
+      "Aulas",
+      "Aula 1 — Reprodutibilidade e primeiro documento Quarto"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-1.html#as-ferramentas-do-curso",
+    "href": "aulas/aula-1.html#as-ferramentas-do-curso",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "2. As ferramentas do curso",
+    "text": "2. As ferramentas do curso\n\n\n\n\n\n\n\n\nFerramenta\nFunção no fluxo de trabalho\nO que ela não faz\n\n\n\n\nR\nExecuta a análise de dados\nNão edita arquivos nem gerencia projetos por conta própria\n\n\nRStudio ou Positron\nAmbiente para editar arquivos e executar comandos\nNão substitui o R — é a “oficina”, não a “ferramenta”\n\n\nQuarto\nConverte o arquivo-fonte em HTML, PDF, Word, slides ou site\nNão é uma linguagem de programação; ele coordena a execução de R, Python ou Julia\n\n\nGit\nRegistra o histórico das alterações\nNão hospeda nada por si só — é local, no seu computador\n\n\nGitHub\nHospeda o repositório e permite colaboração e publicação\nNão versiona nada sozinho — depende do Git\n\n\n\nÉ possível escrever e executar código R só com um editor de texto simples e o terminal, sem RStudio ou Positron — mas a IDE reúne editor, console, visualizador de dados e painel de ajuda no mesmo lugar, o que reduz atrito no dia a dia. O Quarto, por sua vez, não sabe calcular uma média nem desenhar um gráfico: ele chama o R (ou outro motor) para fazer isso e depois organiza o resultado junto com o seu texto.",
+    "crumbs": [
+      "Aulas",
+      "Aula 1 — Reprodutibilidade e primeiro documento Quarto"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-1.html#primeiro-documento",
+    "href": "aulas/aula-1.html#primeiro-documento",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "3. Primeiro documento",
+    "text": "3. Primeiro documento\nNa IDE, crie um projeto e depois um arquivo Quarto. Salve-o como relatorio.qmd, começando pelo cabeçalho YAML e um pouco de texto em Markdown:\n---\ntitle: \"Meu primeiro relatório\"\nauthor: \"Seu nome\"\nformat: html\n---\n\n## Objetivo\n\nEste relatório apresenta um resumo da base `mtcars`.\nNa sequência, ainda no mesmo arquivo, um bloco de código R:\n\nsummary(mtcars$mpg)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  10.40   15.43   19.20   20.09   22.80   33.90 \n\n\nClique em Render. O Quarto executa o bloco resumo-dados e cria relatorio.html — com o texto, o código e o resultado acima, na mesma ordem em que aparecem no arquivo-fonte. É exatamente o que você está vendo agora: esta própria página é um .qmd renderizado, e os seis números acima (mínimo, quartis, média e máximo) não foram digitados por ninguém — o R os calculou no momento em que este documento foi renderizado. Se a base mtcars mudasse, esses números mudariam sozinhos na próxima renderização.\n\nAnatomia do arquivo\n\no trecho entre --- é o cabeçalho YAML;\n## Objetivo cria uma seção;\no bloco iniciado por ```{r} contém código R;\nopções iniciadas por #| controlam a execução e a apresentação.",
+    "crumbs": [
+      "Aulas",
+      "Aula 1 — Reprodutibilidade e primeiro documento Quarto"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-1.html#texto-em-markdown",
+    "href": "aulas/aula-1.html#texto-em-markdown",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "4. Texto em Markdown",
+    "text": "4. Texto em Markdown\nUse Markdown para separar conteúdo de aparência:\n## Uma seção\n\nTexto com **negrito**, *itálico* e `código`.\n\n- primeiro item;\n- segundo item.\n\n[Documentação do Quarto](https://quarto.org/)\nPrefira títulos informativos e parágrafos curtos. Um relatório deve comunicar uma pergunta e uma conclusão, não apenas exibir código.",
+    "crumbs": [
+      "Aulas",
+      "Aula 1 — Reprodutibilidade e primeiro documento Quarto"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-1.html#um-primeiro-olhar-em-dados-reais",
+    "href": "aulas/aula-1.html#um-primeiro-olhar-em-dados-reais",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "5. Um primeiro olhar em dados reais",
+    "text": "5. Um primeiro olhar em dados reais\nEste curso usa, ao longo das cinco aulas, uma base pequena e real: população, área e PIB per capita das 27 unidades federativas do Brasil (fonte: IBGE — os detalhes estão em dados/README.md). A leitura formal de arquivos .csv só chega na Aula 3, mas nada impede um primeiro contato agora:\n\npopulacao_uf &lt;- readr::read_csv(\"dados/populacao_uf.csv\", show_col_types = FALSE)\n\ndplyr::glimpse(populacao_uf)\n\nRows: 27\nColumns: 9\n$ uf            &lt;chr&gt; \"AC\", \"AL\", \"AM\", \"AP\", \"BA\", \"CE\", \"DF\", \"ES\", \"GO\", \"M…\n$ nome_uf       &lt;chr&gt; \"Acre\", \"Alagoas\", \"Amazonas\", \"Amapá\", \"Bahia\", \"Ceará\"…\n$ regiao        &lt;chr&gt; \"Norte\", \"Nordeste\", \"Norte\", \"Norte\", \"Nordeste\", \"Nord…\n$ capital       &lt;chr&gt; \"Rio Branco\", \"Maceió\", \"Manaus\", \"Macapá\", \"Salvador\", …\n$ populacao     &lt;dbl&gt; 830018, 3127683, 3941613, 733759, 14141626, 8794957, 281…\n$ area_km2      &lt;dbl&gt; 164122.2, 27767.7, 1570745.7, 142814.6, 564692.7, 148825…\n$ latitude      &lt;dbl&gt; -9.97, -9.65, -3.10, 0.03, -12.97, -3.72, -15.78, -20.32…\n$ longitude     &lt;dbl&gt; -67.81, -35.71, -60.02, -51.07, -38.51, -38.54, -47.93, …\n$ densidade_dem &lt;dbl&gt; 5.06, 112.64, 2.51, 5.14, 25.04, 59.10, 483.91, 83.20, 2…\n\n\nreadr::read_csv() leu o arquivo e dplyr::glimpse() mostra, de forma compacta, quantas linhas existem, quais colunas existem e um exemplo de valor de cada uma. É a base que vai crescer — literalmente, com mais colunas e mais análises — a cada aula.",
+    "crumbs": [
+      "Aulas",
+      "Aula 1 — Reprodutibilidade e primeiro documento Quarto"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-1.html#erros-comuns",
+    "href": "aulas/aula-1.html#erros-comuns",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "6. Erros comuns",
+    "text": "6. Erros comuns\nReconhecer a mensagem de erro é metade do diagnóstico. Alguns exemplos reais:\n\n\n\n\n\n\n\nMensagem ou sintoma\nO que ela costuma significar\n\n\n\n\n'quarto' não é reconhecido como um comando\no Quarto não está instalado ou a IDE precisa ser reiniciada para enxergar o PATH atualizado\n\n\nError in library(dplyr) : there is no package called 'dplyr'\no pacote não está instalado no ambiente ativo (confira com renv::status() se o projeto usa renv)\n\n\nError: YAML parse exception ... mapping values are not allowed in this context\num : em um texto do YAML sem aspas ao redor, ou indentação com tabulação em vez de espaços\n\n\ncannot open file 'imagens/grafico.png': No such file or directory\ncaminho relativo à pasta errada — confira a partir de onde o documento é executado\n\n\ncódigo funciona no console, mas o Render falha com object 'x' not found\nx foi criado só no console, fora do arquivo .qmd — o documento não tem acesso à sua sessão\n\n\n\n\n\n\n\n\n\nAvisoTeste de reprodutibilidade\n\n\n\nReinicie o R (em RStudio: Session → Restart R) e renderize novamente. Se o documento depender de objetos existentes apenas no seu console, ele ainda não é reprodutível — e o erro object not found é exatamente esse aviso.",
+    "crumbs": [
+      "Aulas",
+      "Aula 1 — Reprodutibilidade e primeiro documento Quarto"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-1.html#prática-guiada",
+    "href": "aulas/aula-1.html#prática-guiada",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "Prática guiada",
+    "text": "Prática guiada\nCrie um relatório que contenha:\n\ntítulo, autoria e data;\numa seção explicando o objetivo;\numa lista com três perguntas sobre mtcars;\num bloco que calcule mean(mtcars$mpg);\numa frase que interprete o resultado;\num segundo bloco que leia dados/populacao_uf.csv com readr::read_csv() e responda, só com código: quantos estados tem a região Nordeste? (dica: dplyr::filter() + nrow(), ou dplyr::count(regiao)).\n\nDepois, reinicie o R e renderize de novo — se algo quebrar, você acabou de encontrar uma dependência escondida antes que ela virasse um problema no meio do curso.",
+    "crumbs": [
+      "Aulas",
+      "Aula 1 — Reprodutibilidade e primeiro documento Quarto"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-1.html#para-o-projeto-final",
+    "href": "aulas/aula-1.html#para-o-projeto-final",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "Para o projeto final",
+    "text": "Para o projeto final\nCrie a pasta do seu projeto, escolha um tema e escreva em README.md:\n\nqual pergunta será respondida;\nquem é o público do documento;\nqual formato você pretende entregar.",
+    "crumbs": [
+      "Aulas",
+      "Aula 1 — Reprodutibilidade e primeiro documento Quarto"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-1.html#checklist",
+    "href": "aulas/aula-1.html#checklist",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "Checklist",
+    "text": "Checklist\n\nConsigo explicar o conceito de reprodutibilidade com um exemplo concreto, não só com a definição.\nSei distinguir R, IDE e Quarto.\nCriei e renderizei um .qmd sem depender do console.\nUsei Markdown e um bloco de código.\nConsegui ler dados/populacao_uf.csv e inspecioná-lo com glimpse().",
+    "crumbs": [
+      "Aulas",
+      "Aula 1 — Reprodutibilidade e primeiro documento Quarto"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-1.html#materiais-da-aula",
+    "href": "aulas/aula-1.html#materiais-da-aula",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "Materiais da aula",
+    "text": "Materiais da aula\n\nSlides da Aula 1\nDocumentação oficial: primeiros passos",
+    "crumbs": [
+      "Aulas",
+      "Aula 1 — Reprodutibilidade e primeiro documento Quarto"
     ]
   },
   {
     "objectID": "aulas/aula-2.html",
     "href": "aulas/aula-2.html",
-    "title": "Aula 2 – Estrutura, Estilo e Layout de Relatórios",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
     "section": "",
-    "text": "Aula 2 — Estrutura e elementos de um documento Quarto\nNa aula anterior, compreendemos o propósito dos relatórios reprodutíveis e o papel do Quarto como ferramenta central para integrar texto, código e resultados em um único fluxo de trabalho. A partir desse ponto, o próximo passo natural é entender como um documento Quarto é estruturado e quais são os seus principais elementos.\nNesta aula, exploraremos a arquitetura de um documento .qmd, abordando desde o cabeçalho de configuração (YAML), responsável por definir formato, layout e opções de renderização, até os blocos de código, elementos de texto, inserção de tabelas, gráficos e recursos multimídia. O objetivo é fornecer uma visão clara de como cada componente atua na construção de relatórios profissionais, organizados e plenamente reprodutíveis.\nAo final da aula, você será capaz de estruturar documentos Quarto de forma consciente, configurar seus principais parâmetros e combinar conteúdo analítico e narrativo de maneira fluida — criando relatórios que não apenas executam análises, mas comunicam resultados com clareza e qualidade visual.\n\n\nSlides Aula 2\n\nAcesse aqui os slides da Aula 2 - Estrutura, Estilo e Layout de Relatórios\n\n\nElementos Yaml\n\nElementos Presentes no Yaml\n\nTexto em itálico\nTexto em negrito\nNegrito e itálico\nTexto tachado\n\n\nItens\n\nItem 1\nItem 2\n\nSubitem 2.1\nSubitem 2.2\n\nSubSubItem\n\n\n\n\nPrimeiro passo\nSegundo passo\n\nDetalhe 2.1\nDetalhe 2.2\n\n\n\n\nInserção de Código\n\n\nMostrar código\nlibrary(dplyr)\n\nmtcars |&gt; \n    dplyr::select(am,carb,cyl) |&gt; \n    head()\n\n\n                  am carb cyl\nMazda RX4          1    4   6\nMazda RX4 Wag      1    4   6\nDatsun 710         1    1   4\nHornet 4 Drive     0    1   6\nHornet Sportabout  0    2   8\nValiant            0    1   6\n\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis posuere ligula sit amet lacinia. Duis dignissim pellentesque magna, rhoncus congue sapien finibus mollis. Ut eu sem laoreet, vehicula ipsum in, convallis erat. Vestibulum magna sem, blandit pulvinar augue sit amet, auctor malesuada sapien. Nullam faucibus leo eget eros hendrerit, non laoreet ipsum lacinia. Curabitur cursus diam elit, non tempus ante volutpat a. Quisque hendrerit blandit purus non fringilla. Integer sit amet elit viverra ante dapibus semper. Vestibulum viverra rutrum enim, at luctus enim posuere eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\n\nMostrar código\nmtcars |&gt; \n    dplyr::select(am,carb,cyl) |&gt; \n    head()\n\n\n                  am carb cyl\nMazda RX4          1    4   6\nMazda RX4 Wag      1    4   6\nDatsun 710         1    1   4\nHornet 4 Drive     0    1   6\nHornet Sportabout  0    2   8\nValiant            0    1   6\n\n\nO veículo Datsun 710 possui 4 cilíndros.\n\n\nElementos Visuais\n\n\n\nVariável\nTipo\nDescrição\n\n\n\n\nmpg\nnumérica\nMilhas por galão\n\n\ncyl\nnumérica\nNúmero de cilindros\n\n\nhp\nnumérica\nCavalos de potência\n\n\n\n\nTabela com Kable\n\n\nMostrar código\nlibrary(kableExtra)\n\nkable(head(mtcars[, 1:4]), caption = \"Primeiras linhas do conjunto mtcars\")\n\n\n\nPrimeiras linhas do conjunto mtcars\n\n\n\nmpg\ncyl\ndisp\nhp\n\n\n\n\nMazda RX4\n21.0\n6\n160\n110\n\n\nMazda RX4 Wag\n21.0\n6\n160\n110\n\n\nDatsun 710\n22.8\n4\n108\n93\n\n\nHornet 4 Drive\n21.4\n6\n258\n110\n\n\nHornet Sportabout\n18.7\n8\n360\n175\n\n\nValiant\n18.1\n6\n225\n105\n\n\n\n\n\n\nDocumentação kable html\nDocumentação kable PDF\n\n\n\nTabela com Kable\n\n\nMostrar código\nlibrary(gt)\n\n# Define the start and end dates for the data range\nstart_date &lt;- \"2010-06-07\"\nend_date &lt;- \"2010-06-14\"\n\n# Create a gt table based on preprocessed\n# `sp500` table data\nsp500 |&gt;\n  dplyr::filter(date &gt;= start_date & date &lt;= end_date) |&gt;\n  dplyr::select(-adj_close) |&gt;\n  gt() |&gt;\n  tab_header(\n    title = \"S&P 500\",\n    subtitle = glue::glue(\"{start_date} to {end_date}\")\n  ) |&gt;\n  fmt_currency() |&gt;\n  fmt_date(columns = date, date_style = \"wd_m_day_year\") |&gt;\n  fmt_number(columns = volume, suffixing = TRUE)\n\n\n\n\n\n\n\n\nS&P 500\n\n\n2010-06-07 to 2010-06-14\n\n\ndate\nopen\nhigh\nlow\nclose\nvolume\n\n\n\n\nMon, Jun 14, 2010\n$1,095.00\n$1,105.91\n$1,089.03\n$1,089.63\n4.43B\n\n\nFri, Jun 11, 2010\n$1,082.65\n$1,092.25\n$1,077.12\n$1,091.60\n4.06B\n\n\nThu, Jun 10, 2010\n$1,058.77\n$1,087.85\n$1,058.77\n$1,086.84\n5.14B\n\n\nWed, Jun 9, 2010\n$1,062.75\n$1,077.74\n$1,052.25\n$1,055.69\n5.98B\n\n\nTue, Jun 8, 2010\n$1,050.81\n$1,063.15\n$1,042.17\n$1,062.00\n6.19B\n\n\nMon, Jun 7, 2010\n$1,065.84\n$1,071.36\n$1,049.86\n$1,050.47\n5.47B\n\n\n\n\n\n\n\n\nDocumentação Tabela com GT\n\n\n\n\nInclusão de Gráficos\n\nGráfico com R Base\n\n\nMostrar código\n# Gráfico simples\nbarplot(table(mtcars$cyl),\n        main = \"Distribuição de Cilindros\",\n        xlab = \"Cilindros\",\n        ylab = \"Frequência\",\n        col = c(\"#1f77b4\", \"#ff7f0e\", \"#2ca02c\"))\n\n\n\n\n\nGráfico de Barras - Distribuição de Cilindros\n\n\n\n\n\n\nGráfico GGPLOT\n\n\nMostrar código\nlibrary(ggplot2)\n\nggplot(mtcars, aes(x = mpg, y = hp, color = factor(cyl))) +\n  geom_point(size = 3, alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(title = \"Relação entre Consumo e Potência\",\n       x = \"Milhas por Galão (MPG)\",\n       y = \"Cavalos de Potência (HP)\",\n       color = \"Cilindros\") +\n  theme_minimal() +\n  scale_color_brewer(palette = \"Set1\")\n\n\n\n\n\n\n\n\nFigure 1: Relação entre MPG e HP por Cilindros\n\n\n\n\n\n\nDocumentação gráficos do G1\n\n\n\nGráfico com echarts4r\n\n\nMostrar código\nlibrary(echarts4r)\n\nmtcars |&gt; \n  head() |&gt; \n  tibble::rownames_to_column(\"model\") |&gt; \n  e_charts(model) |&gt; \n  e_pie(hp, roseType = \"radius\")\n\n\n\n\n\n\n\nDocumentação gráfico echarts4r\n\n\n\nGráfico com Plotly\n\n\nMostrar código\nlibrary(plotly)\n\nfig &lt;- plot_ly(\n  x = c(\"giraffes\", \"orangutans\", \"monkeys\"),\n  y = c(20, 14, 23),\n  name = \"SF Zoo\",\n  type = \"bar\"\n)\n\nfig\n\n\n\n\n\n\n\nDocumentação gráfico plotly\n\n\nMapas\n\n\nMostrar código\n# Mapas com leaflet\nlibrary(leaflet)\n\nleaflet() %&gt;%\n  addTiles() %&gt;%\n  addMarkers(lng = -46.6333, lat = -23.5505,\n             popup = \"São Paulo, Brasil\")\n\n\n\n\n\n\n\nDocumentação Leaflet\nLista de Exemplos Leaflet\n\n\n\n\nAdição de Imagens\n\n\n\nLogo do R\n\n\n\n\n\nGráfico exportado\n\n\n Figura 1: Fluxo de trabalho com Quarto\n\nDocumentação Imagens Quarto\n\n\nAdição de Vídeo\n\n\n\n\n\n\n\nFigure 2: Vídeo de Tutorial do Quarto\n\n\n\n\n\n\n\n\nLinks e Refências\n\nDocumentação oficial do Quarto\nRepositório no GitHub\nExemplos e Galeria\n\n\n\nEquações Matemáticas\n\nTheorem 1 \\[\nf(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}} e^{-\\frac{1}{2}\\left(\\frac{x-\\mu}{\\sigma}\\right)^2}\n\\]\n\n\n\nReferência Cruzada\nComo mostrado na Figura Figure 2\nComo mostrado na Figura Figure 1\nComo mostrado na equação Theorem 1\n\nDocumentação Referências Quarto",
+    "text": "Um relatório reprodutível também precisa ser compreensível. Nesta aula, vamos organizar o documento, controlar sua aparência e apresentar evidências com tabelas e gráficos que tenham função narrativa — usando a mesma base de estados brasileiros da Aula 1.\n\n\n\nconfigurar título, autoria, formato e sumário no YAML;\nestruturar texto com Markdown e hierarquia de seções;\ncontrolar código e resultados com opções de execução;\ninserir tabelas, figuras, equações e referências cruzadas;\naplicar princípios básicos de legibilidade e acessibilidade.",
     "crumbs": [
       "Aulas",
-      "Aula 2 – Estrutura, Estilo e Layout de Relatórios"
+      "Aula 2 — Estrutura, estilo e comunicação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-2.html#visão-geral",
+    "href": "aulas/aula-2.html#visão-geral",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "",
+    "text": "Um relatório reprodutível também precisa ser compreensível. Nesta aula, vamos organizar o documento, controlar sua aparência e apresentar evidências com tabelas e gráficos que tenham função narrativa — usando a mesma base de estados brasileiros da Aula 1.\n\n\n\nconfigurar título, autoria, formato e sumário no YAML;\nestruturar texto com Markdown e hierarquia de seções;\ncontrolar código e resultados com opções de execução;\ninserir tabelas, figuras, equações e referências cruzadas;\naplicar princípios básicos de legibilidade e acessibilidade.",
+    "crumbs": [
+      "Aulas",
+      "Aula 2 — Estrutura, estilo e comunicação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-2.html#planeje-antes-de-formatar",
+    "href": "aulas/aula-2.html#planeje-antes-de-formatar",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "1. Planeje antes de formatar",
+    "text": "1. Planeje antes de formatar\nAntes de escolher cores e fontes, responda:\n\nQual pergunta o documento responde?\nQuem tomará uma decisão ou aprenderá com ele?\nQuais evidências sustentam a mensagem principal?\nQual formato e nível de detalhe esse público precisa?\n\nO plano molda até a frase de abertura. Compare:\n\n\nEvite — descreve o processo, não a conclusão:\n\n“Neste relatório, foram coletados dados do IBGE sobre população e área dos estados brasileiros, que em seguida foram processados e utilizados para gerar uma tabela e um gráfico apresentados a seguir.”\n\n\nPrefira — abre com a mensagem, o método vem depois:\n\n“A densidade demográfica brasileira é extremamente desigual: o Distrito Federal tem mais de 480 habitantes por km², enquanto sete estados da região Norte têm menos de 7.”\n\n\n\nA primeira versão exige que quem lê chegue ao gráfico para descobrir se há algo relevante. A segunda entrega a conclusão de imediato — a tabela e o gráfico existem para sustentar essa frase, não para substituí-la.\nUma estrutura simples funciona para muitos relatórios:\nTítulo e resumo executivo\n├── Contexto e objetivo\n├── Dados e método\n├── Resultados\n├── Conclusões e recomendações\n└── Referências ou apêndice",
+    "crumbs": [
+      "Aulas",
+      "Aula 2 — Estrutura, estilo e comunicação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-2.html#cabeçalho-yaml",
+    "href": "aulas/aula-2.html#cabeçalho-yaml",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "2. Cabeçalho YAML",
+    "text": "2. Cabeçalho YAML\nO YAML configura o documento. A indentação usa espaços e define hierarquia:\n---\ntitle: \"Indicadores por estado\"\nsubtitle: \"Perfil demográfico e econômico das unidades federativas\"\nauthor: \"Nome da pessoa autora\"\ndate: today\nlang: pt-BR\nformat:\n  html:\n    toc: true\n    toc-depth: 2\n    code-fold: true\nexecute:\n  echo: false\n  warning: false\n---\nformat controla a saída; execute controla a computação. Se uma opção vale apenas para um bloco, declare-a no próprio bloco em vez de aplicá-la ao documento inteiro.\n\n\n\n\n\n\nAvisoErro real de YAML\n\n\n\nUm dos-pontos sem aspas dentro de um texto quebra o cabeçalho:\ntitle: Indicadores: uma análise por estado\nproduz algo como:\nERROR: YAML parse exception at line 2, column 18: mapping values are not allowed in this context\nA correção é envolver o texto inteiro em aspas: title: \"Indicadores: uma análise por estado\". Sempre que a renderização falhar antes de qualquer código rodar, o cabeçalho é o primeiro lugar a conferir.",
+    "crumbs": [
+      "Aulas",
+      "Aula 2 — Estrutura, estilo e comunicação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-2.html#hierarquia-e-markdown",
+    "href": "aulas/aula-2.html#hierarquia-e-markdown",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "3. Hierarquia e Markdown",
+    "text": "3. Hierarquia e Markdown\n## Resultados\n\nO indicador apresentou **crescimento** no período.\n\n### Diferenças regionais\n\n- Região Sudeste: maior população absoluta;\n- Região Norte: menor densidade demográfica;\n- Região Nordeste: maior número de estados.\nUse um único título principal, fornecido pelo YAML. Evite pular de ## para ####. Títulos devem descrever o conteúdo, e não apenas numerar “Parte 1”.",
+    "crumbs": [
+      "Aulas",
+      "Aula 2 — Estrutura, estilo e comunicação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-2.html#preparando-os-dados-desta-aula",
+    "href": "aulas/aula-2.html#preparando-os-dados-desta-aula",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "4. Preparando os dados desta aula",
+    "text": "4. Preparando os dados desta aula\nTodos os exemplos a seguir partem do mesmo .csv já usado na Aula 1:\n\n\nMostrar código\nlibrary(dplyr)\nlibrary(ggplot2)\n\npopulacao_uf &lt;- readr::read_csv(\"dados/populacao_uf.csv\", show_col_types = FALSE)\n\nresumo_regiao &lt;- populacao_uf |&gt;\n  group_by(regiao) |&gt;\n  summarise(\n    estados = dplyr::n(),\n    populacao_total = sum(populacao),\n    densidade_media = mean(densidade_dem),\n    .groups = \"drop\"\n  ) |&gt;\n  arrange(desc(populacao_total))\n\n\nCada bloco declara #| label: — um nome único que aparece nas mensagens de erro e permite referenciar tabelas e figuras (seção 7).",
+    "crumbs": [
+      "Aulas",
+      "Aula 2 — Estrutura, estilo e comunicação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-2.html#tabelas-que-comunicam",
+    "href": "aulas/aula-2.html#tabelas-que-comunicam",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "5. Tabelas que comunicam",
+    "text": "5. Tabelas que comunicam\nUma tabela Markdown atende valores pequenos e estáticos, digitados à mão:\n\n\n\nRegião\nEstados\n\n\n\n\nNorte\n7\n\n\nNordeste\n9\n\n\n\nPara dados calculados, gere a tabela a partir do código — nunca digite um número que o R já calculou:\n\n\nMostrar código\nresumo_regiao |&gt;\n  knitr::kable(\n    col.names = c(\"Região\", \"Estados\", \"População total\", \"Densidade média (hab/km²)\"),\n    digits = 1,\n    format.args = list(big.mark = \".\", decimal.mark = \",\")\n  )\n\n\n\n\nTabela 1: Estados, população total e densidade média, por região.\n\n\n\n\n\n\nRegião\nEstados\nPopulação total\nDensidade média (hab/km²)\n\n\n\n\nSudeste\n4\n84.840.113\n166,1\n\n\nNordeste\n9\n54.637.621\n61,8\n\n\nSul\n3\n29.937.706\n58,6\n\n\nNorte\n7\n17.355.778\n4,9\n\n\nCentro-Oeste\n4\n16.289.538\n129,1\n\n\n\n\n\n\n\n\nNo texto, cite a Tabela 1 e interprete o padrão. Não repita em prosa todos os números da tabela — a região Sudeste concentra a maior população total mesmo tendo só quatro estados, o que já diz mais do que listar todas as células.\nPara um relatório executivo, knitr::kable() costuma bastar. Quando o público precisa de uma tabela com título, nota de rodapé e formatação condicional, gt entrega mais controle:\n\n\nMostrar código\nresumo_regiao |&gt;\n  gt::gt() |&gt;\n  gt::tab_header(title = \"Perfil demográfico por região\") |&gt;\n  gt::fmt_number(columns = c(populacao_total), decimals = 0, sep_mark = \".\", dec_mark = \",\") |&gt;\n  gt::fmt_number(columns = c(densidade_media), decimals = 1, sep_mark = \".\", dec_mark = \",\") |&gt;\n  gt::cols_label(\n    regiao = \"Região\",\n    estados = \"Estados\",\n    populacao_total = \"População total\",\n    densidade_media = \"Densidade média (hab/km²)\"\n  ) |&gt;\n  gt::tab_source_note(\"Fonte: IBGE, Censo Demográfico 2022.\")\n\n\n\n\nTabela 2: Mesma tabela, com o pacote gt.\n\n\n\n\n\n\n\n\n\nPerfil demográfico por região\n\n\nRegião\nEstados\nPopulação total\nDensidade média (hab/km²)\n\n\n\n\nSudeste\n4\n84.840.113\n166,1\n\n\nNordeste\n9\n54.637.621\n61,8\n\n\nSul\n3\n29.937.706\n58,6\n\n\nNorte\n7\n17.355.778\n4,9\n\n\nCentro-Oeste\n4\n16.289.538\n129,1\n\n\n\nFonte: IBGE, Censo Demográfico 2022.",
+    "crumbs": [
+      "Aulas",
+      "Aula 2 — Estrutura, estilo e comunicação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-2.html#figuras-e-gráficos",
+    "href": "aulas/aula-2.html#figuras-e-gráficos",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "6. Figuras e gráficos",
+    "text": "6. Figuras e gráficos\nUm gráfico feito às pressas atrapalha mais do que ajuda. Compare as duas versões abaixo — os dados são exatamente os mesmos:\n\n\nMostrar código\nggplot(populacao_uf, aes(area_km2, populacao, color = regiao)) +\n  geom_point()\n\n\n\n\n\n\n\n\nFigura 1: Evite: cores padrão sem propósito, sem rótulos de eixo e sem unidade.\n\n\n\n\n\n\n\nMostrar código\nggplot(populacao_uf, aes(area_km2 / 1000, populacao / 1e6, color = regiao)) +\n  geom_point(size = 3, alpha = 0.85) +\n  scale_color_brewer(palette = \"Dark2\") +\n  labs(\n    title = \"População e área dos estados brasileiros\",\n    x = \"Área (mil km²)\",\n    y = \"População (milhões de habitantes)\",\n    color = \"Região\",\n    caption = \"Fonte: IBGE, Censo Demográfico 2022.\"\n  ) +\n  theme_minimal(base_size = 12)\n\n\n\n\n\n\n\n\nFigura 2: Prefira: título, eixos com unidade, paleta com poucas cores e leitura guiada.\n\n\n\n\n\nA segunda versão não tem mais dados — tem menos ruído. theme_minimal() remove o fundo cinza padrão, scale_color_brewer() troca as cores automáticas por uma paleta pensada para diferenciação, e os eixos convertidos para mil km² e milhões de habitantes evitam números com muitos dígitos.\nA Figura 2 permite comparar território, população e região ao mesmo tempo. A legenda explica o que está sendo mostrado; o parágrafo ao redor deve dizer por que isso importa — aqui, que tamanho territorial não é um bom previsor de população.\nPara imagens externas (fotos, logotipos, diagramas):\n![Descrição objetiva da imagem](imagens/arquivo.png){#fig-fluxo width=70%}\nUse texto alternativo informativo — o fig-alt de Figura 2 descreve o padrão visto no gráfico, não apenas “gráfico de dispersão”. Quem usa leitor de tela depende inteiramente dessa frase para entender a figura.",
+    "crumbs": [
+      "Aulas",
+      "Aula 2 — Estrutura, estilo e comunicação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-2.html#equações-e-referências-cruzadas",
+    "href": "aulas/aula-2.html#equações-e-referências-cruzadas",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "7. Equações e referências cruzadas",
+    "text": "7. Equações e referências cruzadas\nA densidade demográfica usada nos exemplos acima é definida por:\n\\[\nd = \\frac{P}{A}\n\\tag{1}\\]\nem que \\(P\\) é a população e \\(A\\) é a área em km². A Equação 1 é a mesma conta feita pela coluna densidade_dem do arquivo dados/populacao_uf.csv. Rótulos seguem prefixos convencionais:\n\nfig- para figuras;\ntbl- para tabelas;\neq- para equações;\nsec- para seções.\n\nRótulos estáveis permitem mudar a ordem dos elementos sem corrigir a numeração manualmente — o Quarto renumera tudo sozinho.",
+    "crumbs": [
+      "Aulas",
+      "Aula 2 — Estrutura, estilo e comunicação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-2.html#estilo-sem-perder-manutenção",
+    "href": "aulas/aula-2.html#estilo-sem-perder-manutenção",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "8. Estilo sem perder manutenção",
+    "text": "8. Estilo sem perder manutenção\nComece com um tema e poucas regras CSS:\nformat:\n  html:\n    theme: cosmo\n    css: styles.css\nbody {\n  line-height: 1.6;\n}\n\nh1, h2, h3 {\n  color: #2f4858;\n}\nPrefira consistência a decoração: duas fontes, uma paleta pequena, espaçamento generoso e contraste adequado costumam ser suficientes. O mesmo princípio vale para gráficos — scale_color_brewer(palette = \"Dark2\") usado acima é uma paleta pronta, testada para diferenciação, em vez de escolher cores uma a uma.",
+    "crumbs": [
+      "Aulas",
+      "Aula 2 — Estrutura, estilo e comunicação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-2.html#prática-guiada",
+    "href": "aulas/aula-2.html#prática-guiada",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Prática guiada",
+    "text": "Prática guiada\nUsando dados/populacao_uf.csv:\n\nEscreva um objetivo e um público explícitos no início da página.\nConfigure um YAML com sumário e código recolhível.\nCalcule, com dplyr, o PIB per capita médio por região a partir de dados/pib_uf.csv (você vai aprender a juntar as duas tabelas na Aula 3 — por enquanto, pode ler pib_uf.csv separadamente e agrupar por região usando um left_join simples, ou deixar essa etapa como pergunta em aberto para a próxima aula).\nConstrua uma tabela gt com título e nota de fonte.\nConstrua um gráfico com título, eixos, legenda e texto alternativo — e, antes de finalizar, produza deliberadamente uma versão “ruim” (sem theme_minimal(), sem labs()) para comparar as duas.\nAdicione referências cruzadas para a tabela e o gráfico.",
+    "crumbs": [
+      "Aulas",
+      "Aula 2 — Estrutura, estilo e comunicação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-2.html#para-o-projeto-final",
+    "href": "aulas/aula-2.html#para-o-projeto-final",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Para o projeto final",
+    "text": "Para o projeto final\nCrie o esqueleto do documento, escreva a introdução e inclua ao menos uma evidência visual. Peça a alguém do público-alvo para dizer qual mensagem entendeu.",
+    "crumbs": [
+      "Aulas",
+      "Aula 2 — Estrutura, estilo e comunicação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-2.html#checklist",
+    "href": "aulas/aula-2.html#checklist",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Checklist",
+    "text": "Checklist\n\nO YAML está válido e enxuto.\nA hierarquia de títulos é lógica.\nTabelas e gráficos são citados e interpretados, não apenas exibidos.\nImagens e gráficos têm texto alternativo específico (não genérico).\nConsigo apontar, no meu próprio gráfico, o que tornaria uma versão “ruim” dele.\nO estilo visual é consistente com o público.",
+    "crumbs": [
+      "Aulas",
+      "Aula 2 — Estrutura, estilo e comunicação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-2.html#materiais-da-aula",
+    "href": "aulas/aula-2.html#materiais-da-aula",
+    "title": "Aula 2 — Estrutura, estilo e comunicação",
+    "section": "Materiais da aula",
+    "text": "Materiais da aula\n\nSlides da Aula 2\nQuarto: Markdown\nQuarto: referências cruzadas\nQuarto: acessibilidade\ngt: criando tabelas",
+    "crumbs": [
+      "Aulas",
+      "Aula 2 — Estrutura, estilo e comunicação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-4.html",
+    "href": "aulas/aula-4.html",
+    "title": "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis",
+    "section": "",
+    "text": "Nesta aula, o relatório deixa de ser uma peça única e passa a ser reutilizável. Veremos quando usar interatividade, como declarar parâmetros e como separar funções e configurações do documento principal — sempre com um artefato real, não só uma descrição do que seria possível fazer.\n\n\n\nreconhecer quando a interatividade ajuda o público;\nincorporar widgets HTML com responsabilidade;\ndeclarar e utilizar parâmetros no YAML;\nrenderizar variações de um mesmo relatório;\nmodularizar código repetido.",
+    "crumbs": [
+      "Aulas",
+      "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-4.html#visão-geral",
+    "href": "aulas/aula-4.html#visão-geral",
+    "title": "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis",
+    "section": "",
+    "text": "Nesta aula, o relatório deixa de ser uma peça única e passa a ser reutilizável. Veremos quando usar interatividade, como declarar parâmetros e como separar funções e configurações do documento principal — sempre com um artefato real, não só uma descrição do que seria possível fazer.\n\n\n\nreconhecer quando a interatividade ajuda o público;\nincorporar widgets HTML com responsabilidade;\ndeclarar e utilizar parâmetros no YAML;\nrenderizar variações de um mesmo relatório;\nmodularizar código repetido.",
+    "crumbs": [
+      "Aulas",
+      "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-4.html#interatividade-com-propósito",
+    "href": "aulas/aula-4.html#interatividade-com-propósito",
+    "title": "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis",
+    "section": "1. Interatividade com propósito",
+    "text": "1. Interatividade com propósito\nGráficos interativos permitem explorar valores, aplicar zoom e exibir detalhes. Eles são úteis quando o leitor precisa investigar os dados; para uma mensagem única, um gráfico estático costuma ser mais claro. Compare as duas versões abaixo — mesmos dados, mesma pergunta (“quais estados têm mais habitantes por km²?”):\n\nlibrary(dplyr)\nlibrary(ggplot2)\n\npopulacao_uf &lt;- readr::read_csv(here::here(\"dados\", \"populacao_uf.csv\"), show_col_types = FALSE)\n\ntop10_densidade &lt;- populacao_uf |&gt;\n  slice_max(densidade_dem, n = 10)\n\nEstática — melhor quando o relatório vai para PDF, impressão ou quando a mensagem é uma comparação única e definitiva:\n\nggplot(top10_densidade, aes(x = reorder(nome_uf, densidade_dem), y = densidade_dem)) +\n  geom_col(fill = \"#2f4858\") +\n  coord_flip() +\n  labs(x = NULL, y = \"Densidade (hab/km²)\") +\n  theme_minimal()\n\n\n\n\n\n\n\nFigura 1: Os dez estados com maior densidade demográfica.\n\n\n\n\n\nInterativa — melhor quando o leitor precisa explorar valor por valor, em um HTML:\n\nplotly::plot_ly(\n  data = top10_densidade,\n  x = ~densidade_dem,\n  y = ~reorder(nome_uf, densidade_dem),\n  type = \"bar\",\n  orientation = \"h\",\n  hovertemplate = \"%{y}: %{x:.1f} hab/km²&lt;extra&gt;&lt;/extra&gt;\"\n) |&gt;\n  plotly::layout(\n    xaxis = list(title = \"Densidade (hab/km²)\"),\n    yaxis = list(title = \"\")\n  )\n\n\n\n\n\n\n\nFigura 2: A mesma comparação, agora navegável: passe o mouse sobre cada barra.\n\n\n\n\nNenhuma das duas está errada — a decisão depende do formato de saída e do que o público vai fazer com o gráfico. Um documento PDF nunca vai mostrar o plotly interativo (ele exige um navegador rodando JavaScript); é por isso que a Aula 3 insiste em escolher o formato pelo público antes de escolher os recursos visuais.",
+    "crumbs": [
+      "Aulas",
+      "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-4.html#um-mapa-é-interatividade-que-resolve-um-problema-real",
+    "href": "aulas/aula-4.html#um-mapa-é-interatividade-que-resolve-um-problema-real",
+    "title": "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis",
+    "section": "2. Um mapa é interatividade que resolve um problema real",
+    "text": "2. Um mapa é interatividade que resolve um problema real\ndados/populacao_uf.csv já tem latitude e longitude da capital de cada estado — dá para colocar cada um no mapa, com o tamanho do marcador proporcional à população:\n\nleaflet::leaflet(populacao_uf) |&gt;\n  leaflet::addProviderTiles(leaflet::providers$CartoDB.Positron) |&gt;\n  leaflet::addCircleMarkers(\n    lng = ~longitude,\n    lat = ~latitude,\n    radius = ~sqrt(populacao) / 200,\n    stroke = FALSE,\n    fillOpacity = 0.7,\n    color = \"#2f4858\",\n    label = ~paste0(nome_uf, \": \", format(populacao, big.mark = \".\"), \" hab.\")\n  )\n\n\n\n\n\n\n\nFigura 3: Capitais dos estados brasileiros; o tamanho do círculo é proporcional à população do estado.\n\n\n\n\nUm mapa estático (uma imagem) também mostraria a localização das capitais, mas só o mapa interativo permite arrastar, dar zoom e ler o rótulo de um estado específico sem poluir a figura inteira com texto. É exatamente o tipo de tarefa (“onde fica” + “qual é o valor exato aqui”) em que a interatividade paga o custo de não funcionar em PDF.",
+    "crumbs": [
+      "Aulas",
+      "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-4.html#relatórios-parametrizados",
+    "href": "aulas/aula-4.html#relatórios-parametrizados",
+    "title": "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis",
+    "section": "3. Relatórios parametrizados",
+    "text": "3. Relatórios parametrizados\nParâmetros permitem gerar várias versões do mesmo documento sem duplicar arquivos. Em vez de descrever isso em abstrato, veja o exemplo completo e funcional deste curso:\n\n\n\n\n\n\nDicaExemplo real\n\n\n\nmateriais/exemplos/relatorio-parametrizado.qmd é um .qmd completo que filtra dados/populacao_uf.csv por região usando um parâmetro. Abra o arquivo-fonte no repositório enquanto lê esta seção.\n\n\nO YAML declara o parâmetro e um valor padrão:\n---\ntitle: \"Relatório regional\"\nparams:\n  regiao: \"Sudeste\"\nformat: html\n---\nNo código R, o valor declarado fica disponível em params:\ndados_regiao &lt;- populacao_uf |&gt;\n  dplyr::filter(regiao == params$regiao)\nO parâmetro também pode aparecer no próprio title, usando código R inline (a mesma técnica de texto dinâmico da Aula 3) para inserir o valor de params$regiao no meio do texto do título — é exatamente o que materiais/exemplos/relatorio-parametrizado.qmd faz, por isso o título dele muda conforme a região escolhida. Assim, quem lê o documento sabe qual recorte está vendo sem precisar abrir o código-fonte.",
+    "crumbs": [
+      "Aulas",
+      "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-4.html#renderização-automatizada",
+    "href": "aulas/aula-4.html#renderização-automatizada",
+    "title": "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis",
+    "section": "4. Renderização automatizada",
+    "text": "4. Renderização automatizada\nUma versão pode ser gerada pelo terminal, sobrepondo o valor padrão do YAML:\nquarto render materiais/exemplos/relatorio-parametrizado.qmd -P regiao:Sul\nPara produzir as cinco regiões de uma vez, materiais/exemplos/render-lote.R já está pronto no repositório:\nregioes &lt;- c(\"Norte\", \"Nordeste\", \"Centro-Oeste\", \"Sudeste\", \"Sul\")\n\npurrr::walk(regioes, function(regiao_atual) {\n  quarto::quarto_render(\n    input = \"materiais/exemplos/relatorio-parametrizado.qmd\",\n    execute_params = list(regiao = regiao_atual),\n    output_file = paste0(\"relatorio-\", tolower(gsub(\"[^A-Za-z]+\", \"-\", regiao_atual)), \".html\")\n  )\n})\nTeste primeiro uma única versão. Automatizar um relatório com erro apenas reproduz o erro cinco vezes mais rápido.",
+    "crumbs": [
+      "Aulas",
+      "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-4.html#modularização",
+    "href": "aulas/aula-4.html#modularização",
+    "title": "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis",
+    "section": "5. Modularização",
+    "text": "5. Modularização\nFunções estáveis não deveriam morar dentro do .qmd, misturadas com prosa. materiais/exemplos/R/indicadores.R — usado pelo relatório parametrizado da seção 3 — tem duas funções pequenas:\n\nsource(here::here(\"materiais\", \"exemplos\", \"R\", \"indicadores.R\"))\n\ncalcular_densidade(populacao = 15000, area_km2 = 500)\n\n[1] 30\n\nclassificar_porte(populacao = c(500000, 5000000, 20000000))\n\n[1] \"pequeno\" \"médio\"   \"grande\" \n\n\n\npopulacao_uf |&gt;\n  mutate(porte = classificar_porte(populacao)) |&gt;\n  count(porte)\n\n# A tibble: 3 × 2\n  porte       n\n  &lt;chr&gt;   &lt;int&gt;\n1 grande      9\n2 médio      13\n3 pequeno     5\n\n\nCada função tem nome claro, entradas explícitas (populacao, area_km2) e uma saída previsível — nenhuma delas depende de um objeto criado em outro lugar do documento. Isso é o que torna uma função reutilizável de verdade: ela funciona igual dentro do relatório, num script separado, ou nos testes de outra pessoa.",
+    "crumbs": [
+      "Aulas",
+      "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-4.html#cache-e-atualização",
+    "href": "aulas/aula-4.html#cache-e-atualização",
+    "title": "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis",
+    "section": "6. Cache e atualização",
+    "text": "6. Cache e atualização\nCache pode acelerar análises custosas, mas também pode exibir resultados antigos. Use-o apenas quando souber quais mudanças invalidam o resultado:\nexecute:\n  cache: true\nPara relatórios operacionais, registre a data de atualização e valide se a fonte de dados foi realmente atualizada antes da publicação — um cache desatualizado silenciosamente reexibe o gráfico de ontem como se fosse de hoje.",
+    "crumbs": [
+      "Aulas",
+      "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-4.html#prática-guiada",
+    "href": "aulas/aula-4.html#prática-guiada",
+    "title": "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis",
+    "section": "Prática guiada",
+    "text": "Prática guiada\n\nAbra materiais/exemplos/relatorio-parametrizado.qmd e renderize-o com regiao:Norte.\nCompare o resultado com a versão padrão (Sudeste) — tabela, gráfico e texto devem mudar juntos.\nNo seu próprio relatório (Aulas 1–3), declare um parâmetro regiao ou ano e filtre os dados com ele.\nMostre no título ou subtítulo qual recorte foi usado.\nExtraia pelo menos uma transformação para uma função em um arquivo R/, com entradas explícitas.",
+    "crumbs": [
+      "Aulas",
+      "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-4.html#para-o-projeto-final",
+    "href": "aulas/aula-4.html#para-o-projeto-final",
+    "title": "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis",
+    "section": "Para o projeto final",
+    "text": "Para o projeto final\nEscolha uma melhoria compatível com seu público: um gráfico interativo, um mapa, um parâmetro relevante ou uma função reutilizável. Não é obrigatório usar todos os recursos — a pergunta certa é “isso ajuda quem vai ler?”, não “quantos recursos consigo incluir?”.",
+    "crumbs": [
+      "Aulas",
+      "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-4.html#checklist",
+    "href": "aulas/aula-4.html#checklist",
+    "title": "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis",
+    "section": "Checklist",
+    "text": "Checklist\n\nA interatividade resolve uma necessidade real (explorar, localizar, comparar), não é só decoração.\nTenho uma versão estática de qualquer widget, para PDF ou impressão.\nO documento informa o recorte parametrizado no título ou no texto.\nConsigo gerar duas versões sem duplicar o .qmd.\nCódigo repetido foi transformado em função com entradas explícitas.\nSei quando limpar ou evitar o cache.",
+    "crumbs": [
+      "Aulas",
+      "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-4.html#materiais-da-aula",
+    "href": "aulas/aula-4.html#materiais-da-aula",
+    "title": "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis",
+    "section": "Materiais da aula",
+    "text": "Materiais da aula\n\nSlides da Aula 4\nExemplo: relatório parametrizado\nScript para gerar as cinco regiões\nQuarto: parâmetros\nQuarto: widgets HTML",
+    "crumbs": [
+      "Aulas",
+      "Aula 4 — Interatividade, parâmetros e projetos reutilizáveis"
     ]
   },
   {
     "objectID": "faq.html",
     "href": "faq.html",
-    "title": "Perguntas Frequentes (FAQ)",
+    "title": "Perguntas frequentes",
     "section": "",
-    "text": "O curso será online ou presencial?\n\nO curso será oferecido de forma online.\n\nApenas estudantes da USP podem participar do curso?\n\nAs inscrições serão abertas para todas as pessoas interessadas.\n\nComo posso me inscrever?\n\nA inscrição será realizada através do IME-USP. Acompanhe as informações na página do Programa de Verão do IME-USP.\n\nO curso é gratuito?\n\nNão, o curso é pago. Acompanhe as informações na página do Programa de Verão do IME-USP.\n\nAs aulas serão gravadas?\n\nSim.",
+    "text": "O curso será online ou presencial?\n\nO curso será oferecido de forma online.\n\nApenas estudantes da USP podem participar do curso?\n\nAs inscrições serão abertas para todas as pessoas interessadas.\n\nComo posso me inscrever?\n\nA inscrição é realizada pelo IME-USP. Acompanhe prazos e orientações na página do Programa de Verão.\n\nO curso é gratuito?\n\nNão. Consulte valores e condições na página do Programa de Verão.\n\nAs aulas serão gravadas?\n\nSim.\n\nPreciso saber programar em R?\n\nÉ recomendável conhecer objetos, funções e manipulação básica de dados. O curso ensina Quarto e o fluxo de relatórios, não uma introdução completa à linguagem R.\n\nPosso usar Python?\n\nSim. Os princípios do Quarto se aplicam a diferentes linguagens, embora as demonstrações e o suporte em aula usem principalmente R.\n\nPreciso ter uma base de dados própria?\n\nNão. Você pode usar uma base pública, uma base incluída em um pacote ou dados próprios que possam ser compartilhados. O trabalho final apresenta sugestões.\n\nComo recebo o certificado?\n\nÉ necessário cumprir a frequência mínima informada pelo programa e obter aprovação no trabalho final.",
     "crumbs": [
       "Sobre o curso",
-      "Perguntas Frequentes (FAQ)"
+      "Perguntas frequentes"
     ]
   },
   {
     "objectID": "informacoes-gerais.html",
     "href": "informacoes-gerais.html",
-    "title": "Informações Gerais",
+    "title": "Informações gerais",
     "section": "",
-    "text": "Objetivo: Configurar o ambiente de trabalho com Quarto e entender suas funcionalidades básicas.\nTópicos: - Importância dos relatórios e suas aplicações\n- Diferenças entre RMarkdown e Quarto\n- Instalação e configuração (R, RStudio/Positron, extensões)\n- Estrutura básica de um documento .qmd\n- Renderização em diferentes formatos (HTML, PDF, DOCX)\n- Exercício: criar o primeiro relatório com texto, código e resultado integrado\n\n\n\n\nObjetivo: Aprender a criar relatórios com formatação profissional e personalização visual.\nTópicos: - YAML: título, autor, data e opções de output\n- Seções, cabeçalhos e sumário automático\n- Inserção de imagens, tabelas e gráficos\n- Customização de estilos (CSS, temas, fontes e cores)\n- Criação de cabeçalhos com logos institucionais\n- Exercício: construir um template institucional de relatório\n—\n\n\n\nObjetivo: Conectar bases de dados e automatizar análises dentro do Quarto.\nTópicos: - Leitura de dados (CSV, Excel, SQL, APIs)\n- Uso de dplyr, ggplot2 e knitr para gerar resultados dinâmicos\n- Criação de tabelas dinâmicas (gt, kableExtra, reactable)\n- Atualização automática de dados e gráficos\n- Exercício: relatório automatizado de desempenho ou indicadores\n\n\n\n\nObjetivo: Estruturar projetos de análise com múltiplos relatórios e scripts integrados.\nTópicos: - Organização de pastas e versionamento (Git/GitHub)\n- Parâmetros em Quarto (params) para relatórios personalizados\n- Importação de funções externas (source)\n- Integração com dashboards (Quarto + Shiny ou Quarto)\n- Exercício: gerar relatórios automáticos por unidade, mês ou categoria\n\n\n\n\nObjetivo: Publicar, compartilhar e manter relatórios sustentáveis e auditáveis.\nTópicos: - Exportação e compartilhamento (PDF, site, GitHub Pages, Posit Cloud)\n- Controle de versão e rastreabilidade de análises\n- Padronização de templates e boas práticas de documentação\n- Exercício final: projeto completo e publicado\n\n\n\n\nCriação de um relatório institucional automatizado, que: - lê dados de uma fonte real (ex: desempenho financeiro ou indicadores regionais);\n- gera visualizações e análises dinâmicas;\n- inclui logotipo, cabeçalho institucional e versão exportável;\n- é reproduzível e versionado (Git).",
+    "text": "Relatórios reprodutíveis com R é um curso prático do Programa de Verão do IME-USP. A proposta é ensinar um fluxo completo de produção de documentos com Quarto, combinando comunicação, análise de dados e boas práticas de projeto.",
     "crumbs": [
       "Sobre o curso",
-      "Informações Gerais"
+      "Informações gerais"
     ]
   },
   {
-    "objectID": "informacoes-gerais.html#curso-relatórios-reprodutíveis-em-quarto",
-    "href": "informacoes-gerais.html#curso-relatórios-reprodutíveis-em-quarto",
-    "title": "Informações Gerais",
+    "objectID": "informacoes-gerais.html#sobre-o-curso",
+    "href": "informacoes-gerais.html#sobre-o-curso",
+    "title": "Informações gerais",
     "section": "",
-    "text": "Objetivo: Configurar o ambiente de trabalho com Quarto e entender suas funcionalidades básicas.\nTópicos: - Importância dos relatórios e suas aplicações\n- Diferenças entre RMarkdown e Quarto\n- Instalação e configuração (R, RStudio/Positron, extensões)\n- Estrutura básica de um documento .qmd\n- Renderização em diferentes formatos (HTML, PDF, DOCX)\n- Exercício: criar o primeiro relatório com texto, código e resultado integrado\n\n\n\n\nObjetivo: Aprender a criar relatórios com formatação profissional e personalização visual.\nTópicos: - YAML: título, autor, data e opções de output\n- Seções, cabeçalhos e sumário automático\n- Inserção de imagens, tabelas e gráficos\n- Customização de estilos (CSS, temas, fontes e cores)\n- Criação de cabeçalhos com logos institucionais\n- Exercício: construir um template institucional de relatório\n—\n\n\n\nObjetivo: Conectar bases de dados e automatizar análises dentro do Quarto.\nTópicos: - Leitura de dados (CSV, Excel, SQL, APIs)\n- Uso de dplyr, ggplot2 e knitr para gerar resultados dinâmicos\n- Criação de tabelas dinâmicas (gt, kableExtra, reactable)\n- Atualização automática de dados e gráficos\n- Exercício: relatório automatizado de desempenho ou indicadores\n\n\n\n\nObjetivo: Estruturar projetos de análise com múltiplos relatórios e scripts integrados.\nTópicos: - Organização de pastas e versionamento (Git/GitHub)\n- Parâmetros em Quarto (params) para relatórios personalizados\n- Importação de funções externas (source)\n- Integração com dashboards (Quarto + Shiny ou Quarto)\n- Exercício: gerar relatórios automáticos por unidade, mês ou categoria\n\n\n\n\nObjetivo: Publicar, compartilhar e manter relatórios sustentáveis e auditáveis.\nTópicos: - Exportação e compartilhamento (PDF, site, GitHub Pages, Posit Cloud)\n- Controle de versão e rastreabilidade de análises\n- Padronização de templates e boas práticas de documentação\n- Exercício final: projeto completo e publicado\n\n\n\n\nCriação de um relatório institucional automatizado, que: - lê dados de uma fonte real (ex: desempenho financeiro ou indicadores regionais);\n- gera visualizações e análises dinâmicas;\n- inclui logotipo, cabeçalho institucional e versão exportável;\n- é reproduzível e versionado (Git).",
+    "text": "Relatórios reprodutíveis com R é um curso prático do Programa de Verão do IME-USP. A proposta é ensinar um fluxo completo de produção de documentos com Quarto, combinando comunicação, análise de dados e boas práticas de projeto.",
     "crumbs": [
       "Sobre o curso",
-      "Informações Gerais"
+      "Informações gerais"
+    ]
+  },
+  {
+    "objectID": "informacoes-gerais.html#para-quem-é-o-curso",
+    "href": "informacoes-gerais.html#para-quem-é-o-curso",
+    "title": "Informações gerais",
+    "section": "Para quem é o curso?",
+    "text": "Para quem é o curso?\nO curso é indicado para estudantes, pessoas pesquisadoras e profissionais que precisam transformar análises em relatórios, artigos, apresentações ou páginas web atualizáveis.\nÉ recomendável conhecer os fundamentos de R — objetos, funções e manipulação básica de dados. Não é necessário ter experiência prévia com Quarto, Git ou desenvolvimento web.",
+    "crumbs": [
+      "Sobre o curso",
+      "Informações gerais"
+    ]
+  },
+  {
+    "objectID": "informacoes-gerais.html#objetivo-geral",
+    "href": "informacoes-gerais.html#objetivo-geral",
+    "title": "Informações gerais",
+    "section": "Objetivo geral",
+    "text": "Objetivo geral\nAo final do curso, a pessoa participante deverá ser capaz de planejar, produzir, revisar e publicar um documento Quarto que integre texto, código e resultados de forma clara e reprodutível.",
+    "crumbs": [
+      "Sobre o curso",
+      "Informações gerais"
+    ]
+  },
+  {
+    "objectID": "informacoes-gerais.html#programa",
+    "href": "informacoes-gerais.html#programa",
+    "title": "Informações gerais",
+    "section": "Programa",
+    "text": "Programa\n\nAula 1 — Reprodutibilidade e primeiro documento Quarto\n\nprincípios de reprodutibilidade, com um caso concreto de relatório não reprodutível;\npapel de R, IDE, Quarto, Git e GitHub;\nestrutura de um arquivo .qmd;\nMarkdown, blocos de código e renderização;\nprimeiro contato com o conjunto de dados públicos (IBGE) usado ao longo do curso;\ndiagnóstico de erros básicos, com mensagens de erro reais.\n\nEntrega parcial: tema, público e objetivo do projeto final.\n\n\nAula 2 — Estrutura, estilo e comunicação\n\nplanejamento narrativo e hierarquia de conteúdo;\ncabeçalho YAML e opções de execução;\ntabelas, gráficos, imagens e equações;\nreferências cruzadas;\nlegibilidade, identidade visual e acessibilidade.\n\nEntrega parcial: esqueleto do documento e primeira evidência visual.\n\n\nAula 3 — Dados, formatos e automação\n\norganização de pastas, caminhos relativos e o pacote here;\nimportação de mais de uma fonte de dados, junção e tratamento de valores ausentes;\nresultados dinâmicos no texto (código R inline);\nsaídas HTML, PDF e Word;\nambientes reproduzíveis com renv.\n\nEntrega parcial: análise mínima renderizando em uma sessão limpa.\n\n\nAula 4 — Interatividade, parâmetros e projetos reutilizáveis\n\ngráficos e mapas interativos, com alternativa estática para PDF;\nparâmetros no YAML, a partir de um relatório parametrizado real do curso;\ngeração automatizada de múltiplas versões;\nfunções externas e modularização;\nuso responsável de cache.\n\nEntrega parcial: uma melhoria de reutilização ou interatividade.\n\n\nAula 5 — Versionamento, publicação e entrega\n\nfluxo de trabalho com Git e GitHub, com exemplos reais de commits a melhorar;\nseleção de arquivos e .gitignore;\ndocumentação com README;\npublicação no GitHub Pages, usando o próprio site do curso como exemplo;\nrevisão de conteúdo, reprodutibilidade e acessibilidade.\n\nEntrega parcial: versão candidata do projeto publicada e revisada.",
+    "crumbs": [
+      "Sobre o curso",
+      "Informações gerais"
+    ]
+  },
+  {
+    "objectID": "informacoes-gerais.html#metodologia",
+    "href": "informacoes-gerais.html#metodologia",
+    "title": "Informações gerais",
+    "section": "Metodologia",
+    "text": "Metodologia\nAs aulas combinam explicação, demonstração e prática guiada. Os exemplos usam R, mas os princípios de estrutura e comunicação também se aplicam a documentos Quarto com Python ou Julia.",
+    "crumbs": [
+      "Sobre o curso",
+      "Informações gerais"
+    ]
+  },
+  {
+    "objectID": "informacoes-gerais.html#avaliação",
+    "href": "informacoes-gerais.html#avaliação",
+    "title": "Informações gerais",
+    "section": "Avaliação",
+    "text": "Avaliação\nA avaliação ocorre por meio de um trabalho final construído ao longo das cinco aulas. A rubrica considera propósito, comunicação, integração entre código e resultados, reprodutibilidade, organização e documentação.",
+    "crumbs": [
+      "Sobre o curso",
+      "Informações gerais"
+    ]
+  },
+  {
+    "objectID": "informacoes-gerais.html#preparação",
+    "href": "informacoes-gerais.html#preparação",
+    "title": "Informações gerais",
+    "section": "Preparação",
+    "text": "Preparação\nAntes do primeiro encontro:\n\nconclua as instalações necessárias;\nconfirme que consegue abrir o R;\nexecute quarto check no terminal;\ncrie uma conta no GitHub;\nleve uma ideia de dados ou tema para o projeto.",
+    "crumbs": [
+      "Sobre o curso",
+      "Informações gerais"
+    ]
+  },
+  {
+    "objectID": "materiais/exemplos/relatorio-parametrizado.html",
+    "href": "materiais/exemplos/relatorio-parametrizado.html",
+    "title": "Relatório regional: Sudeste",
+    "section": "",
+    "text": "NotaO que é este arquivo\n\n\n\nEste é um .qmd completo e funcional, não um trecho isolado. Ele existe para a Aula 4 ter um exemplo real de relatório parametrizado — o mesmo que você está lendo já foi gerado com regiao: \"Sudeste\", o valor padrão declarado no YAML acima.\nPara gerar a versão de outra região, no terminal, a partir da raiz do projeto:\nquarto render materiais/exemplos/relatorio-parametrizado.qmd -P regiao:Nordeste\nPara gerar as cinco regiões de uma vez, veja render-lote.R.\nMostrar código\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(gt)\n\nsource(here::here(\"materiais\", \"exemplos\", \"R\", \"indicadores.R\"))\n\npopulacao_uf &lt;- readr::read_csv(\n  here::here(\"dados\", \"populacao_uf.csv\"),\n  show_col_types = FALSE\n)\n\ndados_regiao &lt;- populacao_uf |&gt;\n  filter(regiao == params$regiao) |&gt;\n  mutate(porte = classificar_porte(populacao)) |&gt;\n  arrange(desc(populacao))",
+    "crumbs": [
+      "Materiais",
+      "Exemplo: relatório parametrizado"
+    ]
+  },
+  {
+    "objectID": "materiais/exemplos/relatorio-parametrizado.html#visão-geral",
+    "href": "materiais/exemplos/relatorio-parametrizado.html#visão-geral",
+    "title": "Relatório regional: Sudeste",
+    "section": "Visão geral",
+    "text": "Visão geral\nA região Sudeste reúne 4 unidades federativas, com uma população total de 84.840.113 habitantes (Censo IBGE 2022).\n\n\nMostrar código\ndados_regiao |&gt;\n  select(nome_uf, capital, populacao, densidade_dem, porte) |&gt;\n  gt() |&gt;\n  fmt_number(columns = c(populacao), decimals = 0, sep_mark = \".\", dec_mark = \",\") |&gt;\n  fmt_number(columns = c(densidade_dem), decimals = 1, sep_mark = \".\", dec_mark = \",\") |&gt;\n  cols_label(\n    nome_uf = \"Estado\",\n    capital = \"Capital\",\n    populacao = \"População\",\n    densidade_dem = \"Densidade (hab/km²)\",\n    porte = \"Porte\"\n  ) |&gt;\n  tab_source_note(\"Fonte: IBGE, Censo Demográfico 2022.\")\n\n\n\n\nTabela 1: Estados da região selecionada, ordenados pela população.\n\n\n\n\n\n\n\n\n\nEstado\nCapital\nPopulação\nDensidade (hab/km²)\nPorte\n\n\n\n\nSão Paulo\nSão Paulo\n44.411.238\n178,9\ngrande\n\n\nMinas Gerais\nBelo Horizonte\n20.539.989\n35,0\ngrande\n\n\nRio de Janeiro\nRio de Janeiro\n16.055.174\n367,4\ngrande\n\n\nEspírito Santo\nVitória\n3.833.712\n83,2\nmédio\n\n\n\nFonte: IBGE, Censo Demográfico 2022.",
+    "crumbs": [
+      "Materiais",
+      "Exemplo: relatório parametrizado"
+    ]
+  },
+  {
+    "objectID": "materiais/exemplos/relatorio-parametrizado.html#população-por-estado",
+    "href": "materiais/exemplos/relatorio-parametrizado.html#população-por-estado",
+    "title": "Relatório regional: Sudeste",
+    "section": "População por estado",
+    "text": "População por estado\n\n\nMostrar código\nggplot(dados_regiao, aes(x = reorder(nome_uf, populacao), y = populacao)) +\n  geom_col(fill = \"#2f4858\") +\n  scale_y_continuous(labels = scales::label_number(big.mark = \".\", decimal.mark = \",\")) +\n  coord_flip() +\n  labs(x = NULL, y = \"População (habitantes)\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\nFigura 1: População dos estados da região selecionada.\n\n\n\n\n\nO estado mais populoso da região é São Paulo (44.411.238 habitantes) e o menos populoso é Espírito Santo (3.833.712 habitantes).",
+    "crumbs": [
+      "Materiais",
+      "Exemplo: relatório parametrizado"
+    ]
+  },
+  {
+    "objectID": "materiais/exemplos/relatorio-parametrizado.html#como-este-relatório-foi-parametrizado",
+    "href": "materiais/exemplos/relatorio-parametrizado.html#como-este-relatório-foi-parametrizado",
+    "title": "Relatório regional: Sudeste",
+    "section": "Como este relatório foi parametrizado",
+    "text": "Como este relatório foi parametrizado\nTrês decisões tornam este documento reutilizável para qualquer região, sem duplicar arquivo:\n\nparams: regiao no YAML define um valor padrão (\"Sudeste\"), usado sempre que o documento é renderizado sem um parâmetro explícito.\ndplyr::filter(regiao == params$regiao) é o único lugar do código que depende do parâmetro — todo o resto (tabela, gráfico, texto) reage automaticamente ao recorte.\nO parâmetro aparece no título e no texto, inserido com código R inline a partir de params$regiao, então quem lê o relatório sabe qual recorte está vendo sem precisar abrir o código.\n\n\n\n\n\n\n\nDicaExperimente\n\n\n\nTroque regiao: \"Sudeste\" por \"Norte\" no YAML deste arquivo e renderize de novo. Tabela, gráfico e texto mudam juntos — é o comportamento que se espera de um relatório parametrizado.",
+    "crumbs": [
+      "Materiais",
+      "Exemplo: relatório parametrizado"
     ]
   },
   {
@@ -183,36 +1342,318 @@
     ]
   },
   {
-    "objectID": "trabalho_final.html",
-    "href": "trabalho_final.html",
-    "title": "Instruções de Trabalho Final",
-    "section": "",
-    "text": "Objetivo: Você deverá criar um documento utilizando Quarto e compartilhá-lo conosco. O trabalho final tem como propósito consolidar os conhecimentos apresentados ao longo do curso, por meio da elaboração de um produto final estruturado e reprodutível.\nFormato do trabalho:\nVocê deverá escolher um dos três formatos abaixo para o seu trabalho final:\nA escolha do formato deve estar alinhada ao objetivo do trabalho e ao público-alvo que você deseja atingir.\nRECOMENDAÇÃO: Realize as etapas sugeridas após cada aula para facilitar a construção gradual do trabalho.\nATENÇÃO: O recebimento do certificado está vinculado à entrega e aprovação deste trabalho final, além de frequência mínima de 75%.",
-    "crumbs": [
-      "Trabalho Final",
-      "Instruções de Trabalho Final"
-    ]
+    "objectID": "slides/aula-1.html#hoje-vamos",
+    "href": "slides/aula-1.html#hoje-vamos",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "Hoje vamos",
+    "text": "Hoje vamos\n\nentender o que significa reprodutibilidade;\nreconhecer o papel de cada ferramenta;\ncriar um primeiro documento .qmd;\ncombinar texto, código e resultado;\ndiagnosticar erros frequentes."
   },
   {
-    "objectID": "trabalho_final.html#etapas-pré-código",
-    "href": "trabalho_final.html#etapas-pré-código",
-    "title": "Instruções de Trabalho Final",
-    "section": "Etapas pré-código",
-    "text": "Etapas pré-código\n\n\nPense no formato escolhido (relatório executivo, slides ou artigo acadêmico), definindo:\n\no objetivo do documento;\no público-alvo;\no tipo de linguagem mais adequada.\n\n\n\nExemplos de aplicações:\n\nRelatório executivo apresentando uma análise de dados para tomada de decisão.\nApresentação em slides para exposição de resultados de uma pesquisa ou projeto.\nArtigo acadêmico com estrutura científica (não precisa estar completo, mas deve conter a organização típica e uso de código para gerar tabelas e gráficos).\nTutorial com código em R ou Python.\nPágina pessoal de divulgação.\nDashboard interativo.\nLivro ou capítulo inicial estruturado em Quarto.\n\n\n\nEscolha uma base de dados para utilizar. Algumas sugestões:\n\nAlguma base que você tenha interesse.\nPacote dados\n\nRepositório tidytuesday\n\nDados próprios de pesquisa ou trabalho.",
-    "crumbs": [
-      "Trabalho Final",
-      "Instruções de Trabalho Final"
-    ]
+    "objectID": "slides/aula-1.html#um-caso-concreto",
+    "href": "slides/aula-1.html#um-caso-concreto",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "Um caso concreto",
+    "text": "Um caso concreto\n\nalguém copia um número calculado numa planilha para dentro de um relatório;\nduas semanas depois, a base de dados muda;\no número no relatório continua o mesmo — porque foi digitado, não calculado ali;\numa decisão é tomada com um número que já não existe mais."
   },
   {
-    "objectID": "trabalho_final.html#passo-a-passo-com-r",
-    "href": "trabalho_final.html#passo-a-passo-com-r",
-    "title": "Instruções de Trabalho Final",
-    "section": "Passo a passo com R",
-    "text": "Passo a passo com R\n\nCrie um Projeto no RStudio para realizar a tarefa.\nUtilize boas práticas de nomeação: não use espaços, caracteres especiais ou acentuação.\nO projeto deve chamar-se:trabalho_relatorios_nome_sobrenome\nExemplo: trabalho_relatorios_beatriz_milz\n\n\nVocê pode criar um projeto simples ou um projeto Quarto (que já traz estrutura adequada para relatórios, apresentações, websites ou livros).\nTodos os passos seguintes devem ser realizados dentro deste projeto.\n\n\nCrie a estrutura básica do projeto:\n\n\nPasta dados para bases de dados (se necessário).\nPasta img para imagens (se necessário).\n\nVocê pode criar manualmente ou usando:\n\nfs::dir_create(\"dados\")\nfs::dir_create(\"img\")\n\n\n\nCrie o arquivo principal do projeto:\n\n\nFile → New File → Quarto Document\n\nSalve o arquivo com o nome index.qmd. Clique em Render para verificar se o arquivo index.html foi gerado sem erros.\n\n💡 Caso você tenha escolhido o formato apresentação em slides, selecione o tipo de documento RevealJS ou PowerPoint no momento da criação do arquivo Quarto.\n\n\n\nDesenvolva o conteúdo do seu trabalho.\n\nA estrutura e o estilo dependem do formato escolhido e do público-alvo. Reflita sobre o uso de código visível ou oculto: seu público precisa ver o código?\nInclua obrigatoriamente:\n\nPelo menos um parágrafo de texto com marcações.\nUm link para uma página na internet.\nUma imagem.\nUma tabela.\nUm gráfico (preferencialmente com ggplot2).\nSe for um artigo acadêmico, inclua referências utilizando arquivo .bib.\n\n\n\nEntrega do trabalho\n\nVocê pode:\n\nCompactar a pasta do projeto em um arquivo .zip e enviar pela plataforma do curso; ou\n\nCompartilhar o link de um repositório no GitHub contendo o projeto.",
-    "crumbs": [
-      "Trabalho Final",
-      "Instruções de Trabalho Final"
-    ]
+    "objectID": "slides/aula-1.html#o-problema-do-copiar-e-colar",
+    "href": "slides/aula-1.html#o-problema-do-copiar-e-colar",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "O problema do copiar e colar",
+    "text": "O problema do copiar e colar\n\ndados mudam, mas o texto não;\ngráficos perdem a origem;\netapas manuais não ficam registradas;\noutra pessoa não consegue repetir a análise;\ncorrigir o relatório exige refazer todo o processo."
+  },
+  {
+    "objectID": "slides/aula-1.html#um-fluxo-reprodutível",
+    "href": "slides/aula-1.html#um-fluxo-reprodutível",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "Um fluxo reprodutível",
+    "text": "Um fluxo reprodutível\ndados → código → resultados → narrativa → documento\nTodos os elementos necessários ficam registrados no projeto.\n\n\n\n\n\n\nNota\n\n\nQuando os dados mudam, renderizamos novamente — o número nunca fica desatualizado."
+  },
+  {
+    "objectID": "slides/aula-1.html#as-ferramentas",
+    "href": "slides/aula-1.html#as-ferramentas",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "As ferramentas",
+    "text": "As ferramentas\n\n\n\nFerramenta\nResponsabilidade\n\n\n\n\nR\nanálise e visualização\n\n\nRStudio/Positron\nedição e execução\n\n\nQuarto\nrenderização do documento\n\n\nGit\nhistórico das alterações\n\n\nGitHub\ncolaboração e publicação\n\n\n\nO Quarto não substitui o R — ele chama o R (ou Python/Julia) para calcular, e organiza o resultado junto do texto."
+  },
+  {
+    "objectID": "slides/aula-1.html#o-arquivo-.qmd-texto-e-yaml",
+    "href": "slides/aula-1.html#o-arquivo-.qmd-texto-e-yaml",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "O arquivo .qmd: texto e YAML",
+    "text": "O arquivo .qmd: texto e YAML\n---\ntitle: \"Meu primeiro relatório\"\nformat: html\n---\n\n## Objetivo\n\nEste relatório resume a base `mtcars`."
+  },
+  {
+    "objectID": "slides/aula-1.html#o-arquivo-.qmd-o-bloco-de-código",
+    "href": "slides/aula-1.html#o-arquivo-.qmd-o-bloco-de-código",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "O arquivo .qmd: o bloco de código",
+    "text": "O arquivo .qmd: o bloco de código\n\nsummary(mtcars$mpg)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  10.40   15.43   19.20   20.09   22.80   33.90 \n\n\nEste resultado não foi digitado — foi calculado agora, na renderização deste próprio slide."
+  },
+  {
+    "objectID": "slides/aula-1.html#três-partes-do-documento",
+    "href": "slides/aula-1.html#três-partes-do-documento",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "Três partes do documento",
+    "text": "Três partes do documento\n\n\nYAML\nConfigura título, autoria e formato.\n\nMarkdown\nOrganiza a narrativa e as seções.\n\nCódigo\nProduz números, tabelas e gráficos."
+  },
+  {
+    "objectID": "slides/aula-1.html#renderização",
+    "href": "slides/aula-1.html#renderização",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "Renderização",
+    "text": "Renderização\nrelatorio.qmd\n      ↓ quarto render\nrelatorio.html\nO arquivo .qmd é a fonte. O HTML é o produto gerado — sempre reconstruível a partir da fonte."
+  },
+  {
+    "objectID": "slides/aula-1.html#um-teste-simples",
+    "href": "slides/aula-1.html#um-teste-simples",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "Um teste simples",
+    "text": "Um teste simples\n\nreinicie a sessão do R;\nabra apenas o projeto;\nrenderize o documento;\nobserve se algum objeto está ausente.\n\nSe funciona apenas depois de executar comandos no console, ainda há dependências escondidas."
+  },
+  {
+    "objectID": "slides/aula-1.html#erros-frequentes",
+    "href": "slides/aula-1.html#erros-frequentes",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "Erros frequentes",
+    "text": "Erros frequentes\n\n\n\n\n\n\n\nMensagem ou sintoma\nVerificação\n\n\n\n\n'quarto' não é reconhecido\ninstalação e reinício da IDE\n\n\nthere is no package called ...\npacote não instalado no ambiente ativo\n\n\nYAML inválido\nindentação e fechamento ---\n\n\ncannot open file ...\ncaminho relativo à pasta errada\n\n\nobject not found\ncriado só no console, fora do documento"
+  },
+  {
+    "objectID": "slides/aula-1.html#o-dataset-deste-curso",
+    "href": "slides/aula-1.html#o-dataset-deste-curso",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "O dataset deste curso",
+    "text": "O dataset deste curso\nCinco aulas, uma base real: população, área e PIB por estado brasileiro (fonte: IBGE).\n\npopulacao_uf &lt;- readr::read_csv(\"dados/populacao_uf.csv\", show_col_types = FALSE)\n\ndplyr::glimpse(populacao_uf)\n\nRows: 27\nColumns: 9\n$ uf            &lt;chr&gt; \"AC\", \"AL\", \"AM\", \"AP\", \"BA\", \"CE\", \"DF\", \"ES\", \"GO\", \"M…\n$ nome_uf       &lt;chr&gt; \"Acre\", \"Alagoas\", \"Amazonas\", \"Amapá\", \"Bahia\", \"Ceará\"…\n$ regiao        &lt;chr&gt; \"Norte\", \"Nordeste\", \"Norte\", \"Norte\", \"Nordeste\", \"Nord…\n$ capital       &lt;chr&gt; \"Rio Branco\", \"Maceió\", \"Manaus\", \"Macapá\", \"Salvador\", …\n$ populacao     &lt;dbl&gt; 830018, 3127683, 3941613, 733759, 14141626, 8794957, 281…\n$ area_km2      &lt;dbl&gt; 164122.2, 27767.7, 1570745.7, 142814.6, 564692.7, 148825…\n$ latitude      &lt;dbl&gt; -9.97, -9.65, -3.10, 0.03, -12.97, -3.72, -15.78, -20.32…\n$ longitude     &lt;dbl&gt; -67.81, -35.71, -60.02, -51.07, -38.51, -38.54, -47.93, …\n$ densidade_dem &lt;dbl&gt; 5.06, 112.64, 2.51, 5.14, 25.04, 59.10, 483.91, 83.20, 2…"
+  },
+  {
+    "objectID": "slides/aula-1.html#prática",
+    "href": "slides/aula-1.html#prática",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "Prática",
+    "text": "Prática\nCrie um relatório com:\n\ntítulo, autoria e data;\numa pergunta sobre mtcars;\num cálculo em R;\numa interpretação em linguagem natural;\num segundo bloco lendo dados/populacao_uf.csv."
+  },
+  {
+    "objectID": "slides/aula-1.html#projeto-final-etapa-1",
+    "href": "slides/aula-1.html#projeto-final-etapa-1",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "Projeto final — etapa 1",
+    "text": "Projeto final — etapa 1\nDefina:\n\ntema;\npergunta principal;\npúblico-alvo;\nformato pretendido;\npossível fonte de dados."
+  },
+  {
+    "objectID": "slides/aula-1.html#fechamento",
+    "href": "slides/aula-1.html#fechamento",
+    "title": "Aula 1 — Reprodutibilidade e primeiro documento Quarto",
+    "section": "Fechamento",
+    "text": "Fechamento\nAo final desta aula, você deve conseguir:\n\nexplicar reprodutibilidade com um exemplo concreto;\ndistinguir R, IDE e Quarto;\ncriar e renderizar um .qmd;\nreconhecer dependências escondidas.\n\nPróxima aula\nEstrutura, estilo e comunicação."
+  },
+  {
+    "objectID": "slides/aula-3.html#hoje-vamos",
+    "href": "slides/aula-3.html#hoje-vamos",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Hoje vamos",
+    "text": "Hoje vamos\n\norganizar um projeto de análise;\nusar here::here() em vez de caminhos fixos;\njuntar duas fontes de dados e tratar NA;\nproduzir resultados dinâmicos no texto;\nescolher entre HTML, PDF e Word;\nregistrar dependências com renv."
+  },
+  {
+    "objectID": "slides/aula-3.html#estrutura-de-projeto",
+    "href": "slides/aula-3.html#estrutura-de-projeto",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Estrutura de projeto",
+    "text": "Estrutura de projeto\n2026-curso-de-verao-ime-usp-relatorios/\n├── dados/\n│   ├── populacao_uf.csv\n│   └── pib_uf.csv\n├── aulas/\n├── materiais/exemplos/\n└── _quarto.yaml"
+  },
+  {
+    "objectID": "slides/aula-3.html#caminhos-com-here",
+    "href": "slides/aula-3.html#caminhos-com-here",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Caminhos com here",
+    "text": "Caminhos com here\n\nhere::here(\"dados\", \"populacao_uf.csv\")\n\n[1] \"D:/Projetos_Lemuel/2026-curso-de-verao-ime-usp-relatorios/dados/populacao_uf.csv\"\n\n\nFunciona igual em qualquer subpasta e em qualquer computador — diferente de \"C:/Users/nome/Desktop/dados.csv\", que só existe na sua máquina."
+  },
+  {
+    "objectID": "slides/aula-3.html#primeiro-olhar-nos-dados",
+    "href": "slides/aula-3.html#primeiro-olhar-nos-dados",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Primeiro olhar nos dados",
+    "text": "Primeiro olhar nos dados\n\npopulacao_uf &lt;- readr::read_csv(here::here(\"dados\", \"populacao_uf.csv\"), show_col_types = FALSE)\n\nskimr::skim(populacao_uf)\n\n\nData summary\n\n\nName\npopulacao_uf\n\n\nNumber of rows\n27\n\n\nNumber of columns\n9\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n4\n\n\nnumeric\n5\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\nuf\n0\n1\n2\n2\n0\n27\n0\n\n\nnome_uf\n0\n1\n4\n19\n0\n27\n0\n\n\nregiao\n0\n1\n3\n12\n0\n5\n0\n\n\ncapital\n0\n1\n5\n14\n0\n27\n0\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\npopulacao\n0\n1\n7520768.74\n8924062.79\n636707.00\n2787197.00\n3941613.00\n8926944.00\n44411238.00\n▇▂▁▁▁\n\n\narea_km2\n0\n1\n315793.99\n376781.38\n5822.10\n75893.00\n224299.00\n336035.00\n1570745.70\n▇▂▁▁▁\n\n\nlatitude\n0\n1\n-12.40\n9.02\n-30.03\n-20.12\n-10.18\n-5.44\n2.82\n▃▃▅▇▆\n\n\nlongitude\n0\n1\n-47.16\n9.12\n-67.81\n-51.15\n-47.93\n-39.44\n-34.86\n▂▃▇▆▇\n\n\ndensidade_dem\n0\n1\n72.12\n111.92\n2.51\n6.58\n35.02\n81.51\n483.91\n▇▁▁▁▁"
+  },
+  {
+    "objectID": "slides/aula-3.html#juntando-duas-fontes",
+    "href": "slides/aula-3.html#juntando-duas-fontes",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Juntando duas fontes",
+    "text": "Juntando duas fontes\n\npib_uf &lt;- readr::read_csv(here::here(\"dados\", \"pib_uf.csv\"), show_col_types = FALSE)\n\nestados &lt;- populacao_uf |&gt; dplyr::left_join(pib_uf, by = \"uf\")\n\nsum(is.na(estados$pib_per_capita))\n\n[1] 0\n\n\npopulacao_uf.csv é de 2022; pib_uf.csv é de 2023 — fontes diferentes do IBGE. Sempre confira o que um left_join produz antes de seguir."
+  },
+  {
+    "objectID": "slides/aula-3.html#fluxo-com-responsabilidades-claras",
+    "href": "slides/aula-3.html#fluxo-com-responsabilidades-claras",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Fluxo com responsabilidades claras",
+    "text": "Fluxo com responsabilidades claras\n# 1. Importação\npopulacao_uf &lt;- readr::read_csv(here::here(\"dados\", \"populacao_uf.csv\"))\npib_uf &lt;- readr::read_csv(here::here(\"dados\", \"pib_uf.csv\"))\n\n# 2. Junção e tratamento\nestados &lt;- populacao_uf |&gt;\n  dplyr::left_join(pib_uf, by = \"uf\") |&gt;\n  dplyr::filter(!is.na(pib_per_capita))\n\n# 3. Transformação\nresumo_regiao &lt;- estados |&gt;\n  dplyr::group_by(regiao) |&gt;\n  dplyr::summarise(pib_medio = mean(pib_per_capita), .groups = \"drop\")"
+  },
+  {
+    "objectID": "slides/aula-3.html#resultados-dinâmicos",
+    "href": "slides/aula-3.html#resultados-dinâmicos",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Resultados dinâmicos",
+    "text": "Resultados dinâmicos\n\nresumo_regiao &lt;- estados |&gt;\n  dplyr::group_by(regiao) |&gt;\n  dplyr::summarise(pib_medio = mean(pib_per_capita, na.rm = TRUE), .groups = \"drop\") |&gt;\n  dplyr::arrange(dplyr::desc(pib_medio))\n\nregiao_maior_pib &lt;- resumo_regiao$regiao[1]\n\nNo texto: código R inline (acento grave, a letra r, espaço, expressão, acento grave) — nunca um número digitado.\nEsta frase usa a técnica: a região Centro-Oeste tem o maior PIB per capita médio."
+  },
+  {
+    "objectID": "slides/aula-3.html#qual-formato-escolher",
+    "href": "slides/aula-3.html#qual-formato-escolher",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Qual formato escolher?",
+    "text": "Qual formato escolher?\n\n\n\nFormato\nMelhor para\nAtenção\n\n\n\n\nHTML\nweb e interatividade\nleitura no navegador\n\n\nPDF\nimpressão e layout fixo\nrequer TeX\n\n\nWord\nrevisão editorial\naparência pode variar"
+  },
+  {
+    "objectID": "slides/aula-3.html#múltiplos-formatos",
+    "href": "slides/aula-3.html#múltiplos-formatos",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Múltiplos formatos",
+    "text": "Múltiplos formatos\nformat:\n  html:\n    toc: true\n  pdf:\n    toc: true\n  docx:\n    toc: true\nO público define o formato, não a preferência da pessoa autora."
+  },
+  {
+    "objectID": "slides/aula-3.html#execução",
+    "href": "slides/aula-3.html#execução",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Execução",
+    "text": "Execução\nexecute:\n  echo: false\n  warning: false\n  message: false\n  error: false\nEsconder avisos não corrige problemas — só os torna invisíveis no documento final."
+  },
+  {
+    "objectID": "slides/aula-3.html#ambiente-com-renv",
+    "href": "slides/aula-3.html#ambiente-com-renv",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Ambiente com renv",
+    "text": "Ambiente com renv\nrenv::init()\nrenv::snapshot()\nrenv::restore()\n\n\n\nFunção\nUso\n\n\n\n\ninit()\ninicia um ambiente\n\n\nsnapshot()\nregistra versões usadas\n\n\nrestore()\nrecria o ambiente registrado"
+  },
+  {
+    "objectID": "slides/aula-3.html#teste-em-sessão-limpa",
+    "href": "slides/aula-3.html#teste-em-sessão-limpa",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Teste em sessão limpa",
+    "text": "Teste em sessão limpa\n\nsalve os arquivos;\nreinicie o R;\nabra o projeto;\nrenderize sem executar comandos prévios;\nconfira resultados e mensagens."
+  },
+  {
+    "objectID": "slides/aula-3.html#prática",
+    "href": "slides/aula-3.html#prática",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Prática",
+    "text": "Prática\n\nleia as duas bases com here::here();\nrode skimr::skim() antes de juntar;\njunte com left_join() e confira NA;\nproduza tabela, gráfico e um valor dinâmico no texto;\ngere HTML e outro formato;\nteste em sessão limpa."
+  },
+  {
+    "objectID": "slides/aula-3.html#projeto-final-etapa-3",
+    "href": "slides/aula-3.html#projeto-final-etapa-3",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Projeto final — etapa 3",
+    "text": "Projeto final — etapa 3\nImplemente a análise mínima:\n\nfonte de dados documentada;\nimportação reproduzível;\numa junção ou transformação;\numa tabela;\num gráfico;\ndependências registradas."
+  },
+  {
+    "objectID": "slides/aula-3.html#fechamento",
+    "href": "slides/aula-3.html#fechamento",
+    "title": "Aula 3 — Dados, formatos e automação",
+    "section": "Fechamento",
+    "text": "Fechamento\nUm documento reproduzível depende tanto do código quanto do ambiente e da organização do projeto.\nPróxima aula\nInteratividade, parâmetros e reutilização."
+  },
+  {
+    "objectID": "slides/aula-5.html#hoje-vamos",
+    "href": "slides/aula-5.html#hoje-vamos",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "Hoje vamos",
+    "text": "Hoje vamos\n\nselecionar arquivos para versionamento;\nusar Git com commits informativos;\ndocumentar o projeto;\nproteger credenciais e dados;\npublicar com GitHub Pages — usando este próprio site como exemplo;\nrevisar a entrega final."
+  },
+  {
+    "objectID": "slides/aula-5.html#o-que-versionar",
+    "href": "slides/aula-5.html#o-que-versionar",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "O que versionar?",
+    "text": "O que versionar?\n\n\nSim\n\narquivos .qmd;\nscripts e funções (materiais/exemplos/R/);\ndados/*.csv e dados/README.md;\nREADME.md;\nrenv.lock.\n\n\nNão\n\ncredenciais;\ndados sigilosos;\nbibliotecas instaladas (renv/library);\n.Rhistory e .RData;\ncaches temporários."
+  },
+  {
+    "objectID": "slides/aula-5.html#gitignore",
+    "href": "slides/aula-5.html#gitignore",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": ".gitignore",
+    "text": ".gitignore\n.Rhistory\n.RData\n.Rproj.user/\n.quarto/\nrenv/library/\nIgnorar um arquivo não o remove do histórico se ele já foi versionado."
+  },
+  {
+    "objectID": "slides/aula-5.html#nunca-versione-credenciais",
+    "href": "slides/aula-5.html#nunca-versione-credenciais",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "Nunca versione credenciais",
+    "text": "Nunca versione credenciais\n\n\n\n\n\n\nAviso\n\n\nTokens, senhas e chaves de API não pertencem ao código nem ao histórico do Git.\n\n\n\nUse variáveis de ambiente e arquivos locais ignorados."
+  },
+  {
+    "objectID": "slides/aula-5.html#ciclo-com-git",
+    "href": "slides/aula-5.html#ciclo-com-git",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "Ciclo com Git",
+    "text": "Ciclo com Git\ngit status\ngit diff\ngit add caminho/do/arquivo\ngit commit -m \"Explica os indicadores regionais\"\ngit push\nLeia o diff antes de criar o commit."
+  },
+  {
+    "objectID": "slides/aula-5.html#um-bom-commit-exemplos-reais-deste-repositório",
+    "href": "slides/aula-5.html#um-bom-commit-exemplos-reais-deste-repositório",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "Um bom commit — exemplos reais deste repositório",
+    "text": "Um bom commit — exemplos reais deste repositório\n\n\n\n\n\n\n\nMensagem real\nPrefira\n\n\n\n\nAJuste depis de redenrizar\nCorrige links quebrados após renderizar o site\n\n\nArquivo repoduciveis\nAdiciona seção sobre reprodutibilidade na Aula 1\n\n\nSalvando alterações da aula 3\nAdiciona pipeline de dados e exemplo de renv na Aula 3\n\n\n\nNenhum repositório é perfeito — inclusive este. O padrão a evitar: descrever que algo mudou, não o quê nem por quê."
+  },
+  {
+    "objectID": "slides/aula-5.html#readme",
+    "href": "slides/aula-5.html#readme",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "README",
+    "text": "README\nO README deve informar:\n\npropósito e público;\nestrutura das pastas;\nrequisitos;\ncomo restaurar dependências;\ncomo renderizar;\nautoria, dados e licença;\nlink publicado.\n\nO README.md deste repositório segue exatamente essa estrutura — vale abrir como referência."
+  },
+  {
+    "objectID": "slides/aula-5.html#como-este-site-é-publicado",
+    "href": "slides/aula-5.html#como-este-site-é-publicado",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "Como este site é publicado",
+    "text": "Como este site é publicado\n.github/workflows/static.yml publica a pasta _site/ já renderizada a cada push em main:\non:\n  push:\n    branches: [\"main\"]\njobs:\n  deploy:\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/upload-pages-artifact@v3\n        with:\n          path: '_site'\n      - uses: actions/deploy-pages@v4\nO Quarto não roda no GitHub Actions aqui — por isso é preciso quarto render local antes do push."
+  },
+  {
+    "objectID": "slides/aula-5.html#outras-estratégias-de-publicação",
+    "href": "slides/aula-5.html#outras-estratégias-de-publicação",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "Outras estratégias de publicação",
+    "text": "Outras estratégias de publicação\n\nquarto publish gh-pages;\nGitHub Actions renderizando no CI (quarto-dev/quarto-actions/render);\nNetlify;\nPosit Connect;\nservidor institucional.\n\nEscolha uma estratégia e documente o fluxo — não misture duas no mesmo repositório."
+  },
+  {
+    "objectID": "slides/aula-5.html#antes-de-publicar",
+    "href": "slides/aula-5.html#antes-de-publicar",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "Antes de publicar",
+    "text": "Antes de publicar\nConteúdo\n\npergunta e público explícitos;\nresultados interpretados;\nfontes e limitações (veja dados/README.md como modelo);\nconclusão coerente.\n\nReprodutibilidade\n\nhere::here() ou caminhos relativos;\nsessão limpa;\ndependências registradas;\ndados acessíveis ou documentados."
+  },
+  {
+    "objectID": "slides/aula-5.html#acessibilidade",
+    "href": "slides/aula-5.html#acessibilidade",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "Acessibilidade",
+    "text": "Acessibilidade\n\nhierarquia lógica de títulos;\ntexto alternativo específico para imagens e gráficos;\ncontraste adequado;\nlinks descritivos;\ncores não são o único canal de informação."
+  },
+  {
+    "objectID": "slides/aula-5.html#prática",
+    "href": "slides/aula-5.html#prática",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "Prática",
+    "text": "Prática\n\nclassifique os arquivos do projeto;\nrevise o .gitignore;\natualize o README;\nrenderize em sessão limpa;\nescreva uma mensagem de commit e compare com a tabela desta aula antes de confirmar;\npublique e teste o link."
+  },
+  {
+    "objectID": "slides/aula-5.html#projeto-final-entrega",
+    "href": "slides/aula-5.html#projeto-final-entrega",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "Projeto final — entrega",
+    "text": "Projeto final — entrega\nEntregue:\n\ndocumento publicado, quando aplicável;\narquivos-fonte;\ndados ou instruções de obtenção;\nREADME;\ndependências registradas;\ncréditos e referências."
+  },
+  {
+    "objectID": "slides/aula-5.html#checklist-final",
+    "href": "slides/aula-5.html#checklist-final",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "Checklist final",
+    "text": "Checklist final\n\nprojeto renderiza;\nlinks funcionam;\nnenhuma credencial foi incluída;\nREADME permite reproduzir;\nversão publicada foi testada;\ntrabalho atende à rubrica."
+  },
+  {
+    "objectID": "slides/aula-5.html#encerramento",
+    "href": "slides/aula-5.html#encerramento",
+    "title": "Aula 5 — Versionamento, publicação e entrega",
+    "section": "Encerramento",
+    "text": "Encerramento\nUm relatório profissional é:\nclaro + reproduzível + documentado + acessível + publicável\nObrigado!"
   }
 ]

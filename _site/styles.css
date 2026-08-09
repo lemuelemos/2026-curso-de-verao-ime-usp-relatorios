@@ -1,0 +1,61 @@
+:root {
+  --course-navy: #17365d;
+  --course-blue: #245b8a;
+  --course-gold: #d6a84b;
+  --course-paper: #f7f8fa;
+}
+
+body {
+  line-height: 1.65;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--course-navy);
+  font-weight: 650;
+}
+
+h2 {
+  margin-top: 2.2rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid #e5e9ef;
+}
+
+a {
+  color: var(--course-blue);
+}
+
+.sidebar-title {
+  font-weight: 700;
+}
+
+.callout {
+  border-radius: 0.45rem;
+}
+
+table {
+  font-size: 0.95rem;
+}
+
+thead {
+  background: var(--course-paper);
+}
+
+.task-list {
+  padding-left: 0.25rem;
+}
+
+.quarto-title-meta {
+  color: #4b5563;
+}
+
+code:not(.sourceCode) {
+  color: #7a3150;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+}

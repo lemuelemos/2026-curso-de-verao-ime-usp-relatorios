@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Recursos interativos e relatórios parametrizados sem perder organização.">
 
-<title>Aula 4 – Criando Relatórios em HTML Interativos com Quarto – Relatórios reprodutíveis com R</title>
+<title>Aula 4 — Interatividade, parâmetros e projetos reutilizáveis – Relatórios reprodutíveis com R</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -20,6 +24,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -29,16 +68,18 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../aulas/aula-5.html" rel="next">
+<link href="../aulas/aula-3.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-055080f5f83ef30f4c6064f8e3ce190b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5dd5f4957db40a1eb105bb83283b05cd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -53,21 +94,58 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
   }
 }</script>
+<link href="../site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="../site_libs/plotly-binding-4.12.1/plotly.js"></script>
+
+<script src="../site_libs/typedarray-0.1/typedarray.min.js"></script>
+
+<script src="../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<link href="../site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="../site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
+<link href="../site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+
+<script src="../site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+
+<link href="../site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+
+<script src="../site_libs/leaflet-1.3.1/leaflet.js"></script>
+
+<link href="../site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+
+<script src="../site_libs/proj4-2.6.2/proj4.min.js"></script>
+
+<script src="../site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+
+<link href="../site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+
+<script src="../site_libs/leaflet-binding-2.2.3/leaflet.js"></script>
+
+<script src="../site_libs/leaflet-providers-3.0.0/leaflet-providers.js"></script>
+
+<script src="../site_libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
 
 
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -76,13 +154,13 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Aula 4 – Criando Relatórios em HTML Interativos com Quarto</li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../aulas/aula-1.html">Aulas</a></li><li class="breadcrumb-item"><a href="../aulas/aula-4.html">Aula 4 — Interatividade, parâmetros e projetos reutilizáveis</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -94,17 +172,16 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="https://www.ime.usp.br/verao/assets/images/logo_verao.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="https://www.ime.usp.br/verao/assets/images/logo_verao.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="https://www.ime.usp.br/verao/assets/images/logo_verao.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
-      <div class="sidebar-tools-main tools-wide">
-    <a href="https://openscapes.org" title="Openscapes.org" class="quarto-navigation-tool px-1" aria-label="Openscapes.org"><i class="bi bi-globe"></i></a>
-    <a href="https://github.com/openscapes/quarto-website-tutorial" title="Quarto website tutorial" class="quarto-navigation-tool px-1" aria-label="Quarto website tutorial"><i class="bi bi-github"></i></a>
-    <a href="https://twitter.com/openscapes" title="Openscapes Twitter" class="quarto-navigation-tool px-1" aria-label="Openscapes Twitter"><i class="bi bi-twitter"></i></a>
+      <div class="sidebar-tools-main">
+    <a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios" title="Repositório do curso" class="quarto-navigation-tool px-1" aria-label="Repositório do curso"><i class="bi bi-github"></i></a>
 </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Procurar"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -125,7 +202,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Sobre o curso</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -133,7 +210,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../informacoes-gerais.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Informações Gerais</span></a>
+ <span class="menu-text">Informações gerais</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -145,7 +222,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../faq.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Perguntas Frequentes (FAQ)</span></a>
+ <span class="menu-text">Perguntas frequentes</span></a>
   </div>
 </li>
       </ul>
@@ -154,7 +231,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Materiais</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -168,30 +245,54 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Slides e materiais por aula</span></a>
+ <span class="menu-text">Slides e materiais de apoio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materiais/exemplos/relatorio-parametrizado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exemplo: relatório parametrizado</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Aulas</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../aulas/aula-1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aula 1 – Configurações e Introdução ao Quarto</span></a>
+ <span class="menu-text">Aula 1 — Reprodutibilidade e primeiro documento Quarto</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../aulas/aula-2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aula 2 – Estrutura, Estilo e Layout de Relatórios</span></a>
+ <span class="menu-text">Aula 2 — Estrutura, estilo e comunicação</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../aulas/aula-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aula 3 — Dados, formatos e automação</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../aulas/aula-4.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Aula 4 — Interatividade, parâmetros e projetos reutilizáveis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../aulas/aula-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aula 5 — Versionamento, publicação e entrega</span></a>
   </div>
 </li>
       </ul>
@@ -200,7 +301,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Trabalho Final</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -217,7 +318,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Edições anteriores</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -259,17 +360,41 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#visão-geral" id="toc-visão-geral" class="nav-link active" data-scroll-target="#visão-geral">Visão geral</a>
+  <ul class="collapse">
+  <li><a href="#objetivos-de-aprendizagem" id="toc-objetivos-de-aprendizagem" class="nav-link" data-scroll-target="#objetivos-de-aprendizagem">Objetivos de aprendizagem</a></li>
+  </ul></li>
+  <li><a href="#interatividade-com-propósito" id="toc-interatividade-com-propósito" class="nav-link" data-scroll-target="#interatividade-com-propósito">1. Interatividade com propósito</a></li>
+  <li><a href="#um-mapa-é-interatividade-que-resolve-um-problema-real" id="toc-um-mapa-é-interatividade-que-resolve-um-problema-real" class="nav-link" data-scroll-target="#um-mapa-é-interatividade-que-resolve-um-problema-real">2. Um mapa é interatividade que resolve um problema real</a></li>
+  <li><a href="#relatórios-parametrizados" id="toc-relatórios-parametrizados" class="nav-link" data-scroll-target="#relatórios-parametrizados">3. Relatórios parametrizados</a></li>
+  <li><a href="#renderização-automatizada" id="toc-renderização-automatizada" class="nav-link" data-scroll-target="#renderização-automatizada">4. Renderização automatizada</a></li>
+  <li><a href="#modularização" id="toc-modularização" class="nav-link" data-scroll-target="#modularização">5. Modularização</a></li>
+  <li><a href="#cache-e-atualização" id="toc-cache-e-atualização" class="nav-link" data-scroll-target="#cache-e-atualização">6. Cache e atualização</a></li>
+  <li><a href="#prática-guiada" id="toc-prática-guiada" class="nav-link" data-scroll-target="#prática-guiada">Prática guiada</a></li>
+  <li><a href="#para-o-projeto-final" id="toc-para-o-projeto-final" class="nav-link" data-scroll-target="#para-o-projeto-final">Para o projeto final</a></li>
+  <li><a href="#checklist" id="toc-checklist" class="nav-link" data-scroll-target="#checklist">Checklist</a></li>
+  <li><a href="#materiais-da-aula" id="toc-materiais-da-aula" class="nav-link" data-scroll-target="#materiais-da-aula">Materiais da aula</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/edit/main/aulas/aula-4.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../aulas/aula-1.html">Aulas</a></li><li class="breadcrumb-item"><a href="../aulas/aula-4.html">Aula 4 — Interatividade, parâmetros e projetos reutilizáveis</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Aula 4 – Criando Relatórios em HTML Interativos com Quarto</h1>
+<h1 class="title">Aula 4 — Interatividade, parâmetros e projetos reutilizáveis</h1>
 </div>
 
+<div>
+  <div class="description">
+    Recursos interativos e relatórios parametrizados sem perder organização.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -284,8 +409,227 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="visão-geral" class="level2">
+<h2 class="anchored" data-anchor-id="visão-geral">Visão geral</h2>
+<p>Nesta aula, o relatório deixa de ser uma peça única e passa a ser reutilizável. Veremos quando usar interatividade, como declarar parâmetros e como separar funções e configurações do documento principal — sempre com um artefato real, não só uma descrição do que seria possível fazer.</p>
+<section id="objetivos-de-aprendizagem" class="level3">
+<h3 class="anchored" data-anchor-id="objetivos-de-aprendizagem">Objetivos de aprendizagem</h3>
+<ul>
+<li>reconhecer quando a interatividade ajuda o público;</li>
+<li>incorporar widgets HTML com responsabilidade;</li>
+<li>declarar e utilizar parâmetros no YAML;</li>
+<li>renderizar variações de um mesmo relatório;</li>
+<li>modularizar código repetido.</li>
+</ul>
+</section>
+</section>
+<section id="interatividade-com-propósito" class="level2">
+<h2 class="anchored" data-anchor-id="interatividade-com-propósito">1. Interatividade com propósito</h2>
+<p>Gráficos interativos permitem explorar valores, aplicar zoom e exibir detalhes. Eles são úteis quando o leitor precisa investigar os dados; para uma mensagem única, um gráfico estático costuma ser mais claro. Compare as duas versões abaixo — mesmos dados, mesma pergunta (“quais estados têm mais habitantes por km²?”):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>populacao_uf <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"populacao_uf.csv"</span>), <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>top10_densidade <span class="ot">&lt;-</span> populacao_uf <span class="sc">|&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(densidade_dem, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Estática</strong> — melhor quando o relatório vai para PDF, impressão ou quando a mensagem é uma comparação única e definitiva:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(top10_densidade, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(nome_uf, densidade_dem), <span class="at">y =</span> densidade_dem)) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2f4858"</span>) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Densidade (hab/km²)"</span>) <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-densidade-estatica" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de barras horizontais com os dez estados de maior densidade demográfica, liderados pelo Distrito Federal.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-densidade-estatica-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="aula-4_files/figure-html/fig-densidade-estatica-1.png" class="img-fluid figure-img" alt="Gráfico de barras horizontais com os dez estados de maior densidade demográfica, liderados pelo Distrito Federal." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-densidade-estatica-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Os dez estados com maior densidade demográfica.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Interativa</strong> — melhor quando o leitor precisa explorar valor por valor, em um HTML:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plotly<span class="sc">::</span><span class="fu">plot_ly</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> top10_densidade,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="sc">~</span>densidade_dem,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="sc">~</span><span class="fu">reorder</span>(nome_uf, densidade_dem),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"bar"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">orientation =</span> <span class="st">"h"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">hovertemplate =</span> <span class="st">"%{y}: %{x:.1f} hab/km²&lt;extra&gt;&lt;/extra&gt;"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  plotly<span class="sc">::</span><span class="fu">layout</span>(</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Densidade (hab/km²)"</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">""</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-densidade-interativa" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-densidade-interativa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-7edf75154c5aa2bef8ba" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-7edf75154c5aa2bef8ba">{"x":{"visdat":{"cc306c151223":["function () ","plotlyVisDat"]},"cur_data":"cc306c151223","attrs":{"cc306c151223":{"x":{},"y":{},"orientation":"h","hovertemplate":"%{y}: %{x:.1f} hab/km²<extra><\/extra>","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"Densidade (hab/km²)"},"yaxis":{"domain":[0,1],"automargin":true,"title":"","type":"category","categoryorder":"array","categoryarray":["Rio Grande do Norte","Paraíba","Santa Catarina","Espírito Santo","Pernambuco","Sergipe","Alagoas","São Paulo","Rio de Janeiro","Distrito Federal"]},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[483.91000000000003,367.43000000000001,178.93000000000001,112.64,100.87,92.150000000000006,83.200000000000003,79.819999999999993,70.420000000000002,62.560000000000002],"y":["Distrito Federal","Rio de Janeiro","São Paulo","Alagoas","Sergipe","Pernambuco","Espírito Santo","Santa Catarina","Paraíba","Rio Grande do Norte"],"orientation":"h","hovertemplate":["%{y}: %{x:.1f} hab/km²<extra><\/extra>","%{y}: %{x:.1f} hab/km²<extra><\/extra>","%{y}: %{x:.1f} hab/km²<extra><\/extra>","%{y}: %{x:.1f} hab/km²<extra><\/extra>","%{y}: %{x:.1f} hab/km²<extra><\/extra>","%{y}: %{x:.1f} hab/km²<extra><\/extra>","%{y}: %{x:.1f} hab/km²<extra><\/extra>","%{y}: %{x:.1f} hab/km²<extra><\/extra>","%{y}: %{x:.1f} hab/km²<extra><\/extra>","%{y}: %{x:.1f} hab/km²<extra><\/extra>"],"type":"bar","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-densidade-interativa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: A mesma comparação, agora navegável: passe o mouse sobre cada barra.
+</figcaption>
+</figure>
+</div>
+</div>
+<p>Nenhuma das duas está errada — a decisão depende do formato de saída e do que o público vai fazer com o gráfico. Um documento PDF nunca vai mostrar o <code>plotly</code> interativo (ele exige um navegador rodando JavaScript); é por isso que a Aula 3 insiste em escolher o formato pelo público antes de escolher os recursos visuais.</p>
+</section>
+<section id="um-mapa-é-interatividade-que-resolve-um-problema-real" class="level2">
+<h2 class="anchored" data-anchor-id="um-mapa-é-interatividade-que-resolve-um-problema-real">2. Um mapa é interatividade que resolve um problema real</h2>
+<p><code>dados/populacao_uf.csv</code> já tem <code>latitude</code> e <code>longitude</code> da capital de cada estado — dá para colocar cada um no mapa, com o tamanho do marcador proporcional à população:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>leaflet<span class="sc">::</span><span class="fu">leaflet</span>(populacao_uf) <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  leaflet<span class="sc">::</span><span class="fu">addProviderTiles</span>(leaflet<span class="sc">::</span>providers<span class="sc">$</span>CartoDB.Positron) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  leaflet<span class="sc">::</span><span class="fu">addCircleMarkers</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">lng =</span> <span class="sc">~</span>longitude,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">lat =</span> <span class="sc">~</span>latitude,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">radius =</span> <span class="sc">~</span><span class="fu">sqrt</span>(populacao) <span class="sc">/</span> <span class="dv">200</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">stroke =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fillOpacity =</span> <span class="fl">0.7</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#2f4858"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="sc">~</span><span class="fu">paste0</span>(nome_uf, <span class="st">": "</span>, <span class="fu">format</span>(populacao, <span class="at">big.mark =</span> <span class="st">"."</span>), <span class="st">" hab."</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-mapa-populacao" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mapa-populacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-9e458d83ae192686b144" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-9e458d83ae192686b144">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircleMarkers","args":[[-9.970000000000001,-9.65,-3.1,0.03,-12.97,-3.72,-15.78,-20.32,-16.68,-2.53,-19.92,-20.44,-15.6,-1.46,-7.12,-8.050000000000001,-5.09,-25.43,-22.91,-5.79,-8.76,2.82,-30.03,-27.6,-10.91,-23.55,-10.18],[-67.81,-35.71,-60.02,-51.07,-38.51,-38.54,-47.93,-40.34,-49.25,-44.3,-43.94,-54.65,-56.1,-48.5,-34.86,-34.9,-42.8,-49.27,-43.17,-35.21,-63.9,-60.67,-51.23,-48.55,-37.07,-46.63,-48.33],[4.55526618322135,8.842628285753054,9.92674795690915,4.282986691550652,18.80267667115509,14.82814637775066,8.392527926673822,9.789933605494983,13.28203203579934,12.99596572017639,22.66053231943151,8.302127739320806,9.563797624374953,14.24870608160615,9.968308532544526,15.0490290384463,9.043228129379465,16.91477165083821,20.03445407292148,9.086705948802349,6.287280811288772,3.989696103715169,16.49466959353839,13.79344137624835,7.433041100384149,33.32087858985714,6.147072473950507],null,null,{"interactive":true,"className":"","stroke":false,"color":"#2f4858","weight":5,"opacity":0.5,"fill":true,"fillColor":"#2f4858","fillOpacity":0.7},null,null,null,null,["Acre:    830.018 hab.","Alagoas:  3.127.683 hab.","Amazonas:  3.941.613 hab.","Amapá:    733.759 hab.","Bahia: 14.141.626 hab.","Ceará:  8.794.957 hab.","Distrito Federal:  2.817.381 hab.","Espírito Santo:  3.833.712 hab.","Goiás:  7.056.495 hab.","Maranhão:  6.755.805 hab.","Minas Gerais: 20.539.989 hab.","Mato Grosso do Sul:  2.757.013 hab.","Mato Grosso:  3.658.649 hab.","Pará:  8.121.025 hab.","Paraíba:  3.974.687 hab.","Pernambuco:  9.058.931 hab.","Piauí:  3.271.199 hab.","Paraná: 11.444.380 hab.","Rio de Janeiro: 16.055.174 hab.","Rio Grande do Norte:  3.302.729 hab.","Rondônia:  1.581.196 hab.","Roraima:    636.707 hab.","Rio Grande do Sul: 10.882.965 hab.","Santa Catarina:  7.610.361 hab.","Sergipe:  2.210.004 hab.","São Paulo: 44.411.238 hab.","Tocantins:  1.511.460 hab."],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-30.03,2.82],"lng":[-67.81,-34.86]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mapa-populacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3: Capitais dos estados brasileiros; o tamanho do círculo é proporcional à população do estado.
+</figcaption>
+</figure>
+</div>
+</div>
+<p>Um mapa estático (uma imagem) também mostraria a localização das capitais, mas só o mapa interativo permite arrastar, dar zoom e ler o rótulo de um estado específico sem poluir a figura inteira com texto. É exatamente o tipo de tarefa (“onde fica” + “qual é o valor exato aqui”) em que a interatividade paga o custo de não funcionar em PDF.</p>
+</section>
+<section id="relatórios-parametrizados" class="level2">
+<h2 class="anchored" data-anchor-id="relatórios-parametrizados">3. Relatórios parametrizados</h2>
+<p>Parâmetros permitem gerar várias versões do mesmo documento sem duplicar arquivos. Em vez de descrever isso em abstrato, veja o exemplo completo e funcional deste curso:</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Exemplo real">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Exemplo real
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="../materiais/exemplos/relatorio-parametrizado.html"><code>materiais/exemplos/relatorio-parametrizado.qmd</code></a> é um <code>.qmd</code> completo que filtra <code>dados/populacao_uf.csv</code> por região usando um parâmetro. Abra o arquivo-fonte no repositório enquanto lê esta seção.</p>
+</div>
+</div>
+<p>O YAML declara o parâmetro e um valor padrão:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Relatório regional"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">params</span><span class="kw">:</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">regiao</span><span class="kw">:</span><span class="at"> </span><span class="st">"Sudeste"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>No código R, o valor declarado fica disponível em <code>params</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dados_regiao <span class="ot">&lt;-</span> populacao_uf <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(regiao <span class="sc">==</span> params<span class="sc">$</span>regiao)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O parâmetro também pode aparecer no próprio <code>title</code>, usando código R inline (a mesma técnica de texto dinâmico da Aula 3) para inserir o valor de <code>params$regiao</code> no meio do texto do título — é exatamente o que <code>materiais/exemplos/relatorio-parametrizado.qmd</code> faz, por isso o título dele muda conforme a região escolhida. Assim, quem lê o documento sabe qual recorte está vendo sem precisar abrir o código-fonte.</p>
+</section>
+<section id="renderização-automatizada" class="level2">
+<h2 class="anchored" data-anchor-id="renderização-automatizada">4. Renderização automatizada</h2>
+<p>Uma versão pode ser gerada pelo terminal, sobrepondo o valor padrão do YAML:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>quarto render materiais<span class="op">/</span>exemplos<span class="op">/</span>relatorio-parametrizado<span class="op">.</span><span class="fu">qmd</span> <span class="op">-</span>P regiao<span class="op">:</span>Sul</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para produzir as cinco regiões de uma vez, <a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/materiais/exemplos/render-lote.R"><code>materiais/exemplos/render-lote.R</code></a> já está pronto no repositório:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>regioes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Norte"</span>, <span class="st">"Nordeste"</span>, <span class="st">"Centro-Oeste"</span>, <span class="st">"Sudeste"</span>, <span class="st">"Sul"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">walk</span>(regioes, <span class="cf">function</span>(regiao_atual) {</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  quarto<span class="sc">::</span><span class="fu">quarto_render</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">input =</span> <span class="st">"materiais/exemplos/relatorio-parametrizado.qmd"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">execute_params =</span> <span class="fu">list</span>(<span class="at">regiao =</span> regiao_atual),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">output_file =</span> <span class="fu">paste0</span>(<span class="st">"relatorio-"</span>, <span class="fu">tolower</span>(<span class="fu">gsub</span>(<span class="st">"[^A-Za-z]+"</span>, <span class="st">"-"</span>, regiao_atual)), <span class="st">".html"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Teste primeiro uma única versão. Automatizar um relatório com erro apenas reproduz o erro cinco vezes mais rápido.</p>
+</section>
+<section id="modularização" class="level2">
+<h2 class="anchored" data-anchor-id="modularização">5. Modularização</h2>
+<p>Funções estáveis não deveriam morar dentro do <code>.qmd</code>, misturadas com prosa. <a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/materiais/exemplos/R/indicadores.R"><code>materiais/exemplos/R/indicadores.R</code></a> — usado pelo relatório parametrizado da seção 3 — tem duas funções pequenas:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"materiais"</span>, <span class="st">"exemplos"</span>, <span class="st">"R"</span>, <span class="st">"indicadores.R"</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">calcular_densidade</span>(<span class="at">populacao =</span> <span class="dv">15000</span>, <span class="at">area_km2 =</span> <span class="dv">500</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">classificar_porte</span>(<span class="at">populacao =</span> <span class="fu">c</span>(<span class="dv">500000</span>, <span class="dv">5000000</span>, <span class="dv">20000000</span>))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "pequeno" "médio"   "grande" </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>populacao_uf <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">porte =</span> <span class="fu">classificar_porte</span>(populacao)) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(porte)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  porte       n
+  &lt;chr&gt;   &lt;int&gt;
+1 grande      9
+2 médio      13
+3 pequeno     5</code></pre>
+</div>
+</div>
+<p>Cada função tem nome claro, entradas explícitas (<code>populacao</code>, <code>area_km2</code>) e uma saída previsível — nenhuma delas depende de um objeto criado em outro lugar do documento. Isso é o que torna uma função reutilizável de verdade: ela funciona igual dentro do relatório, num script separado, ou nos testes de outra pessoa.</p>
+</section>
+<section id="cache-e-atualização" class="level2">
+<h2 class="anchored" data-anchor-id="cache-e-atualização">6. Cache e atualização</h2>
+<p>Cache pode acelerar análises custosas, mas também pode exibir resultados antigos. Use-o apenas quando souber quais mudanças invalidam o resultado:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para relatórios operacionais, registre a data de atualização e valide se a fonte de dados foi realmente atualizada antes da publicação — um cache desatualizado silenciosamente reexibe o gráfico de ontem como se fosse de hoje.</p>
+</section>
+<section id="prática-guiada" class="level2">
+<h2 class="anchored" data-anchor-id="prática-guiada">Prática guiada</h2>
+<ol type="1">
+<li>Abra <code>materiais/exemplos/relatorio-parametrizado.qmd</code> e renderize-o com <code>regiao:Norte</code>.</li>
+<li>Compare o resultado com a versão padrão (<code>Sudeste</code>) — tabela, gráfico e texto devem mudar juntos.</li>
+<li>No seu próprio relatório (Aulas 1–3), declare um parâmetro <code>regiao</code> ou <code>ano</code> e filtre os dados com ele.</li>
+<li>Mostre no título ou subtítulo qual recorte foi usado.</li>
+<li>Extraia pelo menos uma transformação para uma função em um arquivo <code>R/</code>, com entradas explícitas.</li>
+</ol>
+</section>
+<section id="para-o-projeto-final" class="level2">
+<h2 class="anchored" data-anchor-id="para-o-projeto-final">Para o projeto final</h2>
+<p>Escolha uma melhoria compatível com seu público: um gráfico interativo, um mapa, um parâmetro relevante ou uma função reutilizável. Não é obrigatório usar todos os recursos — a pergunta certa é “isso ajuda quem vai ler?”, não “quantos recursos consigo incluir?”.</p>
+</section>
+<section id="checklist" class="level2">
+<h2 class="anchored" data-anchor-id="checklist">Checklist</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">A interatividade resolve uma necessidade real (explorar, localizar, comparar), não é só decoração.</label></li>
+<li><label><input type="checkbox">Tenho uma versão estática de qualquer widget, para PDF ou impressão.</label></li>
+<li><label><input type="checkbox">O documento informa o recorte parametrizado no título ou no texto.</label></li>
+<li><label><input type="checkbox">Consigo gerar duas versões sem duplicar o <code>.qmd</code>.</label></li>
+<li><label><input type="checkbox">Código repetido foi transformado em função com entradas explícitas.</label></li>
+<li><label><input type="checkbox">Sei quando limpar ou evitar o cache.</label></li>
+</ul>
+</section>
+<section id="materiais-da-aula" class="level2">
+<h2 class="anchored" data-anchor-id="materiais-da-aula">Materiais da aula</h2>
+<ul>
+<li><a href="../slides/aula-4.html">Slides da Aula 4</a></li>
+<li><a href="../materiais/exemplos/relatorio-parametrizado.html">Exemplo: relatório parametrizado</a></li>
+<li><a href="../materiais/exemplos/render-lote.R">Script para gerar as cinco regiões</a></li>
+<li><a href="https://quarto.org/docs/computations/parameters.html">Quarto: parâmetros</a></li>
+<li><a href="https://quarto.org/docs/interactive/widgets/htmlwidgets.html">Quarto: widgets HTML</a></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -313,12 +657,12 @@ ul.task-list li input[type="checkbox"] {
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copiada");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copiada");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -339,13 +683,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -360,7 +705,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/openscapes\.github\.io\/quarto-website-tutorial");
+        var filterRegex = new RegExp("https:\/\/lemuelemos\.github\.io\/2026-curso-de-verao-ime-usp-relatorios\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -687,17 +1032,29 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../aulas/aula-3.html" class="pagination-link" aria-label="Aula 3 — Dados, formatos e automação">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Aula 3 — Dados, formatos e automação</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../aulas/aula-5.html" class="pagination-link" aria-label="Aula 5 — Versionamento, publicação e entrega">
+        <span class="nav-page-text">Aula 5 — Versionamento, publicação e entrega</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© CC-By Openscapes, 2024</p>
+<p>Conteúdo sob licença <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br">CC BY-SA 4.0</a>.</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/openscapes/quarto-website-tutorial/edit/main/aulas/aula-4.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/openscapes/quarto-website-tutorial/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/edit/main/aulas/aula-4.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+<p>Site criado com <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
   </div>
 </footer>
