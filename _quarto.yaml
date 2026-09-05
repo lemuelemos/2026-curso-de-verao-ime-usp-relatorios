@@ -22,12 +22,12 @@ website:
   page-footer:
     right: "Site criado com [Quarto](https://quarto.org/)."
     left: "Conteúdo sob licença [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br)."
-    background: "#17365D"
+    background: "#FFD100"
 
   sidebar:
     logo: "https://www.ime.usp.br/verao/assets/images/logo_verao.png"
     pinned: true
-    background: "#17365D"
+    background: "#662915"
     align: center
     tools:
       - icon: github
@@ -78,6 +78,8 @@ format:
   html:
     theme: cosmo
     css: styles.css
+    link-external-newwindow: true
+    include-after-body: _includes/external-links.html
     code-copy: true
     code-overflow: wrap
     toc: true

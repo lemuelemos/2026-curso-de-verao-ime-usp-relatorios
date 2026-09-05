@@ -1,0 +1,24 @@
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("a[href]").forEach((link) => {
+    const href = link.getAttribute("href");
+
+    if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+      return;
+    }
+
+    const url = new URL(href, window.location.href);
+    const isWebLink = url.protocol === "http:" || url.protocol === "https:";
+    const isExternal = isWebLink && url.origin !== window.location.origin;
+
+    if (isExternal) {
+      link.target = "_blank";
+
+      const relationship = new Set((link.rel || "").split(/\s+/).filter(Boolean));
+      relationship.add("noopener");
+      relationship.add("noreferrer");
+      link.rel = Array.from(relationship).join(" ");
+    }
+  });
+});
+</script>

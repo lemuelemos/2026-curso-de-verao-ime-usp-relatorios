@@ -15,6 +15,10 @@ renv/staging/
 **/*_cache/
 **/*_files/
 
+# A publicação do GitHub Pages envia `_site` diretamente; mantenha seus recursos.
+!_site/**/*_files/
+!_site/**/*_files/**
+
 # Arquivos locais do sistema e dos editores
 .DS_Store
 Thumbs.db
