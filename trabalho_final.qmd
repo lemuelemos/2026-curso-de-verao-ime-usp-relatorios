@@ -115,7 +115,7 @@ Inclua obrigatoriamente:
 * Uma imagem.
 * Uma tabela.
 * Um gráfico (preferencialmente com `ggplot2`).
-* Se for um artigo acadêmico, inclua referências utilizando arquivo `.bib`.
+* Se for um artigo acadêmico, inclua um arquivo `.bib`, declare-o em `bibliography` no YAML, cite as fontes no texto e gere a lista de referências. Consulte o [passo a passo da Aula 2](aulas/aula-2.qmd#sec-citacoes-bibliograficas) e o [exemplo completo](materiais/exemplos/documento-com-referencias.qmd). Nos demais tipos de trabalho, use esse recurso quando for adequado ao conteúdo.
 
 ---
 
@@ -154,6 +154,7 @@ Para aprovação, o trabalho deve atingir pelo menos 60% da pontuação e não p
 - [ ] O projeto renderiza depois de reiniciar o R.
 - [ ] O README explica requisitos e execução.
 - [ ] Dados, imagens e referências têm fonte e autorização de uso.
+- [ ] Se escolhi um artigo acadêmico, incluí o `.bib` na entrega e conferi as citações e a lista de referências no documento renderizado.
 - [ ] Nenhuma senha, token ou informação sigilosa foi incluída.
 - [ ] O link publicado foi testado em uma janela anônima do navegador.
 

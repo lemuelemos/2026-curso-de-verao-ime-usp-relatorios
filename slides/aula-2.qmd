@@ -25,7 +25,8 @@ execute:
 2. configurar YAML e execução;
 3. estruturar texto com Markdown;
 4. apresentar tabelas e gráficos;
-5. usar referências cruzadas e acessibilidade.
+5. usar referências cruzadas e citações bibliográficas;
+6. aplicar princípios de acessibilidade.
 
 ## Comece pelo público
 
@@ -173,6 +174,63 @@ $$ {#eq-densidade}
 
 No texto: "A @eq-densidade define a densidade demográfica, usada na coluna `densidade_dem`."
 
+## Citações bibliográficas
+
+- Referência cruzada: aponta para uma figura, tabela ou seção do documento.
+- Citação bibliográfica: identifica uma fonte externa.
+- `.bib`: guarda autoria, título, ano e outros dados da publicação.
+- `bibliography`: informa ao Quarto qual arquivo usar.
+
+## Arquivo `referencias.bib`
+
+```bibtex
+@article{knuth1984,
+  author = {Knuth, Donald E.},
+  title = {Literate Programming},
+  journal = {The Computer Journal},
+  year = {1984},
+  volume = {27},
+  number = {2},
+  pages = {97--111},
+  doi = {10.1093/comjnl/27.2.97}
+}
+```
+
+`knuth1984` é a chave da referência. Confira os dados na fonte original.
+
+## YAML e citações no texto
+
+Com o `.bib` na mesma pasta do `.qmd`:
+
+```yaml
+bibliography: referencias.bib
+```
+
+```markdown
+@knuth1984 apresenta a proposta de programação literária.
+
+O artigo discute explicações e código [@knuth1984].
+```
+
+A chave no texto deve corresponder à entrada no `.bib`.
+
+## Lista de referências
+
+No final do documento:
+
+```markdown
+## Referências
+
+::: {#refs}
+:::
+```
+
+- Renderize e confira as citações e a lista gerada.
+- `.bib` guarda os dados; um `.csl` opcional define o estilo.
+- Inclua esses arquivos na entrega.
+
+Exemplo completo: [documento com referências](../materiais/exemplos/documento-com-referencias.qmd).
+
 ## Acessibilidade
 
 ::: {.incremental}
@@ -193,12 +251,14 @@ Com `dados/populacao_uf.csv`:
 4. um gráfico bom **e** um propositalmente ruim, para comparar;
 5. referências cruzadas;
 6. texto alternativo específico.
+7. uma fonte no `.bib`, uma citação e a lista de referências renderizada.
 
 ## Projeto final — etapa 2
 
 - crie o esqueleto do documento;
 - escreva a introdução;
 - inclua a primeira evidência visual;
+- para um artigo, comece o `.bib` e cite uma fonte relevante;
 - peça a alguém para explicar a mensagem que entendeu.
 
 ## Fechamento

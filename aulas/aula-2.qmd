@@ -24,6 +24,7 @@ Um relatório reprodutível também precisa ser compreensível. Nesta aula, vamo
 - estruturar texto com Markdown e hierarquia de seções;
 - controlar código e resultados com opções de execução;
 - inserir tabelas, figuras, equações e referências cruzadas;
+- citar fontes bibliográficas com um arquivo `.bib` e gerar a lista de referências;
 - aplicar princípios básicos de legibilidade e acessibilidade.
 
 ## 1. Planeje antes de formatar
@@ -252,7 +253,72 @@ em que $P$ é a população e $A$ é a área em km². A @eq-densidade é a mesma
 
 Rótulos estáveis permitem mudar a ordem dos elementos sem corrigir a numeração manualmente — o Quarto renumera tudo sozinho.
 
-## 8. Estilo sem perder manutenção
+## 8. Citações bibliográficas {#sec-citacoes-bibliograficas}
+
+Referências cruzadas apontam para elementos do próprio documento, como `@fig-populacao-boa`. Citações bibliográficas identificam fontes externas, como artigos, livros e documentação. Para citar uma fonte, registre seus dados em um arquivo `.bib`, informe esse arquivo no YAML e use a chave da referência no texto. O Quarto gera as citações e a lista de referências durante a renderização.
+
+### Crie o arquivo de referências
+
+Na mesma pasta do seu `.qmd`, crie um arquivo de texto chamado `referencias.bib`. Esta entrada registra um artigo real de Donald Knuth sobre programação literária:
+
+```bibtex
+@article{knuth1984,
+  author = {Knuth, Donald E.},
+  title = {Literate Programming},
+  journal = {The Computer Journal},
+  year = {1984},
+  volume = {27},
+  number = {2},
+  pages = {97--111},
+  doi = {10.1093/comjnl/27.2.97}
+}
+```
+
+`article` indica o tipo de publicação; `knuth1984` é a chave que você usará para citá-la. Cada referência deve ter uma chave única. Confira autoria, título, ano e DOI na fonte original. Para vários autores, separe os nomes com `and` no campo `author`.
+
+Você pode exportar referências de um gerenciador bibliográfico ou de uma página de periódico em formato BibTeX, mas revise os dados exportados. O arquivo `.bib` organiza os dados da fonte; ele não substitui a leitura e a avaliação dessa fonte.
+
+### Declare a bibliografia e cite no texto
+
+Com `referencias.bib` e `relatorio.qmd` na mesma pasta, use este documento mínimo:
+
+```markdown
+---
+title: "Meu documento com referências"
+lang: pt-BR
+format: html
+bibliography: referencias.bib
+---
+
+## Contexto
+
+@knuth1984 apresenta a proposta de programação literária.
+
+O artigo discute a combinação entre explicações e código [@knuth1984].
+
+## Referências
+
+::: {#refs}
+:::
+```
+
+`@knuth1984` integra a autoria à frase; `[@knuth1984]` coloca a citação entre parênteses no estilo autor-data. Escreva essas citações no texto normal, fora de blocos de código. A chave deve corresponder exatamente à entrada no `.bib`.
+
+O caminho de `bibliography` é relativo ao arquivo `.qmd`. Se você guardar as referências em outra pasta, ajuste o caminho. Essa configuração do YAML é independente do diretório de execução do código R.
+
+### Gere e confira as referências
+
+Renderize o documento e confira tanto as citações no texto quanto a lista na seção **Referências**. O bloco com `#refs` define onde a lista será inserida; sem ele, a lista é acrescentada ao final. Por padrão, entram na lista as fontes citadas no texto, e não todas as entradas existentes no `.bib`.
+
+Para as saídas HTML, PDF e Word com o processamento padrão de citações, o Quarto usa o estilo Chicago autor-data. Se precisar de outro estilo, adicione ao YAML `csl: estilo.csl` e inclua esse arquivo no projeto. O `.bib` contém os dados bibliográficos; o `.csl` define como as citações e referências são formatadas. Um estilo específico não é exigido no trabalho final.
+
+::: {.callout-tip title="Exemplo pronto para renderizar"}
+Abra o [documento com referências](../materiais/exemplos/documento-com-referencias.qmd). Seus arquivos-fonte estão em `materiais/exemplos/documento-com-referencias.qmd` e `materiais/exemplos/referencias.bib`. Copie os dois juntos para experimentar no seu projeto.
+:::
+
+Se aparecer um aviso de referência não encontrada ou uma chave sem formatação no resultado, confira a grafia da chave, o caminho de `bibliography` e a sintaxe do `.bib` (vírgulas e chaves). Inclua a bibliografia e, quando utilizado, o arquivo CSL na entrega.
+
+## 9. Estilo sem perder manutenção
 
 Comece com um tema e poucas regras CSS:
 
@@ -285,16 +351,21 @@ Usando `dados/populacao_uf.csv`:
 4. Construa uma tabela `gt` com título e nota de fonte.
 5. Construa um gráfico com título, eixos, legenda e texto alternativo — e, antes de finalizar, produza deliberadamente uma versão "ruim" (sem `theme_minimal()`, sem `labs()`) para comparar as duas.
 6. Adicione referências cruzadas para a tabela e o gráfico.
+7. Crie um `.bib` com uma fonte que você consultou, declare `bibliography` no YAML e insira uma citação no texto. Renderize e confira a entrada na lista de referências.
 
 ## Para o projeto final
 
 Crie o esqueleto do documento, escreva a introdução e inclua ao menos uma evidência visual. Peça a alguém do público-alvo para dizer qual mensagem entendeu.
+
+Se escolheu um artigo acadêmico, comece também o arquivo `.bib` e cite uma fonte relevante na introdução ou no método. Nos demais tipos de trabalho, use citações bibliográficas quando forem adequadas ao conteúdo; continue registrando as fontes dos dados e os créditos das imagens.
 
 ## Checklist
 
 - [ ] O YAML está válido e enxuto.
 - [ ] A hierarquia de títulos é lógica.
 - [ ] Tabelas e gráficos são citados e interpretados, não apenas exibidos.
+- [ ] Sei distinguir referências cruzadas de citações bibliográficas.
+- [ ] Declarei um `.bib`, citei uma fonte e conferi a lista de referências renderizada.
 - [ ] Imagens e gráficos têm texto alternativo específico (não genérico).
 - [ ] Consigo apontar, no meu próprio gráfico, o que tornaria uma versão "ruim" dele.
 - [ ] O estilo visual é consistente com o público.
@@ -304,5 +375,7 @@ Crie o esqueleto do documento, escreva a introdução e inclua ao menos uma evid
 - [Slides da Aula 2](../slides/aula-2.qmd)
 - [Quarto: Markdown](https://quarto.org/docs/authoring/markdown-basics.html)
 - [Quarto: referências cruzadas](https://quarto.org/docs/authoring/cross-references.html)
+- [Quarto: citações e bibliografia](https://quarto.org/docs/authoring/citations.html)
+- [Exemplo: documento com referências](../materiais/exemplos/documento-com-referencias.qmd)
 - [Quarto: acessibilidade](https://quarto.org/docs/authoring/figures.html#alt-text)
 - [gt: criando tabelas](https://gt.rstudio.com/)

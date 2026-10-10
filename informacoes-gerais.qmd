@@ -35,6 +35,7 @@ Ao final do curso, a pessoa participante deverá ser capaz de planejar, produzir
 - cabeçalho YAML e opções de execução;
 - tabelas, gráficos, imagens e equações;
 - referências cruzadas;
+- citações bibliográficas, arquivo `.bib` e lista de referências;
 - legibilidade, identidade visual e acessibilidade.
 
 **Entrega parcial:** esqueleto do documento e primeira evidência visual.
