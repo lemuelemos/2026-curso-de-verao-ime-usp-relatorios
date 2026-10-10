@@ -335,7 +335,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#restaurar-um-ambiente-existente" id="toc-restaurar-um-ambiente-existente" class="nav-link" data-scroll-target="#restaurar-um-ambiente-existente"><strong>1. Restaurar um ambiente existente</strong></a></li>
   <li><a href="#criar-o-ambiente-do-seu-trabalho-final" id="toc-criar-o-ambiente-do-seu-trabalho-final" class="nav-link" data-scroll-target="#criar-o-ambiente-do-seu-trabalho-final"><strong>2. Criar o ambiente do seu trabalho final</strong></a></li>
   <li><a href="#instalar-os-pacotes-usados-nas-aulas" id="toc-instalar-os-pacotes-usados-nas-aulas" class="nav-link" data-scroll-target="#instalar-os-pacotes-usados-nas-aulas"><strong>3. Instalar os pacotes usados nas aulas</strong></a></li>
-  <li><a href="#salvar-o-estado-do-ambiente" id="toc-salvar-o-estado-do-ambiente" class="nav-link" data-scroll-target="#salvar-o-estado-do-ambiente"><strong>4. Salvar o estado do ambiente</strong></a></li>
+  <li><a href="#conferir-o-ambiente-e-entender-as-etapas-manuais" id="toc-conferir-o-ambiente-e-entender-as-etapas-manuais" class="nav-link" data-scroll-target="#conferir-o-ambiente-e-entender-as-etapas-manuais"><strong>4. Conferir o ambiente e entender as etapas manuais</strong></a></li>
   </ul></li>
   <li><a href="#instalações-recomendadas" id="toc-instalações-recomendadas" class="nav-link" data-scroll-target="#instalações-recomendadas">Instalações recomendadas</a></li>
   <li><a href="#teste-da-instalação" id="toc-teste-da-instalação" class="nav-link" data-scroll-target="#teste-da-instalação">Teste da instalação</a></li>
@@ -459,20 +459,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rig proj add dplyr echarts4r ggplot2 glue gt here kableExtra knitr leaflet</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>rig proj add palmerpenguins plotly purrr quarto readr skimr tibble</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Adicione apenas o necessário para as atividades que você realizará.</p>
+<p>Por padrão, cada <code>rig proj add</code> altera <code>rproj.toml</code>, atualiza <code>rproj.lock</code> e instala os pacotes na biblioteca isolada do projeto. Portanto, após uma adição bem-sucedida, o lock e a instalação já foram tratados — não é preciso repetir <code>lock</code> e <code>sync</code> apenas para concluir essa operação.</p>
 <hr>
 </section>
-<section id="salvar-o-estado-do-ambiente" class="level3">
-<h3 class="anchored" data-anchor-id="salvar-o-estado-do-ambiente"><strong>4. Salvar o estado do ambiente</strong></h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rig proj lock</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Isso garante que qualquer pessoa que abrir o projeto possa recriar o mesmo ambiente depois com:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rig proj sync</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="conferir-o-ambiente-e-entender-as-etapas-manuais" class="level3">
+<h3 class="anchored" data-anchor-id="conferir-o-ambiente-e-entender-as-etapas-manuais"><strong>4. Conferir o ambiente e entender as etapas manuais</strong></h3>
+<p>Depois de adicionar os pacotes, confira a sincronização:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rig proj status</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Esse comando é somente de leitura. Se preferir controlar cada etapa separadamente, use este fluxo alternativo <strong>no lugar</strong> do <code>add</code> padrão:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rig proj add <span class="op">--</span>no-lock dplyr readr ggplot2</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>rig proj lock</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>rig proj sync</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>add --no-lock</code> altera apenas <code>rproj.toml</code>, sem resolver versões nem instalar;</li>
+<li><code>lock</code> resolve e grava as versões em <code>rproj.lock</code>, sem instalar;</li>
+<li><code>sync</code> instala o ambiente registrado na biblioteca do projeto.</li>
+</ul>
+<p>Outra opção é <code>rig proj add --no-sync dplyr</code>: ela atualiza manifesto e lock, mas adia a instalação para <code>rig proj sync</code>. Se editar o manifesto manualmente, rode <code>lock</code> e <code>sync</code>. Um <code>lock</code> comum mantém as versões já fixadas quando continuam compatíveis; ele não significa atualizar todos os pacotes para as versões mais recentes.</p>
+<p>Versione <code>rproj.toml</code> e <code>rproj.lock</code>, além dos arquivos de infraestrutura criados pelo <code>init</code>. Depois de clonar o projeto, outra pessoa restaura o ambiente com:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rig proj sync</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Se não existir <code>rproj.lock</code>, <code>sync</code> o gera primeiro. Para exigir um lock existente, use <code>rig proj sync --frozen</code>.</p>
+<p>As instruções foram conferidas no <code>rig 0.11.0</code>. Como <code>rig proj</code> é experimental, verifique <code>rig --version</code> e <code>rig proj add --help</code> caso use outra versão. Consulte também o <a href="https://rig.r-lib.org/proj-guide.html">guia oficial de projetos</a>.</p>
 <hr>
 <p>✅ <strong>Resumo</strong></p>
 <ul>
 <li><code>rig proj init</code> → inicia o ambiente de um novo projeto;</li>
-<li><code>rig proj add</code> → declara os pacotes usados;</li>
-<li><code>rig proj lock</code> → resolve e registra versões compatíveis;</li>
-<li><code>rig proj sync</code> → recria o ambiente registrado.</li>
+<li><code>rig proj add</code> → declara dependências, atualiza o lock e instala por padrão;</li>
+<li><code>rig proj status</code> → verifica a sincronização sem alterar o ambiente;</li>
+<li><code>rig proj lock</code> → resolve e registra versões, sem instalar;</li>
+<li><code>rig proj sync</code> → sincroniza a biblioteca com o ambiente registrado.</li>
 </ul>
 </section>
 </section>
@@ -481,7 +496,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><strong>TinyTeX</strong>. Para gerar PDF com LaTeX, execute no terminal:</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>quarto install tinytex</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>quarto install tinytex</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="1">
 <li><strong>Google Chrome ou Chromium</strong>. Alguns fluxos de exportação e captura de páginas HTML dependem de um navegador.</li>
 </ol>
@@ -501,11 +516,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="teste-da-instalação" class="level2">
 <h2 class="anchored" data-anchor-id="teste-da-instalação">Teste da instalação</h2>
 <p>Execute no terminal:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rig <span class="op">--</span>version</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>rig proj status</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>quarto check</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rig <span class="op">--</span>version</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>rig proj status</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>quarto check</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Depois, ainda no terminal, teste o R do projeto:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rig run <span class="op">-</span>e <span class="st">"R.version.string; packageVersion('knitr')"</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>rig run <span class="op">-</span>e <span class="st">"R.version.string; packageVersion('knitr')"</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Se algum passo falhar, copie a mensagem completa de erro e informe seu sistema operacional ao pedir ajuda.</p>
 
 

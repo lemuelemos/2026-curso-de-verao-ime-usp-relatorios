@@ -381,7 +381,8 @@ Lemuel de Lemos Romão
 </section>
 <section id="o-dataset-deste-curso" class="slide level2">
 <h2>O dataset deste curso</h2>
-<p>Cinco aulas, uma base real: população, área e PIB por estado brasileiro (fonte: IBGE).</p>
+<p>Cinco aulas, uma base real: população, área e PIB per capita por unidade federativa (UF) brasileira (fonte: IBGE).</p>
+<p>São 27 UFs: 26 estados e o Distrito Federal. O DF não é um estado.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>populacao_uf <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"dados/populacao_uf.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb6-2"><a></a></span>
@@ -389,15 +390,15 @@ Lemuel de Lemos Romão
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 27
 Columns: 9
-$ uf            &lt;chr&gt; "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "M~
-$ nome_uf       &lt;chr&gt; "Acre", "Alagoas", "Amazonas", "Amap&lt;U+00E1&gt;", "Bahia", "Cear&lt;U+00E1&gt;"~
-$ regiao        &lt;chr&gt; "Norte", "Nordeste", "Norte", "Norte", "Nordeste", "Nord~
-$ capital       &lt;chr&gt; "Rio Branco", "Macei&lt;U+00F3&gt;", "Manaus", "Macap&lt;U+00E1&gt;", "Salvador", ~
-$ populacao     &lt;dbl&gt; 830018, 3127683, 3941613, 733759, 14141626, 8794957, 281~
-$ area_km2      &lt;dbl&gt; 164122.2, 27767.7, 1570745.7, 142814.6, 564692.7, 148825~
-$ latitude      &lt;dbl&gt; -9.97, -9.65, -3.10, 0.03, -12.97, -3.72, -15.78, -20.32~
-$ longitude     &lt;dbl&gt; -67.81, -35.71, -60.02, -51.07, -38.51, -38.54, -47.93, ~
-$ densidade_dem &lt;dbl&gt; 5.06, 112.64, 2.51, 5.14, 25.04, 59.10, 483.91, 83.20, 2~</code></pre>
+$ uf            &lt;chr&gt; "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "M…
+$ nome_uf       &lt;chr&gt; "Acre", "Alagoas", "Amazonas", "Amapá", "Bahia", "Ceará"…
+$ regiao        &lt;chr&gt; "Norte", "Nordeste", "Norte", "Norte", "Nordeste", "Nord…
+$ capital       &lt;chr&gt; "Rio Branco", "Maceió", "Manaus", "Macapá", "Salvador", …
+$ populacao     &lt;dbl&gt; 830018, 3127683, 3941613, 733759, 14141626, 8794957, 281…
+$ area_km2      &lt;dbl&gt; 164122.2, 27767.7, 1570745.7, 142814.6, 564692.7, 148825…
+$ latitude      &lt;dbl&gt; -9.97, -9.65, -3.10, 0.03, -12.97, -3.72, -15.78, -20.32…
+$ longitude     &lt;dbl&gt; -67.81, -35.71, -60.02, -51.07, -38.51, -38.54, -47.93, …
+$ densidade_dem &lt;dbl&gt; 5.06, 112.64, 2.51, 5.14, 25.04, 59.10, 483.91, 83.20, 2…</code></pre>
 </div>
 </div>
 </section>

@@ -369,7 +369,13 @@ window.Quarto = {
   <li><a href="#tabelas-que-comunicam" id="toc-tabelas-que-comunicam" class="nav-link" data-scroll-target="#tabelas-que-comunicam">5. Tabelas que comunicam</a></li>
   <li><a href="#figuras-e-gráficos" id="toc-figuras-e-gráficos" class="nav-link" data-scroll-target="#figuras-e-gráficos">6. Figuras e gráficos</a></li>
   <li><a href="#equações-e-referências-cruzadas" id="toc-equações-e-referências-cruzadas" class="nav-link" data-scroll-target="#equações-e-referências-cruzadas">7. Equações e referências cruzadas</a></li>
-  <li><a href="#estilo-sem-perder-manutenção" id="toc-estilo-sem-perder-manutenção" class="nav-link" data-scroll-target="#estilo-sem-perder-manutenção">8. Estilo sem perder manutenção</a></li>
+  <li><a href="#sec-citacoes-bibliograficas" id="toc-sec-citacoes-bibliograficas" class="nav-link" data-scroll-target="#sec-citacoes-bibliograficas">8. Citações bibliográficas</a>
+  <ul class="collapse">
+  <li><a href="#crie-o-arquivo-de-referências" id="toc-crie-o-arquivo-de-referências" class="nav-link" data-scroll-target="#crie-o-arquivo-de-referências">Crie o arquivo de referências</a></li>
+  <li><a href="#declare-a-bibliografia-e-cite-no-texto" id="toc-declare-a-bibliografia-e-cite-no-texto" class="nav-link" data-scroll-target="#declare-a-bibliografia-e-cite-no-texto">Declare a bibliografia e cite no texto</a></li>
+  <li><a href="#gere-e-confira-as-referências" id="toc-gere-e-confira-as-referências" class="nav-link" data-scroll-target="#gere-e-confira-as-referências">Gere e confira as referências</a></li>
+  </ul></li>
+  <li><a href="#estilo-sem-perder-manutenção" id="toc-estilo-sem-perder-manutenção" class="nav-link" data-scroll-target="#estilo-sem-perder-manutenção">9. Estilo sem perder manutenção</a></li>
   <li><a href="#prática-guiada" id="toc-prática-guiada" class="nav-link" data-scroll-target="#prática-guiada">Prática guiada</a></li>
   <li><a href="#para-o-projeto-final" id="toc-para-o-projeto-final" class="nav-link" data-scroll-target="#para-o-projeto-final">Para o projeto final</a></li>
   <li><a href="#checklist" id="toc-checklist" class="nav-link" data-scroll-target="#checklist">Checklist</a></li>
@@ -406,7 +412,7 @@ window.Quarto = {
 
 <section id="visão-geral" class="level2">
 <h2 class="anchored" data-anchor-id="visão-geral">Visão geral</h2>
-<p>Um relatório reprodutível também precisa ser compreensível. Nesta aula, vamos organizar o documento, controlar sua aparência e apresentar evidências com tabelas e gráficos que tenham função narrativa — usando a mesma base de estados brasileiros da Aula 1.</p>
+<p>Um relatório reprodutível também precisa ser compreensível. Nesta aula, vamos organizar o documento, controlar sua aparência e apresentar evidências com tabelas e gráficos que tenham função narrativa — usando a mesma base de unidades federativas brasileiras da Aula 1.</p>
 <section id="objetivos-de-aprendizagem" class="level3">
 <h3 class="anchored" data-anchor-id="objetivos-de-aprendizagem">Objetivos de aprendizagem</h3>
 <ul>
@@ -414,6 +420,7 @@ window.Quarto = {
 <li>estruturar texto com Markdown e hierarquia de seções;</li>
 <li>controlar código e resultados com opções de execução;</li>
 <li>inserir tabelas, figuras, equações e referências cruzadas;</li>
+<li>citar fontes bibliográficas com um arquivo <code>.bib</code> e gerar a lista de referências;</li>
 <li>aplicar princípios básicos de legibilidade e acessibilidade.</li>
 </ul>
 </section>
@@ -432,7 +439,7 @@ window.Quarto = {
 <div class="column" style="width:50%;">
 <p><strong>Evite</strong> — descreve o processo, não a conclusão:</p>
 <blockquote class="blockquote">
-<p>“Neste relatório, foram coletados dados do IBGE sobre população e área dos estados brasileiros, que em seguida foram processados e utilizados para gerar uma tabela e um gráfico apresentados a seguir.”</p>
+<p>“Neste relatório, foram coletados dados do IBGE sobre população e área das UFs brasileiras, que em seguida foram processados e utilizados para gerar uma tabela e um gráfico apresentados a seguir.”</p>
 </blockquote>
 </div><div class="column" style="width:50%;">
 <p><strong>Prefira</strong> — abre com a mensagem, o método vem depois:</p>
@@ -454,7 +461,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="cabeçalho-yaml">2. Cabeçalho YAML</h2>
 <p>O YAML configura o documento. A indentação usa espaços e define hierarquia:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Indicadores por estado"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Indicadores por UF"</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Perfil demográfico e econômico das unidades federativas"</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Nome da pessoa autora"</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
@@ -480,10 +487,10 @@ window.Quarto = {
 </div>
 <div class="callout-body-container callout-body">
 <p>Um dos-pontos sem aspas dentro de um texto quebra o cabeçalho:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Indicadores: uma análise por estado</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Indicadores: uma análise por UF</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>produz algo como:</p>
 <pre class="text"><code>ERROR: YAML parse exception at line 2, column 18: mapping values are not allowed in this context</code></pre>
-<p>A correção é envolver o texto inteiro em aspas: <code>title: "Indicadores: uma análise por estado"</code>. Sempre que a renderização falhar antes de qualquer código rodar, o cabeçalho é o primeiro lugar a conferir.</p>
+<p>A correção é envolver o texto inteiro em aspas: <code>title: "Indicadores: uma análise por UF"</code>. Sempre que a renderização falhar antes de qualquer código rodar, o cabeçalho é o primeiro lugar a conferir.</p>
 </div>
 </div>
 </section>
@@ -497,7 +504,7 @@ window.Quarto = {
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Região Sudeste: maior população absoluta;</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Região Norte: menor densidade demográfica;</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Região Nordeste: maior número de estados.</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Região Nordeste: maior número de UFs.</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Use um único título principal, fornecido pelo YAML. Evite pular de <code>##</code> para <code>####</code>. Títulos devem descrever o conteúdo, e não apenas numerar “Parte 1”.</p>
 </section>
 <section id="preparando-os-dados-desta-aula" class="level2">
@@ -514,15 +521,87 @@ window.Quarto = {
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>resumo_regiao <span class="ot">&lt;-</span> populacao_uf <span class="sc">|&gt;</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(regiao) <span class="sc">|&gt;</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">estados =</span> dplyr<span class="sc">::</span><span class="fu">n</span>(),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_ufs =</span> dplyr<span class="sc">::</span><span class="fu">n</span>(),</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">populacao_total =</span> <span class="fu">sum</span>(populacao),</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">densidade_media =</span> <span class="fu">mean</span>(densidade_dem),</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">densidade_regional =</span> <span class="fu">sum</span>(populacao) <span class="sc">/</span> <span class="fu">sum</span>(area_km2),</span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(populacao_total))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Cada bloco declara <code>#| label:</code> — um nome único que aparece nas mensagens de erro e permite referenciar tabelas e figuras (seção 7).</p>
+<p>Para calcular a <strong>densidade demográfica da região</strong>, dividimos a população total pela área total das UFs que a compõem. A média simples de <code>densidade_dem</code> dá o mesmo peso a cada UF, independentemente de sua área, e responde a outra pergunta: qual é a média das densidades das UFs?</p>
+<p>Compare os dois cálculos usando os dados do curso:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>populacao_uf <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(regiao) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">densidade_regional =</span> <span class="fu">sum</span>(populacao) <span class="sc">/</span> <span class="fu">sum</span>(area_km2),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">media_simples_ufs =</span> <span class="fu">mean</span>(densidade_dem),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Região"</span>, <span class="st">"Densidade regional (hab/km²)"</span>, <span class="st">"Média simples entre UFs (hab/km²)"</span>),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">format.args =</span> <span class="fu">list</span>(<span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-comparar-densidades" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-comparar-densidades-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;1: Densidade regional e média simples das densidades das UFs: indicadores diferentes.
+</figcaption>
+<div aria-describedby="tbl-comparar-densidades-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 38%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Região</th>
+<th style="text-align: right;">Densidade regional (hab/km²)</th>
+<th style="text-align: right;">Média simples entre UFs (hab/km²)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Centro-Oeste</td>
+<td style="text-align: right;">10,1</td>
+<td style="text-align: right;">129,1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nordeste</td>
+<td style="text-align: right;">35,2</td>
+<td style="text-align: right;">61,8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Norte</td>
+<td style="text-align: right;">4,5</td>
+<td style="text-align: right;">4,9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sudeste</td>
+<td style="text-align: right;">91,8</td>
+<td style="text-align: right;">166,1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sul</td>
+<td style="text-align: right;">51,9</td>
+<td style="text-align: right;">58,6</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Na <a href="#tbl-comparar-densidades" class="quarto-xref">Tabela&nbsp;1</a>, o Distrito Federal influencia fortemente a média simples do Centro-Oeste: sua densidade elevada tem o mesmo peso que a de cada uma das outras três UFs. A densidade regional usa a população e a área de todo o território. Calcule essa razão com as colunas originais, para evitar o arredondamento já presente em <code>densidade_dem</code>.</p>
 </section>
 <section id="tabelas-que-comunicam" class="level2">
 <h2 class="anchored" data-anchor-id="tabelas-que-comunicam">5. Tabelas que comunicam</h2>
@@ -531,7 +610,7 @@ window.Quarto = {
 <thead>
 <tr class="header">
 <th>Região</th>
-<th style="text-align: right;">Estados</th>
+<th style="text-align: right;">UFs</th>
 </tr>
 </thead>
 <tbody>
@@ -545,37 +624,31 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>Para dados calculados, gere a tabela a partir do código — nunca digite um número que o R já calculou:</p>
+<p>Para dados calculados, gere a tabela a partir do código — nunca digite um número que o R já calculou. A contagem <code>n_ufs</code> inclui o Distrito Federal: o Centro-Oeste tem quatro UFs, sendo três estados e o DF.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Mostrar código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>resumo_regiao <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Região"</span>, <span class="st">"Estados"</span>, <span class="st">"População total"</span>, <span class="st">"Densidade média (hab/km²)"</span>),</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">format.args =</span> <span class="fu">list</span>(<span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>resumo_regiao <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Região"</span>, <span class="st">"UFs"</span>, <span class="st">"População total"</span>, <span class="st">"Densidade regional (hab/km²)"</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">format.args =</span> <span class="fu">list</span>(<span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="tbl-resumo-regiao" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-resumo-regiao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;1: Estados, popula&lt;U+00E7&gt;&lt;U+00E3&gt;o total e densidade m&lt;U+00E9&gt;dia, por regi&lt;U+00E3&gt;o.
+Tabela&nbsp;2: UFs, população total e densidade demográfica regional.
 </figcaption>
 <div aria-describedby="tbl-resumo-regiao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="cell caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 15%">
-<col style="width: 8%">
-<col style="width: 32%">
-<col style="width: 43%">
-</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Regi&lt;U+00E3&gt;o</th>
-<th style="text-align: right;">Estados</th>
-<th style="text-align: right;">Popula&lt;U+00E7&gt;&lt;U+00E3&gt;o total</th>
-<th style="text-align: right;">Densidade m&lt;U+00E9&gt;dia (hab/km&lt;U+00B2&gt;)</th>
+<th style="text-align: left;">Região</th>
+<th style="text-align: right;">UFs</th>
+<th style="text-align: right;">População total</th>
+<th style="text-align: right;">Densidade regional (hab/km²)</th>
 </tr>
 </thead>
 <tbody>
@@ -583,31 +656,31 @@ Tabela&nbsp;1: Estados, popula&lt;U+00E7&gt;&lt;U+00E3&gt;o total e densidade m&
 <td style="text-align: left;">Sudeste</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">84.840.113</td>
-<td style="text-align: right;">166,1</td>
+<td style="text-align: right;">91,8</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Nordeste</td>
 <td style="text-align: right;">9</td>
 <td style="text-align: right;">54.637.621</td>
-<td style="text-align: right;">61,8</td>
+<td style="text-align: right;">35,2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Sul</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">29.937.706</td>
-<td style="text-align: right;">58,6</td>
+<td style="text-align: right;">51,9</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Norte</td>
 <td style="text-align: right;">7</td>
 <td style="text-align: right;">17.355.778</td>
-<td style="text-align: right;">4,9</td>
+<td style="text-align: right;">4,5</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centro-Oeste</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">16.289.538</td>
-<td style="text-align: right;">129,1</td>
+<td style="text-align: right;">10,1</td>
 </tr>
 </tbody>
 </table>
@@ -616,48 +689,48 @@ Tabela&nbsp;1: Estados, popula&lt;U+00E7&gt;&lt;U+00E3&gt;o total e densidade m&
 </figure>
 </div>
 </div>
-<p>No texto, cite a <a href="#tbl-resumo-regiao" class="quarto-xref">Tabela&nbsp;1</a> e interprete o padrão. Não repita em prosa todos os números da tabela — a região Sudeste concentra a maior população total mesmo tendo só quatro estados, o que já diz mais do que listar todas as células.</p>
+<p>No texto, cite a <a href="#tbl-resumo-regiao" class="quarto-xref">Tabela&nbsp;2</a> e interprete o padrão. Não repita em prosa todos os números da tabela — a região Sudeste concentra a maior população total mesmo tendo só quatro estados, o que já diz mais do que listar todas as células.</p>
 <p>Para um relatório executivo, <code>knitr::kable()</code> costuma bastar. Quando o público precisa de uma tabela com título, nota de rodapé e formatação condicional, <code>gt</code> entrega mais controle:</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Mostrar código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>resumo_regiao <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Perfil demográfico por região"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(populacao_total), <span class="at">decimals =</span> <span class="dv">0</span>, <span class="at">sep_mark =</span> <span class="st">"."</span>, <span class="at">dec_mark =</span> <span class="st">","</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(densidade_media), <span class="at">decimals =</span> <span class="dv">1</span>, <span class="at">sep_mark =</span> <span class="st">"."</span>, <span class="at">dec_mark =</span> <span class="st">","</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">cols_label</span>(</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">regiao =</span> <span class="st">"Região"</span>,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">estados =</span> <span class="st">"Estados"</span>,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">populacao_total =</span> <span class="st">"População total"</span>,</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">densidade_media =</span> <span class="st">"Densidade média (hab/km²)"</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_source_note</span>(<span class="st">"Fonte: IBGE, Censo Demográfico 2022."</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>resumo_regiao <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Perfil demográfico por região"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(populacao_total), <span class="at">decimals =</span> <span class="dv">0</span>, <span class="at">sep_mark =</span> <span class="st">"."</span>, <span class="at">dec_mark =</span> <span class="st">","</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(densidade_regional), <span class="at">decimals =</span> <span class="dv">1</span>, <span class="at">sep_mark =</span> <span class="st">"."</span>, <span class="at">dec_mark =</span> <span class="st">","</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">cols_label</span>(</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">regiao =</span> <span class="st">"Região"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_ufs =</span> <span class="st">"UFs"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">populacao_total =</span> <span class="st">"População total"</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">densidade_regional =</span> <span class="st">"Densidade regional (hab/km²)"</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_source_note</span>(<span class="st">"Fonte: IBGE, Censo Demográfico 2022."</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="tbl-gt-regiao" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-gt-regiao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2: Mesma tabela, com o pacote gt.
+Tabela&nbsp;3: Mesma tabela, com o pacote gt.
 </figcaption>
 <div aria-describedby="tbl-gt-regiao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="yhfgcpbbom" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#yhfgcpbbom table {
+<div id="elrrrtkdtw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#elrrrtkdtw table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#yhfgcpbbom thead, #yhfgcpbbom tbody, #yhfgcpbbom tfoot, #yhfgcpbbom tr, #yhfgcpbbom td, #yhfgcpbbom th {
+#elrrrtkdtw thead, #elrrrtkdtw tbody, #elrrrtkdtw tfoot, #elrrrtkdtw tr, #elrrrtkdtw td, #elrrrtkdtw th {
   border-style: none;
 }
 
-#yhfgcpbbom p {
+#elrrrtkdtw p {
   margin: 0;
   padding: 0;
 }
 
-#yhfgcpbbom .gt_table {
+#elrrrtkdtw .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -683,12 +756,12 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   border-left-color: #D3D3D3;
 }
 
-#yhfgcpbbom .gt_caption {
+#elrrrtkdtw .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#yhfgcpbbom .gt_title {
+#elrrrtkdtw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -700,7 +773,7 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   border-bottom-width: 0;
 }
 
-#yhfgcpbbom .gt_subtitle {
+#elrrrtkdtw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -712,7 +785,7 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   border-top-width: 0;
 }
 
-#yhfgcpbbom .gt_heading {
+#elrrrtkdtw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -724,13 +797,13 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   border-right-color: #D3D3D3;
 }
 
-#yhfgcpbbom .gt_bottom_border {
+#elrrrtkdtw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yhfgcpbbom .gt_col_headings {
+#elrrrtkdtw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -745,7 +818,7 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   border-right-color: #D3D3D3;
 }
 
-#yhfgcpbbom .gt_col_heading {
+#elrrrtkdtw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -765,7 +838,7 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   overflow-x: hidden;
 }
 
-#yhfgcpbbom .gt_column_spanner_outer {
+#elrrrtkdtw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -777,15 +850,15 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   padding-right: 4px;
 }
 
-#yhfgcpbbom .gt_column_spanner_outer:first-child {
+#elrrrtkdtw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yhfgcpbbom .gt_column_spanner_outer:last-child {
+#elrrrtkdtw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yhfgcpbbom .gt_column_spanner {
+#elrrrtkdtw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -797,11 +870,11 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   width: 100%;
 }
 
-#yhfgcpbbom .gt_spanner_row {
+#elrrrtkdtw .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#yhfgcpbbom .gt_group_heading {
+#elrrrtkdtw .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -827,7 +900,7 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   text-align: left;
 }
 
-#yhfgcpbbom .gt_empty_group_heading {
+#elrrrtkdtw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -842,15 +915,15 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   vertical-align: middle;
 }
 
-#yhfgcpbbom .gt_from_md > :first-child {
+#elrrrtkdtw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yhfgcpbbom .gt_from_md > :last-child {
+#elrrrtkdtw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yhfgcpbbom .gt_row {
+#elrrrtkdtw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -869,7 +942,7 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   overflow-x: hidden;
 }
 
-#yhfgcpbbom .gt_stub {
+#elrrrtkdtw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -882,7 +955,7 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   padding-right: 5px;
 }
 
-#yhfgcpbbom .gt_stub_row_group {
+#elrrrtkdtw .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -896,15 +969,15 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   vertical-align: top;
 }
 
-#yhfgcpbbom .gt_row_group_first td {
+#elrrrtkdtw .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#yhfgcpbbom .gt_row_group_first th {
+#elrrrtkdtw .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#yhfgcpbbom .gt_summary_row {
+#elrrrtkdtw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -914,16 +987,16 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   padding-right: 5px;
 }
 
-#yhfgcpbbom .gt_first_summary_row {
+#elrrrtkdtw .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#yhfgcpbbom .gt_first_summary_row.thick {
+#elrrrtkdtw .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#yhfgcpbbom .gt_last_summary_row {
+#elrrrtkdtw .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -933,7 +1006,7 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   border-bottom-color: #D3D3D3;
 }
 
-#yhfgcpbbom .gt_grand_summary_row {
+#elrrrtkdtw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -943,7 +1016,7 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   padding-right: 5px;
 }
 
-#yhfgcpbbom .gt_first_grand_summary_row {
+#elrrrtkdtw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -953,7 +1026,7 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   border-top-color: #D3D3D3;
 }
 
-#yhfgcpbbom .gt_last_grand_summary_row_top {
+#elrrrtkdtw .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -963,11 +1036,11 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   border-bottom-color: #D3D3D3;
 }
 
-#yhfgcpbbom .gt_striped {
+#elrrrtkdtw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yhfgcpbbom .gt_table_body {
+#elrrrtkdtw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -976,7 +1049,7 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   border-bottom-color: #D3D3D3;
 }
 
-#yhfgcpbbom .gt_footnotes {
+#elrrrtkdtw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -990,7 +1063,7 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   border-right-color: #D3D3D3;
 }
 
-#yhfgcpbbom .gt_footnote {
+#elrrrtkdtw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -999,7 +1072,7 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   padding-right: 5px;
 }
 
-#yhfgcpbbom .gt_sourcenotes {
+#elrrrtkdtw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1013,7 +1086,7 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   border-right-color: #D3D3D3;
 }
 
-#yhfgcpbbom .gt_sourcenote {
+#elrrrtkdtw .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1021,72 +1094,72 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
   padding-right: 5px;
 }
 
-#yhfgcpbbom .gt_left {
+#elrrrtkdtw .gt_left {
   text-align: left;
 }
 
-#yhfgcpbbom .gt_center {
+#elrrrtkdtw .gt_center {
   text-align: center;
 }
 
-#yhfgcpbbom .gt_right {
+#elrrrtkdtw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yhfgcpbbom .gt_font_normal {
+#elrrrtkdtw .gt_font_normal {
   font-weight: normal;
 }
 
-#yhfgcpbbom .gt_font_bold {
+#elrrrtkdtw .gt_font_bold {
   font-weight: bold;
 }
 
-#yhfgcpbbom .gt_font_italic {
+#elrrrtkdtw .gt_font_italic {
   font-style: italic;
 }
 
-#yhfgcpbbom .gt_super {
+#elrrrtkdtw .gt_super {
   font-size: 65%;
 }
 
-#yhfgcpbbom .gt_footnote_marks {
+#elrrrtkdtw .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#yhfgcpbbom .gt_asterisk {
+#elrrrtkdtw .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#yhfgcpbbom .gt_indent_1 {
+#elrrrtkdtw .gt_indent_1 {
   text-indent: 5px;
 }
 
-#yhfgcpbbom .gt_indent_2 {
+#elrrrtkdtw .gt_indent_2 {
   text-indent: 10px;
 }
 
-#yhfgcpbbom .gt_indent_3 {
+#elrrrtkdtw .gt_indent_3 {
   text-indent: 15px;
 }
 
-#yhfgcpbbom .gt_indent_4 {
+#elrrrtkdtw .gt_indent_4 {
   text-indent: 20px;
 }
 
-#yhfgcpbbom .gt_indent_5 {
+#elrrrtkdtw .gt_indent_5 {
   text-indent: 25px;
 }
 
-#yhfgcpbbom .katex-display {
+#elrrrtkdtw .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#yhfgcpbbom div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#elrrrtkdtw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1094,49 +1167,49 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
 <table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading header">
-<td colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border">Perfil demogr&lt;U+00E1&gt;fico por regi&lt;U+00E3&gt;o</td>
+<td colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border">Perfil demográfico por região</td>
 </tr>
 <tr class="gt_col_headings even">
-<th id="regiao" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Regi&lt;U+00E3&gt;o</th>
-<th id="estados" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Estados</th>
-<th id="populacao_total" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Popula&lt;U+00E7&gt;&lt;U+00E3&gt;o total</th>
-<th id="densidade_media" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Densidade m&lt;U+00E9&gt;dia (hab/km&lt;U+00B2&gt;)</th>
+<th id="regiao" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Região</th>
+<th id="n_ufs" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">UFs</th>
+<th id="populacao_total" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">População total</th>
+<th id="densidade_regional" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Densidade regional (hab/km²)</th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="regiao">Sudeste</td>
-<td class="gt_row gt_right" headers="estados">4</td>
+<td class="gt_row gt_right" headers="n_ufs">4</td>
 <td class="gt_row gt_right" headers="populacao_total">84.840.113</td>
-<td class="gt_row gt_right" headers="densidade_media">166,1</td>
+<td class="gt_row gt_right" headers="densidade_regional">91,8</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="regiao">Nordeste</td>
-<td class="gt_row gt_right" headers="estados">9</td>
+<td class="gt_row gt_right" headers="n_ufs">9</td>
 <td class="gt_row gt_right" headers="populacao_total">54.637.621</td>
-<td class="gt_row gt_right" headers="densidade_media">61,8</td>
+<td class="gt_row gt_right" headers="densidade_regional">35,2</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="regiao">Sul</td>
-<td class="gt_row gt_right" headers="estados">3</td>
+<td class="gt_row gt_right" headers="n_ufs">3</td>
 <td class="gt_row gt_right" headers="populacao_total">29.937.706</td>
-<td class="gt_row gt_right" headers="densidade_media">58,6</td>
+<td class="gt_row gt_right" headers="densidade_regional">51,9</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="regiao">Norte</td>
-<td class="gt_row gt_right" headers="estados">7</td>
+<td class="gt_row gt_right" headers="n_ufs">7</td>
 <td class="gt_row gt_right" headers="populacao_total">17.355.778</td>
-<td class="gt_row gt_right" headers="densidade_media">4,9</td>
+<td class="gt_row gt_right" headers="densidade_regional">4,5</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="regiao">Centro-Oeste</td>
-<td class="gt_row gt_right" headers="estados">4</td>
+<td class="gt_row gt_right" headers="n_ufs">4</td>
 <td class="gt_row gt_right" headers="populacao_total">16.289.538</td>
-<td class="gt_row gt_right" headers="densidade_media">129,1</td>
+<td class="gt_row gt_right" headers="densidade_regional">10,1</td>
 </tr>
 </tbody><tfoot>
 <tr class="gt_sourcenotes odd">
-<td colspan="4" class="gt_sourcenote">Fonte: IBGE, Censo Demogr&lt;U+00E1&gt;fico 2022.</td>
+<td colspan="4" class="gt_sourcenote">Fonte: IBGE, Censo Demográfico 2022.</td>
 </tr>
 </tfoot>
 
@@ -1155,8 +1228,8 @@ Tabela&nbsp;2: Mesma tabela, com o pacote gt.
 <div class="cell">
 <details class="code-fold">
 <summary>Mostrar código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(populacao_uf, <span class="fu">aes</span>(area_km2, populacao, <span class="at">color =</span> regiao)) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(populacao_uf, <span class="fu">aes</span>(area_km2, populacao, <span class="at">color =</span> regiao)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-populacao-ruim" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de dispersão com pontos coloridos, sem título nem legendas claras.">
@@ -1174,23 +1247,23 @@ Figura&nbsp;1: Evite: cores padrão sem propósito, sem rótulos de eixo e sem u
 <div class="cell">
 <details class="code-fold">
 <summary>Mostrar código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(populacao_uf, <span class="fu">aes</span>(area_km2 <span class="sc">/</span> <span class="dv">1000</span>, populacao <span class="sc">/</span> <span class="fl">1e6</span>, <span class="at">color =</span> regiao)) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.85</span>) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"População e área dos estados brasileiros"</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Área (mil km²)"</span>,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"População (milhões de habitantes)"</span>,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Região"</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: IBGE, Censo Demográfico 2022."</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(populacao_uf, <span class="fu">aes</span>(area_km2 <span class="sc">/</span> <span class="dv">1000</span>, populacao <span class="sc">/</span> <span class="fl">1e6</span>, <span class="at">color =</span> regiao)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.85</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"População e área das UFs brasileiras"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Área (mil km²)"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"População (milhões de habitantes)"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Região"</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: IBGE, Censo Demográfico 2022."</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-populacao-boa" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de dispersão mostrando população pelo tamanho territorial dos estados brasileiros, colorido por região. São Paulo se destaca com a maior população; estados da região Norte têm grandes áreas e populações menores.">
+<div id="fig-populacao-boa" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de dispersão mostrando população pelo tamanho territorial das UFs brasileiras, colorido por região. São Paulo se destaca com a maior população; UFs da região Norte têm grandes áreas e populações menores.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-populacao-boa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="aula-2_files/figure-html/fig-populacao-boa-1.png" class="img-fluid figure-img" alt="Gráfico de dispersão mostrando população pelo tamanho territorial dos estados brasileiros, colorido por região. São Paulo se destaca com a maior população; estados da região Norte têm grandes áreas e populações menores." width="672">
+<img src="aula-2_files/figure-html/fig-populacao-boa-1.png" class="img-fluid figure-img" alt="Gráfico de dispersão mostrando população pelo tamanho territorial das UFs brasileiras, colorido por região. São Paulo se destaca com a maior população; UFs da região Norte têm grandes áreas e populações menores." width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-populacao-boa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;2: Prefira: título, eixos com unidade, paleta com poucas cores e leitura guiada.
@@ -1202,7 +1275,7 @@ Figura&nbsp;2: Prefira: título, eixos com unidade, paleta com poucas cores e le
 <p>A segunda versão não tem mais dados — tem menos ruído. <code>theme_minimal()</code> remove o fundo cinza padrão, <code>scale_color_brewer()</code> troca as cores automáticas por uma paleta pensada para diferenciação, e os eixos convertidos para mil km² e milhões de habitantes evitam números com muitos dígitos.</p>
 <p>A <a href="#fig-populacao-boa" class="quarto-xref">Figura&nbsp;2</a> permite comparar território, população e região ao mesmo tempo. A legenda explica o que está sendo mostrado; o parágrafo ao redor deve dizer por que isso importa — aqui, que tamanho territorial não é um bom previsor de população.</p>
 <p>Para imagens externas (fotos, logotipos, diagramas):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Descrição objetiva da imagem](imagens/arquivo.png)</span>{#fig-fluxo width=70%}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Descrição objetiva da imagem](imagens/arquivo.png)</span>{#fig-fluxo width=70%}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Use texto alternativo informativo — o <code>fig-alt</code> de <a href="#fig-populacao-boa" class="quarto-xref">Figura&nbsp;2</a> descreve o padrão visto no gráfico, não apenas “gráfico de dispersão”. Quem usa leitor de tela depende inteiramente dessa frase para entender a figura.</p>
 </section>
 <section id="equações-e-referências-cruzadas" class="level2">
@@ -1219,21 +1292,87 @@ d = \frac{P}{A}
 <li><code>sec-</code> para seções.</li>
 </ul>
 <p>Rótulos estáveis permitem mudar a ordem dos elementos sem corrigir a numeração manualmente — o Quarto renumera tudo sozinho.</p>
+<p>Para uma região composta por várias UFs, a mesma definição é aplicada aos totais:</p>
+<p><span class="math display">\[
+d_{\text{região}} = \frac{\sum_i P_i}{\sum_i A_i}.
+\]</span></p>
+</section>
+<section id="sec-citacoes-bibliograficas" class="level2">
+<h2 class="anchored" data-anchor-id="sec-citacoes-bibliograficas">8. Citações bibliográficas</h2>
+<p>Referências cruzadas apontam para elementos do próprio documento, como <code>@fig-populacao-boa</code>. Citações bibliográficas identificam fontes externas, como artigos, livros e documentação. Para citar uma fonte, registre seus dados em um arquivo <code>.bib</code>, informe esse arquivo no YAML e use a chave da referência no texto. O Quarto gera as citações e a lista de referências durante a renderização.</p>
+<section id="crie-o-arquivo-de-referências" class="level3">
+<h3 class="anchored" data-anchor-id="crie-o-arquivo-de-referências">Crie o arquivo de referências</h3>
+<p>Na mesma pasta do seu <code>.qmd</code>, crie um arquivo de texto chamado <code>referencias.bib</code>. Esta entrada registra um artigo real de Donald Knuth sobre programação literária:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">knuth1984</span>,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {Knuth, Donald E.},</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span> = {Literate Programming},</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span> = {The Computer Journal},</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span> = {1984},</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">volume</span> = {27},</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">number</span> = {2},</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span> = {97--111},</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">doi</span> = {10.1093/comjnl/27.2.97}</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>article</code> indica o tipo de publicação; <code>knuth1984</code> é a chave que você usará para citá-la. Cada referência deve ter uma chave única. Confira autoria, título, ano e DOI na fonte original. Para vários autores, separe os nomes com <code>and</code> no campo <code>author</code>.</p>
+<p>Você pode exportar referências de um gerenciador bibliográfico ou de uma página de periódico em formato BibTeX, mas revise os dados exportados. O arquivo <code>.bib</code> organiza os dados da fonte; ele não substitui a leitura e a avaliação dessa fonte.</p>
+</section>
+<section id="declare-a-bibliografia-e-cite-no-texto" class="level3">
+<h3 class="anchored" data-anchor-id="declare-a-bibliografia-e-cite-no-texto">Declare a bibliografia e cite no texto</h3>
+<p>Com <code>referencias.bib</code> e <code>relatorio.qmd</code> na mesma pasta, use este documento mínimo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Meu documento com referências"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> pt-BR</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> referencias.bib</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contexto</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>@knuth1984 apresenta a proposta de programação literária.</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>O artigo discute a combinação entre explicações e código <span class="co">[</span><span class="ot">@knuth1984</span><span class="co">]</span>.</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Referências</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>@knuth1984</code> integra a autoria à frase; <code>[@knuth1984]</code> coloca a citação entre parênteses no estilo autor-data. Escreva essas citações no texto normal, fora de blocos de código. A chave deve corresponder exatamente à entrada no <code>.bib</code>.</p>
+<p>O caminho de <code>bibliography</code> é relativo ao arquivo <code>.qmd</code>. Se você guardar as referências em outra pasta, ajuste o caminho. Essa configuração do YAML é independente do diretório de execução do código R.</p>
+</section>
+<section id="gere-e-confira-as-referências" class="level3">
+<h3 class="anchored" data-anchor-id="gere-e-confira-as-referências">Gere e confira as referências</h3>
+<p>Renderize o documento e confira tanto as citações no texto quanto a lista na seção <strong>Referências</strong>. O bloco com <code>#refs</code> define onde a lista será inserida; sem ele, a lista é acrescentada ao final. Por padrão, entram na lista as fontes citadas no texto, e não todas as entradas existentes no <code>.bib</code>.</p>
+<p>Para as saídas HTML, PDF e Word com o processamento padrão de citações, o Quarto usa o estilo Chicago autor-data. Se precisar de outro estilo, adicione ao YAML <code>csl: estilo.csl</code> e inclua esse arquivo no projeto. O <code>.bib</code> contém os dados bibliográficos; o <code>.csl</code> define como as citações e referências são formatadas. Um estilo específico não é exigido no trabalho final.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Exemplo pronto para renderizar">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Exemplo pronto para renderizar
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Abra o <a href="../materiais/exemplos/documento-com-referencias.html">documento com referências</a>. Seus arquivos-fonte estão em <code>materiais/exemplos/documento-com-referencias.qmd</code> e <code>materiais/exemplos/referencias.bib</code>. Copie os dois juntos para experimentar no seu projeto.</p>
+</div>
+</div>
+<p>Se aparecer um aviso de referência não encontrada ou uma chave sem formatação no resultado, confira a grafia da chave, o caminho de <code>bibliography</code> e a sintaxe do <code>.bib</code> (vírgulas e chaves). Inclua a bibliografia e, quando utilizado, o arquivo CSL na entrega.</p>
+</section>
 </section>
 <section id="estilo-sem-perder-manutenção" class="level2">
-<h2 class="anchored" data-anchor-id="estilo-sem-perder-manutenção">8. Estilo sem perder manutenção</h2>
+<h2 class="anchored" data-anchor-id="estilo-sem-perder-manutenção">9. Estilo sem perder manutenção</h2>
 <p>Comece com um tema e poucas regras CSS:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>body {</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">line-height</span><span class="ch">:</span> <span class="dv">1.6</span><span class="op">;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>h1<span class="op">,</span> h2<span class="op">,</span> h3 {</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">color</span><span class="ch">:</span> <span class="cn">#2f4858</span><span class="op">;</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>body {</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">line-height</span><span class="ch">:</span> <span class="dv">1.6</span><span class="op">;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>h1<span class="op">,</span> h2<span class="op">,</span> h3 {</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">color</span><span class="ch">:</span> <span class="cn">#2f4858</span><span class="op">;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Prefira consistência a decoração: duas fontes, uma paleta pequena, espaçamento generoso e contraste adequado costumam ser suficientes. O mesmo princípio vale para gráficos — <code>scale_color_brewer(palette = "Dark2")</code> usado acima é uma paleta pronta, testada para diferenciação, em vez de escolher cores uma a uma.</p>
 </section>
 <section id="prática-guiada" class="level2">
@@ -1242,15 +1381,17 @@ d = \frac{P}{A}
 <ol type="1">
 <li>Escreva um objetivo e um público explícitos no início da página.</li>
 <li>Configure um YAML com sumário e código recolhível.</li>
-<li>Calcule, com <code>dplyr</code>, o PIB per capita médio por região a partir de <code>dados/pib_uf.csv</code> (você vai aprender a juntar as duas tabelas na Aula 3 — por enquanto, pode ler <code>pib_uf.csv</code> separadamente e agrupar por região usando um <code>left_join</code> simples, ou deixar essa etapa como pergunta em aberto para a próxima aula).</li>
+<li>Usando apenas <code>dados/populacao_uf.csv</code>, agrupe por região e calcule o número de UFs, a população total e a densidade regional (<code>sum(populacao) / sum(area_km2)</code>), como no exemplo desta aula. A análise do PIB per capita fica para a Aula 3, depois de aprendermos a juntar e validar as duas fontes.</li>
 <li>Construa uma tabela <code>gt</code> com título e nota de fonte.</li>
 <li>Construa um gráfico com título, eixos, legenda e texto alternativo — e, antes de finalizar, produza deliberadamente uma versão “ruim” (sem <code>theme_minimal()</code>, sem <code>labs()</code>) para comparar as duas.</li>
 <li>Adicione referências cruzadas para a tabela e o gráfico.</li>
+<li>Crie um <code>.bib</code> com uma fonte que você consultou, declare <code>bibliography</code> no YAML e insira uma citação no texto. Renderize e confira a entrada na lista de referências.</li>
 </ol>
 </section>
 <section id="para-o-projeto-final" class="level2">
 <h2 class="anchored" data-anchor-id="para-o-projeto-final">Para o projeto final</h2>
 <p>Crie o esqueleto do documento, escreva a introdução e inclua ao menos uma evidência visual. Peça a alguém do público-alvo para dizer qual mensagem entendeu.</p>
+<p>Se escolheu um artigo acadêmico, comece também o arquivo <code>.bib</code> e cite uma fonte relevante na introdução ou no método. Nos demais tipos de trabalho, use citações bibliográficas quando forem adequadas ao conteúdo; continue registrando as fontes dos dados e os créditos das imagens.</p>
 </section>
 <section id="checklist" class="level2">
 <h2 class="anchored" data-anchor-id="checklist">Checklist</h2>
@@ -1258,6 +1399,9 @@ d = \frac{P}{A}
 <li><label><input type="checkbox">O YAML está válido e enxuto.</label></li>
 <li><label><input type="checkbox">A hierarquia de títulos é lógica.</label></li>
 <li><label><input type="checkbox">Tabelas e gráficos são citados e interpretados, não apenas exibidos.</label></li>
+<li><label><input type="checkbox">Calculei a densidade regional pela razão entre os totais de população e área.</label></li>
+<li><label><input type="checkbox">Sei distinguir referências cruzadas de citações bibliográficas.</label></li>
+<li><label><input type="checkbox">Declarei um <code>.bib</code>, citei uma fonte e conferi a lista de referências renderizada.</label></li>
 <li><label><input type="checkbox">Imagens e gráficos têm texto alternativo específico (não genérico).</label></li>
 <li><label><input type="checkbox">Consigo apontar, no meu próprio gráfico, o que tornaria uma versão “ruim” dele.</label></li>
 <li><label><input type="checkbox">O estilo visual é consistente com o público.</label></li>
@@ -1269,6 +1413,8 @@ d = \frac{P}{A}
 <li><a href="../slides/aula-2.html">Slides da Aula 2</a></li>
 <li><a href="https://quarto.org/docs/authoring/markdown-basics.html">Quarto: Markdown</a></li>
 <li><a href="https://quarto.org/docs/authoring/cross-references.html">Quarto: referências cruzadas</a></li>
+<li><a href="https://quarto.org/docs/authoring/citations.html">Quarto: citações e bibliografia</a></li>
+<li><a href="../materiais/exemplos/documento-com-referencias.html">Exemplo: documento com referências</a></li>
 <li><a href="https://quarto.org/docs/authoring/figures.html#alt-text">Quarto: acessibilidade</a></li>
 <li><a href="https://gt.rstudio.com/">gt: criando tabelas</a></li>
 </ul>

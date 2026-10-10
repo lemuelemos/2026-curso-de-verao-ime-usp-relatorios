@@ -268,14 +268,104 @@ Lemuel de Lemos Romão
 </div>
 <p>Use variáveis de ambiente e arquivos locais ignorados.</p>
 </section>
+<section id="prepare-o-repositório-do-trabalho" class="slide level2">
+<h2>Prepare o repositório do trabalho</h2>
+<p>No terminal, dentro da pasta do <strong>seu trabalho final</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource powershell number-lines code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a></a>git <span class="op">--</span>version</span>
+<span id="cb2-2"><a></a>git status</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Se aparecer <code>not a git repository</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource powershell number-lines code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a></a>git init <span class="op">-</span>b main</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Se você clonou um repositório, ele já tem histórico. Continue usando-o.</p>
+</section>
+<section id="identidade-dos-commits" class="slide level2">
+<h2>Identidade dos commits</h2>
+<p>Substitua os valores pelos seus dados:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource powershell number-lines code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a></a>git config user<span class="op">.</span><span class="fu">name</span> <span class="st">"Seu nome"</span></span>
+<span id="cb4-2"><a></a>git config user<span class="op">.</span><span class="fu">email</span> <span class="st">"seu-email@example.com"</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>configuração local, válida para este repositório;</li>
+<li>email associado ao GitHub ou endereço <code>noreply</code> de <em>Settings → Emails</em>;</li>
+<li>autoria dos commits e autenticação no GitHub são configurações diferentes.</li>
+</ul>
+</section>
+<section id="o-que-entra-no-commit" class="slide level2">
+<h2>O que entra no commit?</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Comando</th>
+<th>O que mostra</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>git status</code></td>
+<td>arquivos novos, preparados e ainda não preparados</td>
+</tr>
+<tr class="even">
+<td><code>git diff</code></td>
+<td>alterações não preparadas em arquivos rastreados</td>
+</tr>
+<tr class="odd">
+<td><code>git diff --staged</code></td>
+<td>alterações preparadas para o próximo commit</td>
+</tr>
+</tbody>
+</table>
+<p><code>git add</code> prepara uma versão do arquivo; <code>git commit</code> registra essa seleção.</p>
+<p>Arquivos novos entram no diff após <code>git add</code>. Confira imagens e outros binários abrindo os arquivos.</p>
+</section>
+<section id="primeiro-commit" class="slide level2">
+<h2>Primeiro commit</h2>
+<p>Exemplo para um projeto que contém estes três arquivos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource powershell number-lines code-with-copy"><code class="sourceCode powershell"><span id="cb5-1"><a></a>git status</span>
+<span id="cb5-2"><a></a>git add index<span class="op">.</span><span class="fu">qmd</span> README<span class="op">.</span><span class="fu">md</span> <span class="op">.</span><span class="fu">gitignore</span></span>
+<span id="cb5-3"><a></a>git status</span>
+<span id="cb5-4"><a></a>git <span class="fu">diff</span> <span class="op">--</span>staged</span>
+<span id="cb5-5"><a></a>git commit <span class="op">-</span>m <span class="st">"Adiciona estrutura inicial do relatório"</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Adicione também dados, scripts e configurações necessários, usando os nomes reais.</p>
+</section>
+<section id="conecte-ao-github" class="slide level2">
+<h2>Conecte ao GitHub</h2>
+<p>Crie um repositório vazio no GitHub, sem gerar README, licença ou <code>.gitignore</code>.</p>
+<p>Substitua a URL pela do seu repositório:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource powershell number-lines code-with-copy"><code class="sourceCode powershell"><span id="cb6-1"><a></a>git remote add origin https<span class="op">://</span>github<span class="op">.</span><span class="fu">com</span><span class="op">/</span>SEU-USUARIO<span class="op">/</span>SEU-REPOSITORIO<span class="op">.</span><span class="fu">git</span></span>
+<span id="cb6-2"><a></a>git remote <span class="op">-</span>v</span>
+<span id="cb6-3"><a></a>git push <span class="op">-</span>u origin main</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Se <code>origin</code> já existir, confira a URL. Para uma branch existente com outro nome, consulte <code>git branch --show-current</code> e use esse nome no envio.</p>
+</section>
+<section id="autenticação-e-primeiro-envio" class="slide level2">
+<h2>Autenticação e primeiro envio</h2>
+<ul>
+<li>Por HTTPS, o gerenciador de credenciais pode abrir o navegador para autenticar.</li>
+<li>Se o terminal pedir senha, use um token de acesso pessoal, conforme a documentação do GitHub.</li>
+<li>Mantenha o token no gerenciador de credenciais.</li>
+<li>Depois do <code>push</code>, confira os arquivos e o commit no GitHub.</li>
+</ul>
+<p>O envio das fontes ao repositório e a publicação no GitHub Pages são etapas diferentes.</p>
+<p>O roteiro da aula contém os detalhes e o link de autenticação HTTPS.</p>
+</section>
 <section id="ciclo-com-git" class="slide level2">
 <h2>Ciclo com Git</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource powershell number-lines code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a></a>git status</span>
-<span id="cb2-2"><a></a>git <span class="fu">diff</span></span>
-<span id="cb2-3"><a></a>git add caminho<span class="op">/</span><span class="cf">do</span><span class="op">/</span>arquivo</span>
-<span id="cb2-4"><a></a>git commit <span class="op">-</span>m <span class="st">"Explica os indicadores regionais"</span></span>
-<span id="cb2-5"><a></a>git push</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Leia o diff antes de criar o commit.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource powershell number-lines code-with-copy"><code class="sourceCode powershell"><span id="cb7-1"><a></a>git status</span>
+<span id="cb7-2"><a></a>git <span class="fu">diff</span></span>
+<span id="cb7-3"><a></a>git add caminho<span class="op">/</span><span class="cf">do</span><span class="op">/</span>arquivo</span>
+<span id="cb7-4"><a></a>git status</span>
+<span id="cb7-5"><a></a>git <span class="fu">diff</span> <span class="op">--</span>staged</span>
+<span id="cb7-6"><a></a>git commit <span class="op">-</span>m <span class="st">"Explica os indicadores regionais"</span></span>
+<span id="cb7-7"><a></a>git push</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Antes do commit, revise <code>git diff --staged</code>.</p>
+<p>Se editar o arquivo depois de <code>git add</code>, prepare-o novamente para incluir a nova edição.</p>
+</section>
+<section id="pratique-os-dois-diffs" class="slide level2">
+<h2>Pratique os dois diffs</h2>
+<ol type="1">
+<li>Edite e salve uma frase no README: confira <code>git diff</code>.</li>
+<li>Execute <code>git add README.md</code>: confira <code>git diff --staged</code>.</li>
+<li>Edite e salve outra frase no mesmo arquivo.</li>
+<li>Compare <code>git status</code>, <code>git diff</code> e <code>git diff --staged</code>.</li>
+</ol>
+<p>A primeira edição está preparada; a segunda ainda não. Execute <code>git add README.md</code> novamente para incluir ambas.</p>
 </section>
 <section id="um-bom-commit-exemplos-reais-deste-repositório" class="slide level2">
 <h2>Um bom commit — exemplos reais deste repositório</h2>
@@ -323,19 +413,27 @@ Lemuel de Lemos Romão
 </section>
 <section id="como-este-site-é-publicado" class="slide level2">
 <h2>Como este site é publicado</h2>
-<p><code>.github/workflows/static.yml</code> publica a pasta <code>_site/</code> já renderizada a cada <code>push</code> em <code>main</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a></a><span class="fu">on</span><span class="kw">:</span></span>
-<span id="cb3-2"><a></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
-<span id="cb3-3"><a></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"main"</span><span class="kw">]</span></span>
-<span id="cb3-4"><a></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb3-5"><a></a><span class="at">  </span><span class="fu">deploy</span><span class="kw">:</span></span>
-<span id="cb3-6"><a></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb3-7"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v4</span></span>
-<span id="cb3-8"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/upload-pages-artifact@v3</span></span>
-<span id="cb3-9"><a></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb3-10"><a></a><span class="at">          </span><span class="fu">path</span><span class="kw">:</span><span class="at"> </span><span class="st">'_site'</span></span>
-<span id="cb3-11"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/deploy-pages@v4</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>.github/workflows/static.yml</code> publica a pasta <code>_site/</code> já renderizada a cada <code>push</code> em <code>main</code>.</p>
+<ol type="1">
+<li>Configure <strong>Settings → Pages → Source: GitHub Actions</strong>.</li>
+<li>Crie o workflow completo apresentado na seção 4 do <a href="../aulas/aula-5.html#publicação-no-github-pages">roteiro da aula</a>.</li>
+<li>Envie o workflow e <code>_site/</code> no commit.</li>
+<li>Confira a execução em <strong>Actions</strong> e o link em <strong>Settings → Pages</strong>.</li>
+</ol>
 <p>O Quarto <strong>não</strong> roda no GitHub Actions aqui — por isso é preciso <code>quarto render</code> local antes do <code>push</code>.</p>
+</section>
+<section id="ambiente-de-implantação" class="slide level2">
+<h2>Ambiente de implantação</h2>
+<p>Trecho do job <code>deploy</code> — consulte o roteiro para o workflow completo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a></a><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb8-2"><a></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> github-pages</span></span>
+<span id="cb8-3"><a></a><span class="at">  </span><span class="fu">url</span><span class="kw">:</span><span class="at"> ${{ steps.deployment.outputs.page_url }}</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>github-pages</code> define o ambiente de implantação.</li>
+<li>A etapa de publicação precisa de <code>id: deployment</code> para fornecer a URL acima.</li>
+<li>O workflow inclui <code>contents: read</code>, <code>pages: write</code> e <code>id-token: write</code>.</li>
+<li>Checkout, configuração do Pages, upload de <code>_site/</code> e implantação formam o fluxo completo.</li>
+</ul>
 </section>
 <section id="outras-estratégias-de-publicação" class="slide level2">
 <h2>Outras estratégias de publicação</h2>
@@ -382,7 +480,8 @@ Lemuel de Lemos Romão
 <li>revise o <code>.gitignore</code>;</li>
 <li>atualize o README;</li>
 <li>renderize em sessão limpa;</li>
-<li>escreva uma mensagem de commit e compare com a tabela desta aula antes de confirmar;</li>
+<li>prepare os arquivos e revise <code>git status</code> e <code>git diff --staged</code>;</li>
+<li>escreva a mensagem do commit, confirme e envie ao GitHub;</li>
 <li>publique e teste o link.</li>
 </ol>
 </section>
@@ -390,7 +489,7 @@ Lemuel de Lemos Romão
 <h2>Projeto final — entrega</h2>
 <p>Entregue:</p>
 <ul>
-<li>documento publicado, quando aplicável;</li>
+<li>documento renderizado; publicação web opcional;</li>
 <li>arquivos-fonte;</li>
 <li>dados ou instruções de obtenção;</li>
 <li>README;</li>
@@ -404,15 +503,16 @@ Lemuel de Lemos Romão
 <li><label><input type="checkbox">projeto renderiza;</label></li>
 <li><label><input type="checkbox">links funcionam;</label></li>
 <li><label><input type="checkbox">nenhuma credencial foi incluída;</label></li>
+<li><label><input type="checkbox">seleção do commit revisada com <code>git diff --staged</code>;</label></li>
 <li><label><input type="checkbox">README permite reproduzir;</label></li>
-<li><label><input type="checkbox">versão publicada foi testada;</label></li>
+<li><label><input type="checkbox">saída renderizada testada; se publiquei, testei o link;</label></li>
 <li><label><input type="checkbox">trabalho atende à rubrica.</label></li>
 </ul>
 </section>
 <section id="encerramento" class="slide level2">
 <h2>Encerramento</h2>
 <p>Um relatório profissional é:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a></a>claro + reproduzível + documentado + acessível + publicável</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a></a>claro + reproduzível + documentado + acessível + publicável</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Obrigado!</p>
 
 

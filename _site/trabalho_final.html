@@ -330,7 +330,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#etapas-pré-código" id="toc-etapas-pré-código" class="nav-link active" data-scroll-target="#etapas-pré-código">Etapas pré-código</a></li>
   <li><a href="#passo-a-passo-com-r" id="toc-passo-a-passo-com-r" class="nav-link" data-scroll-target="#passo-a-passo-com-r">Passo a passo com R</a></li>
-  <li><a href="#rubrica-de-avaliação" id="toc-rubrica-de-avaliação" class="nav-link" data-scroll-target="#rubrica-de-avaliação">Rubrica de avaliação</a></li>
+  <li><a href="#sec-rubrica" id="toc-sec-rubrica" class="nav-link" data-scroll-target="#sec-rubrica">Rubrica de avaliação</a>
+  <ul class="collapse">
+  <li><a href="#níveis-de-atendimento" id="toc-níveis-de-atendimento" class="nav-link" data-scroll-target="#níveis-de-atendimento">Níveis de atendimento</a></li>
+  <li><a href="#aplicação-aos-sete-tipos-de-trabalho" id="toc-aplicação-aos-sete-tipos-de-trabalho" class="nav-link" data-scroll-target="#aplicação-aos-sete-tipos-de-trabalho">Aplicação aos sete tipos de trabalho</a></li>
+  <li><a href="#papel-da-análise-e-dos-recursos-extras" id="toc-papel-da-análise-e-dos-recursos-extras" class="nav-link" data-scroll-target="#papel-da-análise-e-dos-recursos-extras">Papel da análise e dos recursos extras</a></li>
+  <li><a href="#condições-de-aprovação" id="toc-condições-de-aprovação" class="nav-link" data-scroll-target="#condições-de-aprovação">Condições de aprovação</a></li>
+  </ul></li>
   <li><a href="#checklist-antes-da-entrega" id="toc-checklist-antes-da-entrega" class="nav-link" data-scroll-target="#checklist-antes-da-entrega">Checklist antes da entrega</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/edit/main/trabalho_final.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
@@ -358,14 +364,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><strong>Objetivo:</strong> Você deverá criar um documento utilizando <strong>Quarto</strong> e compartilhá-lo conosco. O trabalho final tem como propósito consolidar os conhecimentos apresentados ao longo do curso, por meio da elaboração de um produto final estruturado e reprodutível.</p>
+<p>O foco da avaliação é a elaboração e a comunicação do documento, não a complexidade da análise. Uma análise descritiva simples, bem apresentada e reproduzível, pode receber a pontuação máxima. O trabalho utiliza R; não é necessário usar Python.</p>
 <p><strong>Formato do trabalho:</strong><br>
-Você deverá <strong>escolher um dos três formatos abaixo</strong> para o seu trabalho final:</p>
+Você poderá <strong>escolher uma das sete opções abaixo</strong> para o seu trabalho final:</p>
 <ul>
 <li><strong>Relatório executivo</strong> — voltado para comunicação objetiva de resultados, com linguagem acessível a gestores e tom profissional.</li>
 <li><strong>Apresentação em slides</strong> — estrutura de apresentação sintética, visual e orientada à exposição oral.</li>
 <li><strong>Artigo acadêmico</strong> — estrutura científica, com seções formais (introdução, metodologia, resultados, discussão e referências).</li>
+<li><strong>Tutorial</strong> — explicação de uma técnica ou análise, com código, resultados e instruções que permitam acompanhar e reproduzir os passos.</li>
+<li><strong>Página pessoal de divulgação</strong> — apresentação de um perfil, pesquisa ou portfólio, incluindo uma análise ou projeto com dados e resultados reproduzíveis.</li>
+<li><strong>Dashboard interativo</strong> — painel de indicadores e visualizações, com contexto e orientações para interpretar e explorar os dados.</li>
+<li><strong>Livro</strong> — conteúdo organizado em capítulos, com uma sequência coerente de explicações, código e resultados; pode ser uma versão inicial com capítulos desenvolvidos que atendam aos requisitos da atividade.</li>
 </ul>
 <p>A escolha do formato deve estar alinhada ao <strong>objetivo do trabalho</strong> e ao <strong>público-alvo</strong> que você deseja atingir.</p>
+<p>Essas opções definem o tipo de trabalho aceito para avaliação. O formato de saída é uma escolha técnica: um tutorial pode ser uma página HTML ou um PDF, por exemplo, e uma apresentação pode usar RevealJS (HTML) ou PowerPoint. Escolha uma saída compatível com o conteúdo e os recursos utilizados. Todas as opções seguem os requisitos de conteúdo e a rubrica abaixo, incluindo tabela e gráfico gerados por código. Em páginas pessoais, esses elementos podem aparecer em uma seção de projeto ou portfólio.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Construa ao longo do curso">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -409,22 +421,25 @@ Você deverá <strong>escolher um dos três formatos abaixo</strong> para o seu 
 <section id="etapas-pré-código" class="level2">
 <h2 class="anchored" data-anchor-id="etapas-pré-código">Etapas pré-código</h2>
 <ul>
-<li><p>Pense no <strong>formato escolhido</strong> (relatório executivo, slides ou artigo acadêmico), definindo:</p>
+<li><p>Pense no <strong>tipo de trabalho escolhido</strong> entre as sete opções, definindo:</p>
 <ul>
 <li>o objetivo do documento;</li>
 <li>o público-alvo;</li>
 <li>o tipo de linguagem mais adequada.</li>
 </ul></li>
-<li><p>Exemplos de aplicações:</p>
+<li><p>Exemplos de trabalhos dentro das opções aceitas:</p>
 <ul>
 <li>Relatório executivo apresentando uma análise de dados para tomada de decisão.</li>
 <li>Apresentação em slides para exposição de resultados de uma pesquisa ou projeto.</li>
 <li>Artigo acadêmico com estrutura científica (não precisa estar completo, mas deve conter a organização típica e uso de código para gerar tabelas e gráficos).</li>
-<li>Tutorial com código em R ou Python.</li>
-<li>Página pessoal de divulgação.</li>
-<li>Dashboard interativo.</li>
-<li>Livro ou capítulo inicial estruturado em Quarto.</li>
+<li>Tutorial explicando uma análise passo a passo, com código e interpretação dos resultados.</li>
+<li>Página pessoal com uma seção de portfólio que apresenta uma análise reproduzível.</li>
+<li>Dashboard interativo para acompanhar e comparar indicadores de uma base pública.</li>
+<li>Livro introdutório sobre um tema, com capítulos que combinam explicações e exemplos de análise de dados.</li>
 </ul></li>
+</ul>
+<p>Recursos como gráficos interativos, mapas, parâmetros e trechos explicativos de código podem fazer parte do trabalho escolhido, quando ajudarem a comunicar os resultados. Escolha os recursos de acordo com o público e com o formato de saída.</p>
+<ul>
 <li><p>Escolha uma base de dados para utilizar. Algumas sugestões:</p>
 <ul>
 <li>Alguma base que você <strong>tenha interesse</strong>.</li>
@@ -444,7 +459,7 @@ O projeto deve chamar-se:<br>
 <code>trabalho_relatorios_nome_sobrenome</code><br>
 Exemplo: <code>trabalho_relatorios_beatriz_milz</code></li>
 </ol>
-<p>Você pode criar um projeto simples ou um projeto Quarto (que já traz estrutura adequada para relatórios, apresentações, websites ou livros).</p>
+<p>Você pode criar um projeto simples ou um projeto Quarto, organizado para o tipo de trabalho escolhido. Para uma página pessoal com várias páginas ou um livro, use um projeto Quarto do tipo website ou book, respectivamente.</p>
 <p><strong>Todos os passos seguintes devem ser realizados dentro deste projeto.</strong></p>
 <hr>
 <ol start="2" type="1">
@@ -466,10 +481,11 @@ Exemplo: <code>trabalho_relatorios_beatriz_milz</code></li>
 <blockquote class="blockquote">
 <p>File → New File → Quarto Document</p>
 </blockquote>
-<p>Salve o arquivo com o nome <code>index.qmd</code>. Clique em <strong>Render</strong> para verificar se o arquivo <code>index.html</code> foi gerado sem erros.</p>
+<p>Salve o arquivo com o nome <code>index.qmd</code>. Clique em <strong>Render</strong> para verificar se o arquivo de saída foi gerado sem erros: <code>index.html</code> para HTML ou RevealJS, <code>index.pdf</code> para PDF, <code>index.docx</code> para Word ou <code>index.pptx</code> para PowerPoint.</p>
 <blockquote class="blockquote">
 <p>💡 Caso você tenha escolhido o formato <strong>apresentação em slides</strong>, selecione o tipo de documento <strong>RevealJS</strong> ou <strong>PowerPoint</strong> no momento da criação do arquivo Quarto.</p>
 </blockquote>
+<p>Para um <strong>dashboard</strong>, crie um documento Quarto com <code>format: dashboard</code>. Para uma <strong>página pessoal com várias páginas</strong> ou um <strong>livro</strong>, use a estrutura do projeto website ou book e renderize o projeto inteiro com <code>quarto render</code> na pasta raiz. Inclua na entrega o <code>_quarto.yml</code> (ou <code>_quarto.yaml</code>), todas as páginas ou capítulos e os arquivos necessários para reproduzir o conteúdo. O nome e a pasta das saídas dependem da configuração do projeto.</p>
 <hr>
 <ol start="4" type="1">
 <li>Desenvolva o conteúdo do seu trabalho.</li>
@@ -480,9 +496,9 @@ Exemplo: <code>trabalho_relatorios_beatriz_milz</code></li>
 <li>Pelo menos um parágrafo de texto com marcações.</li>
 <li>Um link para uma página na internet.</li>
 <li>Uma imagem.</li>
-<li>Uma tabela.</li>
-<li>Um gráfico (preferencialmente com <code>ggplot2</code>).</li>
-<li>Se for um artigo acadêmico, inclua referências utilizando arquivo <code>.bib</code>.</li>
+<li>Uma tabela gerada por código R e relacionada ao conteúdo.</li>
+<li>Um gráfico gerado por código R (preferencialmente com <code>ggplot2</code>) e relacionado ao conteúdo.</li>
+<li>Se for um artigo acadêmico, inclua um arquivo <code>.bib</code>, declare-o em <code>bibliography</code> no YAML, cite as fontes no texto e gere a lista de referências. Consulte o <a href="./aulas/aula-2.html#sec-citacoes-bibliograficas">passo a passo da Aula 2</a> e o <a href="./materiais/exemplos/documento-com-referencias.html">exemplo completo</a>. Nos demais tipos de trabalho, use esse recurso quando for adequado ao conteúdo.</li>
 </ul>
 <hr>
 <ol start="5" type="1">
@@ -493,11 +509,13 @@ Exemplo: <code>trabalho_relatorios_beatriz_milz</code></li>
 <li>Compactar a pasta do projeto em um arquivo <code>.zip</code> e enviar pela plataforma do curso; <strong>ou</strong></li>
 <li>Compartilhar o link de um repositório no GitHub contendo o projeto.</li>
 </ul>
-<p>Inclua também o link da versão publicada, quando o formato escolhido permitir publicação web.</p>
+<p>Entregue os arquivos-fonte (<code>.qmd</code>, configurações e recursos necessários), o documento renderizado e um README com as instruções para reproduzir o trabalho. Para HTML, inclua também as pastas de recursos necessárias para abrir a saída corretamente. Dados devem acompanhar o projeto ou ter instruções claras de obtenção, respeitando a autorização de uso.</p>
+<p>A publicação web é opcional. Se publicar, inclua o link e teste o acesso. Um trabalho entregue em PDF, Word, PowerPoint ou outro formato aceito pode receber a mesma pontuação máxima de uma versão publicada.</p>
 <hr>
 </section>
-<section id="rubrica-de-avaliação" class="level2">
-<h2 class="anchored" data-anchor-id="rubrica-de-avaliação">Rubrica de avaliação</h2>
+<section id="sec-rubrica" class="level2">
+<h2 class="anchored" data-anchor-id="sec-rubrica">Rubrica de avaliação</h2>
+<p>Será avaliada a qualidade do documento produzido e sua adequação ao público, com pontuação total de 100 pontos.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 30%">
@@ -508,60 +526,170 @@ Exemplo: <code>trabalho_relatorios_beatriz_milz</code></li>
 <tr class="header">
 <th>Critério</th>
 <th>O que será observado</th>
-<th style="text-align: right;">Peso</th>
+<th style="text-align: right;">Pontos</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Propósito e público</td>
-<td>objetivo explícito, linguagem e formato adequados</td>
-<td style="text-align: right;">15%</td>
+<td>Propósito e adequação ao público</td>
+<td>Objetivo claro; linguagem, formato e nível de detalhe adequados a quem vai ler ou utilizar o material.</td>
+<td style="text-align: right;">15</td>
 </tr>
 <tr class="even">
 <td>Estrutura e comunicação</td>
-<td>narrativa coerente, títulos, interpretação dos resultados e apresentação visual</td>
-<td style="text-align: right;">20%</td>
+<td>Organização coerente; títulos informativos; explicações compreensíveis; texto que apresenta e contextualiza os resultados.</td>
+<td style="text-align: right;">25</td>
 </tr>
 <tr class="odd">
-<td>Integração com dados</td>
-<td>tabela e gráfico gerados por código e relacionados à pergunta</td>
-<td style="text-align: right;">20%</td>
+<td>Uso dos recursos do Quarto</td>
+<td>Uso funcional de Markdown, links, imagem, tabela e gráfico; tabela e gráfico gerados por código R; recursos integrados ao conteúdo, com rótulos legíveis.</td>
+<td style="text-align: right;">20</td>
 </tr>
 <tr class="even">
 <td>Reprodutibilidade</td>
-<td>caminhos relativos, execução em sessão limpa e dependências documentadas</td>
-<td style="text-align: right;">20%</td>
+<td>Projeto renderiza a partir dos arquivos entregues em sessão limpa; caminhos consistentes; dados e dependências disponíveis ou documentados; resultados independentes de comandos executados previamente.</td>
+<td style="text-align: right;">20</td>
 </tr>
 <tr class="odd">
 <td>Organização do projeto</td>
-<td>nomes claros, pastas consistentes e ausência de arquivos desnecessários</td>
-<td style="text-align: right;">10%</td>
+<td>Arquivos bem nomeados; estrutura compreensível; separação adequada entre fontes, dados e recursos; ausência de informações sigilosas.</td>
+<td style="text-align: right;">10</td>
 </tr>
 <tr class="even">
-<td>Documentação e autoria</td>
-<td>README, fontes dos dados, créditos, referências e licença</td>
-<td style="text-align: right;">10%</td>
+<td>Documentação e entrega</td>
+<td>README com instruções de execução; identificação das fontes e créditos; entrega acessível, incluindo fontes e documento renderizado.</td>
+<td style="text-align: right;">10</td>
 </tr>
 <tr class="odd">
-<td>Publicação e entrega</td>
-<td>arquivos acessíveis e instruções de execução funcionais</td>
-<td style="text-align: right;">5%</td>
+<td><strong>Total</strong></td>
+<td></td>
+<td style="text-align: right;"><strong>100</strong></td>
 </tr>
 </tbody>
 </table>
-<p>Para aprovação, o trabalho deve atingir pelo menos 60% da pontuação e não pode deixar de atender aos critérios de integração com dados e reprodutibilidade.</p>
+<section id="níveis-de-atendimento" class="level3">
+<h3 class="anchored" data-anchor-id="níveis-de-atendimento">Níveis de atendimento</h3>
+<p>Cada critério recebe um nível de 0 a 4. A pontuação é calculada por <strong>pontos do critério × nível ÷ 4</strong>; a nota final é a soma das pontuações, sem arredondamento por critério.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 30%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nível</th>
+<th>Descrição</th>
+<th style="text-align: right;">Proporção dos pontos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>4 — Pleno</td>
+<td>Atende ao critério de maneira clara e funcional. Pequenos detalhes não comprometem o resultado.</td>
+<td style="text-align: right;">100%</td>
+</tr>
+<tr class="even">
+<td>3 — Adequado</td>
+<td>Atende à maior parte do critério, com problemas localizados.</td>
+<td style="text-align: right;">75%</td>
+</tr>
+<tr class="odd">
+<td>2 — Parcial</td>
+<td>Demonstra a habilidade, mas apresenta limitações relevantes.</td>
+<td style="text-align: right;">50%</td>
+</tr>
+<tr class="even">
+<td>1 — Insuficiente</td>
+<td>Há uma tentativa, mas problemas importantes comprometem o resultado.</td>
+<td style="text-align: right;">25%</td>
+</tr>
+<tr class="odd">
+<td>0 — Não demonstrado</td>
+<td>O elemento está ausente ou não pode ser avaliado.</td>
+<td style="text-align: right;">0%</td>
+</tr>
+</tbody>
+</table>
+<p>Por exemplo, nível 3 em um critério de 20 pontos corresponde a 15 pontos. A devolutiva deve indicar o nível atribuído a cada critério e os principais aspectos a melhorar.</p>
+</section>
+<section id="aplicação-aos-sete-tipos-de-trabalho" class="level3">
+<h3 class="anchored" data-anchor-id="aplicação-aos-sete-tipos-de-trabalho">Aplicação aos sete tipos de trabalho</h3>
+<p>Os critérios e pesos são os mesmos para todos, mas a organização esperada acompanha o tipo de trabalho:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tipo de trabalho</th>
+<th>Como observar a estrutura e a comunicação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Relatório executivo</td>
+<td>Síntese, mensagem principal e contextualização dos resultados para o público.</td>
+</tr>
+<tr class="even">
+<td>Apresentação em slides</td>
+<td>Sequência clara, legibilidade e equilíbrio entre texto e elementos visuais para a exposição.</td>
+</tr>
+<tr class="odd">
+<td>Artigo acadêmico</td>
+<td>Organização acadêmica, citações no texto e referências geradas a partir do <code>.bib</code>.</td>
+</tr>
+<tr class="even">
+<td>Tutorial</td>
+<td>Instruções compreensíveis, sequência de passos e exemplos reproduzíveis.</td>
+</tr>
+<tr class="odd">
+<td>Página pessoal de divulgação</td>
+<td>Navegação clara e seção de projeto ou portfólio com texto, código e resultados.</td>
+</tr>
+<tr class="even">
+<td>Dashboard interativo</td>
+<td>Contexto, indicadores identificados e orientações para interpretar e utilizar o painel.</td>
+</tr>
+<tr class="odd">
+<td>Livro</td>
+<td>Sequência coerente entre os capítulos desenvolvidos, com explicações e exemplos integrados.</td>
+</tr>
+</tbody>
+</table>
+<p>Não é necessário adotar seções de introdução, metodologia e conclusão em todos os formatos. Uma versão inicial de livro ou artigo é aceita desde que os trechos entregues demonstrem os requisitos da atividade.</p>
+</section>
+<section id="papel-da-análise-e-dos-recursos-extras" class="level3">
+<h3 class="anchored" data-anchor-id="papel-da-análise-e-dos-recursos-extras">Papel da análise e dos recursos extras</h3>
+<p>Na análise, será observada a coerência básica: o texto corresponde à tabela e ao gráfico? Indicadores têm nomes e unidades compreensíveis? As fontes estão identificadas? Não será exigida sofisticação estatística nem profundidade científica.</p>
+<p>Análises avançadas, maior quantidade de gráficos, extensão do trabalho, interatividade ou recursos não ensinados não geram pontos extras por si só. Esses recursos só contribuem quando ajudam a atender aos critérios. Um trabalho simples, bem comunicado e reproduzível pode atingir a pontuação máxima.</p>
+</section>
+<section id="condições-de-aprovação" class="level3">
+<h3 class="anchored" data-anchor-id="condições-de-aprovação">Condições de aprovação</h3>
+<p>Para aprovação, o trabalho deve cumprir simultaneamente:</p>
+<ul>
+<li>atingir pelo menos <strong>60 pontos de 100</strong>;</li>
+<li>obter pelo menos <strong>nível 2 em Uso dos recursos do Quarto</strong> e <strong>nível 2 em Reprodutibilidade</strong>;</li>
+<li>atender aos requisitos obrigatórios de conteúdo e entrega descritos nesta página.</li>
+</ul>
+<p>Quando houver uma etapa de correção após a devolutiva, as pendências deverão ser regularizadas antes da avaliação definitiva, conforme as orientações e os prazos comunicados pela docência. A frequência mínima de 75% continua sendo uma condição adicional para a certificação.</p>
+</section>
 </section>
 <section id="checklist-antes-da-entrega" class="level2">
 <h2 class="anchored" data-anchor-id="checklist-antes-da-entrega">Checklist antes da entrega</h2>
 <ul class="task-list">
+<li><label><input type="checkbox">O trabalho corresponde a uma das sete opções aceitas e inclui texto com marcações, link, imagem, tabela e gráfico.</label></li>
 <li><label><input type="checkbox">O objetivo e o público aparecem no documento.</label></li>
 <li><label><input type="checkbox">Tabela e gráfico são gerados pelo código e interpretados no texto.</label></li>
 <li><label><input type="checkbox">Todos os caminhos são relativos.</label></li>
 <li><label><input type="checkbox">O projeto renderiza depois de reiniciar o R.</label></li>
 <li><label><input type="checkbox">O README explica requisitos e execução.</label></li>
+<li><label><input type="checkbox">Incluí os arquivos-fonte, as configurações, os recursos necessários e o documento renderizado.</label></li>
 <li><label><input type="checkbox">Dados, imagens e referências têm fonte e autorização de uso.</label></li>
+<li><label><input type="checkbox">Se escolhi um artigo acadêmico, incluí o <code>.bib</code> na entrega e conferi as citações e a lista de referências no documento renderizado.</label></li>
 <li><label><input type="checkbox">Nenhuma senha, token ou informação sigilosa foi incluída.</label></li>
-<li><label><input type="checkbox">O link publicado foi testado em uma janela anônima do navegador.</label></li>
+<li><label><input type="checkbox">Se publiquei na web, testei o link em uma janela anônima do navegador; a publicação é opcional.</label></li>
 </ul>
 <hr>
 

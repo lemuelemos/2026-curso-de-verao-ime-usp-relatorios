@@ -519,7 +519,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="um-primeiro-olhar-em-dados-reais" class="level2">
 <h2 class="anchored" data-anchor-id="um-primeiro-olhar-em-dados-reais">5. Um primeiro olhar em dados reais</h2>
-<p>Este curso usa, ao longo das cinco aulas, uma base pequena e real: população, área e PIB per capita das 27 unidades federativas do Brasil (fonte: IBGE — os detalhes estão em <a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/dados/README.md"><code>dados/README.md</code></a>). A leitura formal de arquivos <code>.csv</code> só chega na Aula 3, mas nada impede um primeiro contato agora:</p>
+<p>Este curso usa, ao longo das cinco aulas, uma base pequena e real: população, área e PIB per capita das 27 unidades federativas (UFs) do Brasil — 26 estados e o Distrito Federal (fonte: IBGE — os detalhes estão em <a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/dados/README.md"><code>dados/README.md</code></a>). O Distrito Federal é uma UF, mas não é um estado. Por isso, usaremos “UFs” para os conjuntos que o incluem. A leitura formal de arquivos <code>.csv</code> só chega na Aula 3, mas nada impede um primeiro contato agora:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>populacao_uf <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"dados/populacao_uf.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -527,15 +527,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 27
 Columns: 9
-$ uf            &lt;chr&gt; "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "M~
-$ nome_uf       &lt;chr&gt; "Acre", "Alagoas", "Amazonas", "Amap&lt;U+00E1&gt;", "Bahia", "Cear&lt;U+00E1&gt;"~
-$ regiao        &lt;chr&gt; "Norte", "Nordeste", "Norte", "Norte", "Nordeste", "Nord~
-$ capital       &lt;chr&gt; "Rio Branco", "Macei&lt;U+00F3&gt;", "Manaus", "Macap&lt;U+00E1&gt;", "Salvador", ~
-$ populacao     &lt;dbl&gt; 830018, 3127683, 3941613, 733759, 14141626, 8794957, 281~
-$ area_km2      &lt;dbl&gt; 164122.2, 27767.7, 1570745.7, 142814.6, 564692.7, 148825~
-$ latitude      &lt;dbl&gt; -9.97, -9.65, -3.10, 0.03, -12.97, -3.72, -15.78, -20.32~
-$ longitude     &lt;dbl&gt; -67.81, -35.71, -60.02, -51.07, -38.51, -38.54, -47.93, ~
-$ densidade_dem &lt;dbl&gt; 5.06, 112.64, 2.51, 5.14, 25.04, 59.10, 483.91, 83.20, 2~</code></pre>
+$ uf            &lt;chr&gt; "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "M…
+$ nome_uf       &lt;chr&gt; "Acre", "Alagoas", "Amazonas", "Amapá", "Bahia", "Ceará"…
+$ regiao        &lt;chr&gt; "Norte", "Nordeste", "Norte", "Norte", "Nordeste", "Nord…
+$ capital       &lt;chr&gt; "Rio Branco", "Maceió", "Manaus", "Macapá", "Salvador", …
+$ populacao     &lt;dbl&gt; 830018, 3127683, 3941613, 733759, 14141626, 8794957, 281…
+$ area_km2      &lt;dbl&gt; 164122.2, 27767.7, 1570745.7, 142814.6, 564692.7, 148825…
+$ latitude      &lt;dbl&gt; -9.97, -9.65, -3.10, 0.03, -12.97, -3.72, -15.78, -20.32…
+$ longitude     &lt;dbl&gt; -67.81, -35.71, -60.02, -51.07, -38.51, -38.54, -47.93, …
+$ densidade_dem &lt;dbl&gt; 5.06, 112.64, 2.51, 5.14, 25.04, 59.10, 483.91, 83.20, 2…</code></pre>
 </div>
 </div>
 <p><code>readr::read_csv()</code> leu o arquivo e <code>dplyr::glimpse()</code> mostra, de forma compacta, quantas linhas existem, quais colunas existem e um exemplo de valor de cada uma. É a base que vai crescer — literalmente, com mais colunas e mais análises — a cada aula.</p>
@@ -600,7 +600,7 @@ $ densidade_dem &lt;dbl&gt; 5.06, 112.64, 2.51, 5.14, 25.04, 59.10, 483.91, 83.2
 <li>uma lista com três perguntas sobre <code>mtcars</code>;</li>
 <li>um bloco que calcule <code>mean(mtcars$mpg)</code>;</li>
 <li>uma frase que interprete o resultado;</li>
-<li>um segundo bloco que leia <code>dados/populacao_uf.csv</code> com <code>readr::read_csv()</code> e responda, só com código: quantos estados tem a região Nordeste? (dica: <code>dplyr::filter()</code> + <code>nrow()</code>, ou <code>dplyr::count(regiao)</code>).</li>
+<li>um segundo bloco que leia <code>dados/populacao_uf.csv</code> com <code>readr::read_csv()</code> e responda, só com código: quantas UFs tem a região Nordeste? (dica: <code>dplyr::filter()</code> + <code>nrow()</code>, ou <code>dplyr::count(regiao)</code>).</li>
 </ol>
 <p>Depois, reinicie o R e renderize de novo — se algo quebrar, você acabou de encontrar uma dependência escondida antes que ela virasse um problema no meio do curso.</p>
 </section>

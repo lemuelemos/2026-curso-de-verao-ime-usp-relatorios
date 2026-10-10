@@ -336,6 +336,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#o-que-deve-ser-versionado" id="toc-o-que-deve-ser-versionado" class="nav-link" data-scroll-target="#o-que-deve-ser-versionado">1. O que deve ser versionado?</a></li>
   <li><a href="#um-ciclo-de-trabalho-com-git" id="toc-um-ciclo-de-trabalho-com-git" class="nav-link" data-scroll-target="#um-ciclo-de-trabalho-com-git">2. Um ciclo de trabalho com Git</a>
   <ul class="collapse">
+  <li><a href="#prepare-o-repositório-do-seu-trabalho" id="toc-prepare-o-repositório-do-seu-trabalho" class="nav-link" data-scroll-target="#prepare-o-repositório-do-seu-trabalho">Prepare o repositório do seu trabalho</a></li>
+  <li><a href="#entenda-o-que-será-salvo" id="toc-entenda-o-que-será-salvo" class="nav-link" data-scroll-target="#entenda-o-que-será-salvo">Entenda o que será salvo</a></li>
+  <li><a href="#conecte-o-projeto-ao-github-e-faça-o-primeiro-envio" id="toc-conecte-o-projeto-ao-github-e-faça-o-primeiro-envio" class="nav-link" data-scroll-target="#conecte-o-projeto-ao-github-e-faça-o-primeiro-envio">Conecte o projeto ao GitHub e faça o primeiro envio</a></li>
+  <li><a href="#repita-o-ciclo-a-cada-alteração" id="toc-repita-o-ciclo-a-cada-alteração" class="nav-link" data-scroll-target="#repita-o-ciclo-a-cada-alteração">Repita o ciclo a cada alteração</a></li>
   <li><a href="#como-reconhecer-um-bom-commit" id="toc-como-reconhecer-um-bom-commit" class="nav-link" data-scroll-target="#como-reconhecer-um-bom-commit">Como reconhecer um bom commit</a></li>
   </ul></li>
   <li><a href="#readme-como-porta-de-entrada" id="toc-readme-como-porta-de-entrada" class="nav-link" data-scroll-target="#readme-como-porta-de-entrada">3. README como porta de entrada</a></li>
@@ -426,12 +430,93 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="um-ciclo-de-trabalho-com-git" class="level2">
 <h2 class="anchored" data-anchor-id="um-ciclo-de-trabalho-com-git">2. Um ciclo de trabalho com Git</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>git status</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>git <span class="fu">diff</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>git add caminho<span class="op">/</span><span class="cf">do</span><span class="op">/</span>arquivo</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>git commit <span class="op">-</span>m <span class="st">"Explica a análise de receita regional"</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>git push</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Antes do commit, leia o <code>git diff</code> — ele mostra exatamente o que vai entrar no histórico, linha por linha, o que evita commitar algo por engano (um arquivo de dados temporário, uma credencial, uma alteração não intencional).</p>
+<section id="prepare-o-repositório-do-seu-trabalho" class="level3">
+<h3 class="anchored" data-anchor-id="prepare-o-repositório-do-seu-trabalho">Prepare o repositório do seu trabalho</h3>
+<p>Abra o terminal na pasta do seu projeto. Os comandos abaixo são para o <strong>seu trabalho final</strong>; o repositório do curso, se foi clonado, já tem histórico e conexão com o GitHub.</p>
+<p>Confira se o Git está disponível e se a pasta já é um repositório:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>git <span class="op">--</span>version</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>git status</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Se <code>git status</code> responder <code>not a git repository</code>, inicialize o histórico nessa pasta:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>git init <span class="op">-</span>b main</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Se o projeto já tiver um repositório, continue usando-o. Configure a identidade que aparecerá nos commits, substituindo os valores pelos seus dados:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>git config user<span class="op">.</span><span class="fu">name</span> <span class="st">"Seu nome"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>git config user<span class="op">.</span><span class="fu">email</span> <span class="st">"seu-email@example.com"</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Essas configurações valem apenas para este repositório. Use um email associado à sua conta do GitHub ou o endereço <code>noreply</code> informado em <em>Settings → Emails</em>. Nome e email identificam a autoria; a autenticação para enviar arquivos será feita separadamente.</p>
+</section>
+<section id="entenda-o-que-será-salvo" class="level3">
+<h3 class="anchored" data-anchor-id="entenda-o-que-será-salvo">Entenda o que será salvo</h3>
+<p>O Git distingue os arquivos que você está editando, a <strong>área de preparação</strong> (<em>staging area</em>, também chamada de índice) e os commits já registrados. <code>git add</code> coloca uma versão do arquivo na área de preparação; <code>git commit</code> registra essa seleção no histórico local.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Comando</th>
+<th>O que mostra</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>git status</code></td>
+<td>arquivos novos, alterações preparadas e alterações ainda não preparadas</td>
+</tr>
+<tr class="even">
+<td><code>git diff</code></td>
+<td>alterações em arquivos já rastreados que ainda não foram preparadas</td>
+</tr>
+<tr class="odd">
+<td><code>git diff --staged</code></td>
+<td>alterações preparadas que entrarão no próximo commit</td>
+</tr>
+</tbody>
+</table>
+<p>Arquivos novos ainda não rastreados aparecem em <code>git status</code>, mas seu conteúdo só aparece no diff de preparação depois de <code>git add</code>. Imagens e outros arquivos binários geralmente não têm um diff legível linha por linha; abra-os para conferir o conteúdo.</p>
+<p>Faça um primeiro commit com os arquivos do seu projeto. Por exemplo, se ele já contém <code>index.qmd</code>, <code>README.md</code> e <code>.gitignore</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>git status</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>git add index<span class="op">.</span><span class="fu">qmd</span> README<span class="op">.</span><span class="fu">md</span> <span class="op">.</span><span class="fu">gitignore</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>git status</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>git <span class="fu">diff</span> <span class="op">--</span>staged</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>git commit <span class="op">-</span>m <span class="st">"Adiciona estrutura inicial do relatório"</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Adicione também, pelos nomes reais, os dados compartilháveis, scripts e configurações necessários para reproduzir o trabalho. Revise a seleção antes de confirmar o commit.</p>
+</section>
+<section id="conecte-o-projeto-ao-github-e-faça-o-primeiro-envio" class="level3">
+<h3 class="anchored" data-anchor-id="conecte-o-projeto-ao-github-e-faça-o-primeiro-envio">Conecte o projeto ao GitHub e faça o primeiro envio</h3>
+<p>No GitHub, crie um repositório vazio para o trabalho. Como o projeto já existe no computador, deixe desmarcadas as opções de adicionar README, licença e <code>.gitignore</code> nessa criação. Esses arquivos podem ser adicionados pelo seu projeto local.</p>
+<p>Copie a URL HTTPS do novo repositório e substitua <code>SEU-USUARIO</code> e <code>SEU-REPOSITORIO</code> no exemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>git remote add origin https<span class="op">://</span>github<span class="op">.</span><span class="fu">com</span><span class="op">/</span>SEU-USUARIO<span class="op">/</span>SEU-REPOSITORIO<span class="op">.</span><span class="fu">git</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>git remote <span class="op">-</span>v</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>git push <span class="op">-</span>u origin main</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>origin</code> é o nome da conexão com o repositório remoto; <code>-u</code> associa a branch local <code>main</code> à remota, permitindo usar apenas <code>git push</code> nos próximos envios. Se <code>origin</code> já existir, confira a URL com <code>git remote -v</code> antes de continuar. O exemplo pressupõe a branch <code>main</code>, criada por <code>git init -b main</code>; em um repositório existente, confira seu nome com <code>git branch --show-current</code> e use esse nome no primeiro envio.</p>
+<p>No primeiro envio por HTTPS, o Git pode abrir o navegador para autenticar sua conta por meio do gerenciador de credenciais. Caso peça uma senha no terminal, o GitHub exige um token de acesso pessoal em vez da senha da conta. Siga as <a href="https://docs.github.com/en/get-started/git-basics/about-remote-repositories#cloning-with-https-urls">instruções de autenticação HTTPS</a> e mantenha o token no gerenciador de credenciais, sem inseri-lo na URL ou nos arquivos do projeto.</p>
+<p>Depois do envio, abra o repositório no GitHub e confira se os arquivos e o commit aparecem. Enviar as fontes ao GitHub e publicar o documento no GitHub Pages são etapas diferentes; a publicação será tratada na seção 4.</p>
+</section>
+<section id="repita-o-ciclo-a-cada-alteração" class="level3">
+<h3 class="anchored" data-anchor-id="repita-o-ciclo-a-cada-alteração">Repita o ciclo a cada alteração</h3>
+<p>Depois de editar e salvar um arquivo, use o fluxo abaixo. Substitua <code>caminho/do/arquivo</code> pelo arquivo que você alterou:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>git status</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>git <span class="fu">diff</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>git add caminho<span class="op">/</span><span class="cf">do</span><span class="op">/</span>arquivo</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>git status</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>git <span class="fu">diff</span> <span class="op">--</span>staged</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>git commit <span class="op">-</span>m <span class="st">"Explica a análise de receita regional"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>git push</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Leia <code>git diff</code> para revisar as alterações ainda não preparadas e <code>git diff --staged</code> para revisar a seleção que será registrada. Se você editar o arquivo depois de <code>git add</code>, essa nova edição ficará fora do commit até executar <code>git add</code> novamente. Um arquivo pode, portanto, aparecer ao mesmo tempo como preparado e modificado em <code>git status</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Experimente a área de preparação">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Experimente a área de preparação
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Edite uma frase no README, salve e rode <code>git diff</code>. Depois execute <code>git add README.md</code>: a alteração passa a aparecer em <code>git diff --staged</code>. Edite e salve outra frase no mesmo arquivo e compare os dois diffs. Antes do commit, prepare novamente o arquivo se quiser incluir as duas edições.</p>
+</div>
+</div>
+</section>
 <section id="como-reconhecer-um-bom-commit" class="level3">
 <h3 class="anchored" data-anchor-id="como-reconhecer-um-bom-commit">Como reconhecer um bom commit</h3>
 <p>Nenhum projeto tem 100% de commits perfeitos — inclusive o deste próprio curso. Alguns exemplos reais do histórico deste repositório:</p>
@@ -485,35 +570,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="publicação-no-github-pages" class="level2">
 <h2 class="anchored" data-anchor-id="publicação-no-github-pages">4. Publicação no GitHub Pages</h2>
 <p>Para um site Quarto, defina o projeto:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">website</span><span class="kw">:</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Meu projeto"</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Renderize, confira a pasta de saída e escolha uma estratégia de publicação. Este próprio site usa a mais simples das três: publica a pasta <code>_site/</code> já renderizada. O workflow completo, em <code>.github/workflows/static.yml</code>, é curto:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"main"</span><span class="kw">]</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">permissions</span><span class="kw">:</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> read</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pages</span><span class="kw">:</span><span class="at"> write</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">id-token</span><span class="kw">:</span><span class="at"> write</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">deploy</span><span class="kw">:</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v4</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/configure-pages@v5</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/upload-pages-artifact@v3</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">path</span><span class="kw">:</span><span class="at"> </span><span class="st">'_site'</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/deploy-pages@v4</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">website</span><span class="kw">:</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Meu projeto"</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Renderize e confira a pasta <code>_site/</code>. Este site publica essa pasta já renderizada, usando GitHub Actions. Para aplicar o mesmo fluxo ao seu trabalho:</p>
+<ol type="1">
+<li>No repositório do GitHub, abra <strong>Settings → Pages</strong> e selecione <strong>GitHub Actions</strong> em <strong>Build and deployment → Source</strong>.</li>
+<li>No projeto local, crie <code>.github/workflows/static.yml</code> com o conteúdo abaixo. O exemplo usa a branch <code>main</code>; ajuste-a se seu repositório usar outro nome.</li>
+<li>Inclua o workflow e a pasta <code>_site/</code> renderizada no commit e envie ao GitHub. Confira a execução na aba <strong>Actions</strong> e o endereço publicado em <strong>Settings → Pages</strong>.</li>
+</ol>
+<p>O exemplo reproduz a configuração do <a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/.github/workflows/static.yml">workflow deste curso</a>, sem os comentários:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Deploy static content to Pages</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"main"</span><span class="kw">]</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">permissions</span><span class="kw">:</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> read</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pages</span><span class="kw">:</span><span class="at"> write</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">id-token</span><span class="kw">:</span><span class="at"> write</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">concurrency</span><span class="kw">:</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">group</span><span class="kw">:</span><span class="at"> </span><span class="st">"pages"</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cancel-in-progress</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">deploy</span><span class="kw">:</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">name</span><span class="kw">:</span><span class="at"> github-pages</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">url</span><span class="kw">:</span><span class="at"> ${{ steps.deployment.outputs.page_url }}</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Checkout</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v4</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Setup Pages</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/configure-pages@v5</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Upload artifact</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/upload-pages-artifact@v3</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">path</span><span class="kw">:</span><span class="at"> </span><span class="st">'_site'</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Deploy to GitHub Pages</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">id</span><span class="kw">:</span><span class="at"> deployment</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/deploy-pages@v4</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>environment.name: github-pages</code> define o ambiente de implantação. O <code>id: deployment</code> identifica a etapa cuja saída fornece <code>page_url</code>, usada em <code>environment.url</code> para mostrar o link publicado. As permissões <code>pages: write</code> e <code>id-token: write</code> autorizam a implantação; <code>contents: read</code> permite ler o repositório. <code>workflow_dispatch</code> permite iniciar uma execução manual pela aba Actions, e <code>concurrency</code> organiza os envios para o mesmo ambiente. Consulte também a <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages">documentação de workflows do GitHub Pages</a>.</p>
 <p>A cada <code>push</code> para <code>main</code>, o GitHub publica o conteúdo que já está em <code>_site/</code> — o Quarto <strong>não</strong> roda dentro do GitHub Actions. Isso significa uma regra importante para quem contribui com este repositório: depois de alterar um <code>.qmd</code>, é preciso rodar <code>quarto render</code> localmente e incluir a pasta <code>_site/</code> atualizada no mesmo commit, ou a publicação ficará desatualizada mesmo com o código-fonte correto.</p>
 <p>A alternativa — mais comum em projetos que não querem versionar HTML gerado — é deixar o próprio GitHub Actions instalar o Quarto e renderizar a cada <code>push</code>, com a action oficial <code>quarto-dev/quarto-actions/render</code>. Ela evita versionar <code>_site/</code>, ao custo de um workflow um pouco mais longo e um tempo de build a cada publicação. Nenhuma das duas é “a certa” — a escolha depende de quanto controle você quer sobre o ambiente de renderização.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -567,21 +674,23 @@ Dica
 <li>Atualize o <code>.gitignore</code> sem esconder arquivos necessários.</li>
 <li>Escreva ou revise o README do seu projeto, usando o deste curso como referência de estrutura.</li>
 <li>Renderize em uma sessão limpa.</li>
-<li>Escreva a mensagem de um commit real que você precise fazer — depois compare com a tabela da seção 2 antes de confirmar.</li>
+<li>Prepare os arquivos de uma alteração com <code>git add</code>, confira <code>git status</code> e revise <code>git diff --staged</code>. Escreva a mensagem do commit e compare com a tabela da seção 2 antes de confirmar.</li>
+<li>Conecte o repositório do trabalho ao GitHub, se necessário, e envie o commit. Confira os arquivos no GitHub.</li>
 <li>Publique o projeto e teste o link publicado em uma janela anônima do navegador.</li>
 </ol>
 </section>
 <section id="entrega-final" class="level2">
 <h2 class="anchored" data-anchor-id="entrega-final">Entrega final</h2>
-<p>Use a <a href="../trabalho_final.html">rubrica e as instruções do trabalho</a>. Entregue o link publicado e o repositório ou arquivo compactado com as fontes.</p>
+<p>Use a <a href="../trabalho_final.html#sec-rubrica">rubrica e as instruções do trabalho</a>. Entregue o repositório ou arquivo compactado com as fontes, os recursos necessários, o README e o documento renderizado. A publicação web é opcional; se publicar, inclua também o link.</p>
 </section>
 <section id="checklist-de-conclusão" class="level2">
 <h2 class="anchored" data-anchor-id="checklist-de-conclusão">Checklist de conclusão</h2>
 <ul class="task-list">
 <li><label><input type="checkbox">O README permite que outra pessoa execute o projeto.</label></li>
 <li><label><input type="checkbox">Nenhuma credencial ou informação sigilosa foi versionada.</label></li>
+<li><label><input type="checkbox">Revisei a seleção do commit com <code>git status</code> e <code>git diff --staged</code>.</label></li>
 <li><label><input type="checkbox">O histórico tem commits compreensíveis — reli minhas últimas mensagens antes de finalizar.</label></li>
-<li><label><input type="checkbox">A versão publicada abre e contém todos os recursos (gráficos interativos, mapas, tabelas).</label></li>
+<li><label><input type="checkbox">O documento renderizado abre com todos os recursos; se publiquei, também testei a versão web.</label></li>
 <li><label><input type="checkbox">A entrega atende à rubrica do curso.</label></li>
 </ul>
 </section>
@@ -589,6 +698,8 @@ Dica
 <h2 class="anchored" data-anchor-id="leitura-complementar">Leitura complementar</h2>
 <ul>
 <li><a href="https://docs.github.com/pt/get-started/using-git/about-git">GitHub: começar com Git</a></li>
+<li><a href="https://git-scm.com/docs/git-diff">Git: diferenças entre alterações preparadas e não preparadas</a></li>
+<li><a href="https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github">GitHub: enviar um projeto local</a></li>
 <li><a href="https://quarto.org/docs/publishing/">Quarto: publicação</a></li>
 <li><a href="https://docs.github.com/pt/pages">GitHub Pages</a></li>
 <li><a href="https://github.com/quarto-dev/quarto-actions">quarto-actions: renderização no CI</a></li>
