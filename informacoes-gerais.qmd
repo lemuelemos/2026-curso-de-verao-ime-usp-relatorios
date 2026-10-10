@@ -68,7 +68,7 @@ Ao final do curso, a pessoa participante deverá ser capaz de planejar, produzir
 - publicação no GitHub Pages, usando o próprio site do curso como exemplo;
 - revisão de conteúdo, reprodutibilidade e acessibilidade.
 
-**Entrega parcial:** versão candidata do projeto publicada e revisada.
+**Entrega parcial:** versão candidata do projeto renderizada e revisada; publicação web opcional.
 
 ## Metodologia
 
@@ -76,7 +76,9 @@ As aulas combinam explicação, demonstração e prática guiada. Os exemplos us
 
 ## Avaliação
 
-A avaliação ocorre por meio de um [trabalho final](trabalho_final.qmd) construído ao longo das cinco aulas. A rubrica considera propósito, comunicação, integração entre código e resultados, reprodutibilidade, organização e documentação.
+A avaliação ocorre por meio de um [trabalho final](trabalho_final.qmd) construído ao longo das cinco aulas. A [rubrica](trabalho_final.qmd#sec-rubrica) distribui 100 pontos entre propósito e adequação ao público (15), estrutura e comunicação (25), uso dos recursos do Quarto (20), reprodutibilidade (20), organização do projeto (10) e documentação e entrega (10).
+
+O foco é a elaboração do documento, não a complexidade da análise. Para aprovação, é necessário atingir pelo menos 60 pontos, obter no mínimo nível 2 (de 0 a 4) em uso dos recursos do Quarto e reprodutibilidade e atender aos requisitos obrigatórios. Os sete tipos de trabalho seguem os mesmos critérios e pesos; a publicação web é opcional e não gera pontos extras por si só.
 
 ## Preparação
 

@@ -272,7 +272,7 @@ Escolha uma estratégia e documente o fluxo — não misture duas no mesmo repos
 
 Entregue:
 
-- documento publicado, quando aplicável;
+- documento renderizado; publicação web opcional;
 - arquivos-fonte;
 - dados ou instruções de obtenção;
 - README;
@@ -286,7 +286,7 @@ Entregue:
 - [ ] nenhuma credencial foi incluída;
 - [ ] seleção do commit revisada com `git diff --staged`;
 - [ ] README permite reproduzir;
-- [ ] versão publicada foi testada;
+- [ ] saída renderizada testada; se publiquei, testei o link;
 - [ ] trabalho atende à rubrica.
 
 ## Encerramento

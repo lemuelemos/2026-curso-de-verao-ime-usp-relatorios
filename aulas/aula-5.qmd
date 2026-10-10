@@ -260,7 +260,7 @@ Consulte [Publicação no GitHub Pages](https://quarto.org/docs/publishing/githu
 
 ## Entrega final
 
-Use a [rubrica e as instruções do trabalho](../trabalho_final.qmd). Entregue o link publicado e o repositório ou arquivo compactado com as fontes.
+Use a [rubrica e as instruções do trabalho](../trabalho_final.qmd#sec-rubrica). Entregue o repositório ou arquivo compactado com as fontes, os recursos necessários, o README e o documento renderizado. A publicação web é opcional; se publicar, inclua também o link.
 
 ## Checklist de conclusão
 
@@ -268,7 +268,7 @@ Use a [rubrica e as instruções do trabalho](../trabalho_final.qmd). Entregue o
 - [ ] Nenhuma credencial ou informação sigilosa foi versionada.
 - [ ] Revisei a seleção do commit com `git status` e `git diff --staged`.
 - [ ] O histórico tem commits compreensíveis — reli minhas últimas mensagens antes de finalizar.
-- [ ] A versão publicada abre e contém todos os recursos (gráficos interativos, mapas, tabelas).
+- [ ] O documento renderizado abre com todos os recursos; se publiquei, também testei a versão web.
 - [ ] A entrega atende à rubrica do curso.
 
 ## Leitura complementar
