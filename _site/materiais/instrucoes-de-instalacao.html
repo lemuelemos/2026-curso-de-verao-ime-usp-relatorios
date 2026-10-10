@@ -331,6 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#contas-em-serviços" id="toc-contas-em-serviços" class="nav-link active" data-scroll-target="#contas-em-serviços">Contas em serviços</a></li>
   <li><a href="#instalações-obrigatórias" id="toc-instalações-obrigatórias" class="nav-link" data-scroll-target="#instalações-obrigatórias">Instalações obrigatórias</a>
   <ul class="collapse">
+  <li><a href="#por-que-usar-o-rig-neste-curso" id="toc-por-que-usar-o-rig-neste-curso" class="nav-link" data-scroll-target="#por-que-usar-o-rig-neste-curso"><strong>Por que usar o rig neste curso?</strong></a></li>
   <li><a href="#restaurar-um-ambiente-existente" id="toc-restaurar-um-ambiente-existente" class="nav-link" data-scroll-target="#restaurar-um-ambiente-existente"><strong>1. Restaurar um ambiente existente</strong></a></li>
   <li><a href="#criar-o-ambiente-do-seu-trabalho-final" id="toc-criar-o-ambiente-do-seu-trabalho-final" class="nav-link" data-scroll-target="#criar-o-ambiente-do-seu-trabalho-final"><strong>2. Criar o ambiente do seu trabalho final</strong></a></li>
   <li><a href="#instalar-os-pacotes-usados-nas-aulas" id="toc-instalar-os-pacotes-usados-nas-aulas" class="nav-link" data-scroll-target="#instalar-os-pacotes-usados-nas-aulas"><strong>3. Instalar os pacotes usados nas aulas</strong></a></li>
@@ -406,6 +407,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Antes de instalar qualquer pacote, vamos criar um <strong>ambiente de desenvolvimento padronizado</strong> para todos. Para isso, utilizaremos o <code>rig</code>, que gerencia versões do R, dependências e bibliotecas isoladas por projeto.</p>
 <p>O <strong><code>rig</code></strong> é um gerenciador externo ao R. O arquivo <code>rproj.toml</code> declara as dependências do projeto e <code>rproj.lock</code> registra as versões resolvidas, evitando diferenças entre computadores e ao longo do tempo.</p>
 <p>Na prática, o <code>rig</code> cria uma biblioteca isolada em <code>.rvenv/</code>. Qualquer pessoa pode <strong>reproduzir o mesmo ambiente</strong> com um comando, inclusive instalando a versão correta do R quando necessário.</p>
+<section id="por-que-usar-o-rig-neste-curso" class="level3">
+<h3 class="anchored" data-anchor-id="por-que-usar-o-rig-neste-curso"><strong>Por que usar o rig neste curso?</strong></h3>
+<p>O <code>renv</code> é uma alternativa madura e amplamente usada para isolar pacotes de R. Porém, ele começa a trabalhar <strong>depois</strong> que o R já está instalado: o lock pode registrar a versão esperada, mas não instala nem seleciona essa versão do R para você.</p>
+<p>Neste curso queremos padronizar desde o primeiro passo. O <code>rig</code> foi escolhido porque reúne, em uma única ferramenta de terminal:</p>
+<ul>
+<li>a instalação e a seleção da versão do R;</li>
+<li>a declaração das dependências em <code>rproj.toml</code>;</li>
+<li>o registro de versões resolvidas em <code>rproj.lock</code>;</li>
+<li>a criação e a restauração da biblioteca isolada do projeto.</li>
+</ul>
+<p>Isso reduz o problema “funciona na minha máquina”: <code>rig proj sync</code> prepara tanto o R 4.5.2 quanto os pacotes necessários, sem exigir que a pessoa instale primeiro um gerenciador dentro do próprio R.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Uma escolha para este curso">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Uma escolha para este curso
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O gerenciamento de projetos do <code>rig</code> ainda é experimental e pode mudar em versões futuras. O <code>renv</code> continua sendo uma boa opção, especialmente em projetos que já o utilizam ou que precisam de um fluxo mais maduro. Aqui adotamos o <code>rig</code> porque seu controle conjunto da versão do R e dos pacotes torna a instalação do curso mais uniforme.</p>
+</div>
+</div>
 <p>Isso traz três grandes benefícios:</p>
 <ul>
 <li><strong>Reprodutibilidade</strong>: o código roda hoje e continuará rodando no futuro.</li>
@@ -416,6 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>O <code>rig</code> gerencia tanto a versão do R quanto as dependências de cada projeto.</p>
 </blockquote>
+</section>
 <section id="restaurar-um-ambiente-existente" class="level3">
 <h3 class="anchored" data-anchor-id="restaurar-um-ambiente-existente"><strong>1. Restaurar um ambiente existente</strong></h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rig proj sync</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>

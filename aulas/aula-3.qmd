@@ -194,6 +194,12 @@ Opções úteis por bloco, sobrepondo o padrão do documento:
 
 ## 8. Reprodutibilidade do ambiente
 
+### Por que usamos o rig?
+
+Um ambiente reproduzível precisa controlar duas camadas: a versão do R e as versões dos pacotes. O `renv` é uma ferramenta madura para a segunda camada, mas pressupõe que uma versão compatível do R já esteja instalada. Neste curso usamos o `rig` porque ele administra as duas: seleciona ou instala o R e sincroniza a biblioteca isolada do projeto.
+
+Isso permite começar no terminal com `rig proj sync`, sem instalar antes um pacote dentro do R. A decisão é específica deste curso: o gerenciamento de projetos do `rig` ainda é experimental, e projetos que já usam `renv` com sucesso não precisam migrar apenas por esse motivo.
+
 O `rproj.toml` declara o R e os pacotes usados, enquanto `rproj.lock` registra as versões exatas resolvidas pelo `rig`. No projeto do trabalho final, use o terminal:
 
 ```powershell

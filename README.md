@@ -38,6 +38,19 @@ publicados por engano.
 - RStudio ou Positron (opcionais);
 - os pacotes de R usados nas aulas que você pretende renderizar.
 
+### Por que este projeto usa o rig?
+
+O `renv` é uma solução madura para isolar pacotes, mas pressupõe que uma versão
+compatível do R já esteja instalada. Neste curso, o `rig` foi escolhido para
+padronizar as duas camadas com uma única ferramenta: ele seleciona ou instala o
+R 4.5.2 e também recria a biblioteca registrada do projeto. Assim, o primeiro
+comando após clonar o repositório é executado no terminal e não depende de
+instalar previamente um pacote dentro do R.
+
+O gerenciamento de projetos do `rig` ainda é experimental. A escolha vale para
+este curso e não significa que todo projeto existente precise abandonar o
+`renv`; equipes que já usam esse fluxo com sucesso podem continuar usando-o.
+
 Clone o repositório e, na pasta do projeto, sincronize o ambiente pelo terminal:
 
 ```powershell

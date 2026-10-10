@@ -340,7 +340,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#resultados-dinâmicos-no-texto" id="toc-resultados-dinâmicos-no-texto" class="nav-link" data-scroll-target="#resultados-dinâmicos-no-texto">5. Resultados dinâmicos no texto</a></li>
   <li><a href="#escolha-do-formato" id="toc-escolha-do-formato" class="nav-link" data-scroll-target="#escolha-do-formato">6. Escolha do formato</a></li>
   <li><a href="#controle-da-execução" id="toc-controle-da-execução" class="nav-link" data-scroll-target="#controle-da-execução">7. Controle da execução</a></li>
-  <li><a href="#reprodutibilidade-do-ambiente" id="toc-reprodutibilidade-do-ambiente" class="nav-link" data-scroll-target="#reprodutibilidade-do-ambiente">8. Reprodutibilidade do ambiente</a></li>
+  <li><a href="#reprodutibilidade-do-ambiente" id="toc-reprodutibilidade-do-ambiente" class="nav-link" data-scroll-target="#reprodutibilidade-do-ambiente">8. Reprodutibilidade do ambiente</a>
+  <ul class="collapse">
+  <li><a href="#por-que-usamos-o-rig" id="toc-por-que-usamos-o-rig" class="nav-link" data-scroll-target="#por-que-usamos-o-rig">Por que usamos o rig?</a></li>
+  </ul></li>
   <li><a href="#prática-guiada" id="toc-prática-guiada" class="nav-link" data-scroll-target="#prática-guiada">Prática guiada</a></li>
   <li><a href="#para-o-projeto-final" id="toc-para-o-projeto-final" class="nav-link" data-scroll-target="#para-o-projeto-final">Para o projeto final</a></li>
   <li><a href="#checklist" id="toc-checklist" class="nav-link" data-scroll-target="#checklist">Checklist</a></li>
@@ -815,6 +818,10 @@ $ pib_per_capita &lt;dbl&gt; 31675.60, 28675.84, 41047.91, 38187.09, 30476.54, 2
 </section>
 <section id="reprodutibilidade-do-ambiente" class="level2">
 <h2 class="anchored" data-anchor-id="reprodutibilidade-do-ambiente">8. Reprodutibilidade do ambiente</h2>
+<section id="por-que-usamos-o-rig" class="level3">
+<h3 class="anchored" data-anchor-id="por-que-usamos-o-rig">Por que usamos o rig?</h3>
+<p>Um ambiente reproduzível precisa controlar duas camadas: a versão do R e as versões dos pacotes. O <code>renv</code> é uma ferramenta madura para a segunda camada, mas pressupõe que uma versão compatível do R já esteja instalada. Neste curso usamos o <code>rig</code> porque ele administra as duas: seleciona ou instala o R e sincroniza a biblioteca isolada do projeto.</p>
+<p>Isso permite começar no terminal com <code>rig proj sync</code>, sem instalar antes um pacote dentro do R. A decisão é específica deste curso: o gerenciamento de projetos do <code>rig</code> ainda é experimental, e projetos que já usam <code>renv</code> com sucesso não precisam migrar apenas por esse motivo.</p>
 <p>O <code>rproj.toml</code> declara o R e os pacotes usados, enquanto <code>rproj.lock</code> registra as versões exatas resolvidas pelo <code>rig</code>. No projeto do trabalho final, use o terminal:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rig proj init <span class="op">--</span>r-version <span class="dv">4.5</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="dt">rig</span> proj add dplyr readr ggplot2</span>
@@ -827,6 +834,7 @@ $ pib_per_capita &lt;dbl&gt; 31675.60, 28675.84, 41047.91, 38187.09, 30476.54, 2
 <li><code>proj sync</code> instala exatamente o ambiente registrado — é o que outra pessoa roda ao clonar seu repositório.</li>
 </ul>
 <p>Não versione a biblioteca instalada em <code>.rvenv/</code> (ela é recriada por <code>rig proj sync</code>); versione <code>rproj.toml</code>, <code>rproj.lock</code>, <code>.Renviron</code> e <code>.rvenvlib/</code>.</p>
+</section>
 </section>
 <section id="prática-guiada" class="level2">
 <h2 class="anchored" data-anchor-id="prática-guiada">Prática guiada</h2>

@@ -146,6 +146,17 @@ Esconder avisos não corrige problemas — só os torna invisíveis no documento
 
 ## Ambiente com `rig`
 
+### Por que neste curso?
+
+- controla a versão do R **e** os pacotes;
+- começa pelo terminal, sem instalar antes um pacote no R;
+- recria o ambiente com `rig proj sync`;
+- padroniza a preparação em máquinas diferentes.
+
+O `renv` continua sendo uma opção madura para pacotes. O gerenciamento de projetos do `rig` ainda é experimental; esta é uma escolha para o fluxo do curso, não uma regra universal.
+
+## Fluxo do ambiente
+
 ```powershell
 rig proj init --r-version 4.5
 rig proj add dplyr readr ggplot2

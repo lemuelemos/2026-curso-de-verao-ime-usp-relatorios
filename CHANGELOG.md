@@ -20,6 +20,7 @@ Todas as alterações relevantes deste projeto são documentadas neste arquivo.
 
 - Atualizados o README, a página inicial, as informações gerais e o índice de slides para apresentar o `rig` como ferramenta de reprodutibilidade.
 - Reescritas as instruções de instalação com os fluxos `rig proj init`, `rig proj add`, `rig proj lock`, `rig proj sync`, `rig proj status` e `rig run`.
+- Adicionada uma comparação explícita entre `rig` e `renv`, justificando a escolha do `rig` pelo controle conjunto da versão do R e dos pacotes e registrando o caráter experimental de `rig proj`.
 - Revisadas as Aulas 1, 3 e 5 e os slides das Aulas 3 e 5 para usar `rproj.toml`, `rproj.lock` e `.rvenv/` de forma consistente.
 - Atualizadas orientações de solução de problemas, versionamento, checklist de revisão e exemplos de mensagens de commit.
 - Regenerado todo o conteúdo publicado em `_site/` com as novas instruções.
