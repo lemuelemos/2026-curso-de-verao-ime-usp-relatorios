@@ -10,7 +10,7 @@ Este curso ensina a criar relatórios profissionais e reprodutíveis com R e Qua
 O foco não é apenas aprender comandos. Vamos tomar decisões sobre público, estrutura, visualização, automação, versionamento e publicação para que o documento seja claro, atualizável e auditável.
 
 ::: {.callout-tip title="Resultado esperado"}
-Ao final, você terá um relatório, apresentação ou artigo produzido com Quarto, acompanhado dos arquivos necessários para que outra pessoa possa compreender e reproduzir o trabalho.
+Ao final, você terá um relatório, apresentação, artigo, tutorial, página pessoal, dashboard ou livro produzido com Quarto, acompanhado dos arquivos necessários para que outra pessoa possa compreender e reproduzir o trabalho.
 :::
 
 ## Trilha de aprendizagem

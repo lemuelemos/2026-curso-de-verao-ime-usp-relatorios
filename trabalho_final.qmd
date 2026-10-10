@@ -5,13 +5,19 @@ title: "Instruções de Trabalho Final"
 **Objetivo:** Você deverá criar um documento utilizando **Quarto** e compartilhá-lo conosco. O trabalho final tem como propósito consolidar os conhecimentos apresentados ao longo do curso, por meio da elaboração de um produto final estruturado e reprodutível.
 
 **Formato do trabalho:**  
-Você deverá **escolher um dos três formatos abaixo** para o seu trabalho final:
+Você poderá **escolher uma das sete opções abaixo** para o seu trabalho final:
 
 - **Relatório executivo** — voltado para comunicação objetiva de resultados, com linguagem acessível a gestores e tom profissional.
 - **Apresentação em slides** — estrutura de apresentação sintética, visual e orientada à exposição oral.
 - **Artigo acadêmico** — estrutura científica, com seções formais (introdução, metodologia, resultados, discussão e referências).
+- **Tutorial** — explicação de uma técnica ou análise, com código, resultados e instruções que permitam acompanhar e reproduzir os passos.
+- **Página pessoal de divulgação** — apresentação de um perfil, pesquisa ou portfólio, incluindo uma análise ou projeto com dados e resultados reproduzíveis.
+- **Dashboard interativo** — painel de indicadores e visualizações, com contexto e orientações para interpretar e explorar os dados.
+- **Livro** — conteúdo organizado em capítulos, com uma sequência coerente de explicações, código e resultados; pode ser uma versão inicial com capítulos desenvolvidos que atendam aos requisitos da atividade.
 
 A escolha do formato deve estar alinhada ao **objetivo do trabalho** e ao **público-alvo** que você deseja atingir.
+
+Essas opções definem o tipo de trabalho aceito para avaliação. O formato de saída é uma escolha técnica: um tutorial pode ser uma página HTML ou um PDF, por exemplo, e uma apresentação pode usar RevealJS (HTML) ou PowerPoint. Escolha uma saída compatível com o conteúdo e os recursos utilizados. Todas as opções seguem os requisitos de conteúdo e a rubrica abaixo, incluindo tabela e gráfico gerados por código. Em páginas pessoais, esses elementos podem aparecer em uma seção de projeto ou portfólio.
 
 ::: {.callout-tip title="Construa ao longo do curso"}
 Cada aula termina com uma etapa do projeto final. Seguir essas etapas evita concentrar toda a produção no último encontro.
@@ -29,20 +35,22 @@ O recebimento do certificado está vinculado à entrega e aprovação do trabalh
 
 ## Etapas pré-código
 
-- Pense no **formato escolhido** (relatório executivo, slides ou artigo acadêmico), definindo:
+- Pense no **tipo de trabalho escolhido** entre as sete opções, definindo:
   - o objetivo do documento;
   - o público-alvo;
   - o tipo de linguagem mais adequada.
 
-- Exemplos de aplicações:
+- Exemplos de trabalhos dentro das opções aceitas:
 
   - Relatório executivo apresentando uma análise de dados para tomada de decisão.
   - Apresentação em slides para exposição de resultados de uma pesquisa ou projeto.
   - Artigo acadêmico com estrutura científica (não precisa estar completo, mas deve conter a organização típica e uso de código para gerar tabelas e gráficos).
-  - Tutorial com código em R ou Python.
-  - Página pessoal de divulgação.
-  - Dashboard interativo.
-  - Livro ou capítulo inicial estruturado em Quarto.
+  - Tutorial explicando uma análise passo a passo, com código e interpretação dos resultados.
+  - Página pessoal com uma seção de portfólio que apresenta uma análise reproduzível.
+  - Dashboard interativo para acompanhar e comparar indicadores de uma base pública.
+  - Livro introdutório sobre um tema, com capítulos que combinam explicações e exemplos de análise de dados.
+
+Recursos como gráficos interativos, mapas, parâmetros e trechos explicativos de código podem fazer parte do trabalho escolhido, quando ajudarem a comunicar os resultados. Escolha os recursos de acordo com o público e com o formato de saída.
 
 - Escolha uma base de dados para utilizar. Algumas sugestões:
 
@@ -61,7 +69,7 @@ O projeto deve chamar-se:
 `trabalho_relatorios_nome_sobrenome`  
 Exemplo: `trabalho_relatorios_beatriz_milz`
 
-Você pode criar um projeto simples ou um projeto Quarto (que já traz estrutura adequada para relatórios, apresentações, websites ou livros).
+Você pode criar um projeto simples ou um projeto Quarto, organizado para o tipo de trabalho escolhido. Para uma página pessoal com várias páginas ou um livro, use um projeto Quarto do tipo website ou book, respectivamente.
 
 **Todos os passos seguintes devem ser realizados dentro deste projeto.**
 
@@ -87,9 +95,11 @@ fs::dir_create("img")
 > File → New File → Quarto Document
 
 Salve o arquivo com o nome `index.qmd`.
-Clique em **Render** para verificar se o arquivo `index.html` foi gerado sem erros.
+Clique em **Render** para verificar se o arquivo de saída foi gerado sem erros: `index.html` para HTML ou RevealJS, `index.pdf` para PDF, `index.docx` para Word ou `index.pptx` para PowerPoint.
 
 > 💡 Caso você tenha escolhido o formato **apresentação em slides**, selecione o tipo de documento **RevealJS** ou **PowerPoint** no momento da criação do arquivo Quarto.
+
+Para um **dashboard**, crie um documento Quarto com `format: dashboard`. Para uma **página pessoal com várias páginas** ou um **livro**, use a estrutura do projeto website ou book e renderize o projeto inteiro com `quarto render` na pasta raiz. Inclua na entrega o `_quarto.yml` (ou `_quarto.yaml`), todas as páginas ou capítulos e os arquivos necessários para reproduzir o conteúdo. O nome e a pasta das saídas dependem da configuração do projeto.
 
 ---
 
@@ -137,6 +147,7 @@ Para aprovação, o trabalho deve atingir pelo menos 60% da pontuação e não p
 
 ## Checklist antes da entrega
 
+- [ ] O trabalho corresponde a uma das sete opções aceitas e inclui texto com marcações, link, imagem, tabela e gráfico.
 - [ ] O objetivo e o público aparecem no documento.
 - [ ] Tabela e gráfico são gerados pelo código e interpretados no texto.
 - [ ] Todos os caminhos são relativos.
