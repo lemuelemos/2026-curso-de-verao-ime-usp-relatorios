@@ -17,7 +17,7 @@ Ao final, você terá um relatório, apresentação ou artigo produzido com Quar
 
 1. **Fundamentos e primeiro documento** — reprodutibilidade, ambiente e fluxo de renderização.
 2. **Estrutura e comunicação** — YAML, Markdown, tabelas, gráficos, referências e estilo.
-3. **Dados, formatos e automação** — projetos, resultados dinâmicos, HTML, PDF, Word e `renv`.
+3. **Dados, formatos e automação** — projetos, resultados dinâmicos, HTML, PDF, Word e `rig`.
 4. **Interatividade e reutilização** — widgets, parâmetros, funções e renderização em lote.
 5. **Versionamento e publicação** — Git, GitHub Pages, documentação e revisão final.
 

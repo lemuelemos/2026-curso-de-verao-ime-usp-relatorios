@@ -8,11 +8,11 @@ title: "Pré-curso: Instalações necessárias"
 
 ## Instalações obrigatórias
 
-1.  **Instalar o R** — use uma versão atual e compatível com seu sistema:
+1.  **Instalar o rig** — ele instala e seleciona a versão correta do R para cada projeto:
 
--   Download direto: <https://vps.fmvz.usp.br/CRAN/>
+-   Download e instruções: <https://r-lib.github.io/rig/>
 
--   Tutorial: <https://livro.curso-r.com/1-1-instalacao-do-r.html>
+-   Depois da instalação, abra o terminal e execute `rig --version`.
 
 2.  **Instalar RStudio ou Positron**:
 
@@ -36,11 +36,11 @@ title: "Pré-curso: Instalações necessárias"
 
 5.  **Restaurar os pacotes do curso**:
 
-Antes de instalar qualquer pacote, vamos criar um **ambiente de desenvolvimento padronizado** para todos. Para isso, utilizaremos o pacote `renv`, que permitirá configurar um ambiente padrão de projeto e, posteriormente, instalar os pacotes necessários de forma organizada e reprodutível.
+Antes de instalar qualquer pacote, vamos criar um **ambiente de desenvolvimento padronizado** para todos. Para isso, utilizaremos o `rig`, que gerencia versões do R, dependências e bibliotecas isoladas por projeto.
 
-O **`renv`** é um pacote do R usado para **gerenciar ambientes de projeto**. Ele garante que cada projeto tenha sua própria lista de pacotes e versões, evitando problemas quando códigos são executados em computadores diferentes ou em momentos diferentes no tempo.
+O **`rig`** é um gerenciador externo ao R. O arquivo `rproj.toml` declara as dependências do projeto e `rproj.lock` registra as versões resolvidas, evitando diferenças entre computadores e ao longo do tempo.
 
-Na prática, o `renv` cria um **ambiente isolado**, onde ficam registradas exatamente quais bibliotecas o projeto usa. Assim, qualquer pessoa que abrir o projeto pode **reproduzir o mesmo ambiente** com apenas um comando, instalando automaticamente as versões corretas dos pacotes.
+Na prática, o `rig` cria uma biblioteca isolada em `.rvenv/`. Qualquer pessoa pode **reproduzir o mesmo ambiente** com um comando, inclusive instalando a versão correta do R quando necessário.
 
 Isso traz três grandes benefícios:
 
@@ -50,78 +50,59 @@ Isso traz três grandes benefícios:
 
 Em resumo:
 
-> O `renv` é o “controle de dependências” do R, essencial para projetos profissionais e colaborativos.
+> O `rig` gerencia tanto a versão do R quanto as dependências de cada projeto.
 
 ### **1. Restaurar um ambiente existente**
 
-```r
-install.packages("renv")
-renv::restore()
+```powershell
+rig proj sync
 ```
 
-Esse é o fluxo indicado para quem clonou este repositório: o `renv.lock` informa as versões esperadas.
+Esse é o fluxo indicado para quem clonou este repositório: `rproj.lock` informa as versões esperadas.
 
 ---
 
 ### **2. Criar o ambiente do seu trabalho final**
 
-```r
-renv::init()
+```powershell
+rig proj init --r-version 4.5
 ```
 
-Isso cria a infraestrutura do ambiente e um `renv.lock` no seu projeto.
+Isso cria `rproj.toml`, `.Renviron`, `.rvenvlib/` e a regra que ignora a biblioteca local `.rvenv/`.
 
 ---
 
 ### **3. Instalar os pacotes usados nas aulas**
 
-```r
-pacotes_necessarios <- c(
-  "dplyr",
-  "echarts4r",
-  "ggplot2",
-  "glue",
-  "gt",
-  "here",
-  "kableExtra",
-  "knitr",
-  "leaflet",
-  "palmerpenguins",
-  "plotly",
-  "purrr",
-  "quarto",
-  "readr",
-  "renv",
-  "skimr",
-  "tibble"
-)
-
-install.packages(pacotes_necessarios)
+```powershell
+rig proj add dplyr echarts4r ggplot2 glue gt here kableExtra knitr leaflet
+rig proj add palmerpenguins plotly purrr quarto readr skimr tibble
 ```
 
-Instale apenas o necessário para as atividades que você realizará. Depois registre o ambiente.
+Adicione apenas o necessário para as atividades que você realizará.
 
 ---
 
 ### **4. Salvar o estado do ambiente**
 
-```r
-renv::snapshot()
+```powershell
+rig proj lock
 ```
 
 Isso garante que qualquer pessoa que abrir o projeto possa recriar o mesmo ambiente depois com:
 
-```r
-renv::restore()
+```powershell
+rig proj sync
 ```
 
 ---
 
 ✅ **Resumo**
 
-* `renv::init()` → inicia o ambiente de um novo projeto;
-* `renv::snapshot()` → registra as versões instaladas;
-* `renv::restore()` → recria o ambiente registrado.
+* `rig proj init` → inicia o ambiente de um novo projeto;
+* `rig proj add` → declara os pacotes usados;
+* `rig proj lock` → resolve e registra versões compatíveis;
+* `rig proj sync` → recria o ambiente registrado.
 
 ## Instalações recomendadas
 
@@ -150,14 +131,15 @@ quarto install tinytex
 Execute no terminal:
 
 ```powershell
+rig --version
+rig proj status
 quarto check
 ```
 
-Depois, no console do R:
+Depois, ainda no terminal, teste o R do projeto:
 
-```r
-R.version.string
-packageVersion("knitr")
+```powershell
+rig run -e "R.version.string; packageVersion('knitr')"
 ```
 
 Se algum passo falhar, copie a mensagem completa de erro e informe seu sistema operacional ao pedir ajuda.

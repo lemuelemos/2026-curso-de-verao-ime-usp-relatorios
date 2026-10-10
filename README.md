@@ -34,17 +34,18 @@ publicados por engano.
 ### Pré-requisitos
 
 - [Quarto](https://quarto.org/docs/get-started/);
-- [R](https://cran.r-project.org/) e, opcionalmente, RStudio ou Positron;
+- [rig](https://r-lib.github.io/rig/) para instalar e gerenciar o R;
+- RStudio ou Positron (opcionais);
 - os pacotes de R usados nas aulas que você pretende renderizar.
 
-Clone o repositório e, na pasta do projeto, restaure o ambiente pelo console do
-R:
+Clone o repositório e, na pasta do projeto, sincronize o ambiente pelo terminal:
 
-```r
-renv::restore()
+```powershell
+rig proj sync
 ```
 
-Depois, inicie a visualização pelo terminal:
+O comando instala a versão do R e os pacotes registrados em `rproj.lock` na
+biblioteca isolada `.rvenv/`. Depois, inicie a visualização:
 
 ```powershell
 quarto preview

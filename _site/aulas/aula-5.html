@@ -402,14 +402,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>dados que podem ser compartilhados (<code>dados/populacao_uf.csv</code>, <code>dados/pib_uf.csv</code> e o <code>dados/README.md</code> que documenta a fonte);</li>
 <li>imagens e referências usadas no documento;</li>
 <li><code>_quarto.yml</code> ou <code>_quarto.yaml</code>;</li>
-<li><code>README.md</code> e <code>renv.lock</code>.</li>
+<li><code>README.md</code>, <code>rproj.toml</code> e <code>rproj.lock</code>.</li>
 </ul>
 <p>Não versione credenciais, dados sigilosos, histórico do R ou bibliotecas instaladas. Use <code>.gitignore</code>:</p>
 <pre class="gitignore"><code>.Rhistory
 .RData
 .Rproj.user/
 .quarto/
-renv/library/</code></pre>
+.rvenv/</code></pre>
 <div class="callout callout-style-default callout-warning callout-titled" title="Credenciais">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -462,7 +462,7 @@ renv/library/</code></pre>
 <tr class="odd">
 <td><code>Salvando alterações da aula 3</code></td>
 <td>descreve o ato de salvar, não o conteúdo da mudança</td>
-<td><code>Adiciona pipeline de dados e exemplo de renv na Aula 3</code></td>
+<td><code>Adiciona pipeline de dados e exemplo de rig na Aula 3</code></td>
 </tr>
 </tbody>
 </table>
@@ -480,7 +480,7 @@ renv/library/</code></pre>
 <li>autoria, licença e fonte dos dados;</li>
 <li>link para a versão publicada.</li>
 </ol>
-<p>O <a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/README.md"><code>README.md</code> deste próprio repositório</a> segue essa estrutura — abra-o como referência: ele lista o conteúdo do repositório, os pré-requisitos, o comando <code>renv::restore()</code> para restaurar o ambiente e o comando <code>quarto preview</code> para visualizar localmente. Peça para outra pessoa seguir o README do seu próprio projeto; instruções que só funcionam para quem escreveu ainda estão incompletas.</p>
+<p>O <a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/README.md"><code>README.md</code> deste próprio repositório</a> segue essa estrutura — abra-o como referência: ele lista o conteúdo do repositório, os pré-requisitos, o comando <code>rig proj sync</code> para restaurar o ambiente e o comando <code>quarto preview</code> para visualizar localmente. Peça para outra pessoa seguir o README do seu próprio projeto; instruções que só funcionam para quem escreveu ainda estão incompletas.</p>
 </section>
 <section id="publicação-no-github-pages" class="level2">
 <h2 class="anchored" data-anchor-id="publicação-no-github-pages">4. Publicação no GitHub Pages</h2>
@@ -546,7 +546,7 @@ Dica
 <ul>
 <li>o projeto usa caminhos relativos ou <code>here::here()</code>?</li>
 <li>renderiza depois de reiniciar o R?</li>
-<li>dependências estão registradas em <code>renv.lock</code>?</li>
+<li>dependências estão declaradas em <code>rproj.toml</code> e registradas em <code>rproj.lock</code>?</li>
 <li>dados e instruções de obtenção estão disponíveis?</li>
 </ul>
 </section>

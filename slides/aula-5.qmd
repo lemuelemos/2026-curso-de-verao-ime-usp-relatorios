@@ -34,7 +34,7 @@ format:
 - scripts e funções (`materiais/exemplos/R/`);
 - `dados/*.csv` e `dados/README.md`;
 - `README.md`;
-- `renv.lock`.
+- `rproj.toml` e `rproj.lock`.
 :::
 
 ::: {.column width="50%"}
@@ -42,7 +42,7 @@ format:
 
 - credenciais;
 - dados sigilosos;
-- bibliotecas instaladas (`renv/library`);
+- bibliotecas instaladas (`.rvenv/`);
 - `.Rhistory` e `.RData`;
 - caches temporários.
 :::
@@ -55,7 +55,7 @@ format:
 .RData
 .Rproj.user/
 .quarto/
-renv/library/
+.rvenv/
 ```
 
 Ignorar um arquivo não o remove do histórico se ele já foi versionado.
@@ -86,7 +86,7 @@ Leia o diff antes de criar o commit.
 |---|---|
 | `AJuste depis de redenrizar` | `Corrige links quebrados após renderizar o site` |
 | `Arquivo repoduciveis` | `Adiciona seção sobre reprodutibilidade na Aula 1` |
-| `Salvando alterações da aula 3` | `Adiciona pipeline de dados e exemplo de renv na Aula 3` |
+| `Salvando alterações da aula 3` | `Adiciona pipeline de dados e exemplo de rig na Aula 3` |
 
 Nenhum repositório é perfeito — inclusive este. O padrão a evitar: descrever *que* algo mudou, não *o quê* nem *por quê*.
 

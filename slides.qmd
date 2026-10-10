@@ -24,7 +24,7 @@ Planejamento narrativo, YAML, Markdown, tabelas, gráficos, referências cruzada
 
 ## Aula 3 — Dados, formatos e automação
 
-Organização do projeto, caminhos relativos, resultados dinâmicos, formatos HTML/PDF/Word e ambientes com `renv`.
+Organização do projeto, caminhos relativos, resultados dinâmicos, formatos HTML/PDF/Word e ambientes com `rig`.
 
 - [Abrir slides da Aula 3](slides/aula-3.html){target="_blank"}
 - [Ler o roteiro completo da Aula 3](aulas/aula-3.qmd)

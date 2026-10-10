@@ -26,7 +26,7 @@ execute:
 3. juntar duas fontes de dados e tratar `NA`;
 4. produzir resultados dinâmicos no texto;
 5. escolher entre HTML, PDF e Word;
-6. registrar dependências com `renv`.
+6. registrar dependências com `rig`.
 
 ## Estrutura de projeto
 
@@ -144,19 +144,21 @@ execute:
 
 Esconder avisos não corrige problemas — só os torna invisíveis no documento final.
 
-## Ambiente com `renv`
+## Ambiente com `rig`
 
-```r
-renv::init()
-renv::snapshot()
-renv::restore()
+```powershell
+rig proj init --r-version 4.5
+rig proj add dplyr readr ggplot2
+rig proj lock
+rig proj sync
 ```
 
-| Função | Uso |
+| Comando | Uso |
 |---|---|
-| `init()` | inicia um ambiente |
-| `snapshot()` | registra versões usadas |
-| `restore()` | recria o ambiente registrado |
+| `proj init` | inicia um ambiente |
+| `proj add` | declara dependências |
+| `proj lock` | registra versões resolvidas |
+| `proj sync` | recria o ambiente registrado |
 
 ## Teste em sessão limpa
 

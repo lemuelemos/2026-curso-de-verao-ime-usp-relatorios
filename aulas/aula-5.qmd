@@ -23,7 +23,7 @@ Versione tudo o que é necessário para compreender e reproduzir o projeto:
 - dados que podem ser compartilhados (`dados/populacao_uf.csv`, `dados/pib_uf.csv` e o `dados/README.md` que documenta a fonte);
 - imagens e referências usadas no documento;
 - `_quarto.yml` ou `_quarto.yaml`;
-- `README.md` e `renv.lock`.
+- `README.md`, `rproj.toml` e `rproj.lock`.
 
 Não versione credenciais, dados sigilosos, histórico do R ou bibliotecas instaladas. Use `.gitignore`:
 
@@ -32,7 +32,7 @@ Não versione credenciais, dados sigilosos, histórico do R ou bibliotecas insta
 .RData
 .Rproj.user/
 .quarto/
-renv/library/
+.rvenv/
 ```
 
 ::: {.callout-warning title="Credenciais"}
@@ -59,7 +59,7 @@ Nenhum projeto tem 100% de commits perfeitos — inclusive o deste próprio curs
 |---|---|---|
 | `AJuste depis de redenrizar` | não diz o quê, nem por quê; tem erros de digitação | `Corrige links quebrados após renderizar o site` |
 | `Arquivo repoduciveis` | é um substantivo solto, não uma frase sobre a mudança | `Adiciona seção sobre reprodutibilidade na Aula 1` |
-| `Salvando alterações da aula 3` | descreve o ato de salvar, não o conteúdo da mudança | `Adiciona pipeline de dados e exemplo de renv na Aula 3` |
+| `Salvando alterações da aula 3` | descreve o ato de salvar, não o conteúdo da mudança | `Adiciona pipeline de dados e exemplo de rig na Aula 3` |
 
 O padrão comum nos três: descrevem *que algo mudou*, não *o que* mudou nem *por quê*. Uma boa mensagem de commit deixa alguém entender a alteração só de ler o histórico, sem precisar abrir o `diff`.
 
@@ -74,7 +74,7 @@ Um repositório de curso ou projeto deve informar:
 5. autoria, licença e fonte dos dados;
 6. link para a versão publicada.
 
-O [`README.md` deste próprio repositório](https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/README.md) segue essa estrutura — abra-o como referência: ele lista o conteúdo do repositório, os pré-requisitos, o comando `renv::restore()` para restaurar o ambiente e o comando `quarto preview` para visualizar localmente. Peça para outra pessoa seguir o README do seu próprio projeto; instruções que só funcionam para quem escreveu ainda estão incompletas.
+O [`README.md` deste próprio repositório](https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/README.md) segue essa estrutura — abra-o como referência: ele lista o conteúdo do repositório, os pré-requisitos, o comando `rig proj sync` para restaurar o ambiente e o comando `quarto preview` para visualizar localmente. Peça para outra pessoa seguir o README do seu próprio projeto; instruções que só funcionam para quem escreveu ainda estão incompletas.
 
 ## 4. Publicação no GitHub Pages
 
@@ -137,7 +137,7 @@ Consulte [Publicação no GitHub Pages](https://quarto.org/docs/publishing/githu
 
 - o projeto usa caminhos relativos ou `here::here()`?
 - renderiza depois de reiniciar o R?
-- dependências estão registradas em `renv.lock`?
+- dependências estão declaradas em `rproj.toml` e registradas em `rproj.lock`?
 - dados e instruções de obtenção estão disponíveis?
 
 ### Acessibilidade e apresentação

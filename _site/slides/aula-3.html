@@ -216,7 +216,7 @@ Lemuel de Lemos Romão
 <li>juntar duas fontes de dados e tratar <code>NA</code>;</li>
 <li>produzir resultados dinâmicos no texto;</li>
 <li>escolher entre HTML, PDF e Word;</li>
-<li>registrar dependências com <code>renv</code>.</li>
+<li>registrar dependências com <code>rig</code>.</li>
 </ol>
 </section>
 <section id="estrutura-de-projeto" class="slide level2">
@@ -357,17 +357,17 @@ Lemuel de Lemos Romão
 <p><strong>Variable type: numeric</strong></p>
 <table class="caption-top" style="width:100%;">
 <colgroup>
-<col style="width: 11%">
 <col style="width: 8%">
-<col style="width: 11%">
-<col style="width: 9%">
-<col style="width: 9%">
+<col style="width: 6%">
 <col style="width: 8%">
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 4%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 26%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -396,7 +396,7 @@ Lemuel de Lemos Romão
 <td style="text-align: right;">3941613.00</td>
 <td style="text-align: right;">8926944.00</td>
 <td style="text-align: right;">44411238.00</td>
-<td style="text-align: left;">▇▂▁▁▁</td>
+<td style="text-align: left;">&lt;U+2587&gt;&lt;U+2582&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">area_km2</td>
@@ -409,7 +409,7 @@ Lemuel de Lemos Romão
 <td style="text-align: right;">224299.00</td>
 <td style="text-align: right;">336035.00</td>
 <td style="text-align: right;">1570745.70</td>
-<td style="text-align: left;">▇▂▁▁▁</td>
+<td style="text-align: left;">&lt;U+2587&gt;&lt;U+2582&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">latitude</td>
@@ -422,7 +422,7 @@ Lemuel de Lemos Romão
 <td style="text-align: right;">-10.18</td>
 <td style="text-align: right;">-5.44</td>
 <td style="text-align: right;">2.82</td>
-<td style="text-align: left;">▃▃▅▇▆</td>
+<td style="text-align: left;">&lt;U+2583&gt;&lt;U+2583&gt;&lt;U+2585&gt;&lt;U+2587&gt;&lt;U+2586&gt;</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">longitude</td>
@@ -435,7 +435,7 @@ Lemuel de Lemos Romão
 <td style="text-align: right;">-47.93</td>
 <td style="text-align: right;">-39.44</td>
 <td style="text-align: right;">-34.86</td>
-<td style="text-align: left;">▂▃▇▆▇</td>
+<td style="text-align: left;">&lt;U+2582&gt;&lt;U+2583&gt;&lt;U+2587&gt;&lt;U+2586&gt;&lt;U+2587&gt;</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">densidade_dem</td>
@@ -448,7 +448,7 @@ Lemuel de Lemos Romão
 <td style="text-align: right;">35.02</td>
 <td style="text-align: right;">81.51</td>
 <td style="text-align: right;">483.91</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
+<td style="text-align: left;">&lt;U+2587&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;</td>
 </tr>
 </tbody>
 </table>
@@ -547,29 +547,34 @@ Lemuel de Lemos Romão
 <span id="cb10-5"><a></a><span class="at">  </span><span class="fu">error</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Esconder avisos não corrige problemas — só os torna invisíveis no documento final.</p>
 </section>
-<section id="ambiente-com-renv" class="slide level2">
-<h2>Ambiente com <code>renv</code></h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
-<span id="cb11-2"><a></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span>
-<span id="cb11-3"><a></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="ambiente-com-rig" class="slide level2">
+<h2>Ambiente com <code>rig</code></h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource powershell number-lines code-with-copy"><code class="sourceCode powershell"><span id="cb11-1"><a></a>rig proj init <span class="op">--</span>r-version <span class="dv">4.5</span></span>
+<span id="cb11-2"><a></a><span class="dt">rig</span> proj add dplyr readr ggplot2</span>
+<span id="cb11-3"><a></a>rig proj lock</span>
+<span id="cb11-4"><a></a>rig proj sync</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top">
 <thead>
 <tr class="header">
-<th>Função</th>
+<th>Comando</th>
 <th>Uso</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>init()</code></td>
+<td><code>proj init</code></td>
 <td>inicia um ambiente</td>
 </tr>
 <tr class="even">
-<td><code>snapshot()</code></td>
-<td>registra versões usadas</td>
+<td><code>proj add</code></td>
+<td>declara dependências</td>
 </tr>
 <tr class="odd">
-<td><code>restore()</code></td>
+<td><code>proj lock</code></td>
+<td>registra versões resolvidas</td>
+</tr>
+<tr class="even">
+<td><code>proj sync</code></td>
 <td>recria o ambiente registrado</td>
 </tr>
 </tbody>
