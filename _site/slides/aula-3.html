@@ -213,7 +213,7 @@ Lemuel de Lemos Romão
 <ol type="1">
 <li>organizar um projeto de análise;</li>
 <li>usar <code>here::here()</code> em vez de caminhos fixos;</li>
-<li>juntar duas fontes de dados e tratar <code>NA</code>;</li>
+<li>validar chaves, cobertura e resultado das junções;</li>
 <li>produzir resultados dinâmicos no texto;</li>
 <li>escolher entre HTML, PDF e Word;</li>
 <li>registrar dependências com <code>rig</code>.</li>
@@ -357,17 +357,17 @@ Lemuel de Lemos Romão
 <p><strong>Variable type: numeric</strong></p>
 <table class="caption-top" style="width:100%;">
 <colgroup>
+<col style="width: 11%">
 <col style="width: 8%">
-<col style="width: 6%">
+<col style="width: 11%">
+<col style="width: 9%">
+<col style="width: 9%">
 <col style="width: 8%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 6%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 26%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 4%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -396,7 +396,7 @@ Lemuel de Lemos Romão
 <td style="text-align: right;">3941613.00</td>
 <td style="text-align: right;">8926944.00</td>
 <td style="text-align: right;">44411238.00</td>
-<td style="text-align: left;">&lt;U+2587&gt;&lt;U+2582&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;</td>
+<td style="text-align: left;">▇▂▁▁▁</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">area_km2</td>
@@ -409,7 +409,7 @@ Lemuel de Lemos Romão
 <td style="text-align: right;">224299.00</td>
 <td style="text-align: right;">336035.00</td>
 <td style="text-align: right;">1570745.70</td>
-<td style="text-align: left;">&lt;U+2587&gt;&lt;U+2582&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;</td>
+<td style="text-align: left;">▇▂▁▁▁</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">latitude</td>
@@ -422,7 +422,7 @@ Lemuel de Lemos Romão
 <td style="text-align: right;">-10.18</td>
 <td style="text-align: right;">-5.44</td>
 <td style="text-align: right;">2.82</td>
-<td style="text-align: left;">&lt;U+2583&gt;&lt;U+2583&gt;&lt;U+2585&gt;&lt;U+2587&gt;&lt;U+2586&gt;</td>
+<td style="text-align: left;">▃▃▅▇▆</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">longitude</td>
@@ -435,7 +435,7 @@ Lemuel de Lemos Romão
 <td style="text-align: right;">-47.93</td>
 <td style="text-align: right;">-39.44</td>
 <td style="text-align: right;">-34.86</td>
-<td style="text-align: left;">&lt;U+2582&gt;&lt;U+2583&gt;&lt;U+2587&gt;&lt;U+2586&gt;&lt;U+2587&gt;</td>
+<td style="text-align: left;">▂▃▇▆▇</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">densidade_dem</td>
@@ -448,55 +448,112 @@ Lemuel de Lemos Romão
 <td style="text-align: right;">35.02</td>
 <td style="text-align: right;">81.51</td>
 <td style="text-align: right;">483.91</td>
-<td style="text-align: left;">&lt;U+2587&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </section>
-<section id="juntando-duas-fontes" class="slide level2">
-<h2>Juntando duas fontes</h2>
+<section id="antes-de-juntar-chave-e-ano" class="slide level2">
+<h2>Antes de juntar: chave e ano</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>pib_uf <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"pib_uf.csv"</span>), <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb5-2"><a></a></span>
-<span id="cb5-3"><a></a>estados <span class="ot">&lt;-</span> populacao_uf <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">left_join</span>(pib_uf, <span class="at">by =</span> <span class="st">"uf"</span>)</span>
-<span id="cb5-4"><a></a></span>
-<span id="cb5-5"><a></a><span class="fu">sum</span>(<span class="fu">is.na</span>(estados<span class="sc">$</span>pib_per_capita))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-3"><a></a>duplicadas_populacao <span class="ot">&lt;-</span> populacao_uf <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">count</span>(uf) <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb5-4"><a></a>duplicadas_pib <span class="ot">&lt;-</span> pib_uf <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">count</span>(uf, ano_referencia) <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb5-5"><a></a><span class="fu">stopifnot</span>(<span class="sc">!</span><span class="fu">anyNA</span>(populacao_uf<span class="sc">$</span>uf), <span class="sc">!</span><span class="fu">anyNA</span>(pib_uf<span class="sc">$</span>uf),</span>
+<span id="cb5-6"><a></a>          <span class="sc">!</span><span class="fu">anyNA</span>(pib_uf<span class="sc">$</span>ano_referencia),</span>
+<span id="cb5-7"><a></a>          <span class="fu">all</span>(<span class="fu">nzchar</span>(<span class="fu">trimws</span>(populacao_uf<span class="sc">$</span>uf))),</span>
+<span id="cb5-8"><a></a>          <span class="fu">all</span>(<span class="fu">nzchar</span>(<span class="fu">trimws</span>(pib_uf<span class="sc">$</span>uf))),</span>
+<span id="cb5-9"><a></a>          <span class="fu">nrow</span>(duplicadas_populacao) <span class="sc">==</span> <span class="dv">0</span>, <span class="fu">nrow</span>(duplicadas_pib) <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb5-10"><a></a></span>
+<span id="cb5-11"><a></a>ano_pib <span class="ot">&lt;-</span> <span class="dv">2023</span></span>
+<span id="cb5-12"><a></a>pib_ano <span class="ot">&lt;-</span> pib_uf <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(ano_referencia <span class="sc">==</span> ano_pib)</span>
+<span id="cb5-13"><a></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(populacao_uf) <span class="sc">==</span> <span class="dv">27</span>, <span class="fu">nrow</span>(pib_ano) <span class="sc">==</span> <span class="dv">27</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>População: uma linha por UF; PIB: uma por UF e ano.</li>
+<li>Selecione um ano para uma relação um para um por <code>uf</code>.</li>
+<li>População de 2022 e PIB de 2023: não são referências temporais iguais.</li>
+</ul>
+</section>
+<section id="cobertura-nos-dois-sentidos" class="slide level2">
+<h2>Cobertura nos dois sentidos</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>sem_pib <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">anti_join</span>(populacao_uf, pib_ano, <span class="at">by =</span> <span class="st">"uf"</span>)</span>
+<span id="cb6-2"><a></a>sem_populacao <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">anti_join</span>(pib_ano, populacao_uf, <span class="at">by =</span> <span class="st">"uf"</span>)</span>
+<span id="cb6-3"><a></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(sem_pib) <span class="sc">==</span> <span class="dv">0</span>, <span class="fu">nrow</span>(sem_populacao) <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><code>anti_join(x, y)</code> mostra chaves de <code>x</code> sem correspondência em <code>y</code>.</li>
+<li>Confira ambos os sentidos: o <code>left_join</code> não traz UFs presentes só à direita.</li>
+<li>Cobertura incompleta: investigue siglas e recortes antes de continuar.</li>
+</ul>
+</section>
+<section id="juntando-com-a-relação-esperada" class="slide level2">
+<h2>Juntando com a relação esperada</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>dados_ufs <span class="ot">&lt;-</span> populacao_uf <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(pib_ano, <span class="at">by =</span> <span class="st">"uf"</span>,</span>
+<span id="cb7-3"><a></a>                   <span class="at">relationship =</span> <span class="st">"one-to-one"</span>, <span class="at">na_matches =</span> <span class="st">"never"</span>)</span>
+<span id="cb7-4"><a></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(dados_ufs) <span class="sc">==</span> <span class="fu">nrow</span>(populacao_uf),</span>
+<span id="cb7-5"><a></a>          dplyr<span class="sc">::</span><span class="fu">n_distinct</span>(dados_ufs<span class="sc">$</span>uf) <span class="sc">==</span> <span class="fu">nrow</span>(populacao_uf))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Múltiplas correspondências podem multiplicar linhas.</li>
+<li><code>relationship</code> verifica a relação esperada, não a cobertura.</li>
+<li>Não remova duplicações automaticamente: descubra sua causa.</li>
+</ul>
+</section>
+<section id="zero-na-não-garante-uma-junção-correta" class="slide level2">
+<h2>Zero <code>NA</code> não garante uma junção correta</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">sum</span>(<span class="fu">is.na</span>(dados_ufs<span class="sc">$</span>pib_per_capita))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">stopifnot</span>(<span class="sc">!</span><span class="fu">anyNA</span>(dados_ufs<span class="sc">$</span>pib_per_capita))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><code>populacao_uf.csv</code> é de 2022; <code>pib_uf.csv</code> é de 2023 — fontes diferentes do IBGE. Sempre confira o que um <code>left_join</code> produz antes de seguir.</p>
+<ul>
+<li>Duplicações e perdas à direita podem ocorrer sem gerar <code>NA</code>.</li>
+<li>Um <code>NA</code> pode vir da fonte ou de uma chave sem correspondência.</li>
+<li>Nesta base esperamos o indicador completo; em outro projeto, diagnostique e documente exclusões ou imputações.</li>
+</ul>
 </section>
 <section id="fluxo-com-responsabilidades-claras" class="slide level2">
 <h2>Fluxo com responsabilidades claras</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># 1. Importação</span></span>
-<span id="cb7-2"><a></a>populacao_uf <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"populacao_uf.csv"</span>))</span>
-<span id="cb7-3"><a></a>pib_uf <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"pib_uf.csv"</span>))</span>
-<span id="cb7-4"><a></a></span>
-<span id="cb7-5"><a></a><span class="co"># 2. Junção e tratamento</span></span>
-<span id="cb7-6"><a></a>estados <span class="ot">&lt;-</span> populacao_uf <span class="sc">|&gt;</span></span>
-<span id="cb7-7"><a></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(pib_uf, <span class="at">by =</span> <span class="st">"uf"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-8"><a></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pib_per_capita))</span>
-<span id="cb7-9"><a></a></span>
-<span id="cb7-10"><a></a><span class="co"># 3. Transformação</span></span>
-<span id="cb7-11"><a></a>resumo_regiao <span class="ot">&lt;-</span> estados <span class="sc">|&gt;</span></span>
-<span id="cb7-12"><a></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(regiao) <span class="sc">|&gt;</span></span>
-<span id="cb7-13"><a></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">pib_medio =</span> <span class="fu">mean</span>(pib_per_capita), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># 1. Importe e valide chaves, ano e cobertura (blocos anteriores).</span></span>
+<span id="cb11-2"><a></a><span class="co"># 2. Reutilize dados_ufs, com junção e indicador já validados.</span></span>
+<span id="cb11-3"><a></a></span>
+<span id="cb11-4"><a></a><span class="co"># 3. Transformação</span></span>
+<span id="cb11-5"><a></a>resumo_regiao <span class="ot">&lt;-</span> dados_ufs <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(regiao, ano_referencia) <span class="sc">|&gt;</span></span>
+<span id="cb11-7"><a></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">pib_pc_media_ufs =</span> <span class="fu">mean</span>(pib_per_capita), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="média-entre-ufs-e-pib-per-capita-regional" class="slide level2">
+<h2>Média entre UFs e PIB per capita regional</h2>
+<ul>
+<li><code>mean(pib_per_capita)</code> dá o mesmo peso a cada UF.</li>
+<li>Indicador do exercício: <strong>média simples do PIB per capita entre UFs</strong>, por região e ano.</li>
+<li>PIB per capita regional: soma dos PIBs dividida pela soma das populações correspondentes.</li>
+<li>PIB per capita de 2023 e população de 2022 não fornecem os denominadores compatíveis para esse cálculo regional.</li>
+</ul>
+<p>Mantenha o ano e o tipo de média explícitos nas tabelas, gráficos e conclusões.</p>
 </section>
 <section id="resultados-dinâmicos" class="slide level2">
 <h2>Resultados dinâmicos</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>resumo_regiao <span class="ot">&lt;-</span> estados <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(regiao) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">pib_medio =</span> <span class="fu">mean</span>(pib_per_capita, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-4"><a></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(dplyr<span class="sc">::</span><span class="fu">desc</span>(pib_medio))</span>
-<span id="cb8-5"><a></a></span>
-<span id="cb8-6"><a></a>regiao_maior_pib <span class="ot">&lt;-</span> resumo_regiao<span class="sc">$</span>regiao[<span class="dv">1</span>]</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>resumo_regiao <span class="ot">&lt;-</span> dados_ufs <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(regiao, ano_referencia) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">pib_pc_media_ufs =</span> <span class="fu">mean</span>(pib_per_capita), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(dplyr<span class="sc">::</span><span class="fu">desc</span>(pib_pc_media_ufs))</span>
+<span id="cb12-5"><a></a></span>
+<span id="cb12-6"><a></a>regiao_maior_media <span class="ot">&lt;-</span> resumo_regiao<span class="sc">$</span>regiao[<span class="dv">1</span>]</span>
+<span id="cb12-7"><a></a>ano_maior_media <span class="ot">&lt;-</span> resumo_regiao<span class="sc">$</span>ano_referencia[<span class="dv">1</span>]</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>No texto: código R inline (acento grave, a letra r, espaço, expressão, acento grave) — nunca um número digitado.</p>
-<p>Esta frase usa a técnica: a região Centro-Oeste tem o maior PIB per capita médio.</p>
+<p>Esta frase usa a técnica: a maior média simples do PIB per capita entre UFs, nos recortes disponíveis, é a da região Centro-Oeste em 2023.</p>
 </section>
 <section id="qual-formato-escolher" class="slide level2">
 <h2>Qual formato escolher?</h2>
@@ -529,22 +586,22 @@ Lemuel de Lemos Romão
 </section>
 <section id="múltiplos-formatos" class="slide level2">
 <h2>Múltiplos formatos</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb9-2"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb9-3"><a></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb9-4"><a></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
-<span id="cb9-5"><a></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb9-6"><a></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span></span>
-<span id="cb9-7"><a></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb13-2"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb13-3"><a></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb13-4"><a></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb13-5"><a></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb13-6"><a></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span></span>
+<span id="cb13-7"><a></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>O público define o formato, não a preferência da pessoa autora.</p>
 </section>
 <section id="execução" class="slide level2">
 <h2>Execução</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb10-2"><a></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb10-3"><a></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb10-4"><a></a><span class="at">  </span><span class="fu">message</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb10-5"><a></a><span class="at">  </span><span class="fu">error</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb14-2"><a></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb14-3"><a></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb14-4"><a></a><span class="at">  </span><span class="fu">message</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb14-5"><a></a><span class="at">  </span><span class="fu">error</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Esconder avisos não corrige problemas — só os torna invisíveis no documento final.</p>
 </section>
 <section id="ambiente-com-rig" class="slide level2">
@@ -560,10 +617,9 @@ Lemuel de Lemos Romão
 </section>
 <section id="fluxo-do-ambiente" class="slide level2">
 <h2>Fluxo do ambiente</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource powershell number-lines code-with-copy"><code class="sourceCode powershell"><span id="cb11-1"><a></a>rig proj init <span class="op">--</span>r-version <span class="dv">4.5</span></span>
-<span id="cb11-2"><a></a><span class="dt">rig</span> proj add dplyr readr ggplot2</span>
-<span id="cb11-3"><a></a>rig proj lock</span>
-<span id="cb11-4"><a></a>rig proj sync</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource powershell number-lines code-with-copy"><code class="sourceCode powershell"><span id="cb15-1"><a></a>rig proj init <span class="op">--</span>r-version <span class="dv">4.5</span></span>
+<span id="cb15-2"><a></a><span class="dt">rig</span> proj add dplyr readr ggplot2</span>
+<span id="cb15-3"><a></a>rig proj status</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -578,18 +634,36 @@ Lemuel de Lemos Romão
 </tr>
 <tr class="even">
 <td><code>proj add</code></td>
-<td>declara dependências</td>
+<td>declara, atualiza o lock e instala</td>
 </tr>
 <tr class="odd">
-<td><code>proj lock</code></td>
-<td>registra versões resolvidas</td>
+<td><code>proj status</code></td>
+<td>verifica a sincronização, sem alterar</td>
 </tr>
 <tr class="even">
+<td><code>proj lock</code></td>
+<td>resolve e registra versões, sem instalar</td>
+</tr>
+<tr class="odd">
 <td><code>proj sync</code></td>
-<td>recria o ambiente registrado</td>
+<td>sincroniza a biblioteca com o lock</td>
 </tr>
 </tbody>
 </table>
+<p>No <code>rig 0.11.0</code>, um <code>add</code> bem-sucedido já executa as etapas de lock e instalação.</p>
+</section>
+<section id="se-quiser-separar-as-etapas" class="slide level2">
+<h2>Se quiser separar as etapas</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource powershell number-lines code-with-copy"><code class="sourceCode powershell"><span id="cb16-1"><a></a>rig proj add <span class="op">--</span>no-lock dplyr readr ggplot2</span>
+<span id="cb16-2"><a></a>rig proj lock</span>
+<span id="cb16-3"><a></a>rig proj sync</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>add --no-lock</code>: somente manifesto.</li>
+<li><code>add --no-sync</code>: manifesto e lock, sem instalação.</li>
+<li>Após editar o manifesto manualmente: <code>lock</code> e <code>sync</code>.</li>
+<li>Após clonar: <code>sync</code>; <code>--frozen</code> exige um lock existente.</li>
+</ul>
+<p>Funcionalidade experimental: confira <code>rig proj add --help</code> na sua versão.</p>
 </section>
 <section id="teste-em-sessão-limpa" class="slide level2">
 <h2>Teste em sessão limpa</h2>
@@ -606,8 +680,10 @@ Lemuel de Lemos Romão
 <ul>
 <li>leia as duas bases com <code>here::here()</code>;</li>
 <li>rode <code>skimr::skim()</code> antes de juntar;</li>
-<li>junte com <code>left_join()</code> e confira <code>NA</code>;</li>
-<li>produza tabela, gráfico e um valor dinâmico no texto;</li>
+<li>confira chaves, ano e cobertura nos dois sentidos;</li>
+<li>junte com a relação esperada e compare linhas/UFs antes e depois;</li>
+<li>investigue os <code>NA</code>, sem exclusões silenciosas;</li>
+<li>produza tabela, gráfico e um valor dinâmico da média simples entre UFs, identificando região e ano;</li>
 <li>gere HTML e outro formato;</li>
 <li>teste em sessão limpa.</li>
 </ul>

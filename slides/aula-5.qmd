@@ -68,17 +68,111 @@ Tokens, senhas e chaves de API não pertencem ao código nem ao histórico do Gi
 
 Use variáveis de ambiente e arquivos locais ignorados.
 
+## Prepare o repositório do trabalho
+
+No terminal, dentro da pasta do **seu trabalho final**:
+
+```powershell
+git --version
+git status
+```
+
+Se aparecer `not a git repository`:
+
+```powershell
+git init -b main
+```
+
+Se você clonou um repositório, ele já tem histórico. Continue usando-o.
+
+## Identidade dos commits
+
+Substitua os valores pelos seus dados:
+
+```powershell
+git config user.name "Seu nome"
+git config user.email "seu-email@example.com"
+```
+
+- configuração local, válida para este repositório;
+- email associado ao GitHub ou endereço `noreply` de *Settings → Emails*;
+- autoria dos commits e autenticação no GitHub são configurações diferentes.
+
+## O que entra no commit?
+
+| Comando | O que mostra |
+|---|---|
+| `git status` | arquivos novos, preparados e ainda não preparados |
+| `git diff` | alterações não preparadas em arquivos rastreados |
+| `git diff --staged` | alterações preparadas para o próximo commit |
+
+`git add` prepara uma versão do arquivo; `git commit` registra essa seleção.
+
+Arquivos novos entram no diff após `git add`. Confira imagens e outros binários abrindo os arquivos.
+
+## Primeiro commit
+
+Exemplo para um projeto que contém estes três arquivos:
+
+```powershell
+git status
+git add index.qmd README.md .gitignore
+git status
+git diff --staged
+git commit -m "Adiciona estrutura inicial do relatório"
+```
+
+Adicione também dados, scripts e configurações necessários, usando os nomes reais.
+
+## Conecte ao GitHub
+
+Crie um repositório vazio no GitHub, sem gerar README, licença ou `.gitignore`.
+
+Substitua a URL pela do seu repositório:
+
+```powershell
+git remote add origin https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
+git remote -v
+git push -u origin main
+```
+
+Se `origin` já existir, confira a URL. Para uma branch existente com outro nome, consulte `git branch --show-current` e use esse nome no envio.
+
+## Autenticação e primeiro envio
+
+- Por HTTPS, o gerenciador de credenciais pode abrir o navegador para autenticar.
+- Se o terminal pedir senha, use um token de acesso pessoal, conforme a documentação do GitHub.
+- Mantenha o token no gerenciador de credenciais.
+- Depois do `push`, confira os arquivos e o commit no GitHub.
+
+O envio das fontes ao repositório e a publicação no GitHub Pages são etapas diferentes.
+
+O roteiro da aula contém os detalhes e o link de autenticação HTTPS.
+
 ## Ciclo com Git
 
 ```powershell
 git status
 git diff
 git add caminho/do/arquivo
+git status
+git diff --staged
 git commit -m "Explica os indicadores regionais"
 git push
 ```
 
-Leia o diff antes de criar o commit.
+Antes do commit, revise `git diff --staged`.
+
+Se editar o arquivo depois de `git add`, prepare-o novamente para incluir a nova edição.
+
+## Pratique os dois diffs
+
+1. Edite e salve uma frase no README: confira `git diff`.
+2. Execute `git add README.md`: confira `git diff --staged`.
+3. Edite e salve outra frase no mesmo arquivo.
+4. Compare `git status`, `git diff` e `git diff --staged`.
+
+A primeira edição está preparada; a segunda ainda não. Execute `git add README.md` novamente para incluir ambas.
 
 ## Um bom commit — exemplos reais deste repositório
 
@@ -106,23 +200,29 @@ O `README.md` deste repositório segue exatamente essa estrutura — vale abrir 
 
 ## Como este site é publicado
 
-`.github/workflows/static.yml` publica a pasta `_site/` já renderizada a cada `push` em `main`:
+`.github/workflows/static.yml` publica a pasta `_site/` já renderizada a cada `push` em `main`.
 
-```yaml
-on:
-  push:
-    branches: ["main"]
-jobs:
-  deploy:
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: '_site'
-      - uses: actions/deploy-pages@v4
-```
+1. Configure **Settings → Pages → Source: GitHub Actions**.
+2. Crie o workflow completo apresentado na seção 4 do [roteiro da aula](../aulas/aula-5.qmd#publicação-no-github-pages).
+3. Envie o workflow e `_site/` no commit.
+4. Confira a execução em **Actions** e o link em **Settings → Pages**.
 
 O Quarto **não** roda no GitHub Actions aqui — por isso é preciso `quarto render` local antes do `push`.
+
+## Ambiente de implantação
+
+Trecho do job `deploy` — consulte o roteiro para o workflow completo:
+
+```yaml
+environment:
+  name: github-pages
+  url: ${{ steps.deployment.outputs.page_url }}
+```
+
+- `github-pages` define o ambiente de implantação.
+- A etapa de publicação precisa de `id: deployment` para fornecer a URL acima.
+- O workflow inclui `contents: read`, `pages: write` e `id-token: write`.
+- Checkout, configuração do Pages, upload de `_site/` e implantação formam o fluxo completo.
 
 ## Outras estratégias de publicação
 
@@ -164,14 +264,15 @@ Escolha uma estratégia e documente o fluxo — não misture duas no mesmo repos
 2. revise o `.gitignore`;
 3. atualize o README;
 4. renderize em sessão limpa;
-5. escreva uma mensagem de commit e compare com a tabela desta aula antes de confirmar;
-6. publique e teste o link.
+5. prepare os arquivos e revise `git status` e `git diff --staged`;
+6. escreva a mensagem do commit, confirme e envie ao GitHub;
+7. publique e teste o link.
 
 ## Projeto final — entrega
 
 Entregue:
 
-- documento publicado, quando aplicável;
+- documento renderizado; publicação web opcional;
 - arquivos-fonte;
 - dados ou instruções de obtenção;
 - README;
@@ -183,8 +284,9 @@ Entregue:
 - [ ] projeto renderiza;
 - [ ] links funcionam;
 - [ ] nenhuma credencial foi incluída;
+- [ ] seleção do commit revisada com `git diff --staged`;
 - [ ] README permite reproduzir;
-- [ ] versão publicada foi testada;
+- [ ] saída renderizada testada; se publiquei, testei o link;
 - [ ] trabalho atende à rubrica.
 
 ## Encerramento

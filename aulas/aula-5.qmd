@@ -41,15 +41,93 @@ Senhas, tokens e chaves de API nunca devem aparecer no código ou no histórico 
 
 ## 2. Um ciclo de trabalho com Git
 
+### Prepare o repositório do seu trabalho
+
+Abra o terminal na pasta do seu projeto. Os comandos abaixo são para o **seu trabalho final**; o repositório do curso, se foi clonado, já tem histórico e conexão com o GitHub.
+
+Confira se o Git está disponível e se a pasta já é um repositório:
+
+```powershell
+git --version
+git status
+```
+
+Se `git status` responder `not a git repository`, inicialize o histórico nessa pasta:
+
+```powershell
+git init -b main
+```
+
+Se o projeto já tiver um repositório, continue usando-o. Configure a identidade que aparecerá nos commits, substituindo os valores pelos seus dados:
+
+```powershell
+git config user.name "Seu nome"
+git config user.email "seu-email@example.com"
+```
+
+Essas configurações valem apenas para este repositório. Use um email associado à sua conta do GitHub ou o endereço `noreply` informado em *Settings → Emails*. Nome e email identificam a autoria; a autenticação para enviar arquivos será feita separadamente.
+
+### Entenda o que será salvo
+
+O Git distingue os arquivos que você está editando, a **área de preparação** (*staging area*, também chamada de índice) e os commits já registrados. `git add` coloca uma versão do arquivo na área de preparação; `git commit` registra essa seleção no histórico local.
+
+| Comando | O que mostra |
+|---|---|
+| `git status` | arquivos novos, alterações preparadas e alterações ainda não preparadas |
+| `git diff` | alterações em arquivos já rastreados que ainda não foram preparadas |
+| `git diff --staged` | alterações preparadas que entrarão no próximo commit |
+
+Arquivos novos ainda não rastreados aparecem em `git status`, mas seu conteúdo só aparece no diff de preparação depois de `git add`. Imagens e outros arquivos binários geralmente não têm um diff legível linha por linha; abra-os para conferir o conteúdo.
+
+Faça um primeiro commit com os arquivos do seu projeto. Por exemplo, se ele já contém `index.qmd`, `README.md` e `.gitignore`:
+
+```powershell
+git status
+git add index.qmd README.md .gitignore
+git status
+git diff --staged
+git commit -m "Adiciona estrutura inicial do relatório"
+```
+
+Adicione também, pelos nomes reais, os dados compartilháveis, scripts e configurações necessários para reproduzir o trabalho. Revise a seleção antes de confirmar o commit.
+
+### Conecte o projeto ao GitHub e faça o primeiro envio
+
+No GitHub, crie um repositório vazio para o trabalho. Como o projeto já existe no computador, deixe desmarcadas as opções de adicionar README, licença e `.gitignore` nessa criação. Esses arquivos podem ser adicionados pelo seu projeto local.
+
+Copie a URL HTTPS do novo repositório e substitua `SEU-USUARIO` e `SEU-REPOSITORIO` no exemplo:
+
+```powershell
+git remote add origin https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
+git remote -v
+git push -u origin main
+```
+
+`origin` é o nome da conexão com o repositório remoto; `-u` associa a branch local `main` à remota, permitindo usar apenas `git push` nos próximos envios. Se `origin` já existir, confira a URL com `git remote -v` antes de continuar. O exemplo pressupõe a branch `main`, criada por `git init -b main`; em um repositório existente, confira seu nome com `git branch --show-current` e use esse nome no primeiro envio.
+
+No primeiro envio por HTTPS, o Git pode abrir o navegador para autenticar sua conta por meio do gerenciador de credenciais. Caso peça uma senha no terminal, o GitHub exige um token de acesso pessoal em vez da senha da conta. Siga as [instruções de autenticação HTTPS](https://docs.github.com/en/get-started/git-basics/about-remote-repositories#cloning-with-https-urls) e mantenha o token no gerenciador de credenciais, sem inseri-lo na URL ou nos arquivos do projeto.
+
+Depois do envio, abra o repositório no GitHub e confira se os arquivos e o commit aparecem. Enviar as fontes ao GitHub e publicar o documento no GitHub Pages são etapas diferentes; a publicação será tratada na seção 4.
+
+### Repita o ciclo a cada alteração
+
+Depois de editar e salvar um arquivo, use o fluxo abaixo. Substitua `caminho/do/arquivo` pelo arquivo que você alterou:
+
 ```powershell
 git status
 git diff
 git add caminho/do/arquivo
+git status
+git diff --staged
 git commit -m "Explica a análise de receita regional"
 git push
 ```
 
-Antes do commit, leia o `git diff` — ele mostra exatamente o que vai entrar no histórico, linha por linha, o que evita commitar algo por engano (um arquivo de dados temporário, uma credencial, uma alteração não intencional).
+Leia `git diff` para revisar as alterações ainda não preparadas e `git diff --staged` para revisar a seleção que será registrada. Se você editar o arquivo depois de `git add`, essa nova edição ficará fora do commit até executar `git add` novamente. Um arquivo pode, portanto, aparecer ao mesmo tempo como preparado e modificado em `git status`.
+
+::: {.callout-tip title="Experimente a área de preparação"}
+Edite uma frase no README, salve e rode `git diff`. Depois execute `git add README.md`: a alteração passa a aparecer em `git diff --staged`. Edite e salve outra frase no mesmo arquivo e compare os dois diffs. Antes do commit, prepare novamente o arquivo se quiser incluir as duas edições.
+:::
 
 ### Como reconhecer um bom commit
 
@@ -92,29 +170,52 @@ format:
     toc: true
 ```
 
-Renderize, confira a pasta de saída e escolha uma estratégia de publicação. Este próprio site usa a mais simples das três: publica a pasta `_site/` já renderizada. O workflow completo, em `.github/workflows/static.yml`, é curto:
+Renderize e confira a pasta `_site/`. Este site publica essa pasta já renderizada, usando GitHub Actions. Para aplicar o mesmo fluxo ao seu trabalho:
+
+1. No repositório do GitHub, abra **Settings → Pages** e selecione **GitHub Actions** em **Build and deployment → Source**.
+2. No projeto local, crie `.github/workflows/static.yml` com o conteúdo abaixo. O exemplo usa a branch `main`; ajuste-a se seu repositório usar outro nome.
+3. Inclua o workflow e a pasta `_site/` renderizada no commit e envie ao GitHub. Confira a execução na aba **Actions** e o endereço publicado em **Settings → Pages**.
+
+O exemplo reproduz a configuração do [workflow deste curso](https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/.github/workflows/static.yml), sem os comentários:
 
 ```yaml
+name: Deploy static content to Pages
+
 on:
   push:
     branches: ["main"]
+  workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: '_site'
-      - uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 ```
+
+`environment.name: github-pages` define o ambiente de implantação. O `id: deployment` identifica a etapa cuja saída fornece `page_url`, usada em `environment.url` para mostrar o link publicado. As permissões `pages: write` e `id-token: write` autorizam a implantação; `contents: read` permite ler o repositório. `workflow_dispatch` permite iniciar uma execução manual pela aba Actions, e `concurrency` organiza os envios para o mesmo ambiente. Consulte também a [documentação de workflows do GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 
 A cada `push` para `main`, o GitHub publica o conteúdo que já está em `_site/` — o Quarto **não** roda dentro do GitHub Actions. Isso significa uma regra importante para quem contribui com este repositório: depois de alterar um `.qmd`, é preciso rodar `quarto render` localmente e incluir a pasta `_site/` atualizada no mesmo commit, ou a publicação ficará desatualizada mesmo com o código-fonte correto.
 
@@ -153,24 +254,28 @@ Consulte [Publicação no GitHub Pages](https://quarto.org/docs/publishing/githu
 2. Atualize o `.gitignore` sem esconder arquivos necessários.
 3. Escreva ou revise o README do seu projeto, usando o deste curso como referência de estrutura.
 4. Renderize em uma sessão limpa.
-5. Escreva a mensagem de um commit real que você precise fazer — depois compare com a tabela da seção 2 antes de confirmar.
-6. Publique o projeto e teste o link publicado em uma janela anônima do navegador.
+5. Prepare os arquivos de uma alteração com `git add`, confira `git status` e revise `git diff --staged`. Escreva a mensagem do commit e compare com a tabela da seção 2 antes de confirmar.
+6. Conecte o repositório do trabalho ao GitHub, se necessário, e envie o commit. Confira os arquivos no GitHub.
+7. Publique o projeto e teste o link publicado em uma janela anônima do navegador.
 
 ## Entrega final
 
-Use a [rubrica e as instruções do trabalho](../trabalho_final.qmd). Entregue o link publicado e o repositório ou arquivo compactado com as fontes.
+Use a [rubrica e as instruções do trabalho](../trabalho_final.qmd#sec-rubrica). Entregue o repositório ou arquivo compactado com as fontes, os recursos necessários, o README e o documento renderizado. A publicação web é opcional; se publicar, inclua também o link.
 
 ## Checklist de conclusão
 
 - [ ] O README permite que outra pessoa execute o projeto.
 - [ ] Nenhuma credencial ou informação sigilosa foi versionada.
+- [ ] Revisei a seleção do commit com `git status` e `git diff --staged`.
 - [ ] O histórico tem commits compreensíveis — reli minhas últimas mensagens antes de finalizar.
-- [ ] A versão publicada abre e contém todos os recursos (gráficos interativos, mapas, tabelas).
+- [ ] O documento renderizado abre com todos os recursos; se publiquei, também testei a versão web.
 - [ ] A entrega atende à rubrica do curso.
 
 ## Leitura complementar
 
 - [GitHub: começar com Git](https://docs.github.com/pt/get-started/using-git/about-git)
+- [Git: diferenças entre alterações preparadas e não preparadas](https://git-scm.com/docs/git-diff)
+- [GitHub: enviar um projeto local](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github)
 - [Quarto: publicação](https://quarto.org/docs/publishing/)
 - [GitHub Pages](https://docs.github.com/pt/pages)
 - [quarto-actions: renderização no CI](https://github.com/quarto-dev/quarto-actions)

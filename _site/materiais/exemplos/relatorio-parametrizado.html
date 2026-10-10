@@ -330,7 +330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#visão-geral" id="toc-visão-geral" class="nav-link active" data-scroll-target="#visão-geral">Visão geral</a></li>
-  <li><a href="#população-por-estado" id="toc-população-por-estado" class="nav-link" data-scroll-target="#população-por-estado">População por estado</a></li>
+  <li><a href="#população-por-uf" id="toc-população-por-uf" class="nav-link" data-scroll-target="#população-por-uf">População por UF</a></li>
   <li><a href="#como-este-relatório-foi-parametrizado" id="toc-como-este-relatório-foi-parametrizado" class="nav-link" data-scroll-target="#como-este-relatório-foi-parametrizado">Como este relatório foi parametrizado</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/edit/main/materiais/exemplos/relatorio-parametrizado.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
@@ -418,7 +418,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(populacao), <span class="at">decimals =</span> <span class="dv">0</span>, <span class="at">sep_mark =</span> <span class="st">"."</span>, <span class="at">dec_mark =</span> <span class="st">","</span>) <span class="sc">|&gt;</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(densidade_dem), <span class="at">decimals =</span> <span class="dv">1</span>, <span class="at">sep_mark =</span> <span class="st">"."</span>, <span class="at">dec_mark =</span> <span class="st">","</span>) <span class="sc">|&gt;</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">nome_uf =</span> <span class="st">"Estado"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">nome_uf =</span> <span class="st">"UF"</span>,</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">capital =</span> <span class="st">"Capital"</span>,</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">populacao =</span> <span class="st">"População"</span>,</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">densidade_dem =</span> <span class="st">"Densidade (hab/km²)"</span>,</span>
@@ -426,30 +426,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(<span class="st">"Fonte: IBGE, Censo Demográfico 2022."</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="tbl-estados-regiao" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div id="tbl-ufs-regiao" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-estados-regiao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula&lt;U+00E7&gt;&lt;U+00E3&gt;o.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ufs-regiao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;1: UFs da região selecionada, ordenados pela população.
 </figcaption>
-<div aria-describedby="tbl-estados-regiao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-ufs-regiao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="sfvburxgag" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#sfvburxgag table {
+<div id="txcrvhqqlz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#txcrvhqqlz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#sfvburxgag thead, #sfvburxgag tbody, #sfvburxgag tfoot, #sfvburxgag tr, #sfvburxgag td, #sfvburxgag th {
+#txcrvhqqlz thead, #txcrvhqqlz tbody, #txcrvhqqlz tfoot, #txcrvhqqlz tr, #txcrvhqqlz td, #txcrvhqqlz th {
   border-style: none;
 }
 
-#sfvburxgag p {
+#txcrvhqqlz p {
   margin: 0;
   padding: 0;
 }
 
-#sfvburxgag .gt_table {
+#txcrvhqqlz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -475,12 +475,12 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   border-left-color: #D3D3D3;
 }
 
-#sfvburxgag .gt_caption {
+#txcrvhqqlz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#sfvburxgag .gt_title {
+#txcrvhqqlz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -492,7 +492,7 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   border-bottom-width: 0;
 }
 
-#sfvburxgag .gt_subtitle {
+#txcrvhqqlz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -504,7 +504,7 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   border-top-width: 0;
 }
 
-#sfvburxgag .gt_heading {
+#txcrvhqqlz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -516,13 +516,13 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   border-right-color: #D3D3D3;
 }
 
-#sfvburxgag .gt_bottom_border {
+#txcrvhqqlz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sfvburxgag .gt_col_headings {
+#txcrvhqqlz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -537,7 +537,7 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   border-right-color: #D3D3D3;
 }
 
-#sfvburxgag .gt_col_heading {
+#txcrvhqqlz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -557,7 +557,7 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   overflow-x: hidden;
 }
 
-#sfvburxgag .gt_column_spanner_outer {
+#txcrvhqqlz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -569,15 +569,15 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   padding-right: 4px;
 }
 
-#sfvburxgag .gt_column_spanner_outer:first-child {
+#txcrvhqqlz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sfvburxgag .gt_column_spanner_outer:last-child {
+#txcrvhqqlz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sfvburxgag .gt_column_spanner {
+#txcrvhqqlz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -589,11 +589,11 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   width: 100%;
 }
 
-#sfvburxgag .gt_spanner_row {
+#txcrvhqqlz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#sfvburxgag .gt_group_heading {
+#txcrvhqqlz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -619,7 +619,7 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   text-align: left;
 }
 
-#sfvburxgag .gt_empty_group_heading {
+#txcrvhqqlz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -634,15 +634,15 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   vertical-align: middle;
 }
 
-#sfvburxgag .gt_from_md > :first-child {
+#txcrvhqqlz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sfvburxgag .gt_from_md > :last-child {
+#txcrvhqqlz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sfvburxgag .gt_row {
+#txcrvhqqlz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -661,7 +661,7 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   overflow-x: hidden;
 }
 
-#sfvburxgag .gt_stub {
+#txcrvhqqlz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -674,7 +674,7 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   padding-right: 5px;
 }
 
-#sfvburxgag .gt_stub_row_group {
+#txcrvhqqlz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -688,15 +688,15 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   vertical-align: top;
 }
 
-#sfvburxgag .gt_row_group_first td {
+#txcrvhqqlz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#sfvburxgag .gt_row_group_first th {
+#txcrvhqqlz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#sfvburxgag .gt_summary_row {
+#txcrvhqqlz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -706,16 +706,16 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   padding-right: 5px;
 }
 
-#sfvburxgag .gt_first_summary_row {
+#txcrvhqqlz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#sfvburxgag .gt_first_summary_row.thick {
+#txcrvhqqlz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#sfvburxgag .gt_last_summary_row {
+#txcrvhqqlz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -725,7 +725,7 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   border-bottom-color: #D3D3D3;
 }
 
-#sfvburxgag .gt_grand_summary_row {
+#txcrvhqqlz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -735,7 +735,7 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   padding-right: 5px;
 }
 
-#sfvburxgag .gt_first_grand_summary_row {
+#txcrvhqqlz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -745,7 +745,7 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   border-top-color: #D3D3D3;
 }
 
-#sfvburxgag .gt_last_grand_summary_row_top {
+#txcrvhqqlz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -755,11 +755,11 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   border-bottom-color: #D3D3D3;
 }
 
-#sfvburxgag .gt_striped {
+#txcrvhqqlz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sfvburxgag .gt_table_body {
+#txcrvhqqlz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -768,7 +768,7 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   border-bottom-color: #D3D3D3;
 }
 
-#sfvburxgag .gt_footnotes {
+#txcrvhqqlz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -782,7 +782,7 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   border-right-color: #D3D3D3;
 }
 
-#sfvburxgag .gt_footnote {
+#txcrvhqqlz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -791,7 +791,7 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   padding-right: 5px;
 }
 
-#sfvburxgag .gt_sourcenotes {
+#txcrvhqqlz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -805,7 +805,7 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   border-right-color: #D3D3D3;
 }
 
-#sfvburxgag .gt_sourcenote {
+#txcrvhqqlz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -813,72 +813,72 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
   padding-right: 5px;
 }
 
-#sfvburxgag .gt_left {
+#txcrvhqqlz .gt_left {
   text-align: left;
 }
 
-#sfvburxgag .gt_center {
+#txcrvhqqlz .gt_center {
   text-align: center;
 }
 
-#sfvburxgag .gt_right {
+#txcrvhqqlz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sfvburxgag .gt_font_normal {
+#txcrvhqqlz .gt_font_normal {
   font-weight: normal;
 }
 
-#sfvburxgag .gt_font_bold {
+#txcrvhqqlz .gt_font_bold {
   font-weight: bold;
 }
 
-#sfvburxgag .gt_font_italic {
+#txcrvhqqlz .gt_font_italic {
   font-style: italic;
 }
 
-#sfvburxgag .gt_super {
+#txcrvhqqlz .gt_super {
   font-size: 65%;
 }
 
-#sfvburxgag .gt_footnote_marks {
+#txcrvhqqlz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#sfvburxgag .gt_asterisk {
+#txcrvhqqlz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#sfvburxgag .gt_indent_1 {
+#txcrvhqqlz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#sfvburxgag .gt_indent_2 {
+#txcrvhqqlz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#sfvburxgag .gt_indent_3 {
+#txcrvhqqlz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#sfvburxgag .gt_indent_4 {
+#txcrvhqqlz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#sfvburxgag .gt_indent_5 {
+#txcrvhqqlz .gt_indent_5 {
   text-indent: 25px;
 }
 
-#sfvburxgag .katex-display {
+#txcrvhqqlz .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#sfvburxgag div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#txcrvhqqlz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -886,10 +886,10 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
 <table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
-<th id="nome_uf" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Estado</th>
+<th id="nome_uf" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">UF</th>
 <th id="capital" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Capital</th>
-<th id="populacao" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Popula&lt;U+00E7&gt;&lt;U+00E3&gt;o</th>
-<th id="densidade_dem" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Densidade (hab/km&lt;U+00B2&gt;)</th>
+<th id="populacao" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">População</th>
+<th id="densidade_dem" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Densidade (hab/km²)</th>
 <th id="porte" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Porte</th>
 </tr>
 </thead>
@@ -920,11 +920,11 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
 <td class="gt_row gt_left" headers="capital">Vitória</td>
 <td class="gt_row gt_right" headers="populacao">3.833.712</td>
 <td class="gt_row gt_right" headers="densidade_dem">83,2</td>
-<td class="gt_row gt_left" headers="porte">mC)dio</td>
+<td class="gt_row gt_left" headers="porte">médio</td>
 </tr>
 </tbody><tfoot>
 <tr class="gt_sourcenotes odd">
-<td colspan="5" class="gt_sourcenote">Fonte: IBGE, Censo Demogr&lt;U+00E1&gt;fico 2022.</td>
+<td colspan="5" class="gt_sourcenote">Fonte: IBGE, Censo Demográfico 2022.</td>
 </tr>
 </tfoot>
 
@@ -937,8 +937,8 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
 </div>
 </div>
 </section>
-<section id="população-por-estado" class="level2">
-<h2 class="anchored" data-anchor-id="população-por-estado">População por estado</h2>
+<section id="população-por-uf" class="level2">
+<h2 class="anchored" data-anchor-id="população-por-uf">População por UF</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Mostrar código</summary>
@@ -950,19 +950,19 @@ Tabela&nbsp;1: Estados da regi&lt;U+00E3&gt;o selecionada, ordenados pela popula
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-populacao-regiao" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de barras horizontais com a população de cada estado da região, do maior para o menor.">
+<div id="fig-populacao-regiao" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de barras horizontais com a população de cada UF da região, da maior para a menor.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-populacao-regiao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="relatorio-parametrizado_files/figure-html/fig-populacao-regiao-1.png" class="img-fluid figure-img" alt="Gráfico de barras horizontais com a população de cada estado da região, do maior para o menor." width="672">
+<img src="relatorio-parametrizado_files/figure-html/fig-populacao-regiao-1.png" class="img-fluid figure-img" alt="Gráfico de barras horizontais com a população de cada UF da região, da maior para a menor." width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-populacao-regiao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1: População dos estados da região selecionada.
+Figura&nbsp;1: População das UFs da região selecionada.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>O estado mais populoso da região é <strong>São Paulo</strong> (44.411.238 habitantes) e o menos populoso é <strong>Espírito Santo</strong> (3.833.712 habitantes).</p>
+<p>A UF mais populosa da região é <strong>São Paulo</strong> (44.411.238 habitantes) e a menos populosa é <strong>Espírito Santo</strong> (3.833.712 habitantes).</p>
 </section>
 <section id="como-este-relatório-foi-parametrizado" class="level2">
 <h2 class="anchored" data-anchor-id="como-este-relatório-foi-parametrizado">Como este relatório foi parametrizado</h2>

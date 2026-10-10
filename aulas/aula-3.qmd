@@ -15,7 +15,8 @@ Até aqui construímos documentos com estrutura e elementos visuais, sempre a pa
 
 - separar importação, tratamento, análise e comunicação;
 - usar caminhos relativos e uma estrutura de projeto previsível, com `here::here()`;
-- juntar duas fontes de dados e lidar com valores ausentes de forma explícita;
+- validar chaves, cobertura e número de linhas ao juntar duas fontes de dados;
+- distinguir falhas de correspondência de valores ausentes na fonte;
 - gerar texto, tabelas e gráficos a partir dos mesmos dados;
 - escolher entre HTML, PDF e Word;
 - configurar a execução para produzir resultados atualizáveis.
@@ -65,41 +66,124 @@ skimr::skim(populacao_uf)
 
 Duas perguntas valem sempre a pena antes de prosseguir: o número de linhas bate com o esperado (aqui, 27 — uma por unidade federativa)? Alguma coluna tem valores ausentes (`n_missing`) que precisam de explicação?
 
-## 3. Juntando duas fontes de dados
+## 3. Juntando duas fontes de dados {#sec-juncoes}
 
-`pib_uf.csv` traz o PIB per capita por estado, mas de um ano de referência diferente do `populacao_uf.csv` — isso é comum quando os dados vêm de levantamentos diferentes do IBGE, e é um ótimo motivo para nunca juntar tabelas sem checar o que aconteceu:
+`pib_uf.csv` traz o PIB per capita por UF, mas de um ano de referência diferente do `populacao_uf.csv`. Antes de juntar, defina o que cada linha representa e quais colunas identificam uma observação.
+
+### Chave, ano e relação esperada
+
+Uma **chave** identifica a observação usada para combinar as tabelas. Aqui, `populacao_uf` tem uma linha por `uf`; a tabela de PIB deve ter uma linha por par `uf` e `ano_referencia`. Para juntar por `uf`, selecionaremos explicitamente um único ano do PIB. A relação esperada nesse recorte é **um para um**: uma linha de cada lado para cada UF.
+
+```{r}
+#| label: validar-chaves
+
+pib_uf <- readr::read_csv(here::here("dados", "pib_uf.csv"), show_col_types = FALSE)
+
+duplicadas_populacao <- populacao_uf |>
+  dplyr::count(uf) |>
+  dplyr::filter(n > 1)
+
+duplicadas_pib <- pib_uf |>
+  dplyr::count(uf, ano_referencia) |>
+  dplyr::filter(n > 1)
+
+stopifnot(
+  !anyNA(populacao_uf$uf),
+  !anyNA(pib_uf$uf),
+  !anyNA(pib_uf$ano_referencia),
+  all(nzchar(trimws(populacao_uf$uf))),
+  all(nzchar(trimws(pib_uf$uf))),
+  nrow(duplicadas_populacao) == 0,
+  nrow(duplicadas_pib) == 0
+)
+
+ano_pib <- 2023
+pib_ano <- pib_uf |>
+  dplyr::filter(ano_referencia == ano_pib)
+
+# Expectativa específica desta base do curso: as 27 UFs no ano escolhido.
+stopifnot(nrow(populacao_uf) == 27, nrow(pib_ano) == 27)
+```
+
+`count()` e `filter(n > 1)` mostram as chaves repetidas. `stopifnot()` interrompe a execução quando uma condição não é verdadeira: inspecione as tabelas de duplicadas e corrija a causa, em vez de removê-las automaticamente com `distinct()`. A contagem de 27 é uma expectativa desta base, não uma regra para qualquer conjunto de dados.
+
+Se houver vários anos, juntar só por `uf` sem selecionar um ano pode multiplicar as linhas e repetir a população de 2022 em cada ano do PIB. Para uma análise temporal, defina a granularidade desejada e obtenha dados populacionais compatíveis; não acrescente `ano_referencia` à chave se a outra tabela não tiver essa informação.
+
+### Cobertura nos dois sentidos
+
+`anti_join(x, y)` mostra as linhas de `x` cuja chave não aparece em `y`. Faça a verificação nos dois sentidos: um `left_join` preserva as linhas da esquerda, mas não traz as UFs que só existem na direita.
+
+```{r}
+#| label: validar-cobertura
+
+sem_pib <- dplyr::anti_join(populacao_uf, pib_ano, by = "uf")
+sem_populacao <- dplyr::anti_join(pib_ano, populacao_uf, by = "uf")
+
+knitr::kable(data.frame(
+  verificacao = c("UFs da população sem correspondência no PIB",
+                 "UFs do PIB sem correspondência na população"),
+  linhas = c(nrow(sem_pib), nrow(sem_populacao))
+))
+
+stopifnot(nrow(sem_pib) == 0, nrow(sem_populacao) == 0)
+```
+
+Neste curso esperamos cobertura completa. Se a verificação falhar, inspecione `sem_pib` e `sem_populacao`: confira siglas, espaços, maiúsculas/minúsculas e o recorte das fontes. Em outro projeto, uma cobertura parcial pode ser legítima, mas precisa ser justificada e documentada.
+
+### Junção e verificações do resultado
+
+`left_join()` acrescenta as colunas da tabela à direita usando a chave indicada por `by`. Ele preserva as observações da esquerda, mas pode aumentar o número de linhas quando há múltiplas correspondências. Declarar `relationship = "one-to-one"` faz a junção falhar se a relação esperada for violada; isso não substitui a checagem de cobertura.
 
 ```{r}
 #| label: juntar-dados
 
-pib_uf <- readr::read_csv(here::here("dados", "pib_uf.csv"), show_col_types = FALSE)
+dados_ufs <- populacao_uf |>
+  dplyr::left_join(
+    pib_ano, by = "uf",
+    relationship = "one-to-one", na_matches = "never"
+  )
 
-estados <- populacao_uf |>
-  dplyr::left_join(pib_uf, by = "uf")
+stopifnot(
+  nrow(dados_ufs) == nrow(populacao_uf),
+  dplyr::n_distinct(dados_ufs$uf) == nrow(populacao_uf)
+)
 
-dplyr::glimpse(estados)
+dplyr::glimpse(dados_ufs)
 ```
 
 ```{r}
 #| label: checar-na
 
-sum(is.na(estados$pib_per_capita))
+sum(is.na(dados_ufs$pib_per_capita))
 ```
 
-Neste caso o resultado é zero — as duas bases cobrem as mesmas 27 unidades federativas —, mas em dados reais é comum um `left_join` produzir `NA` quando uma chave existe de um lado e não do outro (um estado sem PIB registrado no ano da fonte, por exemplo). Nunca ignore isso silenciosamente: decida, e registre a decisão no texto.
+Neste caso não há PIB per capita ausente. Mas **zero `NA` não prova que a junção está correta**: duplicações podem multiplicar linhas sem gerar ausências, e UFs presentes só à direita podem desaparecer do resultado. As verificações anteriores detectam esses problemas.
+
+Um `NA` em `pib_per_capita` pode vir de uma chave sem correspondência ou já existir na fonte. `sem_pib` identifica o primeiro caso; `filter(pib_ano, is.na(pib_per_capita))` ajuda a investigar o segundo. Nunca exclua ou preencha valores antes de diagnosticar a causa.
+
+```{r}
+#| label: validar-indicador
+
+# Nesta base do curso esperamos o indicador completo.
+stopifnot(!anyNA(dados_ufs$pib_per_capita))
+```
 
 ```{r}
 #| label: tratar-na
 #| eval: false
 
-# Se houvesse NA em pib_per_capita, duas saídas comuns seriam:
+# Em outro projeto, depois de diagnosticar e documentar os NA:
 
-# 1. Descartar as linhas incompletas, sendo explícito sobre quantas:
-estados |> dplyr::filter(!is.na(pib_per_capita))
+# 1. Se a exclusão for justificada, registre quantas linhas e UFs saem.
+excluidas <- dados_ufs |> dplyr::filter(is.na(pib_per_capita))
+excluidas |> dplyr::select(uf, ano_referencia)
+nrow(excluidas)
+dados_completos <- dados_ufs |> dplyr::filter(!is.na(pib_per_capita))
 
-# 2. Substituir por um valor de referência (ex.: a média nacional),
-#    deixando claro no texto que aquele número é uma estimativa:
-estados |> dplyr::mutate(pib_per_capita = dplyr::coalesce(pib_per_capita, mean(pib_per_capita, na.rm = TRUE)))
+# 2. Exemplo ilustrativo de imputação pela média simples das UFs observadas.
+#    Essa média não é o PIB per capita nacional. Só use imputação com uma
+#    justificativa metodológica e identifique os valores estimados no texto:
+dados_ufs |> dplyr::mutate(pib_per_capita = dplyr::coalesce(pib_per_capita, mean(pib_per_capita, na.rm = TRUE)))
 ```
 
 ## 4. Um fluxo com responsabilidades claras
@@ -107,29 +191,37 @@ estados |> dplyr::mutate(pib_per_capita = dplyr::coalesce(pib_per_capita, mean(p
 ```{r}
 #| label: fluxo-completo
 
-# 1. Importação
-populacao_uf <- readr::read_csv(here::here("dados", "populacao_uf.csv"), show_col_types = FALSE)
-pib_uf <- readr::read_csv(here::here("dados", "pib_uf.csv"), show_col_types = FALSE)
-
-# 2. Junção e tratamento
-estados <- populacao_uf |>
-  dplyr::left_join(pib_uf, by = "uf") |>
-  dplyr::filter(!is.na(pib_per_capita))
+# 1. Importação e validação das fontes: blocos da seção anterior.
+# 2. Junção validada: reutilize dados_ufs, sem descartar linhas silenciosamente.
 
 # 3. Transformação
-resumo_regiao <- estados |>
-  dplyr::group_by(regiao) |>
+resumo_regiao <- dados_ufs |>
+  dplyr::group_by(regiao, ano_referencia) |>
   dplyr::summarise(
-    pib_medio = mean(pib_per_capita),
+    pib_pc_media_ufs = mean(pib_per_capita),
     .groups = "drop"
   ) |>
-  dplyr::arrange(dplyr::desc(pib_medio))
+  dplyr::arrange(dplyr::desc(pib_pc_media_ufs))
 
 # 4. Comunicação
-knitr::kable(resumo_regiao, digits = 0, col.names = c("Região", "PIB per capita médio (R$)"))
+knitr::kable(resumo_regiao, digits = 0, col.names = c("Região", "Ano", "PIB per capita: média simples entre UFs (R$)"))
 ```
 
-Cada etapa tem um comentário que diz o que ela faz, e os nomes dos objetos (`estados`, `resumo_regiao`) descrevem o conteúdo, não a ordem de criação. Evite esconder uma transformação importante dentro de um bloco com nome genérico como `analise` — quem revisa o código depois (inclusive você, em três meses) precisa localizar rapidamente onde algo foi calculado.
+### Qual indicador estamos calculando?
+
+`mean(pib_per_capita)` calcula a **média simples do PIB per capita das UFs** de cada região: cada UF tem o mesmo peso, independentemente de sua população. O Distrito Federal, por exemplo, tem o mesmo peso que Goiás no resumo do Centro-Oeste. Agrupar também por `ano_referencia` evita misturar indicadores de anos diferentes se a base passar a conter mais de um ano.
+
+O **PIB per capita agregado da região** é outro indicador:
+
+$$
+\text{PIB per capita regional} = \frac{\sum_i \text{PIB}_i}{\sum_i \text{população}_i}.
+$$
+
+Com dados compatíveis, essa razão equivale à média dos PIBs per capita das UFs ponderada pelas populações usadas em seus denominadores. Para calculá-la, precisamos de PIB total e população da mesma referência, ou dos PIBs per capita e das populações correspondentes. Neste curso, o PIB per capita é de 2023 e a população é do Censo 2022. Por isso, mantemos o exercício como uma comparação da **média simples entre UFs**, sem usar a população de 2022 como peso para apresentar um PIB per capita regional de 2023. A definição e os dados econômicos devem ser conferidos na fonte, como o [Sistema de Contas Regionais do IBGE](https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9054-contas-regionais-do-brasil.html).
+
+PIB per capita expressa uma razão entre produção econômica e população; ele não representa o rendimento recebido por cada pessoa.
+
+Cada etapa tem um comentário que diz o que ela faz, e os nomes dos objetos (`dados_ufs`, `resumo_regiao`) descrevem o conteúdo, não a ordem de criação. Evite esconder uma transformação importante dentro de um bloco com nome genérico como `analise` — quem revisa o código depois (inclusive você, em três meses) precisa localizar rapidamente onde algo foi calculado.
 
 ## 5. Resultados dinâmicos no texto
 
@@ -138,11 +230,12 @@ Um valor citado em prosa deve vir do mesmo código usado na análise — nunca d
 ```{r}
 #| label: valor-dinamico
 
-regiao_maior_pib <- resumo_regiao$regiao[1]
-pib_regiao_maior <- resumo_regiao$pib_medio[1]
+regiao_maior_media <- resumo_regiao$regiao[1]
+ano_maior_media <- resumo_regiao$ano_referencia[1]
+pib_pc_maior_media <- resumo_regiao$pib_pc_media_ufs[1]
 ```
 
-Esta própria frase usa a técnica: a região `r regiao_maior_pib` tem o maior PIB per capita médio entre as regiões, `r glue::glue("R$ {scales::number(pib_regiao_maior, big.mark = '.', decimal.mark = ',')}")`. Nenhum desses dois valores foi digitado — ambos vieram do bloco `valor-dinamico` acima. Se `dados/pib_uf.csv` fosse atualizado com números de outro ano, a frase mudaria sozinha na próxima renderização, sem que ninguém precisasse achar e editar o número manualmente.
+Esta própria frase usa a técnica: nos recortes de região e ano disponíveis, a maior média simples do PIB per capita entre UFs é a da região `r regiao_maior_media` em `r ano_maior_media`, com `r glue::glue("R$ {scales::number(pib_pc_maior_media, big.mark = '.', decimal.mark = ',')}")`. Região, ano e valor vieram do bloco `valor-dinamico` acima. Se `dados/pib_uf.csv` fosse atualizado, a frase mudaria na próxima renderização, sem editar os resultados manualmente. O valor descreve a média simples das UFs do recorte, e não o PIB per capita agregado da região.
 
 `glue::glue()` monta o texto substituindo `{expressão}` pelo valor calculado; é mais legível que concatenar strings com `paste0()` quando a frase tem várias partes variáveis.
 
@@ -187,8 +280,8 @@ Opções úteis por bloco, sobrepondo o padrão do documento:
 
 ```r
 #| label: fig-pib-regiao
-#| fig-cap: "PIB per capita médio por região."
-#| fig-alt: "Gráfico de barras com o PIB per capita médio de cada região."
+#| fig-cap: "PIB per capita: média simples entre UFs, por região e ano."
+#| fig-alt: "Gráfico de barras comparando a média simples do PIB per capita das UFs de cada região, com o ano de referência identificado."
 #| echo: false
 ```
 
@@ -205,14 +298,26 @@ O `rproj.toml` declara o R e os pacotes usados, enquanto `rproj.lock` registra a
 ```powershell
 rig proj init --r-version 4.5
 rig proj add dplyr readr ggplot2
+rig proj status
+```
+
+- `proj init` cria o manifesto e a infraestrutura do ambiente num projeto novo;
+- `proj add` declara os pacotes em `rproj.toml`, atualiza `rproj.lock` e instala os pacotes na biblioteca do projeto, por padrão;
+- `proj status` verifica se a biblioteca está sincronizada com o lock, sem alterá-la;
+- `proj lock` resolve e registra versões em `rproj.lock`, mas não instala os pacotes;
+- `proj sync` sincroniza a biblioteca com o lock — é o que outra pessoa roda ao clonar seu repositório. Se não houver lock, o comando o gera primeiro; `--frozen` exige um lock existente.
+
+Após um `proj add` bem-sucedido, não é necessário repetir `proj lock` e `proj sync` apenas para concluir a adição. Se quiser separar as etapas, use explicitamente:
+
+```powershell
+rig proj add --no-lock dplyr readr ggplot2
 rig proj lock
 rig proj sync
 ```
 
-- `proj init` cria o manifesto e a infraestrutura do ambiente num projeto novo;
-- `proj add` declara os pacotes usados pelo projeto;
-- `proj lock` resolve e registra versões compatíveis em `rproj.lock`;
-- `proj sync` instala exatamente o ambiente registrado — é o que outra pessoa roda ao clonar seu repositório.
+`add --no-lock` altera apenas o manifesto, sem resolver versões nem instalar pacotes. Já `add --no-sync` atualiza manifesto e lock, mas deixa a instalação para um `proj sync` posterior. Se editar `rproj.toml` manualmente, execute `proj lock` e `proj sync` para registrar e instalar o ambiente resultante. Um `proj lock` comum reutiliza versões já fixadas quando elas ainda satisfazem o manifesto; não é um comando de atualização geral para as versões mais recentes.
+
+Esses comportamentos foram conferidos no `rig 0.11.0`. Como a funcionalidade é experimental, consulte `rig --version`, `rig proj add --help` e a [documentação oficial de projetos](https://rig.r-lib.org/proj-guide.html) se estiver usando outra versão.
 
 Não versione a biblioteca instalada em `.rvenv/` (ela é recriada por `rig proj sync`); versione `rproj.toml`, `rproj.lock`, `.Renviron` e `.rvenvlib/`.
 
@@ -220,27 +325,34 @@ Não versione a biblioteca instalada em `.rvenv/` (ela é recriada por `rig proj
 
 1. Leia `dados/populacao_uf.csv` e `dados/pib_uf.csv` com `here::here()`.
 2. Rode `skimr::skim()` nas duas tabelas antes de juntá-las.
-3. Junte as duas com `dplyr::left_join()` e confira se apareceu algum `NA`.
-4. Produza uma tabela-resumo por região e um gráfico.
+3. Confira chaves ausentes e duplicadas, selecione o ano do PIB e verifique a cobertura com `anti_join()` nos dois sentidos. Junte com `relationship = "one-to-one"` e compare linhas e UFs únicas antes/depois. Investigue eventuais `NA` no indicador.
+4. Produza uma tabela-resumo por região e ano e um gráfico da média simples do PIB per capita entre UFs. Identifique o cálculo e o ano nos rótulos e explique por que o resultado difere do PIB per capita agregado da região.
 5. Inclua uma frase com um valor calculado dinamicamente, como código R inline (acento grave, `r`, espaço, expressão, acento grave).
 6. Configure o YAML para gerar HTML e mais um formato.
 7. Reinicie o R e renderize novamente.
 
 ## Para o projeto final
 
-Adicione a base de dados ao seu projeto (ou documente como obtê-la) e implemente a importação, uma junção ou transformação, uma tabela e um gráfico. Registre cada dependência com `rig proj add` e atualize o lock com `rig proj lock`.
+Adicione a base de dados ao seu projeto (ou documente como obtê-la) e implemente a importação, uma junção ou transformação, uma tabela e um gráfico. Use `rig proj add` para declarar, registrar no lock e instalar as dependências. Confira o resultado com `rig proj status` e versione os arquivos de configuração e o lock.
 
 ## Checklist
 
 - [ ] Meu projeto usa `here::here()` ou caminhos relativos consistentes.
 - [ ] Rodei `skimr::skim()` (ou equivalente) antes de transformar os dados.
-- [ ] Verifiquei se uma junção produziu `NA` e decidi explicitamente o que fazer com eles.
+- [ ] Defini a chave e o recorte temporal e verifiquei chaves ausentes ou duplicadas.
+- [ ] Conferi a cobertura nos dois sentidos com `anti_join()`.
+- [ ] Declarei a relação esperada e comparei linhas e chaves únicas antes/depois da junção.
+- [ ] Investiguei a origem dos `NA` e documentei qualquer exclusão ou imputação.
 - [ ] Texto, tabelas e gráficos vêm dos mesmos dados, sem números digitados à mão.
+- [ ] Identifiquei médias simples entre UFs e não as apresentei como indicadores regionais agregados.
+- [ ] Conferi o ano e os denominadores antes de combinar ou ponderar indicadores.
 - [ ] Escolhi o formato com base no público.
 - [ ] O documento renderiza em uma sessão limpa.
 
 ## Leitura complementar
 
+- [dplyr: junções e relações entre chaves](https://dplyr.tidyverse.org/reference/mutate-joins.html)
+- [dplyr: verificação de cobertura com anti_join](https://dplyr.tidyverse.org/reference/filter-joins.html)
 - [Quarto: execução de código](https://quarto.org/docs/computations/execution-options.html)
 - [Quarto: formatos HTML](https://quarto.org/docs/output-formats/html-basics.html)
 - [Quarto: formatos PDF](https://quarto.org/docs/output-formats/pdf-basics.html)

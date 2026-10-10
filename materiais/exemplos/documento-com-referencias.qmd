@@ -1,0 +1,27 @@
+---
+title: "Exemplo de citações bibliográficas"
+lang: pt-BR
+format: html
+bibliography: referencias.bib
+---
+
+## Contexto
+
+@knuth1984 apresenta a proposta de programação literária. O artigo é uma referência para discutir a combinação entre explicações e código [@knuth1984].
+
+## Como reproduzir
+
+Este exemplo acompanha a [seção de citações bibliográficas da Aula 2](../../aulas/aula-2.qmd#sec-citacoes-bibliograficas).
+
+O arquivo `referencias.bib` está na mesma pasta deste documento. Para usar o exemplo no seu projeto, copie os dois arquivos juntos e renderize o `.qmd`. Substitua a referência e as citações pelas fontes que você realmente utilizou.
+
+No repositório do curso, renderize a partir da raiz:
+
+```powershell
+quarto render materiais/exemplos/documento-com-referencias.qmd
+```
+
+## Referências
+
+::: {#refs}
+:::

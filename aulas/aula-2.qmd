@@ -16,7 +16,7 @@ execute:
 
 ## Visão geral
 
-Um relatório reprodutível também precisa ser compreensível. Nesta aula, vamos organizar o documento, controlar sua aparência e apresentar evidências com tabelas e gráficos que tenham função narrativa — usando a mesma base de estados brasileiros da Aula 1.
+Um relatório reprodutível também precisa ser compreensível. Nesta aula, vamos organizar o documento, controlar sua aparência e apresentar evidências com tabelas e gráficos que tenham função narrativa — usando a mesma base de unidades federativas brasileiras da Aula 1.
 
 ### Objetivos de aprendizagem
 
@@ -24,6 +24,7 @@ Um relatório reprodutível também precisa ser compreensível. Nesta aula, vamo
 - estruturar texto com Markdown e hierarquia de seções;
 - controlar código e resultados com opções de execução;
 - inserir tabelas, figuras, equações e referências cruzadas;
+- citar fontes bibliográficas com um arquivo `.bib` e gerar a lista de referências;
 - aplicar princípios básicos de legibilidade e acessibilidade.
 
 ## 1. Planeje antes de formatar
@@ -41,8 +42,8 @@ O plano molda até a frase de abertura. Compare:
 ::: {.column width="50%"}
 **Evite** — descreve o processo, não a conclusão:
 
-> "Neste relatório, foram coletados dados do IBGE sobre população e área dos estados
-> brasileiros, que em seguida foram processados e utilizados para gerar uma tabela e um
+> "Neste relatório, foram coletados dados do IBGE sobre população e área das UFs
+> brasileiras, que em seguida foram processados e utilizados para gerar uma tabela e um
 > gráfico apresentados a seguir."
 :::
 ::: {.column width="50%"}
@@ -72,7 +73,7 @@ O YAML configura o documento. A indentação usa espaços e define hierarquia:
 
 ```yaml
 ---
-title: "Indicadores por estado"
+title: "Indicadores por UF"
 subtitle: "Perfil demográfico e econômico das unidades federativas"
 author: "Nome da pessoa autora"
 date: today
@@ -94,7 +95,7 @@ execute:
 Um dos-pontos sem aspas dentro de um texto quebra o cabeçalho:
 
 ```yaml
-title: Indicadores: uma análise por estado
+title: Indicadores: uma análise por UF
 ```
 
 produz algo como:
@@ -103,7 +104,7 @@ produz algo como:
 ERROR: YAML parse exception at line 2, column 18: mapping values are not allowed in this context
 ```
 
-A correção é envolver o texto inteiro em aspas: `title: "Indicadores: uma análise por estado"`. Sempre que a renderização falhar antes de qualquer código rodar, o cabeçalho é o primeiro lugar a conferir.
+A correção é envolver o texto inteiro em aspas: `title: "Indicadores: uma análise por UF"`. Sempre que a renderização falhar antes de qualquer código rodar, o cabeçalho é o primeiro lugar a conferir.
 :::
 
 ## 3. Hierarquia e Markdown
@@ -117,7 +118,7 @@ O indicador apresentou **crescimento** no período.
 
 - Região Sudeste: maior população absoluta;
 - Região Norte: menor densidade demográfica;
-- Região Nordeste: maior número de estados.
+- Região Nordeste: maior número de UFs.
 ```
 
 Use um único título principal, fornecido pelo YAML. Evite pular de `##` para `####`. Títulos devem descrever o conteúdo, e não apenas numerar "Parte 1".
@@ -137,9 +138,9 @@ populacao_uf <- readr::read_csv("dados/populacao_uf.csv", show_col_types = FALSE
 resumo_regiao <- populacao_uf |>
   group_by(regiao) |>
   summarise(
-    estados = dplyr::n(),
+    n_ufs = dplyr::n(),
     populacao_total = sum(populacao),
-    densidade_media = mean(densidade_dem),
+    densidade_regional = sum(populacao) / sum(area_km2),
     .groups = "drop"
   ) |>
   arrange(desc(populacao_total))
@@ -147,24 +148,48 @@ resumo_regiao <- populacao_uf |>
 
 Cada bloco declara `#| label:` — um nome único que aparece nas mensagens de erro e permite referenciar tabelas e figuras (seção 7).
 
+Para calcular a **densidade demográfica da região**, dividimos a população total pela área total das UFs que a compõem. A média simples de `densidade_dem` dá o mesmo peso a cada UF, independentemente de sua área, e responde a outra pergunta: qual é a média das densidades das UFs?
+
+Compare os dois cálculos usando os dados do curso:
+
+```{r}
+#| label: tbl-comparar-densidades
+#| tbl-cap: "Densidade regional e média simples das densidades das UFs: indicadores diferentes."
+
+populacao_uf |>
+  group_by(regiao) |>
+  summarise(
+    densidade_regional = sum(populacao) / sum(area_km2),
+    media_simples_ufs = mean(densidade_dem),
+    .groups = "drop"
+  ) |>
+  knitr::kable(
+    col.names = c("Região", "Densidade regional (hab/km²)", "Média simples entre UFs (hab/km²)"),
+    digits = 1,
+    format.args = list(big.mark = ".", decimal.mark = ",")
+  )
+```
+
+Na @tbl-comparar-densidades, o Distrito Federal influencia fortemente a média simples do Centro-Oeste: sua densidade elevada tem o mesmo peso que a de cada uma das outras três UFs. A densidade regional usa a população e a área de todo o território. Calcule essa razão com as colunas originais, para evitar o arredondamento já presente em `densidade_dem`.
+
 ## 5. Tabelas que comunicam
 
 Uma tabela Markdown atende valores pequenos e estáticos, digitados à mão:
 
-| Região | Estados |
+| Região | UFs |
 |---|---:|
 | Norte | 7 |
 | Nordeste | 9 |
 
-Para dados calculados, gere a tabela a partir do código — nunca digite um número que o R já calculou:
+Para dados calculados, gere a tabela a partir do código — nunca digite um número que o R já calculou. A contagem `n_ufs` inclui o Distrito Federal: o Centro-Oeste tem quatro UFs, sendo três estados e o DF.
 
 ```{r}
 #| label: tbl-resumo-regiao
-#| tbl-cap: "Estados, população total e densidade média, por região."
+#| tbl-cap: "UFs, população total e densidade demográfica regional."
 
 resumo_regiao |>
   knitr::kable(
-    col.names = c("Região", "Estados", "População total", "Densidade média (hab/km²)"),
+    col.names = c("Região", "UFs", "População total", "Densidade regional (hab/km²)"),
     digits = 1,
     format.args = list(big.mark = ".", decimal.mark = ",")
   )
@@ -182,12 +207,12 @@ resumo_regiao |>
   gt::gt() |>
   gt::tab_header(title = "Perfil demográfico por região") |>
   gt::fmt_number(columns = c(populacao_total), decimals = 0, sep_mark = ".", dec_mark = ",") |>
-  gt::fmt_number(columns = c(densidade_media), decimals = 1, sep_mark = ".", dec_mark = ",") |>
+  gt::fmt_number(columns = c(densidade_regional), decimals = 1, sep_mark = ".", dec_mark = ",") |>
   gt::cols_label(
     regiao = "Região",
-    estados = "Estados",
+    n_ufs = "UFs",
     populacao_total = "População total",
-    densidade_media = "Densidade média (hab/km²)"
+    densidade_regional = "Densidade regional (hab/km²)"
   ) |>
   gt::tab_source_note("Fonte: IBGE, Censo Demográfico 2022.")
 ```
@@ -208,13 +233,13 @@ ggplot(populacao_uf, aes(area_km2, populacao, color = regiao)) +
 ```{r}
 #| label: fig-populacao-boa
 #| fig-cap: "Prefira: título, eixos com unidade, paleta com poucas cores e leitura guiada."
-#| fig-alt: "Gráfico de dispersão mostrando população pelo tamanho territorial dos estados brasileiros, colorido por região. São Paulo se destaca com a maior população; estados da região Norte têm grandes áreas e populações menores."
+#| fig-alt: "Gráfico de dispersão mostrando população pelo tamanho territorial das UFs brasileiras, colorido por região. São Paulo se destaca com a maior população; UFs da região Norte têm grandes áreas e populações menores."
 
 ggplot(populacao_uf, aes(area_km2 / 1000, populacao / 1e6, color = regiao)) +
   geom_point(size = 3, alpha = 0.85) +
   scale_color_brewer(palette = "Dark2") +
   labs(
-    title = "População e área dos estados brasileiros",
+    title = "População e área das UFs brasileiras",
     x = "Área (mil km²)",
     y = "População (milhões de habitantes)",
     color = "Região",
@@ -252,7 +277,78 @@ em que $P$ é a população e $A$ é a área em km². A @eq-densidade é a mesma
 
 Rótulos estáveis permitem mudar a ordem dos elementos sem corrigir a numeração manualmente — o Quarto renumera tudo sozinho.
 
-## 8. Estilo sem perder manutenção
+Para uma região composta por várias UFs, a mesma definição é aplicada aos totais:
+
+$$
+d_{\text{região}} = \frac{\sum_i P_i}{\sum_i A_i}.
+$$
+
+## 8. Citações bibliográficas {#sec-citacoes-bibliograficas}
+
+Referências cruzadas apontam para elementos do próprio documento, como `@fig-populacao-boa`. Citações bibliográficas identificam fontes externas, como artigos, livros e documentação. Para citar uma fonte, registre seus dados em um arquivo `.bib`, informe esse arquivo no YAML e use a chave da referência no texto. O Quarto gera as citações e a lista de referências durante a renderização.
+
+### Crie o arquivo de referências
+
+Na mesma pasta do seu `.qmd`, crie um arquivo de texto chamado `referencias.bib`. Esta entrada registra um artigo real de Donald Knuth sobre programação literária:
+
+```bibtex
+@article{knuth1984,
+  author = {Knuth, Donald E.},
+  title = {Literate Programming},
+  journal = {The Computer Journal},
+  year = {1984},
+  volume = {27},
+  number = {2},
+  pages = {97--111},
+  doi = {10.1093/comjnl/27.2.97}
+}
+```
+
+`article` indica o tipo de publicação; `knuth1984` é a chave que você usará para citá-la. Cada referência deve ter uma chave única. Confira autoria, título, ano e DOI na fonte original. Para vários autores, separe os nomes com `and` no campo `author`.
+
+Você pode exportar referências de um gerenciador bibliográfico ou de uma página de periódico em formato BibTeX, mas revise os dados exportados. O arquivo `.bib` organiza os dados da fonte; ele não substitui a leitura e a avaliação dessa fonte.
+
+### Declare a bibliografia e cite no texto
+
+Com `referencias.bib` e `relatorio.qmd` na mesma pasta, use este documento mínimo:
+
+```markdown
+---
+title: "Meu documento com referências"
+lang: pt-BR
+format: html
+bibliography: referencias.bib
+---
+
+## Contexto
+
+@knuth1984 apresenta a proposta de programação literária.
+
+O artigo discute a combinação entre explicações e código [@knuth1984].
+
+## Referências
+
+::: {#refs}
+:::
+```
+
+`@knuth1984` integra a autoria à frase; `[@knuth1984]` coloca a citação entre parênteses no estilo autor-data. Escreva essas citações no texto normal, fora de blocos de código. A chave deve corresponder exatamente à entrada no `.bib`.
+
+O caminho de `bibliography` é relativo ao arquivo `.qmd`. Se você guardar as referências em outra pasta, ajuste o caminho. Essa configuração do YAML é independente do diretório de execução do código R.
+
+### Gere e confira as referências
+
+Renderize o documento e confira tanto as citações no texto quanto a lista na seção **Referências**. O bloco com `#refs` define onde a lista será inserida; sem ele, a lista é acrescentada ao final. Por padrão, entram na lista as fontes citadas no texto, e não todas as entradas existentes no `.bib`.
+
+Para as saídas HTML, PDF e Word com o processamento padrão de citações, o Quarto usa o estilo Chicago autor-data. Se precisar de outro estilo, adicione ao YAML `csl: estilo.csl` e inclua esse arquivo no projeto. O `.bib` contém os dados bibliográficos; o `.csl` define como as citações e referências são formatadas. Um estilo específico não é exigido no trabalho final.
+
+::: {.callout-tip title="Exemplo pronto para renderizar"}
+Abra o [documento com referências](../materiais/exemplos/documento-com-referencias.qmd). Seus arquivos-fonte estão em `materiais/exemplos/documento-com-referencias.qmd` e `materiais/exemplos/referencias.bib`. Copie os dois juntos para experimentar no seu projeto.
+:::
+
+Se aparecer um aviso de referência não encontrada ou uma chave sem formatação no resultado, confira a grafia da chave, o caminho de `bibliography` e a sintaxe do `.bib` (vírgulas e chaves). Inclua a bibliografia e, quando utilizado, o arquivo CSL na entrega.
+
+## 9. Estilo sem perder manutenção
 
 Comece com um tema e poucas regras CSS:
 
@@ -281,20 +377,26 @@ Usando `dados/populacao_uf.csv`:
 
 1. Escreva um objetivo e um público explícitos no início da página.
 2. Configure um YAML com sumário e código recolhível.
-3. Calcule, com `dplyr`, o PIB per capita médio por região a partir de `dados/pib_uf.csv` (você vai aprender a juntar as duas tabelas na Aula 3 — por enquanto, pode ler `pib_uf.csv` separadamente e agrupar por região usando um `left_join` simples, ou deixar essa etapa como pergunta em aberto para a próxima aula).
+3. Usando apenas `dados/populacao_uf.csv`, agrupe por região e calcule o número de UFs, a população total e a densidade regional (`sum(populacao) / sum(area_km2)`), como no exemplo desta aula. A análise do PIB per capita fica para a Aula 3, depois de aprendermos a juntar e validar as duas fontes.
 4. Construa uma tabela `gt` com título e nota de fonte.
 5. Construa um gráfico com título, eixos, legenda e texto alternativo — e, antes de finalizar, produza deliberadamente uma versão "ruim" (sem `theme_minimal()`, sem `labs()`) para comparar as duas.
 6. Adicione referências cruzadas para a tabela e o gráfico.
+7. Crie um `.bib` com uma fonte que você consultou, declare `bibliography` no YAML e insira uma citação no texto. Renderize e confira a entrada na lista de referências.
 
 ## Para o projeto final
 
 Crie o esqueleto do documento, escreva a introdução e inclua ao menos uma evidência visual. Peça a alguém do público-alvo para dizer qual mensagem entendeu.
+
+Se escolheu um artigo acadêmico, comece também o arquivo `.bib` e cite uma fonte relevante na introdução ou no método. Nos demais tipos de trabalho, use citações bibliográficas quando forem adequadas ao conteúdo; continue registrando as fontes dos dados e os créditos das imagens.
 
 ## Checklist
 
 - [ ] O YAML está válido e enxuto.
 - [ ] A hierarquia de títulos é lógica.
 - [ ] Tabelas e gráficos são citados e interpretados, não apenas exibidos.
+- [ ] Calculei a densidade regional pela razão entre os totais de população e área.
+- [ ] Sei distinguir referências cruzadas de citações bibliográficas.
+- [ ] Declarei um `.bib`, citei uma fonte e conferi a lista de referências renderizada.
 - [ ] Imagens e gráficos têm texto alternativo específico (não genérico).
 - [ ] Consigo apontar, no meu próprio gráfico, o que tornaria uma versão "ruim" dele.
 - [ ] O estilo visual é consistente com o público.
@@ -304,5 +406,7 @@ Crie o esqueleto do documento, escreva a introdução e inclua ao menos uma evid
 - [Slides da Aula 2](../slides/aula-2.qmd)
 - [Quarto: Markdown](https://quarto.org/docs/authoring/markdown-basics.html)
 - [Quarto: referências cruzadas](https://quarto.org/docs/authoring/cross-references.html)
+- [Quarto: citações e bibliografia](https://quarto.org/docs/authoring/citations.html)
+- [Exemplo: documento com referências](../materiais/exemplos/documento-com-referencias.qmd)
 - [Quarto: acessibilidade](https://quarto.org/docs/authoring/figures.html#alt-text)
 - [gt: criando tabelas](https://gt.rstudio.com/)

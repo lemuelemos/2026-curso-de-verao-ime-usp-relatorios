@@ -215,7 +215,8 @@ Lemuel de Lemos Romão
 <li>configurar YAML e execução;</li>
 <li>estruturar texto com Markdown;</li>
 <li>apresentar tabelas e gráficos;</li>
-<li>usar referências cruzadas e acessibilidade.</li>
+<li>usar referências cruzadas e citações bibliográficas;</li>
+<li>aplicar princípios de acessibilidade.</li>
 </ol>
 </section>
 <section id="comece-pelo-público" class="slide level2">
@@ -251,7 +252,7 @@ Lemuel de Lemos Romão
 <section id="yaml" class="slide level2">
 <h2>YAML</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a></a><span class="pp">---</span></span>
-<span id="cb2-2"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Indicadores por estado"</span></span>
+<span id="cb2-2"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Indicadores por UF"</span></span>
 <span id="cb2-3"><a></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Nome da pessoa autora"</span></span>
 <span id="cb2-4"><a></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
 <span id="cb2-5"><a></a><span class="fu">lang</span><span class="kw">:</span><span class="at"> pt-BR</span></span>
@@ -266,10 +267,10 @@ Lemuel de Lemos Romão
 </section>
 <section id="yaml-um-erro-real" class="slide level2">
 <h2>YAML: um erro real</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Indicadores: uma análise por estado</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Indicadores: uma análise por UF</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a></a>ERROR: YAML parse exception at line 2, column 18:</span>
 <span id="cb4-2"><a></a>mapping values are not allowed in this context</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Correção: <code>title: "Indicadores: uma análise por estado"</code> — sempre com aspas quando o texto tem <code>:</code>.</p>
+<p>Correção: <code>title: "Indicadores: uma análise por UF"</code> — sempre com aspas quando o texto tem <code>:</code>.</p>
 </section>
 <section id="hierarquia-de-títulos" class="slide level2">
 <h2>Hierarquia de títulos</h2>
@@ -290,9 +291,26 @@ Lemuel de Lemos Romão
 <span id="cb6-5"><a></a></span>
 <span id="cb6-6"><a></a>resumo_regiao <span class="ot">&lt;-</span> populacao_uf <span class="sc">|&gt;</span></span>
 <span id="cb6-7"><a></a>  <span class="fu">group_by</span>(regiao) <span class="sc">|&gt;</span></span>
-<span id="cb6-8"><a></a>  <span class="fu">summarise</span>(<span class="at">estados =</span> <span class="fu">n</span>(), <span class="at">populacao_total =</span> <span class="fu">sum</span>(populacao), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-9"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(populacao_total))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-8"><a></a>  <span class="fu">summarise</span>(</span>
+<span id="cb6-9"><a></a>    <span class="at">n_ufs =</span> <span class="fu">n</span>(),</span>
+<span id="cb6-10"><a></a>    <span class="at">populacao_total =</span> <span class="fu">sum</span>(populacao),</span>
+<span id="cb6-11"><a></a>    <span class="at">densidade_regional =</span> <span class="fu">sum</span>(populacao) <span class="sc">/</span> <span class="fu">sum</span>(area_km2),</span>
+<span id="cb6-12"><a></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb6-13"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-14"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(populacao_total))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</section>
+<section id="densidade-regional-razão-entre-totais" class="slide level2">
+<h2>Densidade regional: razão entre totais</h2>
+<p><span class="math display">\[
+d_{\text{região}} = \frac{\sum_i P_i}{\sum_i A_i}
+\]</span></p>
+<ul>
+<li>Use <code>sum(populacao) / sum(area_km2)</code>.</li>
+<li><code>mean(densidade_dem)</code> é a média simples das densidades das UFs.</li>
+<li>Na média simples, o DF tem o mesmo peso que cada outra UF do Centro-Oeste.</li>
+<li>Nomeie o indicador conforme o cálculo utilizado.</li>
+</ul>
 </section>
 <section id="tabelas-com-propósito" class="slide level2">
 <h2>Tabelas com propósito</h2>
@@ -300,8 +318,13 @@ Lemuel de Lemos Romão
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>resumo_regiao <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
 <span id="cb7-3"><a></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(populacao_total, <span class="at">decimals =</span> <span class="dv">0</span>, <span class="at">sep_mark =</span> <span class="st">"."</span>, <span class="at">dec_mark =</span> <span class="st">","</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a></a>  gt<span class="sc">::</span><span class="fu">cols_label</span>(<span class="at">regiao =</span> <span class="st">"Região"</span>, <span class="at">estados =</span> <span class="st">"Estados"</span>, <span class="at">populacao_total =</span> <span class="st">"População total"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-5"><a></a>  gt<span class="sc">::</span><span class="fu">tab_source_note</span>(<span class="st">"Fonte: IBGE, Censo 2022."</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-4"><a></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(densidade_regional, <span class="at">decimals =</span> <span class="dv">1</span>, <span class="at">sep_mark =</span> <span class="st">"."</span>, <span class="at">dec_mark =</span> <span class="st">","</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a></a>  gt<span class="sc">::</span><span class="fu">cols_label</span>(</span>
+<span id="cb7-6"><a></a>    <span class="at">regiao =</span> <span class="st">"Região"</span>, <span class="at">n_ufs =</span> <span class="st">"UFs"</span>,</span>
+<span id="cb7-7"><a></a>    <span class="at">populacao_total =</span> <span class="st">"População total"</span>,</span>
+<span id="cb7-8"><a></a>    <span class="at">densidade_regional =</span> <span class="st">"Densidade regional (hab/km²)"</span></span>
+<span id="cb7-9"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-10"><a></a>  gt<span class="sc">::</span><span class="fu">tab_source_note</span>(<span class="st">"Fonte: IBGE, Censo 2022."</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="tbl-gt-regiao" class="cell quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-tbl">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-gt-regiao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -309,23 +332,23 @@ Tabela&nbsp;1
 </figcaption>
 <div aria-describedby="tbl-gt-regiao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="fdtkrkfdlk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fdtkrkfdlk table {
+<div id="bhyilhblrt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bhyilhblrt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fdtkrkfdlk thead, #fdtkrkfdlk tbody, #fdtkrkfdlk tfoot, #fdtkrkfdlk tr, #fdtkrkfdlk td, #fdtkrkfdlk th {
+#bhyilhblrt thead, #bhyilhblrt tbody, #bhyilhblrt tfoot, #bhyilhblrt tr, #bhyilhblrt td, #bhyilhblrt th {
   border-style: none;
 }
 
-#fdtkrkfdlk p {
+#bhyilhblrt p {
   margin: 0;
   padding: 0;
 }
 
-#fdtkrkfdlk .gt_table {
+#bhyilhblrt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -351,12 +374,12 @@ Tabela&nbsp;1
   border-left-color: #D3D3D3;
 }
 
-#fdtkrkfdlk .gt_caption {
+#bhyilhblrt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fdtkrkfdlk .gt_title {
+#bhyilhblrt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -368,7 +391,7 @@ Tabela&nbsp;1
   border-bottom-width: 0;
 }
 
-#fdtkrkfdlk .gt_subtitle {
+#bhyilhblrt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -380,7 +403,7 @@ Tabela&nbsp;1
   border-top-width: 0;
 }
 
-#fdtkrkfdlk .gt_heading {
+#bhyilhblrt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -392,13 +415,13 @@ Tabela&nbsp;1
   border-right-color: #D3D3D3;
 }
 
-#fdtkrkfdlk .gt_bottom_border {
+#bhyilhblrt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fdtkrkfdlk .gt_col_headings {
+#bhyilhblrt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -413,7 +436,7 @@ Tabela&nbsp;1
   border-right-color: #D3D3D3;
 }
 
-#fdtkrkfdlk .gt_col_heading {
+#bhyilhblrt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -433,7 +456,7 @@ Tabela&nbsp;1
   overflow-x: hidden;
 }
 
-#fdtkrkfdlk .gt_column_spanner_outer {
+#bhyilhblrt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -445,15 +468,15 @@ Tabela&nbsp;1
   padding-right: 4px;
 }
 
-#fdtkrkfdlk .gt_column_spanner_outer:first-child {
+#bhyilhblrt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fdtkrkfdlk .gt_column_spanner_outer:last-child {
+#bhyilhblrt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fdtkrkfdlk .gt_column_spanner {
+#bhyilhblrt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -465,11 +488,11 @@ Tabela&nbsp;1
   width: 100%;
 }
 
-#fdtkrkfdlk .gt_spanner_row {
+#bhyilhblrt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fdtkrkfdlk .gt_group_heading {
+#bhyilhblrt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -495,7 +518,7 @@ Tabela&nbsp;1
   text-align: left;
 }
 
-#fdtkrkfdlk .gt_empty_group_heading {
+#bhyilhblrt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -510,15 +533,15 @@ Tabela&nbsp;1
   vertical-align: middle;
 }
 
-#fdtkrkfdlk .gt_from_md > :first-child {
+#bhyilhblrt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fdtkrkfdlk .gt_from_md > :last-child {
+#bhyilhblrt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fdtkrkfdlk .gt_row {
+#bhyilhblrt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -537,7 +560,7 @@ Tabela&nbsp;1
   overflow-x: hidden;
 }
 
-#fdtkrkfdlk .gt_stub {
+#bhyilhblrt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -550,7 +573,7 @@ Tabela&nbsp;1
   padding-right: 5px;
 }
 
-#fdtkrkfdlk .gt_stub_row_group {
+#bhyilhblrt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -564,15 +587,15 @@ Tabela&nbsp;1
   vertical-align: top;
 }
 
-#fdtkrkfdlk .gt_row_group_first td {
+#bhyilhblrt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fdtkrkfdlk .gt_row_group_first th {
+#bhyilhblrt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fdtkrkfdlk .gt_summary_row {
+#bhyilhblrt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -582,16 +605,16 @@ Tabela&nbsp;1
   padding-right: 5px;
 }
 
-#fdtkrkfdlk .gt_first_summary_row {
+#bhyilhblrt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fdtkrkfdlk .gt_first_summary_row.thick {
+#bhyilhblrt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fdtkrkfdlk .gt_last_summary_row {
+#bhyilhblrt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -601,7 +624,7 @@ Tabela&nbsp;1
   border-bottom-color: #D3D3D3;
 }
 
-#fdtkrkfdlk .gt_grand_summary_row {
+#bhyilhblrt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -611,7 +634,7 @@ Tabela&nbsp;1
   padding-right: 5px;
 }
 
-#fdtkrkfdlk .gt_first_grand_summary_row {
+#bhyilhblrt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -621,7 +644,7 @@ Tabela&nbsp;1
   border-top-color: #D3D3D3;
 }
 
-#fdtkrkfdlk .gt_last_grand_summary_row_top {
+#bhyilhblrt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -631,11 +654,11 @@ Tabela&nbsp;1
   border-bottom-color: #D3D3D3;
 }
 
-#fdtkrkfdlk .gt_striped {
+#bhyilhblrt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fdtkrkfdlk .gt_table_body {
+#bhyilhblrt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -644,7 +667,7 @@ Tabela&nbsp;1
   border-bottom-color: #D3D3D3;
 }
 
-#fdtkrkfdlk .gt_footnotes {
+#bhyilhblrt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -658,7 +681,7 @@ Tabela&nbsp;1
   border-right-color: #D3D3D3;
 }
 
-#fdtkrkfdlk .gt_footnote {
+#bhyilhblrt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -667,7 +690,7 @@ Tabela&nbsp;1
   padding-right: 5px;
 }
 
-#fdtkrkfdlk .gt_sourcenotes {
+#bhyilhblrt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -681,7 +704,7 @@ Tabela&nbsp;1
   border-right-color: #D3D3D3;
 }
 
-#fdtkrkfdlk .gt_sourcenote {
+#bhyilhblrt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -689,72 +712,72 @@ Tabela&nbsp;1
   padding-right: 5px;
 }
 
-#fdtkrkfdlk .gt_left {
+#bhyilhblrt .gt_left {
   text-align: left;
 }
 
-#fdtkrkfdlk .gt_center {
+#bhyilhblrt .gt_center {
   text-align: center;
 }
 
-#fdtkrkfdlk .gt_right {
+#bhyilhblrt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fdtkrkfdlk .gt_font_normal {
+#bhyilhblrt .gt_font_normal {
   font-weight: normal;
 }
 
-#fdtkrkfdlk .gt_font_bold {
+#bhyilhblrt .gt_font_bold {
   font-weight: bold;
 }
 
-#fdtkrkfdlk .gt_font_italic {
+#bhyilhblrt .gt_font_italic {
   font-style: italic;
 }
 
-#fdtkrkfdlk .gt_super {
+#bhyilhblrt .gt_super {
   font-size: 65%;
 }
 
-#fdtkrkfdlk .gt_footnote_marks {
+#bhyilhblrt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fdtkrkfdlk .gt_asterisk {
+#bhyilhblrt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fdtkrkfdlk .gt_indent_1 {
+#bhyilhblrt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fdtkrkfdlk .gt_indent_2 {
+#bhyilhblrt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fdtkrkfdlk .gt_indent_3 {
+#bhyilhblrt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fdtkrkfdlk .gt_indent_4 {
+#bhyilhblrt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fdtkrkfdlk .gt_indent_5 {
+#bhyilhblrt .gt_indent_5 {
   text-indent: 25px;
 }
 
-#fdtkrkfdlk .katex-display {
+#bhyilhblrt .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#fdtkrkfdlk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#bhyilhblrt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -762,40 +785,46 @@ Tabela&nbsp;1
 <table class="gt_table caption-top" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
-<th id="regiao" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Regi&lt;U+00E3&gt;o</th>
-<th id="estados" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Estados</th>
-<th id="populacao_total" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Popula&lt;U+00E7&gt;&lt;U+00E3&gt;o total</th>
+<th id="regiao" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Região</th>
+<th id="n_ufs" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">UFs</th>
+<th id="populacao_total" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">População total</th>
+<th id="densidade_regional" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Densidade regional (hab/km²)</th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="regiao">Sudeste</td>
-<td class="gt_row gt_right" headers="estados">4</td>
+<td class="gt_row gt_right" headers="n_ufs">4</td>
 <td class="gt_row gt_right" headers="populacao_total">84.840.113</td>
+<td class="gt_row gt_right" headers="densidade_regional">91,8</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="regiao">Nordeste</td>
-<td class="gt_row gt_right" headers="estados">9</td>
+<td class="gt_row gt_right" headers="n_ufs">9</td>
 <td class="gt_row gt_right" headers="populacao_total">54.637.621</td>
+<td class="gt_row gt_right" headers="densidade_regional">35,2</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="regiao">Sul</td>
-<td class="gt_row gt_right" headers="estados">3</td>
+<td class="gt_row gt_right" headers="n_ufs">3</td>
 <td class="gt_row gt_right" headers="populacao_total">29.937.706</td>
+<td class="gt_row gt_right" headers="densidade_regional">51,9</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="regiao">Norte</td>
-<td class="gt_row gt_right" headers="estados">7</td>
+<td class="gt_row gt_right" headers="n_ufs">7</td>
 <td class="gt_row gt_right" headers="populacao_total">17.355.778</td>
+<td class="gt_row gt_right" headers="densidade_regional">4,5</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="regiao">Centro-Oeste</td>
-<td class="gt_row gt_right" headers="estados">4</td>
+<td class="gt_row gt_right" headers="n_ufs">4</td>
 <td class="gt_row gt_right" headers="populacao_total">16.289.538</td>
+<td class="gt_row gt_right" headers="densidade_regional">10,1</td>
 </tr>
 </tbody><tfoot>
 <tr class="gt_sourcenotes odd">
-<td colspan="3" class="gt_sourcenote">Fonte: IBGE, Censo 2022.</td>
+<td colspan="4" class="gt_sourcenote">Fonte: IBGE, Censo 2022.</td>
 </tr>
 </tfoot>
 
@@ -844,6 +873,52 @@ d = \frac{P}{A}
 \tag{1}\]</span></span></p>
 <p>No texto: “A <a href="#/eq-densidade" class="quarto-xref">Equação&nbsp;1</a> define a densidade demográfica, usada na coluna <code>densidade_dem</code>.”</p>
 </section>
+<section id="citações-bibliográficas" class="slide level2">
+<h2>Citações bibliográficas</h2>
+<ul>
+<li>Referência cruzada: aponta para uma figura, tabela ou seção do documento.</li>
+<li>Citação bibliográfica: identifica uma fonte externa.</li>
+<li><code>.bib</code>: guarda autoria, título, ano e outros dados da publicação.</li>
+<li><code>bibliography</code>: informa ao Quarto qual arquivo usar.</li>
+</ul>
+</section>
+<section id="arquivo-referencias.bib" class="slide level2">
+<h2>Arquivo <code>referencias.bib</code></h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bibtex number-lines code-with-copy"><code class="sourceCode bibtex"><span id="cb11-1"><a></a><span class="va">@article</span>{<span class="ot">knuth1984</span>,</span>
+<span id="cb11-2"><a></a>  <span class="dt">author</span> = {Knuth, Donald E.},</span>
+<span id="cb11-3"><a></a>  <span class="dt">title</span> = {Literate Programming},</span>
+<span id="cb11-4"><a></a>  <span class="dt">journal</span> = {The Computer Journal},</span>
+<span id="cb11-5"><a></a>  <span class="dt">year</span> = {1984},</span>
+<span id="cb11-6"><a></a>  <span class="dt">volume</span> = {27},</span>
+<span id="cb11-7"><a></a>  <span class="dt">number</span> = {2},</span>
+<span id="cb11-8"><a></a>  <span class="dt">pages</span> = {97--111},</span>
+<span id="cb11-9"><a></a>  <span class="dt">doi</span> = {10.1093/comjnl/27.2.97}</span>
+<span id="cb11-10"><a></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>knuth1984</code> é a chave da referência. Confira os dados na fonte original.</p>
+</section>
+<section id="yaml-e-citações-no-texto" class="slide level2">
+<h2>YAML e citações no texto</h2>
+<p>Com o <code>.bib</code> na mesma pasta do <code>.qmd</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> referencias.bib</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a></a>@knuth1984 apresenta a proposta de programação literária.</span>
+<span id="cb13-2"><a></a></span>
+<span id="cb13-3"><a></a>O artigo discute explicações e código <span class="co">[</span><span class="ot">@knuth1984</span><span class="co">]</span>.</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A chave no texto deve corresponder à entrada no <code>.bib</code>.</p>
+</section>
+<section id="lista-de-referências" class="slide level2">
+<h2>Lista de referências</h2>
+<p>No final do documento:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a></a><span class="fu">## Referências</span></span>
+<span id="cb14-2"><a></a></span>
+<span id="cb14-3"><a></a>::: {#refs}</span>
+<span id="cb14-4"><a></a>:::</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Renderize e confira as citações e a lista gerada.</li>
+<li><code>.bib</code> guarda os dados; um <code>.csl</code> opcional define o estilo.</li>
+<li>Inclua esses arquivos na entrega.</li>
+</ul>
+<p>Exemplo completo: <a href="../materiais/exemplos/documento-com-referencias.html">documento com referências</a>.</p>
+</section>
 <section id="acessibilidade" class="slide level2">
 <h2>Acessibilidade</h2>
 <ul>
@@ -864,6 +939,7 @@ d = \frac{P}{A}
 <li>um gráfico bom <strong>e</strong> um propositalmente ruim, para comparar;</li>
 <li>referências cruzadas;</li>
 <li>texto alternativo específico.</li>
+<li>uma fonte no <code>.bib</code>, uma citação e a lista de referências renderizada.</li>
 </ol>
 </section>
 <section id="projeto-final-etapa-2" class="slide level2">
@@ -872,13 +948,14 @@ d = \frac{P}{A}
 <li>crie o esqueleto do documento;</li>
 <li>escreva a introdução;</li>
 <li>inclua a primeira evidência visual;</li>
+<li>para um artigo, comece o <code>.bib</code> e cite uma fonte relevante;</li>
 <li>peça a alguém para explicar a mensagem que entendeu.</li>
 </ul>
 </section>
 <section id="fechamento" class="slide level2">
 <h2>Fechamento</h2>
 <p>Comunicação reprodutível combina:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a></a>estrutura + evidência + interpretação + acessibilidade</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb15-1"><a></a>estrutura + evidência + interpretação + acessibilidade</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <h3 id="próxima-aula">Próxima aula</h3>
 <p>Dados, formatos e automação.</p>
 

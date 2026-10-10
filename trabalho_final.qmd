@@ -4,14 +4,22 @@ title: "Instruções de Trabalho Final"
 
 **Objetivo:** Você deverá criar um documento utilizando **Quarto** e compartilhá-lo conosco. O trabalho final tem como propósito consolidar os conhecimentos apresentados ao longo do curso, por meio da elaboração de um produto final estruturado e reprodutível.
 
+O foco da avaliação é a elaboração e a comunicação do documento, não a complexidade da análise. Uma análise descritiva simples, bem apresentada e reproduzível, pode receber a pontuação máxima. O trabalho utiliza R; não é necessário usar Python.
+
 **Formato do trabalho:**  
-Você deverá **escolher um dos três formatos abaixo** para o seu trabalho final:
+Você poderá **escolher uma das sete opções abaixo** para o seu trabalho final:
 
 - **Relatório executivo** — voltado para comunicação objetiva de resultados, com linguagem acessível a gestores e tom profissional.
 - **Apresentação em slides** — estrutura de apresentação sintética, visual e orientada à exposição oral.
 - **Artigo acadêmico** — estrutura científica, com seções formais (introdução, metodologia, resultados, discussão e referências).
+- **Tutorial** — explicação de uma técnica ou análise, com código, resultados e instruções que permitam acompanhar e reproduzir os passos.
+- **Página pessoal de divulgação** — apresentação de um perfil, pesquisa ou portfólio, incluindo uma análise ou projeto com dados e resultados reproduzíveis.
+- **Dashboard interativo** — painel de indicadores e visualizações, com contexto e orientações para interpretar e explorar os dados.
+- **Livro** — conteúdo organizado em capítulos, com uma sequência coerente de explicações, código e resultados; pode ser uma versão inicial com capítulos desenvolvidos que atendam aos requisitos da atividade.
 
 A escolha do formato deve estar alinhada ao **objetivo do trabalho** e ao **público-alvo** que você deseja atingir.
+
+Essas opções definem o tipo de trabalho aceito para avaliação. O formato de saída é uma escolha técnica: um tutorial pode ser uma página HTML ou um PDF, por exemplo, e uma apresentação pode usar RevealJS (HTML) ou PowerPoint. Escolha uma saída compatível com o conteúdo e os recursos utilizados. Todas as opções seguem os requisitos de conteúdo e a rubrica abaixo, incluindo tabela e gráfico gerados por código. Em páginas pessoais, esses elementos podem aparecer em uma seção de projeto ou portfólio.
 
 ::: {.callout-tip title="Construa ao longo do curso"}
 Cada aula termina com uma etapa do projeto final. Seguir essas etapas evita concentrar toda a produção no último encontro.
@@ -29,20 +37,22 @@ O recebimento do certificado está vinculado à entrega e aprovação do trabalh
 
 ## Etapas pré-código
 
-- Pense no **formato escolhido** (relatório executivo, slides ou artigo acadêmico), definindo:
+- Pense no **tipo de trabalho escolhido** entre as sete opções, definindo:
   - o objetivo do documento;
   - o público-alvo;
   - o tipo de linguagem mais adequada.
 
-- Exemplos de aplicações:
+- Exemplos de trabalhos dentro das opções aceitas:
 
   - Relatório executivo apresentando uma análise de dados para tomada de decisão.
   - Apresentação em slides para exposição de resultados de uma pesquisa ou projeto.
   - Artigo acadêmico com estrutura científica (não precisa estar completo, mas deve conter a organização típica e uso de código para gerar tabelas e gráficos).
-  - Tutorial com código em R ou Python.
-  - Página pessoal de divulgação.
-  - Dashboard interativo.
-  - Livro ou capítulo inicial estruturado em Quarto.
+  - Tutorial explicando uma análise passo a passo, com código e interpretação dos resultados.
+  - Página pessoal com uma seção de portfólio que apresenta uma análise reproduzível.
+  - Dashboard interativo para acompanhar e comparar indicadores de uma base pública.
+  - Livro introdutório sobre um tema, com capítulos que combinam explicações e exemplos de análise de dados.
+
+Recursos como gráficos interativos, mapas, parâmetros e trechos explicativos de código podem fazer parte do trabalho escolhido, quando ajudarem a comunicar os resultados. Escolha os recursos de acordo com o público e com o formato de saída.
 
 - Escolha uma base de dados para utilizar. Algumas sugestões:
 
@@ -61,7 +71,7 @@ O projeto deve chamar-se:
 `trabalho_relatorios_nome_sobrenome`  
 Exemplo: `trabalho_relatorios_beatriz_milz`
 
-Você pode criar um projeto simples ou um projeto Quarto (que já traz estrutura adequada para relatórios, apresentações, websites ou livros).
+Você pode criar um projeto simples ou um projeto Quarto, organizado para o tipo de trabalho escolhido. Para uma página pessoal com várias páginas ou um livro, use um projeto Quarto do tipo website ou book, respectivamente.
 
 **Todos os passos seguintes devem ser realizados dentro deste projeto.**
 
@@ -87,9 +97,11 @@ fs::dir_create("img")
 > File → New File → Quarto Document
 
 Salve o arquivo com o nome `index.qmd`.
-Clique em **Render** para verificar se o arquivo `index.html` foi gerado sem erros.
+Clique em **Render** para verificar se o arquivo de saída foi gerado sem erros: `index.html` para HTML ou RevealJS, `index.pdf` para PDF, `index.docx` para Word ou `index.pptx` para PowerPoint.
 
 > 💡 Caso você tenha escolhido o formato **apresentação em slides**, selecione o tipo de documento **RevealJS** ou **PowerPoint** no momento da criação do arquivo Quarto.
+
+Para um **dashboard**, crie um documento Quarto com `format: dashboard`. Para uma **página pessoal com várias páginas** ou um **livro**, use a estrutura do projeto website ou book e renderize o projeto inteiro com `quarto render` na pasta raiz. Inclua na entrega o `_quarto.yml` (ou `_quarto.yaml`), todas as páginas ou capítulos e os arquivos necessários para reproduzir o conteúdo. O nome e a pasta das saídas dependem da configuração do projeto.
 
 ---
 
@@ -103,9 +115,9 @@ Inclua obrigatoriamente:
 * Pelo menos um parágrafo de texto com marcações.
 * Um link para uma página na internet.
 * Uma imagem.
-* Uma tabela.
-* Um gráfico (preferencialmente com `ggplot2`).
-* Se for um artigo acadêmico, inclua referências utilizando arquivo `.bib`.
+* Uma tabela gerada por código R e relacionada ao conteúdo.
+* Um gráfico gerado por código R (preferencialmente com `ggplot2`) e relacionado ao conteúdo.
+* Se for um artigo acadêmico, inclua um arquivo `.bib`, declare-o em `bibliography` no YAML, cite as fontes no texto e gere a lista de referências. Consulte o [passo a passo da Aula 2](aulas/aula-2.qmd#sec-citacoes-bibliograficas) e o [exemplo completo](materiais/exemplos/documento-com-referencias.qmd). Nos demais tipos de trabalho, use esse recurso quando for adequado ao conteúdo.
 
 ---
 
@@ -117,34 +129,85 @@ Você pode:
   **ou**
 * Compartilhar o link de um repositório no GitHub contendo o projeto.
 
-Inclua também o link da versão publicada, quando o formato escolhido permitir publicação web.
+Entregue os arquivos-fonte (`.qmd`, configurações e recursos necessários), o documento renderizado e um README com as instruções para reproduzir o trabalho. Para HTML, inclua também as pastas de recursos necessárias para abrir a saída corretamente. Dados devem acompanhar o projeto ou ter instruções claras de obtenção, respeitando a autorização de uso.
+
+A publicação web é opcional. Se publicar, inclua o link e teste o acesso. Um trabalho entregue em PDF, Word, PowerPoint ou outro formato aceito pode receber a mesma pontuação máxima de uma versão publicada.
 
 ---
 
-## Rubrica de avaliação
+## Rubrica de avaliação {#sec-rubrica}
 
-| Critério | O que será observado | Peso |
+Será avaliada a qualidade do documento produzido e sua adequação ao público, com pontuação total de 100 pontos.
+
+| Critério | O que será observado | Pontos |
 |---|---|---:|
-| Propósito e público | objetivo explícito, linguagem e formato adequados | 15% |
-| Estrutura e comunicação | narrativa coerente, títulos, interpretação dos resultados e apresentação visual | 20% |
-| Integração com dados | tabela e gráfico gerados por código e relacionados à pergunta | 20% |
-| Reprodutibilidade | caminhos relativos, execução em sessão limpa e dependências documentadas | 20% |
-| Organização do projeto | nomes claros, pastas consistentes e ausência de arquivos desnecessários | 10% |
-| Documentação e autoria | README, fontes dos dados, créditos, referências e licença | 10% |
-| Publicação e entrega | arquivos acessíveis e instruções de execução funcionais | 5% |
+| Propósito e adequação ao público | Objetivo claro; linguagem, formato e nível de detalhe adequados a quem vai ler ou utilizar o material. | 15 |
+| Estrutura e comunicação | Organização coerente; títulos informativos; explicações compreensíveis; texto que apresenta e contextualiza os resultados. | 25 |
+| Uso dos recursos do Quarto | Uso funcional de Markdown, links, imagem, tabela e gráfico; tabela e gráfico gerados por código R; recursos integrados ao conteúdo, com rótulos legíveis. | 20 |
+| Reprodutibilidade | Projeto renderiza a partir dos arquivos entregues em sessão limpa; caminhos consistentes; dados e dependências disponíveis ou documentados; resultados independentes de comandos executados previamente. | 20 |
+| Organização do projeto | Arquivos bem nomeados; estrutura compreensível; separação adequada entre fontes, dados e recursos; ausência de informações sigilosas. | 10 |
+| Documentação e entrega | README com instruções de execução; identificação das fontes e créditos; entrega acessível, incluindo fontes e documento renderizado. | 10 |
+| **Total** | | **100** |
 
-Para aprovação, o trabalho deve atingir pelo menos 60% da pontuação e não pode deixar de atender aos critérios de integração com dados e reprodutibilidade.
+### Níveis de atendimento
+
+Cada critério recebe um nível de 0 a 4. A pontuação é calculada por **pontos do critério × nível ÷ 4**; a nota final é a soma das pontuações, sem arredondamento por critério.
+
+| Nível | Descrição | Proporção dos pontos |
+|---|---|---:|
+| 4 — Pleno | Atende ao critério de maneira clara e funcional. Pequenos detalhes não comprometem o resultado. | 100% |
+| 3 — Adequado | Atende à maior parte do critério, com problemas localizados. | 75% |
+| 2 — Parcial | Demonstra a habilidade, mas apresenta limitações relevantes. | 50% |
+| 1 — Insuficiente | Há uma tentativa, mas problemas importantes comprometem o resultado. | 25% |
+| 0 — Não demonstrado | O elemento está ausente ou não pode ser avaliado. | 0% |
+
+Por exemplo, nível 3 em um critério de 20 pontos corresponde a 15 pontos. A devolutiva deve indicar o nível atribuído a cada critério e os principais aspectos a melhorar.
+
+### Aplicação aos sete tipos de trabalho
+
+Os critérios e pesos são os mesmos para todos, mas a organização esperada acompanha o tipo de trabalho:
+
+| Tipo de trabalho | Como observar a estrutura e a comunicação |
+|---|---|
+| Relatório executivo | Síntese, mensagem principal e contextualização dos resultados para o público. |
+| Apresentação em slides | Sequência clara, legibilidade e equilíbrio entre texto e elementos visuais para a exposição. |
+| Artigo acadêmico | Organização acadêmica, citações no texto e referências geradas a partir do `.bib`. |
+| Tutorial | Instruções compreensíveis, sequência de passos e exemplos reproduzíveis. |
+| Página pessoal de divulgação | Navegação clara e seção de projeto ou portfólio com texto, código e resultados. |
+| Dashboard interativo | Contexto, indicadores identificados e orientações para interpretar e utilizar o painel. |
+| Livro | Sequência coerente entre os capítulos desenvolvidos, com explicações e exemplos integrados. |
+
+Não é necessário adotar seções de introdução, metodologia e conclusão em todos os formatos. Uma versão inicial de livro ou artigo é aceita desde que os trechos entregues demonstrem os requisitos da atividade.
+
+### Papel da análise e dos recursos extras
+
+Na análise, será observada a coerência básica: o texto corresponde à tabela e ao gráfico? Indicadores têm nomes e unidades compreensíveis? As fontes estão identificadas? Não será exigida sofisticação estatística nem profundidade científica.
+
+Análises avançadas, maior quantidade de gráficos, extensão do trabalho, interatividade ou recursos não ensinados não geram pontos extras por si só. Esses recursos só contribuem quando ajudam a atender aos critérios. Um trabalho simples, bem comunicado e reproduzível pode atingir a pontuação máxima.
+
+### Condições de aprovação
+
+Para aprovação, o trabalho deve cumprir simultaneamente:
+
+- atingir pelo menos **60 pontos de 100**;
+- obter pelo menos **nível 2 em Uso dos recursos do Quarto** e **nível 2 em Reprodutibilidade**;
+- atender aos requisitos obrigatórios de conteúdo e entrega descritos nesta página.
+
+Quando houver uma etapa de correção após a devolutiva, as pendências deverão ser regularizadas antes da avaliação definitiva, conforme as orientações e os prazos comunicados pela docência. A frequência mínima de 75% continua sendo uma condição adicional para a certificação.
 
 ## Checklist antes da entrega
 
+- [ ] O trabalho corresponde a uma das sete opções aceitas e inclui texto com marcações, link, imagem, tabela e gráfico.
 - [ ] O objetivo e o público aparecem no documento.
 - [ ] Tabela e gráfico são gerados pelo código e interpretados no texto.
 - [ ] Todos os caminhos são relativos.
 - [ ] O projeto renderiza depois de reiniciar o R.
 - [ ] O README explica requisitos e execução.
+- [ ] Incluí os arquivos-fonte, as configurações, os recursos necessários e o documento renderizado.
 - [ ] Dados, imagens e referências têm fonte e autorização de uso.
+- [ ] Se escolhi um artigo acadêmico, incluí o `.bib` na entrega e conferi as citações e a lista de referências no documento renderizado.
 - [ ] Nenhuma senha, token ou informação sigilosa foi incluída.
-- [ ] O link publicado foi testado em uma janela anônima do navegador.
+- [ ] Se publiquei na web, testei o link em uma janela anônima do navegador; a publicação é opcional.
 
 ---
 

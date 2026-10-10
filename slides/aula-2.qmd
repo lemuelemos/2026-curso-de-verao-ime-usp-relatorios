@@ -25,7 +25,8 @@ execute:
 2. configurar YAML e execução;
 3. estruturar texto com Markdown;
 4. apresentar tabelas e gráficos;
-5. usar referências cruzadas e acessibilidade.
+5. usar referências cruzadas e citações bibliográficas;
+6. aplicar princípios de acessibilidade.
 
 ## Comece pelo público
 
@@ -67,7 +68,7 @@ Resumo executivo
 
 ```yaml
 ---
-title: "Indicadores por estado"
+title: "Indicadores por UF"
 author: "Nome da pessoa autora"
 date: today
 lang: pt-BR
@@ -84,7 +85,7 @@ execute:
 ## YAML: um erro real
 
 ```yaml
-title: Indicadores: uma análise por estado
+title: Indicadores: uma análise por UF
 ```
 
 ```text
@@ -92,7 +93,7 @@ ERROR: YAML parse exception at line 2, column 18:
 mapping values are not allowed in this context
 ```
 
-Correção: `title: "Indicadores: uma análise por estado"` — sempre com aspas quando o texto tem `:`.
+Correção: `title: "Indicadores: uma análise por UF"` — sempre com aspas quando o texto tem `:`.
 
 ## Hierarquia de títulos
 
@@ -118,9 +119,25 @@ populacao_uf <- readr::read_csv("dados/populacao_uf.csv", show_col_types = FALSE
 
 resumo_regiao <- populacao_uf |>
   group_by(regiao) |>
-  summarise(estados = n(), populacao_total = sum(populacao), .groups = "drop") |>
+  summarise(
+    n_ufs = n(),
+    populacao_total = sum(populacao),
+    densidade_regional = sum(populacao) / sum(area_km2),
+    .groups = "drop"
+  ) |>
   arrange(desc(populacao_total))
 ```
+
+## Densidade regional: razão entre totais
+
+$$
+d_{\text{região}} = \frac{\sum_i P_i}{\sum_i A_i}
+$$
+
+- Use `sum(populacao) / sum(area_km2)`.
+- `mean(densidade_dem)` é a média simples das densidades das UFs.
+- Na média simples, o DF tem o mesmo peso que cada outra UF do Centro-Oeste.
+- Nomeie o indicador conforme o cálculo utilizado.
 
 ## Tabelas com propósito
 
@@ -130,7 +147,12 @@ resumo_regiao <- populacao_uf |>
 resumo_regiao |>
   gt::gt() |>
   gt::fmt_number(populacao_total, decimals = 0, sep_mark = ".", dec_mark = ",") |>
-  gt::cols_label(regiao = "Região", estados = "Estados", populacao_total = "População total") |>
+  gt::fmt_number(densidade_regional, decimals = 1, sep_mark = ".", dec_mark = ",") |>
+  gt::cols_label(
+    regiao = "Região", n_ufs = "UFs",
+    populacao_total = "População total",
+    densidade_regional = "Densidade regional (hab/km²)"
+  ) |>
   gt::tab_source_note("Fonte: IBGE, Censo 2022.")
 ```
 
@@ -173,6 +195,63 @@ $$ {#eq-densidade}
 
 No texto: "A @eq-densidade define a densidade demográfica, usada na coluna `densidade_dem`."
 
+## Citações bibliográficas
+
+- Referência cruzada: aponta para uma figura, tabela ou seção do documento.
+- Citação bibliográfica: identifica uma fonte externa.
+- `.bib`: guarda autoria, título, ano e outros dados da publicação.
+- `bibliography`: informa ao Quarto qual arquivo usar.
+
+## Arquivo `referencias.bib`
+
+```bibtex
+@article{knuth1984,
+  author = {Knuth, Donald E.},
+  title = {Literate Programming},
+  journal = {The Computer Journal},
+  year = {1984},
+  volume = {27},
+  number = {2},
+  pages = {97--111},
+  doi = {10.1093/comjnl/27.2.97}
+}
+```
+
+`knuth1984` é a chave da referência. Confira os dados na fonte original.
+
+## YAML e citações no texto
+
+Com o `.bib` na mesma pasta do `.qmd`:
+
+```yaml
+bibliography: referencias.bib
+```
+
+```markdown
+@knuth1984 apresenta a proposta de programação literária.
+
+O artigo discute explicações e código [@knuth1984].
+```
+
+A chave no texto deve corresponder à entrada no `.bib`.
+
+## Lista de referências
+
+No final do documento:
+
+```markdown
+## Referências
+
+::: {#refs}
+:::
+```
+
+- Renderize e confira as citações e a lista gerada.
+- `.bib` guarda os dados; um `.csl` opcional define o estilo.
+- Inclua esses arquivos na entrega.
+
+Exemplo completo: [documento com referências](../materiais/exemplos/documento-com-referencias.qmd).
+
 ## Acessibilidade
 
 ::: {.incremental}
@@ -193,12 +272,14 @@ Com `dados/populacao_uf.csv`:
 4. um gráfico bom **e** um propositalmente ruim, para comparar;
 5. referências cruzadas;
 6. texto alternativo específico.
+7. uma fonte no `.bib`, uma citação e a lista de referências renderizada.
 
 ## Projeto final — etapa 2
 
 - crie o esqueleto do documento;
 - escreva a introdução;
 - inclua a primeira evidência visual;
+- para um artigo, comece o `.bib` e cite uma fonte relevante;
 - peça a alguém para explicar a mensagem que entendeu.
 
 ## Fechamento
