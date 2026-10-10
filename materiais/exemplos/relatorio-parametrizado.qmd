@@ -59,8 +59,8 @@ população total de `r scales::number(sum(dados_regiao$populacao), big.mark = "
 (Censo IBGE 2022).
 
 ```{r}
-#| label: tbl-estados-regiao
-#| tbl-cap: "Estados da região selecionada, ordenados pela população."
+#| label: tbl-ufs-regiao
+#| tbl-cap: "UFs da região selecionada, ordenados pela população."
 
 dados_regiao |>
   select(nome_uf, capital, populacao, densidade_dem, porte) |>
@@ -68,7 +68,7 @@ dados_regiao |>
   fmt_number(columns = c(populacao), decimals = 0, sep_mark = ".", dec_mark = ",") |>
   fmt_number(columns = c(densidade_dem), decimals = 1, sep_mark = ".", dec_mark = ",") |>
   cols_label(
-    nome_uf = "Estado",
+    nome_uf = "UF",
     capital = "Capital",
     populacao = "População",
     densidade_dem = "Densidade (hab/km²)",
@@ -77,12 +77,12 @@ dados_regiao |>
   tab_source_note("Fonte: IBGE, Censo Demográfico 2022.")
 ```
 
-## População por estado
+## População por UF
 
 ```{r}
 #| label: fig-populacao-regiao
-#| fig-cap: "População dos estados da região selecionada."
-#| fig-alt: "Gráfico de barras horizontais com a população de cada estado da região, do maior para o menor."
+#| fig-cap: "População das UFs da região selecionada."
+#| fig-alt: "Gráfico de barras horizontais com a população de cada UF da região, da maior para a menor."
 
 ggplot(dados_regiao, aes(x = reorder(nome_uf, populacao), y = populacao)) +
   geom_col(fill = "#2f4858") +
@@ -92,8 +92,8 @@ ggplot(dados_regiao, aes(x = reorder(nome_uf, populacao), y = populacao)) +
   theme_minimal()
 ```
 
-O estado mais populoso da região é **`r dados_regiao$nome_uf[1]`**
-(`r scales::number(dados_regiao$populacao[1], big.mark = ".", decimal.mark = ",")` habitantes) e o menos populoso é
+A UF mais populosa da região é **`r dados_regiao$nome_uf[1]`**
+(`r scales::number(dados_regiao$populacao[1], big.mark = ".", decimal.mark = ",")` habitantes) e a menos populosa é
 **`r dados_regiao$nome_uf[nrow(dados_regiao)]`**
 (`r scales::number(dados_regiao$populacao[nrow(dados_regiao)], big.mark = ".", decimal.mark = ",")` habitantes).
 

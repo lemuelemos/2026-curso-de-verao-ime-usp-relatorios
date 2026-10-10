@@ -21,7 +21,7 @@ Nesta aula, o relatório deixa de ser uma peça única e passa a ser reutilizáv
 
 ## 1. Interatividade com propósito
 
-Gráficos interativos permitem explorar valores, aplicar zoom e exibir detalhes. Eles são úteis quando o leitor precisa investigar os dados; para uma mensagem única, um gráfico estático costuma ser mais claro. Compare as duas versões abaixo — mesmos dados, mesma pergunta ("quais estados têm mais habitantes por km²?"):
+Gráficos interativos permitem explorar valores, aplicar zoom e exibir detalhes. Eles são úteis quando o leitor precisa investigar os dados; para uma mensagem única, um gráfico estático costuma ser mais claro. Compare as duas versões abaixo — mesmos dados, mesma pergunta ("quais UFs têm mais habitantes por km²?"):
 
 ```{r}
 #| label: preparar-dados-aula4
@@ -39,8 +39,8 @@ top10_densidade <- populacao_uf |>
 
 ```{r}
 #| label: fig-densidade-estatica
-#| fig-cap: "Os dez estados com maior densidade demográfica."
-#| fig-alt: "Gráfico de barras horizontais com os dez estados de maior densidade demográfica, liderados pelo Distrito Federal."
+#| fig-cap: "As dez UFs com maior densidade demográfica."
+#| fig-alt: "Gráfico de barras horizontais com as dez UFs de maior densidade demográfica, liderados pelo Distrito Federal."
 
 ggplot(top10_densidade, aes(x = reorder(nome_uf, densidade_dem), y = densidade_dem)) +
   geom_col(fill = "#2f4858") +
@@ -73,11 +73,11 @@ Nenhuma das duas está errada — a decisão depende do formato de saída e do q
 
 ## 2. Um mapa é interatividade que resolve um problema real
 
-`dados/populacao_uf.csv` já tem `latitude` e `longitude` da capital de cada estado — dá para colocar cada um no mapa, com o tamanho do marcador proporcional à população:
+`dados/populacao_uf.csv` já tem `latitude` e `longitude` da capital de cada UF — dá para colocar cada uma no mapa, com o tamanho do marcador proporcional à população:
 
 ```{r}
 #| label: fig-mapa-populacao
-#| fig-cap: "Capitais dos estados brasileiros; o tamanho do círculo é proporcional à população do estado."
+#| fig-cap: "Capitais das UFs brasileiras; o tamanho do círculo é proporcional à população da UF."
 
 leaflet::leaflet(populacao_uf) |>
   leaflet::addProviderTiles(leaflet::providers$CartoDB.Positron) |>
@@ -92,7 +92,7 @@ leaflet::leaflet(populacao_uf) |>
   )
 ```
 
-Um mapa estático (uma imagem) também mostraria a localização das capitais, mas só o mapa interativo permite arrastar, dar zoom e ler o rótulo de um estado específico sem poluir a figura inteira com texto. É exatamente o tipo de tarefa ("onde fica" + "qual é o valor exato aqui") em que a interatividade paga o custo de não funcionar em PDF.
+Um mapa estático (uma imagem) também mostraria a localização das capitais, mas só o mapa interativo permite arrastar, dar zoom e ler o rótulo de uma UF específica sem poluir a figura inteira com texto. É exatamente o tipo de tarefa ("onde fica" + "qual é o valor exato aqui") em que a interatividade paga o custo de não funcionar em PDF.
 
 ## 3. Relatórios parametrizados
 

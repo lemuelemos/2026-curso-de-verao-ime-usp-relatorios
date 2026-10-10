@@ -68,7 +68,7 @@ Resumo executivo
 
 ```yaml
 ---
-title: "Indicadores por estado"
+title: "Indicadores por UF"
 author: "Nome da pessoa autora"
 date: today
 lang: pt-BR
@@ -85,7 +85,7 @@ execute:
 ## YAML: um erro real
 
 ```yaml
-title: Indicadores: uma análise por estado
+title: Indicadores: uma análise por UF
 ```
 
 ```text
@@ -93,7 +93,7 @@ ERROR: YAML parse exception at line 2, column 18:
 mapping values are not allowed in this context
 ```
 
-Correção: `title: "Indicadores: uma análise por estado"` — sempre com aspas quando o texto tem `:`.
+Correção: `title: "Indicadores: uma análise por UF"` — sempre com aspas quando o texto tem `:`.
 
 ## Hierarquia de títulos
 

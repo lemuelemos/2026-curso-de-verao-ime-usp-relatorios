@@ -67,26 +67,26 @@ Duas perguntas valem sempre a pena antes de prosseguir: o número de linhas bate
 
 ## 3. Juntando duas fontes de dados
 
-`pib_uf.csv` traz o PIB per capita por estado, mas de um ano de referência diferente do `populacao_uf.csv` — isso é comum quando os dados vêm de levantamentos diferentes do IBGE, e é um ótimo motivo para nunca juntar tabelas sem checar o que aconteceu:
+`pib_uf.csv` traz o PIB per capita por UF, mas de um ano de referência diferente do `populacao_uf.csv` — isso é comum quando os dados vêm de levantamentos diferentes do IBGE, e é um ótimo motivo para nunca juntar tabelas sem checar o que aconteceu:
 
 ```{r}
 #| label: juntar-dados
 
 pib_uf <- readr::read_csv(here::here("dados", "pib_uf.csv"), show_col_types = FALSE)
 
-estados <- populacao_uf |>
+dados_ufs <- populacao_uf |>
   dplyr::left_join(pib_uf, by = "uf")
 
-dplyr::glimpse(estados)
+dplyr::glimpse(dados_ufs)
 ```
 
 ```{r}
 #| label: checar-na
 
-sum(is.na(estados$pib_per_capita))
+sum(is.na(dados_ufs$pib_per_capita))
 ```
 
-Neste caso o resultado é zero — as duas bases cobrem as mesmas 27 unidades federativas —, mas em dados reais é comum um `left_join` produzir `NA` quando uma chave existe de um lado e não do outro (um estado sem PIB registrado no ano da fonte, por exemplo). Nunca ignore isso silenciosamente: decida, e registre a decisão no texto.
+Neste caso o resultado é zero — as duas bases cobrem as mesmas 27 unidades federativas —, mas em dados reais é comum um `left_join` produzir `NA` quando uma chave existe de um lado e não do outro (uma UF sem PIB registrado no ano da fonte, por exemplo). Nunca ignore isso silenciosamente: decida, e registre a decisão no texto.
 
 ```{r}
 #| label: tratar-na
@@ -95,12 +95,12 @@ Neste caso o resultado é zero — as duas bases cobrem as mesmas 27 unidades fe
 # Se houvesse NA em pib_per_capita, duas saídas comuns seriam:
 
 # 1. Descartar as linhas incompletas, sendo explícito sobre quantas:
-estados |> dplyr::filter(!is.na(pib_per_capita))
+dados_ufs |> dplyr::filter(!is.na(pib_per_capita))
 
 # 2. Exemplo ilustrativo de imputação pela média simples das UFs observadas.
 #    Essa média não é o PIB per capita nacional. Só use imputação com uma
 #    justificativa metodológica e identifique os valores estimados no texto:
-estados |> dplyr::mutate(pib_per_capita = dplyr::coalesce(pib_per_capita, mean(pib_per_capita, na.rm = TRUE)))
+dados_ufs |> dplyr::mutate(pib_per_capita = dplyr::coalesce(pib_per_capita, mean(pib_per_capita, na.rm = TRUE)))
 ```
 
 ## 4. Um fluxo com responsabilidades claras
@@ -113,12 +113,12 @@ populacao_uf <- readr::read_csv(here::here("dados", "populacao_uf.csv"), show_co
 pib_uf <- readr::read_csv(here::here("dados", "pib_uf.csv"), show_col_types = FALSE)
 
 # 2. Junção e tratamento
-estados <- populacao_uf |>
+dados_ufs <- populacao_uf |>
   dplyr::left_join(pib_uf, by = "uf") |>
   dplyr::filter(!is.na(pib_per_capita))
 
 # 3. Transformação
-resumo_regiao <- estados |>
+resumo_regiao <- dados_ufs |>
   dplyr::group_by(regiao, ano_referencia) |>
   dplyr::summarise(
     pib_pc_media_ufs = mean(pib_per_capita),
@@ -144,7 +144,7 @@ Com dados compatíveis, essa razão equivale à média dos PIBs per capita das U
 
 PIB per capita expressa uma razão entre produção econômica e população; ele não representa o rendimento recebido por cada pessoa.
 
-Cada etapa tem um comentário que diz o que ela faz, e os nomes dos objetos (`estados`, `resumo_regiao`) descrevem o conteúdo, não a ordem de criação. Evite esconder uma transformação importante dentro de um bloco com nome genérico como `analise` — quem revisa o código depois (inclusive você, em três meses) precisa localizar rapidamente onde algo foi calculado.
+Cada etapa tem um comentário que diz o que ela faz, e os nomes dos objetos (`dados_ufs`, `resumo_regiao`) descrevem o conteúdo, não a ordem de criação. Evite esconder uma transformação importante dentro de um bloco com nome genérico como `analise` — quem revisa o código depois (inclusive você, em três meses) precisa localizar rapidamente onde algo foi calculado.
 
 ## 5. Resultados dinâmicos no texto
 

@@ -147,7 +147,9 @@ Se funciona apenas depois de executar comandos no console, ainda há dependênci
 
 ## O dataset deste curso
 
-Cinco aulas, uma base real: população, área e PIB por estado brasileiro (fonte: IBGE).
+Cinco aulas, uma base real: população, área e PIB per capita por unidade federativa (UF) brasileira (fonte: IBGE).
+
+São 27 UFs: 26 estados e o Distrito Federal. O DF não é um estado.
 
 ```{r}
 #| label: primeiro-contato-uf

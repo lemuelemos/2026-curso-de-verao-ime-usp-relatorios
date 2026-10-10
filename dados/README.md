@@ -1,11 +1,11 @@
-# Dados do curso — perfil dos estados brasileiros
+# Dados do curso — perfil das unidades federativas brasileiras
 
 Estes dois arquivos são o estudo de caso usado nas cinco aulas. Servem também de exemplo de
 como documentar a origem de um dado (algo cobrado na rubrica do [trabalho final](../trabalho_final.qmd)).
 
 ## `populacao_uf.csv`
 
-Uma linha por unidade federativa (27 no total).
+Uma linha por unidade federativa (UF): 27 no total, sendo 26 estados e o Distrito Federal. O DF é uma UF, mas não é um estado.
 
 | Coluna | Descrição |
 |---|---|

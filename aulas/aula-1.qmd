@@ -113,7 +113,7 @@ Prefira títulos informativos e parágrafos curtos. Um relatório deve comunicar
 
 ## 5. Um primeiro olhar em dados reais
 
-Este curso usa, ao longo das cinco aulas, uma base pequena e real: população, área e PIB per capita das 27 unidades federativas do Brasil (fonte: IBGE — os detalhes estão em [`dados/README.md`](https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/dados/README.md)). A leitura formal de arquivos `.csv` só chega na Aula 3, mas nada impede um primeiro contato agora:
+Este curso usa, ao longo das cinco aulas, uma base pequena e real: população, área e PIB per capita das 27 unidades federativas (UFs) do Brasil — 26 estados e o Distrito Federal (fonte: IBGE — os detalhes estão em [`dados/README.md`](https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/dados/README.md)). O Distrito Federal é uma UF, mas não é um estado. Por isso, usaremos "UFs" para os conjuntos que o incluem. A leitura formal de arquivos `.csv` só chega na Aula 3, mas nada impede um primeiro contato agora:
 
 ```{r}
 #| label: primeiro-contato-uf
@@ -150,7 +150,7 @@ Crie um relatório que contenha:
 3. uma lista com três perguntas sobre `mtcars`;
 4. um bloco que calcule `mean(mtcars$mpg)`;
 5. uma frase que interprete o resultado;
-6. um segundo bloco que leia `dados/populacao_uf.csv` com `readr::read_csv()` e responda, só com código: quantos estados tem a região Nordeste? (dica: `dplyr::filter()` + `nrow()`, ou `dplyr::count(regiao)`).
+6. um segundo bloco que leia `dados/populacao_uf.csv` com `readr::read_csv()` e responda, só com código: quantas UFs tem a região Nordeste? (dica: `dplyr::filter()` + `nrow()`, ou `dplyr::count(regiao)`).
 
 Depois, reinicie o R e renderize de novo — se algo quebrar, você acabou de encontrar uma dependência escondida antes que ela virasse um problema no meio do curso.
 

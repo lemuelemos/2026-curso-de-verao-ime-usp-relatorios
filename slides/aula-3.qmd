@@ -68,9 +68,9 @@ skimr::skim(populacao_uf)
 
 pib_uf <- readr::read_csv(here::here("dados", "pib_uf.csv"), show_col_types = FALSE)
 
-estados <- populacao_uf |> dplyr::left_join(pib_uf, by = "uf")
+dados_ufs <- populacao_uf |> dplyr::left_join(pib_uf, by = "uf")
 
-sum(is.na(estados$pib_per_capita))
+sum(is.na(dados_ufs$pib_per_capita))
 ```
 
 `populacao_uf.csv` é de 2022; `pib_uf.csv` é de 2023 — fontes diferentes do IBGE. Sempre confira o que um `left_join` produz antes de seguir.
@@ -83,12 +83,12 @@ populacao_uf <- readr::read_csv(here::here("dados", "populacao_uf.csv"))
 pib_uf <- readr::read_csv(here::here("dados", "pib_uf.csv"))
 
 # 2. Junção e tratamento
-estados <- populacao_uf |>
+dados_ufs <- populacao_uf |>
   dplyr::left_join(pib_uf, by = "uf") |>
   dplyr::filter(!is.na(pib_per_capita))
 
 # 3. Transformação
-resumo_regiao <- estados |>
+resumo_regiao <- dados_ufs |>
   dplyr::group_by(regiao, ano_referencia) |>
   dplyr::summarise(pib_pc_media_ufs = mean(pib_per_capita), .groups = "drop")
 ```
@@ -107,7 +107,7 @@ Mantenha o ano e o tipo de média explícitos nas tabelas, gráficos e conclusõ
 ```{r}
 #| label: resumo-regiao
 
-resumo_regiao <- estados |>
+resumo_regiao <- dados_ufs |>
   dplyr::group_by(regiao, ano_referencia) |>
   dplyr::summarise(pib_pc_media_ufs = mean(pib_per_capita), .groups = "drop") |>
   dplyr::arrange(dplyr::desc(pib_pc_media_ufs))
