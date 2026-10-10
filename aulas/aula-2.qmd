@@ -377,7 +377,7 @@ Usando `dados/populacao_uf.csv`:
 
 1. Escreva um objetivo e um público explícitos no início da página.
 2. Configure um YAML com sumário e código recolhível.
-3. Calcule, com `dplyr`, o PIB per capita médio por região a partir de `dados/pib_uf.csv` (você vai aprender a juntar as duas tabelas na Aula 3 — por enquanto, pode ler `pib_uf.csv` separadamente e agrupar por região usando um `left_join` simples, ou deixar essa etapa como pergunta em aberto para a próxima aula).
+3. Usando apenas `dados/populacao_uf.csv`, agrupe por região e calcule o número de UFs, a população total e a densidade regional (`sum(populacao) / sum(area_km2)`), como no exemplo desta aula. A análise do PIB per capita fica para a Aula 3, depois de aprendermos a juntar e validar as duas fontes.
 4. Construa uma tabela `gt` com título e nota de fonte.
 5. Construa um gráfico com título, eixos, legenda e texto alternativo — e, antes de finalizar, produza deliberadamente uma versão "ruim" (sem `theme_minimal()`, sem `labs()`) para comparar as duas.
 6. Adicione referências cruzadas para a tabela e o gráfico.

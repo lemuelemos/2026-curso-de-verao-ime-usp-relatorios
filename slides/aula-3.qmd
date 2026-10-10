@@ -23,7 +23,7 @@ execute:
 
 1. organizar um projeto de análise;
 2. usar `here::here()` em vez de caminhos fixos;
-3. juntar duas fontes de dados e tratar `NA`;
+3. validar chaves, cobertura e resultado das junções;
 4. produzir resultados dinâmicos no texto;
 5. escolher entre HTML, PDF e Word;
 6. registrar dependências com `rig`.
@@ -61,31 +61,78 @@ populacao_uf <- readr::read_csv(here::here("dados", "populacao_uf.csv"), show_co
 skimr::skim(populacao_uf)
 ```
 
-## Juntando duas fontes
+## Antes de juntar: chave e ano
+
+```{r}
+#| label: validar-chaves
+
+pib_uf <- readr::read_csv(here::here("dados", "pib_uf.csv"), show_col_types = FALSE)
+
+duplicadas_populacao <- populacao_uf |> dplyr::count(uf) |> dplyr::filter(n > 1)
+duplicadas_pib <- pib_uf |> dplyr::count(uf, ano_referencia) |> dplyr::filter(n > 1)
+stopifnot(!anyNA(populacao_uf$uf), !anyNA(pib_uf$uf),
+          !anyNA(pib_uf$ano_referencia),
+          all(nzchar(trimws(populacao_uf$uf))),
+          all(nzchar(trimws(pib_uf$uf))),
+          nrow(duplicadas_populacao) == 0, nrow(duplicadas_pib) == 0)
+
+ano_pib <- 2023
+pib_ano <- pib_uf |> dplyr::filter(ano_referencia == ano_pib)
+stopifnot(nrow(populacao_uf) == 27, nrow(pib_ano) == 27)
+```
+
+- População: uma linha por UF; PIB: uma por UF e ano.
+- Selecione um ano para uma relação um para um por `uf`.
+- População de 2022 e PIB de 2023: não são referências temporais iguais.
+
+## Cobertura nos dois sentidos
+
+```{r}
+#| label: validar-cobertura
+
+sem_pib <- dplyr::anti_join(populacao_uf, pib_ano, by = "uf")
+sem_populacao <- dplyr::anti_join(pib_ano, populacao_uf, by = "uf")
+stopifnot(nrow(sem_pib) == 0, nrow(sem_populacao) == 0)
+```
+
+- `anti_join(x, y)` mostra chaves de `x` sem correspondência em `y`.
+- Confira ambos os sentidos: o `left_join` não traz UFs presentes só à direita.
+- Cobertura incompleta: investigue siglas e recortes antes de continuar.
+
+## Juntando com a relação esperada
 
 ```{r}
 #| label: juntar
 
-pib_uf <- readr::read_csv(here::here("dados", "pib_uf.csv"), show_col_types = FALSE)
-
-dados_ufs <- populacao_uf |> dplyr::left_join(pib_uf, by = "uf")
-
-sum(is.na(dados_ufs$pib_per_capita))
+dados_ufs <- populacao_uf |>
+  dplyr::left_join(pib_ano, by = "uf",
+                   relationship = "one-to-one", na_matches = "never")
+stopifnot(nrow(dados_ufs) == nrow(populacao_uf),
+          dplyr::n_distinct(dados_ufs$uf) == nrow(populacao_uf))
 ```
 
-`populacao_uf.csv` é de 2022; `pib_uf.csv` é de 2023 — fontes diferentes do IBGE. Sempre confira o que um `left_join` produz antes de seguir.
+- Múltiplas correspondências podem multiplicar linhas.
+- `relationship` verifica a relação esperada, não a cobertura.
+- Não remova duplicações automaticamente: descubra sua causa.
+
+## Zero `NA` não garante uma junção correta
+
+```{r}
+#| label: validar-indicador
+
+sum(is.na(dados_ufs$pib_per_capita))
+stopifnot(!anyNA(dados_ufs$pib_per_capita))
+```
+
+- Duplicações e perdas à direita podem ocorrer sem gerar `NA`.
+- Um `NA` pode vir da fonte ou de uma chave sem correspondência.
+- Nesta base esperamos o indicador completo; em outro projeto, diagnostique e documente exclusões ou imputações.
 
 ## Fluxo com responsabilidades claras
 
 ```r
-# 1. Importação
-populacao_uf <- readr::read_csv(here::here("dados", "populacao_uf.csv"))
-pib_uf <- readr::read_csv(here::here("dados", "pib_uf.csv"))
-
-# 2. Junção e tratamento
-dados_ufs <- populacao_uf |>
-  dplyr::left_join(pib_uf, by = "uf") |>
-  dplyr::filter(!is.na(pib_per_capita))
+# 1. Importe e valide chaves, ano e cobertura (blocos anteriores).
+# 2. Reutilize dados_ufs, com junção e indicador já validados.
 
 # 3. Transformação
 resumo_regiao <- dados_ufs |>
@@ -193,7 +240,9 @@ rig proj sync
 
 - leia as duas bases com `here::here()`;
 - rode `skimr::skim()` antes de juntar;
-- junte com `left_join()` e confira `NA`;
+- confira chaves, ano e cobertura nos dois sentidos;
+- junte com a relação esperada e compare linhas/UFs antes e depois;
+- investigue os `NA`, sem exclusões silenciosas;
 - produza tabela, gráfico e um valor dinâmico da média simples entre UFs, identificando região e ano;
 - gere HTML e outro formato;
 - teste em sessão limpa.

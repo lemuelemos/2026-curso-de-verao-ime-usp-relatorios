@@ -15,7 +15,8 @@ Até aqui construímos documentos com estrutura e elementos visuais, sempre a pa
 
 - separar importação, tratamento, análise e comunicação;
 - usar caminhos relativos e uma estrutura de projeto previsível, com `here::here()`;
-- juntar duas fontes de dados e lidar com valores ausentes de forma explícita;
+- validar chaves, cobertura e número de linhas ao juntar duas fontes de dados;
+- distinguir falhas de correspondência de valores ausentes na fonte;
 - gerar texto, tabelas e gráficos a partir dos mesmos dados;
 - escolher entre HTML, PDF e Word;
 - configurar a execução para produzir resultados atualizáveis.
@@ -65,17 +66,87 @@ skimr::skim(populacao_uf)
 
 Duas perguntas valem sempre a pena antes de prosseguir: o número de linhas bate com o esperado (aqui, 27 — uma por unidade federativa)? Alguma coluna tem valores ausentes (`n_missing`) que precisam de explicação?
 
-## 3. Juntando duas fontes de dados
+## 3. Juntando duas fontes de dados {#sec-juncoes}
 
-`pib_uf.csv` traz o PIB per capita por UF, mas de um ano de referência diferente do `populacao_uf.csv` — isso é comum quando os dados vêm de levantamentos diferentes do IBGE, e é um ótimo motivo para nunca juntar tabelas sem checar o que aconteceu:
+`pib_uf.csv` traz o PIB per capita por UF, mas de um ano de referência diferente do `populacao_uf.csv`. Antes de juntar, defina o que cada linha representa e quais colunas identificam uma observação.
+
+### Chave, ano e relação esperada
+
+Uma **chave** identifica a observação usada para combinar as tabelas. Aqui, `populacao_uf` tem uma linha por `uf`; a tabela de PIB deve ter uma linha por par `uf` e `ano_referencia`. Para juntar por `uf`, selecionaremos explicitamente um único ano do PIB. A relação esperada nesse recorte é **um para um**: uma linha de cada lado para cada UF.
+
+```{r}
+#| label: validar-chaves
+
+pib_uf <- readr::read_csv(here::here("dados", "pib_uf.csv"), show_col_types = FALSE)
+
+duplicadas_populacao <- populacao_uf |>
+  dplyr::count(uf) |>
+  dplyr::filter(n > 1)
+
+duplicadas_pib <- pib_uf |>
+  dplyr::count(uf, ano_referencia) |>
+  dplyr::filter(n > 1)
+
+stopifnot(
+  !anyNA(populacao_uf$uf),
+  !anyNA(pib_uf$uf),
+  !anyNA(pib_uf$ano_referencia),
+  all(nzchar(trimws(populacao_uf$uf))),
+  all(nzchar(trimws(pib_uf$uf))),
+  nrow(duplicadas_populacao) == 0,
+  nrow(duplicadas_pib) == 0
+)
+
+ano_pib <- 2023
+pib_ano <- pib_uf |>
+  dplyr::filter(ano_referencia == ano_pib)
+
+# Expectativa específica desta base do curso: as 27 UFs no ano escolhido.
+stopifnot(nrow(populacao_uf) == 27, nrow(pib_ano) == 27)
+```
+
+`count()` e `filter(n > 1)` mostram as chaves repetidas. `stopifnot()` interrompe a execução quando uma condição não é verdadeira: inspecione as tabelas de duplicadas e corrija a causa, em vez de removê-las automaticamente com `distinct()`. A contagem de 27 é uma expectativa desta base, não uma regra para qualquer conjunto de dados.
+
+Se houver vários anos, juntar só por `uf` sem selecionar um ano pode multiplicar as linhas e repetir a população de 2022 em cada ano do PIB. Para uma análise temporal, defina a granularidade desejada e obtenha dados populacionais compatíveis; não acrescente `ano_referencia` à chave se a outra tabela não tiver essa informação.
+
+### Cobertura nos dois sentidos
+
+`anti_join(x, y)` mostra as linhas de `x` cuja chave não aparece em `y`. Faça a verificação nos dois sentidos: um `left_join` preserva as linhas da esquerda, mas não traz as UFs que só existem na direita.
+
+```{r}
+#| label: validar-cobertura
+
+sem_pib <- dplyr::anti_join(populacao_uf, pib_ano, by = "uf")
+sem_populacao <- dplyr::anti_join(pib_ano, populacao_uf, by = "uf")
+
+knitr::kable(data.frame(
+  verificacao = c("UFs da população sem correspondência no PIB",
+                 "UFs do PIB sem correspondência na população"),
+  linhas = c(nrow(sem_pib), nrow(sem_populacao))
+))
+
+stopifnot(nrow(sem_pib) == 0, nrow(sem_populacao) == 0)
+```
+
+Neste curso esperamos cobertura completa. Se a verificação falhar, inspecione `sem_pib` e `sem_populacao`: confira siglas, espaços, maiúsculas/minúsculas e o recorte das fontes. Em outro projeto, uma cobertura parcial pode ser legítima, mas precisa ser justificada e documentada.
+
+### Junção e verificações do resultado
+
+`left_join()` acrescenta as colunas da tabela à direita usando a chave indicada por `by`. Ele preserva as observações da esquerda, mas pode aumentar o número de linhas quando há múltiplas correspondências. Declarar `relationship = "one-to-one"` faz a junção falhar se a relação esperada for violada; isso não substitui a checagem de cobertura.
 
 ```{r}
 #| label: juntar-dados
 
-pib_uf <- readr::read_csv(here::here("dados", "pib_uf.csv"), show_col_types = FALSE)
-
 dados_ufs <- populacao_uf |>
-  dplyr::left_join(pib_uf, by = "uf")
+  dplyr::left_join(
+    pib_ano, by = "uf",
+    relationship = "one-to-one", na_matches = "never"
+  )
+
+stopifnot(
+  nrow(dados_ufs) == nrow(populacao_uf),
+  dplyr::n_distinct(dados_ufs$uf) == nrow(populacao_uf)
+)
 
 dplyr::glimpse(dados_ufs)
 ```
@@ -86,16 +157,28 @@ dplyr::glimpse(dados_ufs)
 sum(is.na(dados_ufs$pib_per_capita))
 ```
 
-Neste caso o resultado é zero — as duas bases cobrem as mesmas 27 unidades federativas —, mas em dados reais é comum um `left_join` produzir `NA` quando uma chave existe de um lado e não do outro (uma UF sem PIB registrado no ano da fonte, por exemplo). Nunca ignore isso silenciosamente: decida, e registre a decisão no texto.
+Neste caso não há PIB per capita ausente. Mas **zero `NA` não prova que a junção está correta**: duplicações podem multiplicar linhas sem gerar ausências, e UFs presentes só à direita podem desaparecer do resultado. As verificações anteriores detectam esses problemas.
+
+Um `NA` em `pib_per_capita` pode vir de uma chave sem correspondência ou já existir na fonte. `sem_pib` identifica o primeiro caso; `filter(pib_ano, is.na(pib_per_capita))` ajuda a investigar o segundo. Nunca exclua ou preencha valores antes de diagnosticar a causa.
+
+```{r}
+#| label: validar-indicador
+
+# Nesta base do curso esperamos o indicador completo.
+stopifnot(!anyNA(dados_ufs$pib_per_capita))
+```
 
 ```{r}
 #| label: tratar-na
 #| eval: false
 
-# Se houvesse NA em pib_per_capita, duas saídas comuns seriam:
+# Em outro projeto, depois de diagnosticar e documentar os NA:
 
-# 1. Descartar as linhas incompletas, sendo explícito sobre quantas:
-dados_ufs |> dplyr::filter(!is.na(pib_per_capita))
+# 1. Se a exclusão for justificada, registre quantas linhas e UFs saem.
+excluidas <- dados_ufs |> dplyr::filter(is.na(pib_per_capita))
+excluidas |> dplyr::select(uf, ano_referencia)
+nrow(excluidas)
+dados_completos <- dados_ufs |> dplyr::filter(!is.na(pib_per_capita))
 
 # 2. Exemplo ilustrativo de imputação pela média simples das UFs observadas.
 #    Essa média não é o PIB per capita nacional. Só use imputação com uma
@@ -108,14 +191,8 @@ dados_ufs |> dplyr::mutate(pib_per_capita = dplyr::coalesce(pib_per_capita, mean
 ```{r}
 #| label: fluxo-completo
 
-# 1. Importação
-populacao_uf <- readr::read_csv(here::here("dados", "populacao_uf.csv"), show_col_types = FALSE)
-pib_uf <- readr::read_csv(here::here("dados", "pib_uf.csv"), show_col_types = FALSE)
-
-# 2. Junção e tratamento
-dados_ufs <- populacao_uf |>
-  dplyr::left_join(pib_uf, by = "uf") |>
-  dplyr::filter(!is.na(pib_per_capita))
+# 1. Importação e validação das fontes: blocos da seção anterior.
+# 2. Junção validada: reutilize dados_ufs, sem descartar linhas silenciosamente.
 
 # 3. Transformação
 resumo_regiao <- dados_ufs |>
@@ -236,7 +313,7 @@ Não versione a biblioteca instalada em `.rvenv/` (ela é recriada por `rig proj
 
 1. Leia `dados/populacao_uf.csv` e `dados/pib_uf.csv` com `here::here()`.
 2. Rode `skimr::skim()` nas duas tabelas antes de juntá-las.
-3. Junte as duas com `dplyr::left_join()` e confira se apareceu algum `NA`.
+3. Confira chaves ausentes e duplicadas, selecione o ano do PIB e verifique a cobertura com `anti_join()` nos dois sentidos. Junte com `relationship = "one-to-one"` e compare linhas e UFs únicas antes/depois. Investigue eventuais `NA` no indicador.
 4. Produza uma tabela-resumo por região e ano e um gráfico da média simples do PIB per capita entre UFs. Identifique o cálculo e o ano nos rótulos e explique por que o resultado difere do PIB per capita agregado da região.
 5. Inclua uma frase com um valor calculado dinamicamente, como código R inline (acento grave, `r`, espaço, expressão, acento grave).
 6. Configure o YAML para gerar HTML e mais um formato.
@@ -250,7 +327,10 @@ Adicione a base de dados ao seu projeto (ou documente como obtê-la) e implement
 
 - [ ] Meu projeto usa `here::here()` ou caminhos relativos consistentes.
 - [ ] Rodei `skimr::skim()` (ou equivalente) antes de transformar os dados.
-- [ ] Verifiquei se uma junção produziu `NA` e decidi explicitamente o que fazer com eles.
+- [ ] Defini a chave e o recorte temporal e verifiquei chaves ausentes ou duplicadas.
+- [ ] Conferi a cobertura nos dois sentidos com `anti_join()`.
+- [ ] Declarei a relação esperada e comparei linhas e chaves únicas antes/depois da junção.
+- [ ] Investiguei a origem dos `NA` e documentei qualquer exclusão ou imputação.
 - [ ] Texto, tabelas e gráficos vêm dos mesmos dados, sem números digitados à mão.
 - [ ] Identifiquei médias simples entre UFs e não as apresentei como indicadores regionais agregados.
 - [ ] Conferi o ano e os denominadores antes de combinar ou ponderar indicadores.
@@ -259,6 +339,8 @@ Adicione a base de dados ao seu projeto (ou documente como obtê-la) e implement
 
 ## Leitura complementar
 
+- [dplyr: junções e relações entre chaves](https://dplyr.tidyverse.org/reference/mutate-joins.html)
+- [dplyr: verificação de cobertura com anti_join](https://dplyr.tidyverse.org/reference/filter-joins.html)
 - [Quarto: execução de código](https://quarto.org/docs/computations/execution-options.html)
 - [Quarto: formatos HTML](https://quarto.org/docs/output-formats/html-basics.html)
 - [Quarto: formatos PDF](https://quarto.org/docs/output-formats/pdf-basics.html)
