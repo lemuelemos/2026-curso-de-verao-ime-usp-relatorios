@@ -98,28 +98,51 @@ rig proj add palmerpenguins plotly purrr quarto readr skimr tibble
 
 Adicione apenas o necessário para as atividades que você realizará.
 
+Por padrão, cada `rig proj add` altera `rproj.toml`, atualiza `rproj.lock` e instala os pacotes na biblioteca isolada do projeto. Portanto, após uma adição bem-sucedida, o lock e a instalação já foram tratados — não é preciso repetir `lock` e `sync` apenas para concluir essa operação.
+
 ---
 
-### **4. Salvar o estado do ambiente**
+### **4. Conferir o ambiente e entender as etapas manuais**
+
+Depois de adicionar os pacotes, confira a sincronização:
 
 ```powershell
-rig proj lock
+rig proj status
 ```
 
-Isso garante que qualquer pessoa que abrir o projeto possa recriar o mesmo ambiente depois com:
+Esse comando é somente de leitura. Se preferir controlar cada etapa separadamente, use este fluxo alternativo **no lugar** do `add` padrão:
+
+```powershell
+rig proj add --no-lock dplyr readr ggplot2
+rig proj lock
+rig proj sync
+```
+
+* `add --no-lock` altera apenas `rproj.toml`, sem resolver versões nem instalar;
+* `lock` resolve e grava as versões em `rproj.lock`, sem instalar;
+* `sync` instala o ambiente registrado na biblioteca do projeto.
+
+Outra opção é `rig proj add --no-sync dplyr`: ela atualiza manifesto e lock, mas adia a instalação para `rig proj sync`. Se editar o manifesto manualmente, rode `lock` e `sync`. Um `lock` comum mantém as versões já fixadas quando continuam compatíveis; ele não significa atualizar todos os pacotes para as versões mais recentes.
+
+Versione `rproj.toml` e `rproj.lock`, além dos arquivos de infraestrutura criados pelo `init`. Depois de clonar o projeto, outra pessoa restaura o ambiente com:
 
 ```powershell
 rig proj sync
 ```
+
+Se não existir `rproj.lock`, `sync` o gera primeiro. Para exigir um lock existente, use `rig proj sync --frozen`.
+
+As instruções foram conferidas no `rig 0.11.0`. Como `rig proj` é experimental, verifique `rig --version` e `rig proj add --help` caso use outra versão. Consulte também o [guia oficial de projetos](https://rig.r-lib.org/proj-guide.html).
 
 ---
 
 ✅ **Resumo**
 
 * `rig proj init` → inicia o ambiente de um novo projeto;
-* `rig proj add` → declara os pacotes usados;
-* `rig proj lock` → resolve e registra versões compatíveis;
-* `rig proj sync` → recria o ambiente registrado.
+* `rig proj add` → declara dependências, atualiza o lock e instala por padrão;
+* `rig proj status` → verifica a sincronização sem alterar o ambiente;
+* `rig proj lock` → resolve e registra versões, sem instalar;
+* `rig proj sync` → sincroniza a biblioteca com o ambiente registrado.
 
 ## Instalações recomendadas
 

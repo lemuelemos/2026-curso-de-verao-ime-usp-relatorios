@@ -217,16 +217,33 @@ O `renv` continua sendo uma opção madura para pacotes. O gerenciamento de proj
 ```powershell
 rig proj init --r-version 4.5
 rig proj add dplyr readr ggplot2
-rig proj lock
-rig proj sync
+rig proj status
 ```
 
 | Comando | Uso |
 |---|---|
 | `proj init` | inicia um ambiente |
-| `proj add` | declara dependências |
-| `proj lock` | registra versões resolvidas |
-| `proj sync` | recria o ambiente registrado |
+| `proj add` | declara, atualiza o lock e instala |
+| `proj status` | verifica a sincronização, sem alterar |
+| `proj lock` | resolve e registra versões, sem instalar |
+| `proj sync` | sincroniza a biblioteca com o lock |
+
+No `rig 0.11.0`, um `add` bem-sucedido já executa as etapas de lock e instalação.
+
+## Se quiser separar as etapas
+
+```powershell
+rig proj add --no-lock dplyr readr ggplot2
+rig proj lock
+rig proj sync
+```
+
+- `add --no-lock`: somente manifesto.
+- `add --no-sync`: manifesto e lock, sem instalação.
+- Após editar o manifesto manualmente: `lock` e `sync`.
+- Após clonar: `sync`; `--frozen` exige um lock existente.
+
+Funcionalidade experimental: confira `rig proj add --help` na sua versão.
 
 ## Teste em sessão limpa
 

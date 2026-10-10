@@ -298,14 +298,26 @@ O `rproj.toml` declara o R e os pacotes usados, enquanto `rproj.lock` registra a
 ```powershell
 rig proj init --r-version 4.5
 rig proj add dplyr readr ggplot2
+rig proj status
+```
+
+- `proj init` cria o manifesto e a infraestrutura do ambiente num projeto novo;
+- `proj add` declara os pacotes em `rproj.toml`, atualiza `rproj.lock` e instala os pacotes na biblioteca do projeto, por padrão;
+- `proj status` verifica se a biblioteca está sincronizada com o lock, sem alterá-la;
+- `proj lock` resolve e registra versões em `rproj.lock`, mas não instala os pacotes;
+- `proj sync` sincroniza a biblioteca com o lock — é o que outra pessoa roda ao clonar seu repositório. Se não houver lock, o comando o gera primeiro; `--frozen` exige um lock existente.
+
+Após um `proj add` bem-sucedido, não é necessário repetir `proj lock` e `proj sync` apenas para concluir a adição. Se quiser separar as etapas, use explicitamente:
+
+```powershell
+rig proj add --no-lock dplyr readr ggplot2
 rig proj lock
 rig proj sync
 ```
 
-- `proj init` cria o manifesto e a infraestrutura do ambiente num projeto novo;
-- `proj add` declara os pacotes usados pelo projeto;
-- `proj lock` resolve e registra versões compatíveis em `rproj.lock`;
-- `proj sync` instala exatamente o ambiente registrado — é o que outra pessoa roda ao clonar seu repositório.
+`add --no-lock` altera apenas o manifesto, sem resolver versões nem instalar pacotes. Já `add --no-sync` atualiza manifesto e lock, mas deixa a instalação para um `proj sync` posterior. Se editar `rproj.toml` manualmente, execute `proj lock` e `proj sync` para registrar e instalar o ambiente resultante. Um `proj lock` comum reutiliza versões já fixadas quando elas ainda satisfazem o manifesto; não é um comando de atualização geral para as versões mais recentes.
+
+Esses comportamentos foram conferidos no `rig 0.11.0`. Como a funcionalidade é experimental, consulte `rig --version`, `rig proj add --help` e a [documentação oficial de projetos](https://rig.r-lib.org/proj-guide.html) se estiver usando outra versão.
 
 Não versione a biblioteca instalada em `.rvenv/` (ela é recriada por `rig proj sync`); versione `rproj.toml`, `rproj.lock`, `.Renviron` e `.rvenvlib/`.
 
@@ -321,7 +333,7 @@ Não versione a biblioteca instalada em `.rvenv/` (ela é recriada por `rig proj
 
 ## Para o projeto final
 
-Adicione a base de dados ao seu projeto (ou documente como obtê-la) e implemente a importação, uma junção ou transformação, uma tabela e um gráfico. Registre cada dependência com `rig proj add` e atualize o lock com `rig proj lock`.
+Adicione a base de dados ao seu projeto (ou documente como obtê-la) e implemente a importação, uma junção ou transformação, uma tabela e um gráfico. Use `rig proj add` para declarar, registrar no lock e instalar as dependências. Confira o resultado com `rig proj status` e versione os arquivos de configuração e o lock.
 
 ## Checklist
 
