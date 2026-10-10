@@ -97,8 +97,9 @@ Neste caso o resultado é zero — as duas bases cobrem as mesmas 27 unidades fe
 # 1. Descartar as linhas incompletas, sendo explícito sobre quantas:
 estados |> dplyr::filter(!is.na(pib_per_capita))
 
-# 2. Substituir por um valor de referência (ex.: a média nacional),
-#    deixando claro no texto que aquele número é uma estimativa:
+# 2. Exemplo ilustrativo de imputação pela média simples das UFs observadas.
+#    Essa média não é o PIB per capita nacional. Só use imputação com uma
+#    justificativa metodológica e identifique os valores estimados no texto:
 estados |> dplyr::mutate(pib_per_capita = dplyr::coalesce(pib_per_capita, mean(pib_per_capita, na.rm = TRUE)))
 ```
 
@@ -118,16 +119,30 @@ estados <- populacao_uf |>
 
 # 3. Transformação
 resumo_regiao <- estados |>
-  dplyr::group_by(regiao) |>
+  dplyr::group_by(regiao, ano_referencia) |>
   dplyr::summarise(
-    pib_medio = mean(pib_per_capita),
+    pib_pc_media_ufs = mean(pib_per_capita),
     .groups = "drop"
   ) |>
-  dplyr::arrange(dplyr::desc(pib_medio))
+  dplyr::arrange(dplyr::desc(pib_pc_media_ufs))
 
 # 4. Comunicação
-knitr::kable(resumo_regiao, digits = 0, col.names = c("Região", "PIB per capita médio (R$)"))
+knitr::kable(resumo_regiao, digits = 0, col.names = c("Região", "Ano", "PIB per capita: média simples entre UFs (R$)"))
 ```
+
+### Qual indicador estamos calculando?
+
+`mean(pib_per_capita)` calcula a **média simples do PIB per capita das UFs** de cada região: cada UF tem o mesmo peso, independentemente de sua população. O Distrito Federal, por exemplo, tem o mesmo peso que Goiás no resumo do Centro-Oeste. Agrupar também por `ano_referencia` evita misturar indicadores de anos diferentes se a base passar a conter mais de um ano.
+
+O **PIB per capita agregado da região** é outro indicador:
+
+$$
+\text{PIB per capita regional} = \frac{\sum_i \text{PIB}_i}{\sum_i \text{população}_i}.
+$$
+
+Com dados compatíveis, essa razão equivale à média dos PIBs per capita das UFs ponderada pelas populações usadas em seus denominadores. Para calculá-la, precisamos de PIB total e população da mesma referência, ou dos PIBs per capita e das populações correspondentes. Neste curso, o PIB per capita é de 2023 e a população é do Censo 2022. Por isso, mantemos o exercício como uma comparação da **média simples entre UFs**, sem usar a população de 2022 como peso para apresentar um PIB per capita regional de 2023. A definição e os dados econômicos devem ser conferidos na fonte, como o [Sistema de Contas Regionais do IBGE](https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9054-contas-regionais-do-brasil.html).
+
+PIB per capita expressa uma razão entre produção econômica e população; ele não representa o rendimento recebido por cada pessoa.
 
 Cada etapa tem um comentário que diz o que ela faz, e os nomes dos objetos (`estados`, `resumo_regiao`) descrevem o conteúdo, não a ordem de criação. Evite esconder uma transformação importante dentro de um bloco com nome genérico como `analise` — quem revisa o código depois (inclusive você, em três meses) precisa localizar rapidamente onde algo foi calculado.
 
@@ -138,11 +153,12 @@ Um valor citado em prosa deve vir do mesmo código usado na análise — nunca d
 ```{r}
 #| label: valor-dinamico
 
-regiao_maior_pib <- resumo_regiao$regiao[1]
-pib_regiao_maior <- resumo_regiao$pib_medio[1]
+regiao_maior_media <- resumo_regiao$regiao[1]
+ano_maior_media <- resumo_regiao$ano_referencia[1]
+pib_pc_maior_media <- resumo_regiao$pib_pc_media_ufs[1]
 ```
 
-Esta própria frase usa a técnica: a região `r regiao_maior_pib` tem o maior PIB per capita médio entre as regiões, `r glue::glue("R$ {scales::number(pib_regiao_maior, big.mark = '.', decimal.mark = ',')}")`. Nenhum desses dois valores foi digitado — ambos vieram do bloco `valor-dinamico` acima. Se `dados/pib_uf.csv` fosse atualizado com números de outro ano, a frase mudaria sozinha na próxima renderização, sem que ninguém precisasse achar e editar o número manualmente.
+Esta própria frase usa a técnica: nos recortes de região e ano disponíveis, a maior média simples do PIB per capita entre UFs é a da região `r regiao_maior_media` em `r ano_maior_media`, com `r glue::glue("R$ {scales::number(pib_pc_maior_media, big.mark = '.', decimal.mark = ',')}")`. Região, ano e valor vieram do bloco `valor-dinamico` acima. Se `dados/pib_uf.csv` fosse atualizado, a frase mudaria na próxima renderização, sem editar os resultados manualmente. O valor descreve a média simples das UFs do recorte, e não o PIB per capita agregado da região.
 
 `glue::glue()` monta o texto substituindo `{expressão}` pelo valor calculado; é mais legível que concatenar strings com `paste0()` quando a frase tem várias partes variáveis.
 
@@ -187,8 +203,8 @@ Opções úteis por bloco, sobrepondo o padrão do documento:
 
 ```r
 #| label: fig-pib-regiao
-#| fig-cap: "PIB per capita médio por região."
-#| fig-alt: "Gráfico de barras com o PIB per capita médio de cada região."
+#| fig-cap: "PIB per capita: média simples entre UFs, por região e ano."
+#| fig-alt: "Gráfico de barras comparando a média simples do PIB per capita das UFs de cada região, com o ano de referência identificado."
 #| echo: false
 ```
 
@@ -221,7 +237,7 @@ Não versione a biblioteca instalada em `.rvenv/` (ela é recriada por `rig proj
 1. Leia `dados/populacao_uf.csv` e `dados/pib_uf.csv` com `here::here()`.
 2. Rode `skimr::skim()` nas duas tabelas antes de juntá-las.
 3. Junte as duas com `dplyr::left_join()` e confira se apareceu algum `NA`.
-4. Produza uma tabela-resumo por região e um gráfico.
+4. Produza uma tabela-resumo por região e ano e um gráfico da média simples do PIB per capita entre UFs. Identifique o cálculo e o ano nos rótulos e explique por que o resultado difere do PIB per capita agregado da região.
 5. Inclua uma frase com um valor calculado dinamicamente, como código R inline (acento grave, `r`, espaço, expressão, acento grave).
 6. Configure o YAML para gerar HTML e mais um formato.
 7. Reinicie o R e renderize novamente.
@@ -236,6 +252,8 @@ Adicione a base de dados ao seu projeto (ou documente como obtê-la) e implement
 - [ ] Rodei `skimr::skim()` (ou equivalente) antes de transformar os dados.
 - [ ] Verifiquei se uma junção produziu `NA` e decidi explicitamente o que fazer com eles.
 - [ ] Texto, tabelas e gráficos vêm dos mesmos dados, sem números digitados à mão.
+- [ ] Identifiquei médias simples entre UFs e não as apresentei como indicadores regionais agregados.
+- [ ] Conferi o ano e os denominadores antes de combinar ou ponderar indicadores.
 - [ ] Escolhi o formato com base no público.
 - [ ] O documento renderiza em uma sessão limpa.
 

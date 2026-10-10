@@ -119,9 +119,25 @@ populacao_uf <- readr::read_csv("dados/populacao_uf.csv", show_col_types = FALSE
 
 resumo_regiao <- populacao_uf |>
   group_by(regiao) |>
-  summarise(estados = n(), populacao_total = sum(populacao), .groups = "drop") |>
+  summarise(
+    n_ufs = n(),
+    populacao_total = sum(populacao),
+    densidade_regional = sum(populacao) / sum(area_km2),
+    .groups = "drop"
+  ) |>
   arrange(desc(populacao_total))
 ```
+
+## Densidade regional: razão entre totais
+
+$$
+d_{\text{região}} = \frac{\sum_i P_i}{\sum_i A_i}
+$$
+
+- Use `sum(populacao) / sum(area_km2)`.
+- `mean(densidade_dem)` é a média simples das densidades das UFs.
+- Na média simples, o DF tem o mesmo peso que cada outra UF do Centro-Oeste.
+- Nomeie o indicador conforme o cálculo utilizado.
 
 ## Tabelas com propósito
 
@@ -131,7 +147,12 @@ resumo_regiao <- populacao_uf |>
 resumo_regiao |>
   gt::gt() |>
   gt::fmt_number(populacao_total, decimals = 0, sep_mark = ".", dec_mark = ",") |>
-  gt::cols_label(regiao = "Região", estados = "Estados", populacao_total = "População total") |>
+  gt::fmt_number(densidade_regional, decimals = 1, sep_mark = ".", dec_mark = ",") |>
+  gt::cols_label(
+    regiao = "Região", n_ufs = "UFs",
+    populacao_total = "População total",
+    densidade_regional = "Densidade regional (hab/km²)"
+  ) |>
   gt::tab_source_note("Fonte: IBGE, Censo 2022.")
 ```
 

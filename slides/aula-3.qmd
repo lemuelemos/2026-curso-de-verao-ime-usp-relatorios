@@ -89,9 +89,18 @@ estados <- populacao_uf |>
 
 # 3. Transformação
 resumo_regiao <- estados |>
-  dplyr::group_by(regiao) |>
-  dplyr::summarise(pib_medio = mean(pib_per_capita), .groups = "drop")
+  dplyr::group_by(regiao, ano_referencia) |>
+  dplyr::summarise(pib_pc_media_ufs = mean(pib_per_capita), .groups = "drop")
 ```
+
+## Média entre UFs e PIB per capita regional
+
+- `mean(pib_per_capita)` dá o mesmo peso a cada UF.
+- Indicador do exercício: **média simples do PIB per capita entre UFs**, por região e ano.
+- PIB per capita regional: soma dos PIBs dividida pela soma das populações correspondentes.
+- PIB per capita de 2023 e população de 2022 não fornecem os denominadores compatíveis para esse cálculo regional.
+
+Mantenha o ano e o tipo de média explícitos nas tabelas, gráficos e conclusões.
 
 ## Resultados dinâmicos
 
@@ -99,16 +108,17 @@ resumo_regiao <- estados |>
 #| label: resumo-regiao
 
 resumo_regiao <- estados |>
-  dplyr::group_by(regiao) |>
-  dplyr::summarise(pib_medio = mean(pib_per_capita, na.rm = TRUE), .groups = "drop") |>
-  dplyr::arrange(dplyr::desc(pib_medio))
+  dplyr::group_by(regiao, ano_referencia) |>
+  dplyr::summarise(pib_pc_media_ufs = mean(pib_per_capita), .groups = "drop") |>
+  dplyr::arrange(dplyr::desc(pib_pc_media_ufs))
 
-regiao_maior_pib <- resumo_regiao$regiao[1]
+regiao_maior_media <- resumo_regiao$regiao[1]
+ano_maior_media <- resumo_regiao$ano_referencia[1]
 ```
 
 No texto: código R inline (acento grave, a letra r, espaço, expressão, acento grave) — nunca um número digitado.
 
-Esta frase usa a técnica: a região `r regiao_maior_pib` tem o maior PIB per capita médio.
+Esta frase usa a técnica: a maior média simples do PIB per capita entre UFs, nos recortes disponíveis, é a da região `r regiao_maior_media` em `r ano_maior_media`.
 
 ## Qual formato escolher?
 
@@ -184,7 +194,7 @@ rig proj sync
 - leia as duas bases com `here::here()`;
 - rode `skimr::skim()` antes de juntar;
 - junte com `left_join()` e confira `NA`;
-- produza tabela, gráfico e um valor dinâmico no texto;
+- produza tabela, gráfico e um valor dinâmico da média simples entre UFs, identificando região e ano;
 - gere HTML e outro formato;
 - teste em sessão limpa.
 

@@ -140,13 +140,37 @@ resumo_regiao <- populacao_uf |>
   summarise(
     estados = dplyr::n(),
     populacao_total = sum(populacao),
-    densidade_media = mean(densidade_dem),
+    densidade_regional = sum(populacao) / sum(area_km2),
     .groups = "drop"
   ) |>
   arrange(desc(populacao_total))
 ```
 
 Cada bloco declara `#| label:` — um nome único que aparece nas mensagens de erro e permite referenciar tabelas e figuras (seção 7).
+
+Para calcular a **densidade demográfica da região**, dividimos a população total pela área total das UFs que a compõem. A média simples de `densidade_dem` dá o mesmo peso a cada UF, independentemente de sua área, e responde a outra pergunta: qual é a média das densidades das UFs?
+
+Compare os dois cálculos usando os dados do curso:
+
+```{r}
+#| label: tbl-comparar-densidades
+#| tbl-cap: "Densidade regional e média simples das densidades das UFs: indicadores diferentes."
+
+populacao_uf |>
+  group_by(regiao) |>
+  summarise(
+    densidade_regional = sum(populacao) / sum(area_km2),
+    media_simples_ufs = mean(densidade_dem),
+    .groups = "drop"
+  ) |>
+  knitr::kable(
+    col.names = c("Região", "Densidade regional (hab/km²)", "Média simples entre UFs (hab/km²)"),
+    digits = 1,
+    format.args = list(big.mark = ".", decimal.mark = ",")
+  )
+```
+
+Na @tbl-comparar-densidades, o Distrito Federal influencia fortemente a média simples do Centro-Oeste: sua densidade elevada tem o mesmo peso que a de cada uma das outras três UFs. A densidade regional usa a população e a área de todo o território. Calcule essa razão com as colunas originais, para evitar o arredondamento já presente em `densidade_dem`.
 
 ## 5. Tabelas que comunicam
 
@@ -161,11 +185,11 @@ Para dados calculados, gere a tabela a partir do código — nunca digite um nú
 
 ```{r}
 #| label: tbl-resumo-regiao
-#| tbl-cap: "Estados, população total e densidade média, por região."
+#| tbl-cap: "UFs, população total e densidade demográfica regional."
 
 resumo_regiao |>
   knitr::kable(
-    col.names = c("Região", "Estados", "População total", "Densidade média (hab/km²)"),
+    col.names = c("Região", "UFs", "População total", "Densidade regional (hab/km²)"),
     digits = 1,
     format.args = list(big.mark = ".", decimal.mark = ",")
   )
@@ -183,12 +207,12 @@ resumo_regiao |>
   gt::gt() |>
   gt::tab_header(title = "Perfil demográfico por região") |>
   gt::fmt_number(columns = c(populacao_total), decimals = 0, sep_mark = ".", dec_mark = ",") |>
-  gt::fmt_number(columns = c(densidade_media), decimals = 1, sep_mark = ".", dec_mark = ",") |>
+  gt::fmt_number(columns = c(densidade_regional), decimals = 1, sep_mark = ".", dec_mark = ",") |>
   gt::cols_label(
     regiao = "Região",
     estados = "Estados",
     populacao_total = "População total",
-    densidade_media = "Densidade média (hab/km²)"
+    densidade_regional = "Densidade regional (hab/km²)"
   ) |>
   gt::tab_source_note("Fonte: IBGE, Censo Demográfico 2022.")
 ```
@@ -252,6 +276,12 @@ em que $P$ é a população e $A$ é a área em km². A @eq-densidade é a mesma
 - `sec-` para seções.
 
 Rótulos estáveis permitem mudar a ordem dos elementos sem corrigir a numeração manualmente — o Quarto renumera tudo sozinho.
+
+Para uma região composta por várias UFs, a mesma definição é aplicada aos totais:
+
+$$
+d_{\text{região}} = \frac{\sum_i P_i}{\sum_i A_i}.
+$$
 
 ## 8. Citações bibliográficas {#sec-citacoes-bibliograficas}
 
@@ -364,6 +394,7 @@ Se escolheu um artigo acadêmico, comece também o arquivo `.bib` e cite uma fon
 - [ ] O YAML está válido e enxuto.
 - [ ] A hierarquia de títulos é lógica.
 - [ ] Tabelas e gráficos são citados e interpretados, não apenas exibidos.
+- [ ] Calculei a densidade regional pela razão entre os totais de população e área.
 - [ ] Sei distinguir referências cruzadas de citações bibliográficas.
 - [ ] Declarei um `.bib`, citei uma fonte e conferi a lista de referências renderizada.
 - [ ] Imagens e gráficos têm texto alternativo específico (não genérico).
