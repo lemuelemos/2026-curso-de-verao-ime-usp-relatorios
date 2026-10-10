@@ -132,7 +132,7 @@ Reconhecer a mensagem de erro é metade do diagnóstico. Alguns exemplos reais:
 | Mensagem ou sintoma | O que ela costuma significar |
 |---|---|
 | `'quarto' não é reconhecido como um comando` | o Quarto não está instalado ou a IDE precisa ser reiniciada para enxergar o PATH atualizado |
-| `Error in library(dplyr) : there is no package called 'dplyr'` | o pacote não está instalado no ambiente ativo (confira com `renv::status()` se o projeto usa `renv`) |
+| `Error in library(dplyr) : there is no package called 'dplyr'` | o pacote não está instalado no ambiente ativo (rode `rig proj status` e `rig proj sync` se o projeto usa `rig`) |
 | `Error: YAML parse exception ... mapping values are not allowed in this context` | um `:` em um texto do YAML sem aspas ao redor, ou indentação com tabulação em vez de espaços |
 | `cannot open file 'imagens/grafico.png': No such file or directory` | caminho relativo à pasta errada — confira a partir de onde o documento é executado |
 | código funciona no console, mas o Render falha com `object 'x' not found` | `x` foi criado só no console, fora do arquivo `.qmd` — o documento não tem acesso à sua sessão |

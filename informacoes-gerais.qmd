@@ -45,7 +45,7 @@ Ao final do curso, a pessoa participante deverá ser capaz de planejar, produzir
 - importação de mais de uma fonte de dados, junção e tratamento de valores ausentes;
 - resultados dinâmicos no texto (código R inline);
 - saídas HTML, PDF e Word;
-- ambientes reproduzíveis com `renv`.
+- ambientes reproduzíveis com `rig`.
 
 **Entrega parcial:** análise mínima renderizando em uma sessão limpa.
 

@@ -194,19 +194,27 @@ Opções úteis por bloco, sobrepondo o padrão do documento:
 
 ## 8. Reprodutibilidade do ambiente
 
-O `renv.lock` registra a versão exata de cada pacote usado no projeto. No projeto do trabalho final:
+### Por que usamos o rig?
 
-```r
-renv::init()
-renv::snapshot()
-renv::restore()
+Um ambiente reproduzível precisa controlar duas camadas: a versão do R e as versões dos pacotes. O `renv` é uma ferramenta madura para a segunda camada, mas pressupõe que uma versão compatível do R já esteja instalada. Neste curso usamos o `rig` porque ele administra as duas: seleciona ou instala o R e sincroniza a biblioteca isolada do projeto.
+
+Isso permite começar no terminal com `rig proj sync`, sem instalar antes um pacote dentro do R. A decisão é específica deste curso: o gerenciamento de projetos do `rig` ainda é experimental, e projetos que já usam `renv` com sucesso não precisam migrar apenas por esse motivo.
+
+O `rproj.toml` declara o R e os pacotes usados, enquanto `rproj.lock` registra as versões exatas resolvidas pelo `rig`. No projeto do trabalho final, use o terminal:
+
+```powershell
+rig proj init --r-version 4.5
+rig proj add dplyr readr ggplot2
+rig proj lock
+rig proj sync
 ```
 
-- `init()` cria a infraestrutura do `renv` num projeto novo;
-- `snapshot()` atualiza `renv.lock` com os pacotes de fato usados e instalados;
-- `restore()` reinstala exatamente essas versões — é o que outra pessoa roda ao clonar seu repositório.
+- `proj init` cria o manifesto e a infraestrutura do ambiente num projeto novo;
+- `proj add` declara os pacotes usados pelo projeto;
+- `proj lock` resolve e registra versões compatíveis em `rproj.lock`;
+- `proj sync` instala exatamente o ambiente registrado — é o que outra pessoa roda ao clonar seu repositório.
 
-Não versione a biblioteca instalada em `renv/library` (ela é recriada por `restore()`); versione `renv.lock` e os arquivos de infraestrutura criados pelo `renv`.
+Não versione a biblioteca instalada em `.rvenv/` (ela é recriada por `rig proj sync`); versione `rproj.toml`, `rproj.lock`, `.Renviron` e `.rvenvlib/`.
 
 ## Prática guiada
 
@@ -220,7 +228,7 @@ Não versione a biblioteca instalada em `renv/library` (ela é recriada por `res
 
 ## Para o projeto final
 
-Adicione a base de dados ao seu projeto (ou documente como obtê-la) e implemente a importação, uma junção ou transformação, uma tabela e um gráfico. Registre as dependências com `renv::snapshot()`.
+Adicione a base de dados ao seu projeto (ou documente como obtê-la) e implemente a importação, uma junção ou transformação, uma tabela e um gráfico. Registre cada dependência com `rig proj add` e atualize o lock com `rig proj lock`.
 
 ## Checklist
 

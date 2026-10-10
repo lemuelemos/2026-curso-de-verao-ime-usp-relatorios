@@ -331,6 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#contas-em-serviços" id="toc-contas-em-serviços" class="nav-link active" data-scroll-target="#contas-em-serviços">Contas em serviços</a></li>
   <li><a href="#instalações-obrigatórias" id="toc-instalações-obrigatórias" class="nav-link" data-scroll-target="#instalações-obrigatórias">Instalações obrigatórias</a>
   <ul class="collapse">
+  <li><a href="#por-que-usar-o-rig-neste-curso" id="toc-por-que-usar-o-rig-neste-curso" class="nav-link" data-scroll-target="#por-que-usar-o-rig-neste-curso"><strong>Por que usar o rig neste curso?</strong></a></li>
   <li><a href="#restaurar-um-ambiente-existente" id="toc-restaurar-um-ambiente-existente" class="nav-link" data-scroll-target="#restaurar-um-ambiente-existente"><strong>1. Restaurar um ambiente existente</strong></a></li>
   <li><a href="#criar-o-ambiente-do-seu-trabalho-final" id="toc-criar-o-ambiente-do-seu-trabalho-final" class="nav-link" data-scroll-target="#criar-o-ambiente-do-seu-trabalho-final"><strong>2. Criar o ambiente do seu trabalho final</strong></a></li>
   <li><a href="#instalar-os-pacotes-usados-nas-aulas" id="toc-instalar-os-pacotes-usados-nas-aulas" class="nav-link" data-scroll-target="#instalar-os-pacotes-usados-nas-aulas"><strong>3. Instalar os pacotes usados nas aulas</strong></a></li>
@@ -372,11 +373,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="instalações-obrigatórias" class="level2">
 <h2 class="anchored" data-anchor-id="instalações-obrigatórias">Instalações obrigatórias</h2>
 <ol type="1">
-<li><strong>Instalar o R</strong> — use uma versão atual e compatível com seu sistema:</li>
+<li><strong>Instalar o rig</strong> — ele instala e seleciona a versão correta do R para cada projeto:</li>
 </ol>
 <ul>
-<li><p>Download direto: <a href="https://vps.fmvz.usp.br/CRAN/" class="uri">https://vps.fmvz.usp.br/CRAN/</a></p></li>
-<li><p>Tutorial: <a href="https://livro.curso-r.com/1-1-instalacao-do-r.html" class="uri">https://livro.curso-r.com/1-1-instalacao-do-r.html</a></p></li>
+<li><p>Download e instruções: <a href="https://r-lib.github.io/rig/" class="uri">https://r-lib.github.io/rig/</a></p></li>
+<li><p>Depois da instalação, abra o terminal e execute <code>rig --version</code>.</p></li>
 </ul>
 <ol start="2" type="1">
 <li><strong>Instalar RStudio ou Positron</strong>:</li>
@@ -403,9 +404,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="5" type="1">
 <li><strong>Restaurar os pacotes do curso</strong>:</li>
 </ol>
-<p>Antes de instalar qualquer pacote, vamos criar um <strong>ambiente de desenvolvimento padronizado</strong> para todos. Para isso, utilizaremos o pacote <code>renv</code>, que permitirá configurar um ambiente padrão de projeto e, posteriormente, instalar os pacotes necessários de forma organizada e reprodutível.</p>
-<p>O <strong><code>renv</code></strong> é um pacote do R usado para <strong>gerenciar ambientes de projeto</strong>. Ele garante que cada projeto tenha sua própria lista de pacotes e versões, evitando problemas quando códigos são executados em computadores diferentes ou em momentos diferentes no tempo.</p>
-<p>Na prática, o <code>renv</code> cria um <strong>ambiente isolado</strong>, onde ficam registradas exatamente quais bibliotecas o projeto usa. Assim, qualquer pessoa que abrir o projeto pode <strong>reproduzir o mesmo ambiente</strong> com apenas um comando, instalando automaticamente as versões corretas dos pacotes.</p>
+<p>Antes de instalar qualquer pacote, vamos criar um <strong>ambiente de desenvolvimento padronizado</strong> para todos. Para isso, utilizaremos o <code>rig</code>, que gerencia versões do R, dependências e bibliotecas isoladas por projeto.</p>
+<p>O <strong><code>rig</code></strong> é um gerenciador externo ao R. O arquivo <code>rproj.toml</code> declara as dependências do projeto e <code>rproj.lock</code> registra as versões resolvidas, evitando diferenças entre computadores e ao longo do tempo.</p>
+<p>Na prática, o <code>rig</code> cria uma biblioteca isolada em <code>.rvenv/</code>. Qualquer pessoa pode <strong>reproduzir o mesmo ambiente</strong> com um comando, inclusive instalando a versão correta do R quando necessário.</p>
+<section id="por-que-usar-o-rig-neste-curso" class="level3">
+<h3 class="anchored" data-anchor-id="por-que-usar-o-rig-neste-curso"><strong>Por que usar o rig neste curso?</strong></h3>
+<p>O <code>renv</code> é uma alternativa madura e amplamente usada para isolar pacotes de R. Porém, ele começa a trabalhar <strong>depois</strong> que o R já está instalado: o lock pode registrar a versão esperada, mas não instala nem seleciona essa versão do R para você.</p>
+<p>Neste curso queremos padronizar desde o primeiro passo. O <code>rig</code> foi escolhido porque reúne, em uma única ferramenta de terminal:</p>
+<ul>
+<li>a instalação e a seleção da versão do R;</li>
+<li>a declaração das dependências em <code>rproj.toml</code>;</li>
+<li>o registro de versões resolvidas em <code>rproj.lock</code>;</li>
+<li>a criação e a restauração da biblioteca isolada do projeto.</li>
+</ul>
+<p>Isso reduz o problema “funciona na minha máquina”: <code>rig proj sync</code> prepara tanto o R 4.5.2 quanto os pacotes necessários, sem exigir que a pessoa instale primeiro um gerenciador dentro do próprio R.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Uma escolha para este curso">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Uma escolha para este curso
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O gerenciamento de projetos do <code>rig</code> ainda é experimental e pode mudar em versões futuras. O <code>renv</code> continua sendo uma boa opção, especialmente em projetos que já o utilizam ou que precisam de um fluxo mais maduro. Aqui adotamos o <code>rig</code> porque seu controle conjunto da versão do R e dos pacotes torna a instalação do curso mais uniforme.</p>
+</div>
+</div>
 <p>Isso traz três grandes benefícios:</p>
 <ul>
 <li><strong>Reprodutibilidade</strong>: o código roda hoje e continuará rodando no futuro.</li>
@@ -414,58 +439,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Em resumo:</p>
 <blockquote class="blockquote">
-<p>O <code>renv</code> é o “controle de dependências” do R, essencial para projetos profissionais e colaborativos.</p>
+<p>O <code>rig</code> gerencia tanto a versão do R quanto as dependências de cada projeto.</p>
 </blockquote>
+</section>
 <section id="restaurar-um-ambiente-existente" class="level3">
 <h3 class="anchored" data-anchor-id="restaurar-um-ambiente-existente"><strong>1. Restaurar um ambiente existente</strong></h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Esse é o fluxo indicado para quem clonou este repositório: o <code>renv.lock</code> informa as versões esperadas.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rig proj sync</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Esse é o fluxo indicado para quem clonou este repositório: <code>rproj.lock</code> informa as versões esperadas.</p>
 <hr>
 </section>
 <section id="criar-o-ambiente-do-seu-trabalho-final" class="level3">
 <h3 class="anchored" data-anchor-id="criar-o-ambiente-do-seu-trabalho-final"><strong>2. Criar o ambiente do seu trabalho final</strong></h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Isso cria a infraestrutura do ambiente e um <code>renv.lock</code> no seu projeto.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rig proj init <span class="op">--</span>r-version <span class="dv">4.5</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Isso cria <code>rproj.toml</code>, <code>.Renviron</code>, <code>.rvenvlib/</code> e a regra que ignora a biblioteca local <code>.rvenv/</code>.</p>
 <hr>
 </section>
 <section id="instalar-os-pacotes-usados-nas-aulas" class="level3">
 <h3 class="anchored" data-anchor-id="instalar-os-pacotes-usados-nas-aulas"><strong>3. Instalar os pacotes usados nas aulas</strong></h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pacotes_necessarios <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dplyr"</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"echarts4r"</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggplot2"</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"glue"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"gt"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"here"</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"kableExtra"</span>,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"knitr"</span>,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"leaflet"</span>,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"palmerpenguins"</span>,</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"plotly"</span>,</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"purrr"</span>,</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"quarto"</span>,</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"readr"</span>,</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"renv"</span>,</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"skimr"</span>,</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tibble"</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(pacotes_necessarios)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Instale apenas o necessário para as atividades que você realizará. Depois registre o ambiente.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rig proj add dplyr echarts4r ggplot2 glue gt here kableExtra knitr leaflet</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>rig proj add palmerpenguins plotly purrr quarto readr skimr tibble</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Adicione apenas o necessário para as atividades que você realizará.</p>
 <hr>
 </section>
 <section id="salvar-o-estado-do-ambiente" class="level3">
 <h3 class="anchored" data-anchor-id="salvar-o-estado-do-ambiente"><strong>4. Salvar o estado do ambiente</strong></h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rig proj lock</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Isso garante que qualquer pessoa que abrir o projeto possa recriar o mesmo ambiente depois com:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rig proj sync</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 <p>✅ <strong>Resumo</strong></p>
 <ul>
-<li><code>renv::init()</code> → inicia o ambiente de um novo projeto;</li>
-<li><code>renv::snapshot()</code> → registra as versões instaladas;</li>
-<li><code>renv::restore()</code> → recria o ambiente registrado.</li>
+<li><code>rig proj init</code> → inicia o ambiente de um novo projeto;</li>
+<li><code>rig proj add</code> → declara os pacotes usados;</li>
+<li><code>rig proj lock</code> → resolve e registra versões compatíveis;</li>
+<li><code>rig proj sync</code> → recria o ambiente registrado.</li>
 </ul>
 </section>
 </section>
@@ -494,10 +501,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="teste-da-instalação" class="level2">
 <h2 class="anchored" data-anchor-id="teste-da-instalação">Teste da instalação</h2>
 <p>Execute no terminal:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>quarto check</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Depois, no console do R:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"knitr"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rig <span class="op">--</span>version</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>rig proj status</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>quarto check</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Depois, ainda no terminal, teste o R do projeto:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rig run <span class="op">-</span>e <span class="st">"R.version.string; packageVersion('knitr')"</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Se algum passo falhar, copie a mensagem completa de erro e informe seu sistema operacional ao pedir ajuda.</p>
 
 

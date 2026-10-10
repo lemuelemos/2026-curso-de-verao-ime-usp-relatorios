@@ -34,17 +34,31 @@ publicados por engano.
 ### Pré-requisitos
 
 - [Quarto](https://quarto.org/docs/get-started/);
-- [R](https://cran.r-project.org/) e, opcionalmente, RStudio ou Positron;
+- [rig](https://r-lib.github.io/rig/) para instalar e gerenciar o R;
+- RStudio ou Positron (opcionais);
 - os pacotes de R usados nas aulas que você pretende renderizar.
 
-Clone o repositório e, na pasta do projeto, restaure o ambiente pelo console do
-R:
+### Por que este projeto usa o rig?
 
-```r
-renv::restore()
+O `renv` é uma solução madura para isolar pacotes, mas pressupõe que uma versão
+compatível do R já esteja instalada. Neste curso, o `rig` foi escolhido para
+padronizar as duas camadas com uma única ferramenta: ele seleciona ou instala o
+R 4.5.2 e também recria a biblioteca registrada do projeto. Assim, o primeiro
+comando após clonar o repositório é executado no terminal e não depende de
+instalar previamente um pacote dentro do R.
+
+O gerenciamento de projetos do `rig` ainda é experimental. A escolha vale para
+este curso e não significa que todo projeto existente precise abandonar o
+`renv`; equipes que já usam esse fluxo com sucesso podem continuar usando-o.
+
+Clone o repositório e, na pasta do projeto, sincronize o ambiente pelo terminal:
+
+```powershell
+rig proj sync
 ```
 
-Depois, inicie a visualização pelo terminal:
+O comando instala a versão do R e os pacotes registrados em `rproj.lock` na
+biblioteca isolada `.rvenv/`. Depois, inicie a visualização:
 
 ```powershell
 quarto preview
