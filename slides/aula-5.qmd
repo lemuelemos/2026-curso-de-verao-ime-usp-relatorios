@@ -200,23 +200,29 @@ O `README.md` deste repositório segue exatamente essa estrutura — vale abrir 
 
 ## Como este site é publicado
 
-`.github/workflows/static.yml` publica a pasta `_site/` já renderizada a cada `push` em `main`:
+`.github/workflows/static.yml` publica a pasta `_site/` já renderizada a cada `push` em `main`.
 
-```yaml
-on:
-  push:
-    branches: ["main"]
-jobs:
-  deploy:
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: '_site'
-      - uses: actions/deploy-pages@v4
-```
+1. Configure **Settings → Pages → Source: GitHub Actions**.
+2. Crie o workflow completo apresentado na seção 4 do [roteiro da aula](../aulas/aula-5.qmd#publicação-no-github-pages).
+3. Envie o workflow e `_site/` no commit.
+4. Confira a execução em **Actions** e o link em **Settings → Pages**.
 
 O Quarto **não** roda no GitHub Actions aqui — por isso é preciso `quarto render` local antes do `push`.
+
+## Ambiente de implantação
+
+Trecho do job `deploy` — consulte o roteiro para o workflow completo:
+
+```yaml
+environment:
+  name: github-pages
+  url: ${{ steps.deployment.outputs.page_url }}
+```
+
+- `github-pages` define o ambiente de implantação.
+- A etapa de publicação precisa de `id: deployment` para fornecer a URL acima.
+- O workflow inclui `contents: read`, `pages: write` e `id-token: write`.
+- Checkout, configuração do Pages, upload de `_site/` e implantação formam o fluxo completo.
 
 ## Outras estratégias de publicação
 

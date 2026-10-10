@@ -170,29 +170,52 @@ format:
     toc: true
 ```
 
-Renderize, confira a pasta de saída e escolha uma estratégia de publicação. Este próprio site usa a mais simples das três: publica a pasta `_site/` já renderizada. O workflow completo, em `.github/workflows/static.yml`, é curto:
+Renderize e confira a pasta `_site/`. Este site publica essa pasta já renderizada, usando GitHub Actions. Para aplicar o mesmo fluxo ao seu trabalho:
+
+1. No repositório do GitHub, abra **Settings → Pages** e selecione **GitHub Actions** em **Build and deployment → Source**.
+2. No projeto local, crie `.github/workflows/static.yml` com o conteúdo abaixo. O exemplo usa a branch `main`; ajuste-a se seu repositório usar outro nome.
+3. Inclua o workflow e a pasta `_site/` renderizada no commit e envie ao GitHub. Confira a execução na aba **Actions** e o endereço publicado em **Settings → Pages**.
+
+O exemplo reproduz a configuração do [workflow deste curso](https://github.com/lemuelemos/2026-curso-de-verao-ime-usp-relatorios/blob/main/.github/workflows/static.yml), sem os comentários:
 
 ```yaml
+name: Deploy static content to Pages
+
 on:
   push:
     branches: ["main"]
+  workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: '_site'
-      - uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 ```
+
+`environment.name: github-pages` define o ambiente de implantação. O `id: deployment` identifica a etapa cuja saída fornece `page_url`, usada em `environment.url` para mostrar o link publicado. As permissões `pages: write` e `id-token: write` autorizam a implantação; `contents: read` permite ler o repositório. `workflow_dispatch` permite iniciar uma execução manual pela aba Actions, e `concurrency` organiza os envios para o mesmo ambiente. Consulte também a [documentação de workflows do GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 
 A cada `push` para `main`, o GitHub publica o conteúdo que já está em `_site/` — o Quarto **não** roda dentro do GitHub Actions. Isso significa uma regra importante para quem contribui com este repositório: depois de alterar um `.qmd`, é preciso rodar `quarto render` localmente e incluir a pasta `_site/` atualizada no mesmo commit, ou a publicação ficará desatualizada mesmo com o código-fonte correto.
 
