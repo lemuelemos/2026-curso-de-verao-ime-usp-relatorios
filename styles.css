@@ -95,6 +95,14 @@ a:focus {
   border-radius: 0;
 }
 
+/* O Quarto aplica d-none à logo abaixo do breakpoint lg. */
+@media (max-width: 991.98px) {
+  body.quarto-light .sidebar-navigation .sidebar-logo.light-content,
+  body.quarto-dark .sidebar-navigation .sidebar-logo.dark-content {
+    display: block !important;
+  }
+}
+
 .sidebar-navigation .sidebar-tools-main {
   display: flex;
   justify-content: center;
