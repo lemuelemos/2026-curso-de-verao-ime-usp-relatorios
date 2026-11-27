@@ -25,7 +25,8 @@ website:
     background: "#FFD100"
 
   sidebar:
-    logo: "https://www.ime.usp.br/verao/assets/images/logo_verao.png"
+    logo: assets/logo-verao.png
+    logo-alt: "Programa de Verão do IME-USP"
     pinned: true
     background: "#662915"
     align: center
