@@ -1,6 +1,20 @@
 ---
 title: "Relatórios reprodutíveis com R"
 subtitle: "Curso de Verão IME-USP 2026"
+open-graph:
+  title: "Relatórios reprodutíveis com R"
+  description: "Aprenda a criar relatórios reprodutíveis com R e Quarto no Curso de Verão do IME-USP."
+  image: assets/capa-compartilhamento.png
+  image-alt: "Relatórios reprodutíveis com R, Curso de Verão IME-USP 2026, com a logo do programa."
+  image-width: 1200
+  image-height: 627
+  locale: pt_BR
+format:
+  html:
+    include-in-header:
+      text: |
+        <meta property="og:url" content="https://lemuelemos.github.io/2026-curso-de-verao-ime-usp-relatorios/">
+        <meta property="og:type" content="website">
 ---
 
 ## Do código à comunicação
