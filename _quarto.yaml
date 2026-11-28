@@ -3,6 +3,8 @@ project:
   type: website
   output-dir: _site
   execute-dir: project
+  resources:
+    - assets/capa-compartilhamento.png
   render:
     - "*.qmd"
     - "aulas/*.qmd"
